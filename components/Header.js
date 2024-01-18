@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 /**
  * Header component
  * @returns 
@@ -5,7 +7,9 @@
 export default function Header() {
     return (
         <div>
-            <h1>Header</h1>
+            <Link href="/">Home</Link>
+            <Link href="/menu">Menu</Link>
+            <Link href="/cart">Cart</Link>
         </div>
     )
 }
