@@ -5,6 +5,7 @@
 export default function MenuPage() {
     return (
         <section>
+            menu
 
         </section>
     )

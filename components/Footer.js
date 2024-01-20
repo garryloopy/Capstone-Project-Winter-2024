@@ -4,7 +4,8 @@
  */
 export default function Footer() {
     return (
-        <footer>
+        <footer className="">
+            <p>footer</p>
         </footer>
     )
 }
