@@ -21,28 +21,28 @@ export default function Header() {
     }
 
     return (
-      <header className="md:px-[4rem] px-2 py-[1rem] flex justify-between items-center bg-black/25 border-b border-gray-600 shadow-md z-10">
+      <header className="md:px-[4rem] px-2 py-[1rem] flex justify-between items-center bg-black/25 border-b border-gray-600 shadow-md z-10 sticky top-0">
         {/* logo and text */}
         <div className="flex gap-4 justify-center items-center text-white md:w-[30%] w-1/2">
           <div className="">
             <Image
               src="/images/logo-01.jpg"
               alt="logo"
-              width={100}
-              height={100}
+              width={80}
+              height={80}
               className="rounded-full border-2 border-orange-400"
             />
           </div>
           <p className="md:text-lg text-sm header-font">
-            <span className="md:text-[40px] text-md text-orange-400">M</span>
+            <span className="lg:text-[40px] text-md text-orange-400">M</span>
             iggy's{" "}
-            <span className="sm:text-[40px] text-lg text-orange-400">M</span>
+            <span className="lg:text-[40px] text-md text-orange-400">M</span>
             unchies
           </p>
         </div>
 
         {/* navbar links */}
-        <nav className=" md:flex hidden justify-center items-center gap-16 text-white mt-16 sm:text-xl text-md ">
+        <nav className=" lg:flex hidden justify-center items-center gap-16 text-white mt-16 sm:text-xl text-md ">
           <Navbar />
         </nav>
 
@@ -60,7 +60,7 @@ export default function Header() {
             />
           </Link>
           {/* burger menu */}
-          <div className="bg-orange-500 rounded-md p-2 transition-all md:hidden flex">
+          <div className="bg-orange-500 rounded-md p-2 transition-all lg:hidden flex">
             {toggleMenu ? (
               <button type="button" onClick={handleToggleMenu}>
                 <FontAwesomeIcon

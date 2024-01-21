@@ -48,7 +48,7 @@ p{
 
 /* header Links Styling */
 .active {
-  @apply px-[50%] py-[2px] bg-orange-400 absolute bottom-[-20px]
+  @apply px-[50%] py-[2px] bg-orange-400 absolute bottom-[-17px]
 }
 
 /* header li element style */

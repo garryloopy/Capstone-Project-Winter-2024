@@ -2,9 +2,9 @@ import Image from "next/image"
 import Link from "next/link"
 export default function HomePage() {
   return (
-    <section className="px-[4rem] py-[2rem] text-white h-screen flex flex-col items-center justify-center">
-      <div className="flex md:flex-row flex-col items-center justify-evenly gap-10 w-[60%] mx-auto">
-        <div className="w-full">
+    <section className="md:px-[4rem] px-[2rem] py-[2rem] text-white flex flex-col items-center justify-center my-[6rem]">
+      <div className="flex lg:flex-row flex-col items-center justify-evenly gap-10 lg:w-[80%] mx-auto w-full ">
+        <div>
           <Image
             src="/images/Logo-02.jpg"
             alt="logo"
@@ -13,8 +13,8 @@ export default function HomePage() {
             className="rounded-full border-2 border-orange-400"
           />
         </div>
-        <div className="">
-          <p>
+        <div className="w-full">
+          <p className="">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
