@@ -6,28 +6,52 @@ import {
 
 import React from 'react'
 
+// The business email
+const BUSINESS_EMAIL = "francessicam@gmail.com";
+
 const ContactPage = () => {
+  // States for the form
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
 
+  /**
+   * Handler for the name change
+   * @param {Event} e The event
+   */
   const handleOnNameChange = (e) => {
     setName(e.target.value);
   }
 
+  /**
+   * Handler for the email change
+   * @param {Event} e The event
+   */
   const handleOnEmailChange = (e) => {
     setEmail(e.target.value);
   }
 
+  /**
+   * Handleer for the phone number change 
+   * @param {Event} e The event
+   */
   const handleOnPhoneNumberChange = (e) => {
     setPhoneNumber(e.target.value);
   }
 
+  /**
+   * Handle for the message change
+   * @param {Event} e The event
+   */
   const handleOnMessageChange = (e) => {
     setMessage(e.target.value);
   }
 
+  /**
+   * Resets the values of the states.
+   * Resets name, email, phone number, and message.
+   */
   const resetValue = () => {
     setName("");
     setEmail("");
@@ -35,8 +59,18 @@ const ContactPage = () => {
     setMessage("");
   }
 
+  /**
+   * Handler for the submit event
+   * @param {Event} e The event
+   */
   const handleOnSubmit = (e) => {
     e.preventDefault();
+
+    // Used for debugging
+    console.log("Name: ", name);
+    console.log("Email: ", email);
+    console.log("Phone number: ", phoneNumber);
+    console.log("Message: ", message);
 
     resetValue();
   }
@@ -54,7 +88,7 @@ const ContactPage = () => {
           <TextAreaLabel placeholder="Message*" value={message} onChange={handleOnMessageChange}/>
         </div>
         <div className="flex flex-row">
-          <button type="submit" className="bg-gray-500 flex-1">Submit</button>
+          <button type="submit" className="sign_button">Submit</button>
         </div>
       </form>
     </div>
