@@ -91,6 +91,11 @@ const ContactPage = () => {
           <button type="submit" className="sign_button">Submit</button>
         </div>
       </form>
+
+      <div className="text-center">
+        <h1 className="text-center text-2xl font-bold">Add some stuff here</h1>
+        <p>asdasdsadjhgkjhgkjg</p>
+      </div>
     </div>
   )
 }
