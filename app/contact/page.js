@@ -75,7 +75,7 @@ const ContactPage = () => {
     resetValue();
   }
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-screen mt-auto mb-auto">
       <form onSubmit={handleOnSubmit} className='flex flex-col gap-4 p-12'>
         <div className="flex flex-row gap-8">
           <InputLabel type="text" placeholder="Name" value={name} onChange={handleOnNameChange}/>
