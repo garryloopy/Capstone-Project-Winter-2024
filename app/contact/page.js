@@ -76,7 +76,7 @@ const ContactPage = () => {
   }
   return (
     <div className="flex flex-col">
-      <form onSubmit={handleOnSubmit} className='flex flex-col gap-6 p-12'>
+      <form onSubmit={handleOnSubmit} className='flex flex-col gap-4 p-12'>
         <div className="flex flex-row gap-8">
           <InputLabel type="text" placeholder="Name" value={name} onChange={handleOnNameChange}/>
           <InputLabel type="text" placeholder="Email*" value={email} onChange={handleOnEmailChange}/>
@@ -105,7 +105,7 @@ const ContactPage = () => {
 function TextAreaLabel ({placeholder, value, onChange}) {
   return (
     <label className="flex flex-col flex-1">
-            <textarea  placeholder={placeholder} className="px-4 py-2 rounded-md" rows="3" value={value} onChange={onChange} required/>
+            <textarea  placeholder={placeholder} className="form_input" rows="3" value={value} onChange={onChange} required/>
     </label>
   )
 }
@@ -123,7 +123,7 @@ function TextAreaLabel ({placeholder, value, onChange}) {
 function InputLabel({type, placeholder, className, value, onChange}) {
   return (
     <label className="flex flex-col flex-1">
-            <input type={type} placeholder={placeholder} className={`px-4 py-2 rounded-md ${className}`}  value={value} onChange={onChange} required/>
+            <input type={type} placeholder={placeholder} className={`form_input ${className}`}  value={value} onChange={onChange} required/>
           </label>
   )
 }
