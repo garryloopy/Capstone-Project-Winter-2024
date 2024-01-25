@@ -95,6 +95,13 @@ const ContactPage = () => {
   )
 }
 
+/**
+ * Represents the text area label for the form
+ * @param {String} placeholder The placeholder for the text area
+ * @param {String} value The value for the text area
+ * @param {Function} onChange The handler for the change event
+ * @returns The text area label
+ */
 function TextAreaLabel ({placeholder, value, onChange}) {
   return (
     <label className="flex flex-col flex-1">
@@ -104,6 +111,15 @@ function TextAreaLabel ({placeholder, value, onChange}) {
 }
 
 
+/**
+ * Represents the input label for the form
+ * @param {type} type The type of the input
+ * @param {String} placeholder The placeholder for the input
+ * @param {String} className The class name for the input
+ * @param {String} value The value for the input
+ * @param {Function} onChange The handler for the change event
+ * @returns The input label for the form
+ */
 function InputLabel({type, placeholder, className, value, onChange}) {
   return (
     <label className="flex flex-col flex-1">
