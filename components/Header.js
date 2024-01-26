@@ -11,9 +11,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import MobileMenu from "./MobileMenu";
+import { signOut, useSession } from "next-auth/react";
 
 
 export default function Header() {
+  const session = useSession()
+   const {name} = session?.data?.user || {};
+   let username = name
+   if (username && username.includes(" ")) {
+     username = username.split(" ")[0];
+   }
     const [toggleMenu, setToggleMenu] = useState(false);
 
     const handleToggleMenu = () => {
@@ -42,25 +49,41 @@ export default function Header() {
         </div>
 
         {/* navbar links */}
-        <nav className=" lg:flex hidden justify-center items-center gap-16 text-white mt-16 sm:text-xl text-md ">
+        <nav className=" xl:flex hidden justify-center items-center gap-16 text-white mt-16 sm:text-xl text-md ">
           <Navbar />
         </nav>
 
         {/* cart Icon */}
-        <div className="flex gap-6 items-center">
-          <Link
-            href="/cart"
-            className="flex flex-col justify-center items-center"
-          >
-            <span className=" text-white">0</span>
-            <FontAwesomeIcon
-              icon={faCartShopping}
-              style={{ color: "#F1F0E8" }}
-              size="lg"
-            />
-          </Link>
+        <div className="flex gap-6 items-center justify-center">
+          {session.status === "authenticated" ? (
+            <div className="xl:flex hidden gap-4 text-white lg:text-lg text-md items-center ">
+              <div className="font-semibold ">
+                <h2>Hello, {username}</h2>
+              </div>
+              <div>
+                <button
+                  className="px-2 py-1 border border-gray-400 rounded-md hover:bg-black hover:text-white"
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                >
+                  logout
+                </button>
+              </div>
+            </div>
+          ) : (
+            <Link
+              href="/cart"
+              className="flex flex-col justify-center items-center"
+            >
+              <span className=" text-white">0</span>
+              <FontAwesomeIcon
+                icon={faCartShopping}
+                style={{ color: "#F1F0E8" }}
+                size="lg"
+              />
+            </Link>
+          )}
           {/* burger menu */}
-          <div className="bg-orange-500 rounded-md p-2 transition-all lg:hidden flex">
+          <div className="bg-orange-500 rounded-md p-2 xl:hidden flex">
             {toggleMenu ? (
               <button type="button" onClick={handleToggleMenu}>
                 <FontAwesomeIcon
@@ -79,9 +102,7 @@ export default function Header() {
               </button>
             )}
           </div>
-          {toggleMenu && (
-            <MobileMenu setToggleMenu={setToggleMenu}/>
-          )}
+          {toggleMenu && <MobileMenu setToggleMenu={setToggleMenu} />}
         </div>
       </header>
     );

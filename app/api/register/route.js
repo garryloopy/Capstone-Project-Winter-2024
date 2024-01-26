@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { connectToDB } from "@/app/utils/DB-connect";
-import User from "@/app/model/User";
+import User from "@/app/models/User";
 import Joi from "joi";
 import adminIds from "../../../app/adminIds";
 
