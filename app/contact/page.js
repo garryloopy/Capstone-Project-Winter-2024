@@ -6,7 +6,6 @@ import {
 
 import Image from "next/image";
 
-
 import lord_farquaad from "@/public/images/lord_farquaad.jpg";
 
 import React from 'react'
@@ -80,7 +79,7 @@ const ContactPage = () => {
     resetValue();
   }
   return (
-    <div className="flex flex-col h-screen mt-auto mb-auto">
+    <div className="flex flex-col h-screen gap-12">
       <form onSubmit={handleOnSubmit} className='flex flex-col gap-4 p-12'>
         <div className="flex flex-row gap-8">
           <InputLabel type="text" placeholder="Name" value={name} onChange={handleOnNameChange}/>
@@ -97,10 +96,18 @@ const ContactPage = () => {
         </div>
       </form>
 
-      <div className="flex flex-col text-center items-center justify-center">
-        <h1 className="text-center text-2xl font-bold">Add some stuff here</h1>
-        <p>asdasdsadjhgkjhgkjg</p>
+      <div className="flex flex-col text-center items-center justify-center gap-4 text-white">
         <Image src={lord_farquaad} alt="Lord Farquaad" width={500} height={500}/>
+        <p className="text-xl font-bold">
+          Miggies Munchies
+        </p>
+
+        <div className="flex flex-row gap-12">
+          <Image src={lord_farquaad} alt="Lord Farquaad" width={100} height={100}/>
+          <Image src={lord_farquaad} alt="Lord Farquaad" width={100} height={100}/>
+        </div>
+
+        <p>{"(123) 456-7890"}</p>
       </div>
     </div>
   )
