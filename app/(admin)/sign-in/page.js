@@ -29,15 +29,13 @@ export default function SignInPage() {
     e.preventDefault();
     const { email, password } = clientInput;
 
-    if (!password || !email) {
-      setViewMessage("All fields are required");
-    }
+    
 
     try {
       const res = await signIn("credentials", {
         email,
         password,
-        callbackUrl: "/",
+        callbackUrl: "/admin",
       });
     } catch (error) {
       setViewMessage("Invalid email or password");
