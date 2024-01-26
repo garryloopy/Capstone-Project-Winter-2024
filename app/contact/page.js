@@ -4,6 +4,11 @@ import {
   useState
 } from "react";
 
+import Image from "next/image";
+
+
+import lord_farquaad from "@/public/images/lord_farquaad.jpg";
+
 import React from 'react'
 
 // The business email
@@ -92,9 +97,10 @@ const ContactPage = () => {
         </div>
       </form>
 
-      <div className="text-center">
+      <div className="flex flex-col text-center items-center justify-center">
         <h1 className="text-center text-2xl font-bold">Add some stuff here</h1>
         <p>asdasdsadjhgkjhgkjg</p>
+        <Image src={lord_farquaad} alt="Lord Farquaad" width={500} height={500}/>
       </div>
     </div>
   )
