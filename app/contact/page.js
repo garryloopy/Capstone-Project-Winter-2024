@@ -79,7 +79,7 @@ const ContactPage = () => {
     resetValue();
   }
   return (
-    <div className="flex flex-col h-screen gap-12">
+    <div className="flex flex-col xl:flex-row h-screen gap-12 items-center">
       <form onSubmit={handleOnSubmit} className='flex flex-col gap-4 p-12'>
         <div className="flex flex-row gap-8">
           <InputLabel type="text" placeholder="Name" value={name} onChange={handleOnNameChange}/>
@@ -92,12 +92,15 @@ const ContactPage = () => {
           <TextAreaLabel placeholder="Message*" value={message} onChange={handleOnMessageChange}/>
         </div>
         <div className="flex flex-row">
-          <button type="submit" className="sign_button">Submit</button>
+          <button type="submit" className="sign_button mx-24">Submit</button>
         </div>
       </form>
 
       <div className="flex flex-col text-center items-center justify-center gap-4 text-white">
-        <Image src={lord_farquaad} alt="Lord Farquaad" width={500} height={500}/>
+        <p className="text-2xl font-bold">
+          Get on touch with us!
+        </p>
+        <Image src={lord_farquaad} alt="Lord Farquaad" width={450} height={450}/>
         <p className="text-xl font-bold">
           Miggies Munchies
         </p>
