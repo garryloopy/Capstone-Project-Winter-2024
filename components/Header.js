@@ -58,7 +58,9 @@ export default function Header() {
           {session.status === "authenticated" ? (
             <div className="xl:flex hidden gap-4 text-white lg:text-lg text-md items-center ">
               <div className="font-semibold ">
+                <Link href= "/menu-list">
                 <h2>Hello, {username}</h2>
+                </Link>
               </div>
               <div>
                 <button
