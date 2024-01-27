@@ -40,7 +40,7 @@ export default function SignInPage() {
       const res = await signIn("credentials", {
         email,
         password,
-        callbackUrl: "/admin",
+        callbackUrl: "/menu-list",
       });
       setButtonLoading(false)
     } catch (error) {
