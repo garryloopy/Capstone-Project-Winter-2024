@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
 import { uploadImage } from "@/actions/uploadImage";
+import MenuExtraForm from "./MenuExtraForm";
 const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
   const [imageData, setImageData] = useState();
   const [menuInput, setMenuInput] = useState({
@@ -65,7 +66,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
   };
 return (
   <div className=" w-full lg:w-[50%] p-4 my-[3rem] rounded-md flex flex-col md:flex-row gap-8 justify-center border-2 border-orange-200 shadow-lg bg-gray-100/80">
-    <div className=" bg-slate-200 rounded-md flex flex-col gap-4 justify-center items-center mx-auto my-6 p-6">
+    <div className=" bg-slate-200 rounded-md flex flex-col gap-4 justify-center items-center mx-auto my-6 p-6 max-h-[15rem]">
       {menuInput.image && (
         <div className=" flex justify-center items-center ">
           <Image
@@ -111,9 +112,9 @@ return (
         <input
           type="text"
           className="form_input"
-          name="desc"
+          name="description"
           placeholder="Description"
-          value={menuInput.desc}
+          value={menuInput.description}
           onChange={handleChange}
           required
         />
@@ -132,18 +133,18 @@ return (
         />
       </label>
 
-      {/* <MenuExtraForm
+      <MenuExtraForm
           props={sizes}
           setProps={setSizes}
           title="Sizes"
           buttonTitle="Add size"
         />
         <MenuExtraForm
-          props={ingredients}
-          setProps={setIngredients}
-          title="Ingredients"
-          buttonTitle="Add Ingredients"
-        /> */}
+          props={extra}
+          setProps={setExtra}
+          title="Extra"
+          buttonTitle="Add Extra"
+        />
 
       <button type="submit" className="sign_button">
         {buttonText}

@@ -37,7 +37,7 @@ async function savePhotoToCloudinary(newFiles) {
   const photosPromise = newFiles.map(async (file) => {
     try {
       const result = await cloudinary.uploader.upload(file.filePath, {
-        folder: "nextjs_upload",
+        folder: "miggy",
       });
       return result;
     } catch (error) {
