@@ -5,6 +5,7 @@ import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
 import { uploadImage } from "@/actions/uploadImage";
 import MenuExtraForm from "./MenuExtraForm";
+import AdminNavbar from "./AdminNavbar";
 const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
   const [imageData, setImageData] = useState();
   const [menuInput, setMenuInput] = useState({
@@ -66,6 +67,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
   };
 return (
   <div className=" w-full lg:w-[50%] p-4 my-[3rem] rounded-md flex flex-col md:flex-row gap-8 justify-center border-2 border-orange-200 shadow-lg bg-gray-100/80">
+   
     <div className=" bg-slate-200 rounded-md flex flex-col gap-4 justify-center items-center mx-auto my-6 p-6 max-h-[15rem]">
       {menuInput.image && (
         <div className=" flex justify-center items-center ">
@@ -81,7 +83,7 @@ return (
       <label className="flex flex-col gap-4 justify-center items-center">
         <input type="file" className="hidden" onChange={handleFileChange} />
         <span className="px-2 py-2 bg-gray-200 text-[0.8rem] border-2 border-gray-500 rounded-md hover:bg-black hover:text-white">
-          Edit
+          Upload
         </span>
       </label>
     </div>
