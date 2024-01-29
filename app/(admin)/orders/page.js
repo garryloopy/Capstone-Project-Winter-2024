@@ -19,11 +19,11 @@ const OrdersPage = () => {
     return redirect("/sign-in");
   }
   return (
-   <section>
-     <SubHeader header2="Dashboard" />
-     <AdminNavbar path={path} />
-   </section>
-  )
+    <section className="flex flex-col justify-center items-center">
+      <AdminNavbar path={path} />
+      <SubHeader header2="Orders" />
+    </section>
+  );
 };
 
 export default OrdersPage;
