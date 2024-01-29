@@ -17,7 +17,6 @@ export async function PUT(req) {
         image: image,
         sizes: sizes,
         extra: extra,
-
       }
     );
     return NextResponse.json(
