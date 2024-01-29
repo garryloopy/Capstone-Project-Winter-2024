@@ -1,14 +1,12 @@
 "use client";
 
-import {
-  useState
-} from "react";
+import { useState } from "react";
 
 import Image from "next/image";
 
 import lord_farquaad from "@/public/images/lord_farquaad.jpg";
 
-import React from 'react'
+import React from "react";
 
 // The business email
 const BUSINESS_EMAIL = "francessicam@gmail.com";
@@ -26,7 +24,7 @@ const ContactPage = () => {
    */
   const handleOnNameChange = (e) => {
     setName(e.target.value);
-  }
+  };
 
   /**
    * Handler for the email change
@@ -34,15 +32,15 @@ const ContactPage = () => {
    */
   const handleOnEmailChange = (e) => {
     setEmail(e.target.value);
-  }
+  };
 
   /**
-   * Handleer for the phone number change 
+   * Handleer for the phone number change
    * @param {Event} e The event
    */
   const handleOnPhoneNumberChange = (e) => {
     setPhoneNumber(e.target.value);
-  }
+  };
 
   /**
    * Handle for the message change
@@ -50,7 +48,7 @@ const ContactPage = () => {
    */
   const handleOnMessageChange = (e) => {
     setMessage(e.target.value);
-  }
+  };
 
   /**
    * Resets the values of the states.
@@ -61,7 +59,7 @@ const ContactPage = () => {
     setEmail("");
     setPhoneNumber("");
     setMessage("");
-  }
+  };
 
   /**
    * Handler for the submit event
@@ -77,44 +75,49 @@ const ContactPage = () => {
     console.log("Message: ", message);
 
     resetValue();
-  }
+  };
   return (
-    <div className="flex flex-col xl:flex-row h-screen gap-12 items-center">
-      <form onSubmit={handleOnSubmit} className='flex flex-col gap-4 p-12'>
+    <div className="flex flex-col justify-center h-screen gap-12 items-center">
+      <form onSubmit={handleOnSubmit} className="flex flex-col gap-4 p-12">
+        <p className="text-center text-2xl mb-4">Get in touch with us!</p>
         <div className="flex flex-row gap-8">
-          <InputLabel type="text" placeholder="Name" value={name} onChange={handleOnNameChange}/>
-          <InputLabel type="text" placeholder="Email*" value={email} onChange={handleOnEmailChange}/>
+          <InputLabel
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={handleOnNameChange}
+          />
+          <InputLabel
+            type="text"
+            placeholder="Email*"
+            value={email}
+            onChange={handleOnEmailChange}
+          />
         </div>
         <div>
-          <InputLabel type="text" placeholder="Phone number*" value={phoneNumber} onChange={handleOnPhoneNumberChange}/>
+          <InputLabel
+            type="text"
+            placeholder="Phone number*"
+            value={phoneNumber}
+            onChange={handleOnPhoneNumberChange}
+          />
         </div>
         <div>
-          <TextAreaLabel placeholder="Message*" value={message} onChange={handleOnMessageChange}/>
+          <TextAreaLabel
+            placeholder="Message*"
+            value={message}
+            onChange={handleOnMessageChange}
+          />
         </div>
         <div className="flex flex-row">
-          <button type="submit" className="sign_button mx-24">Submit</button>
+          <button type="submit" className="sign_button mx-24">
+            Submit
+          </button>
         </div>
       </form>
-
-      <div className="flex flex-col text-center items-center justify-center gap-4 text-white">
-        <p className="text-2xl font-bold">
-          Get on touch with us!
-        </p>
-        <Image src={lord_farquaad} alt="Lord Farquaad" width={450} height={450}/>
-        <p className="text-xl font-bold">
-          Miggies Munchies
-        </p>
-
-        <div className="flex flex-row gap-12">
-          <Image src={lord_farquaad} alt="Lord Farquaad" width={100} height={100}/>
-          <Image src={lord_farquaad} alt="Lord Farquaad" width={100} height={100}/>
-        </div>
-
-        <p>{"(123) 456-7890"}</p>
-      </div>
     </div>
-  )
-}
+  );
+};
 
 /**
  * Represents the text area label for the form
@@ -123,14 +126,20 @@ const ContactPage = () => {
  * @param {Function} onChange The handler for the change event
  * @returns The text area label
  */
-function TextAreaLabel ({placeholder, value, onChange}) {
+function TextAreaLabel({ placeholder, value, onChange }) {
   return (
     <label className="flex flex-col flex-1">
-            <textarea  placeholder={placeholder} className="form_input" rows="3" value={value} onChange={onChange} required/>
+      <textarea
+        placeholder={placeholder}
+        className="form_input"
+        rows="3"
+        value={value}
+        onChange={onChange}
+        required
+      />
     </label>
-  )
+  );
 }
-
 
 /**
  * Represents the input label for the form
@@ -141,12 +150,19 @@ function TextAreaLabel ({placeholder, value, onChange}) {
  * @param {Function} onChange The handler for the change event
  * @returns The input label for the form
  */
-function InputLabel({type, placeholder, className, value, onChange}) {
+function InputLabel({ type, placeholder, className, value, onChange }) {
   return (
     <label className="flex flex-col flex-1">
-            <input type={type} placeholder={placeholder} className={`form_input ${className}`}  value={value} onChange={onChange} required/>
-          </label>
-  )
+      <input
+        type={type}
+        placeholder={placeholder}
+        className={`form_input ${className}`}
+        value={value}
+        onChange={onChange}
+        required
+      />
+    </label>
+  );
 }
 
-export default ContactPage
+export default ContactPage;
