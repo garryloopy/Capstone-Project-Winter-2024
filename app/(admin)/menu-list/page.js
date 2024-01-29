@@ -46,10 +46,6 @@ const AdminPage = () => {
     getMenuList();
   }, []);
 
-
-
-
-
   if (status === "loading") {
     return <Loading />;
   }

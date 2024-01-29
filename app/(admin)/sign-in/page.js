@@ -6,7 +6,6 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { signIn } from "next-auth/react";
-import { redirect } from "next/navigation";
 import { faBedPulse } from "@fortawesome/free-solid-svg-icons";
 import { useLoadingState } from "@/components/useLoadingState";
 import Loading from "@/components/Loading";

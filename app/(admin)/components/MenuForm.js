@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
-import { uploadImage } from "@/actions/uploadImage";
+import { deletePhoto, uploadImage } from "@/actions/uploadImage";
 import MenuExtraForm from "./MenuExtraForm";
-import AdminNavbar from "./AdminNavbar";
+import Link from "next/link"
 const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
   const [imageData, setImageData] = useState();
   const [menuInput, setMenuInput] = useState({
@@ -47,6 +47,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
     if (file && file.size < 1024 * 1024) {
       const formData = new FormData();
       formData.append("file", file);
+     
 
       const uploadSetting = new Promise(async (resolve, reject) => {
         const res = await uploadImage(formData);
@@ -67,7 +68,6 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
   };
 return (
   <div className=" w-full lg:w-[50%] p-4 my-[3rem] rounded-md flex flex-col md:flex-row gap-8 justify-center border-2 border-orange-200 shadow-lg bg-gray-100/80">
-   
     <div className=" bg-slate-200 rounded-md flex flex-col gap-4 justify-center items-center mx-auto my-6 p-6 max-h-[15rem]">
       {menuInput.image && (
         <div className=" flex justify-center items-center ">
@@ -83,7 +83,7 @@ return (
       <label className="flex flex-col gap-4 justify-center items-center">
         <input type="file" className="hidden" onChange={handleFileChange} />
         <span className="px-2 py-2 bg-gray-200 text-[0.8rem] border-2 border-gray-500 rounded-md hover:bg-black hover:text-white">
-          Upload
+          {menuList ? "Edit" : "Upload"}
         </span>
       </label>
     </div>
@@ -136,21 +136,22 @@ return (
       </label>
 
       <MenuExtraForm
-          props={sizes}
-          setProps={setSizes}
-          title="Sizes"
-          buttonTitle="Add size"
-        />
-        <MenuExtraForm
-          props={extra}
-          setProps={setExtra}
-          title="Extra"
-          buttonTitle="Add Extra"
-        />
+        props={sizes}
+        setProps={setSizes}
+        title="Sizes"
+        buttonTitle="Add size"
+      />
+      <MenuExtraForm
+        props={extra}
+        setProps={setExtra}
+        title="Extra"
+        buttonTitle="Add Extra"
+      />
 
       <button type="submit" className="sign_button">
         {buttonText}
       </button>
+      {menuList && <Link className="p-1 border-2 border-orange-400 w-full text-center my-2 rounded-md hover:bg-orange-500 hover:text-white" href="/menu-list">Cancel</Link>}
     </form>
   </div>
 );

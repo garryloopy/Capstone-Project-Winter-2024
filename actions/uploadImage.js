@@ -63,9 +63,10 @@ export async function uploadImage(formData){
  }
 }
 
-export  async function deletePhoto (public_id){
+export  async function deletePhoto (publicId){
+
  try {
-  await cloudinary.uploader.destroy(public_id);
+  await cloudinary.uploader.destroy(publicId);
   return { msg: "Delete Success" };
   
  } catch (error) {
