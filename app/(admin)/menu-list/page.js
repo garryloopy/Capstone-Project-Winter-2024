@@ -12,9 +12,12 @@ import SingleMenu from "../components/SingleMenu";
 import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { withSwal } from "react-sweetalert2";
+import { deletePhoto } from "@/actions/uploadImage";
 
 
-const AdminPage = () => {
+
+const AdminPage = ({ swal }) => {
   const session = useSession();
   const { status } = session;
   const path = usePathname();
@@ -63,39 +66,83 @@ const AdminPage = () => {
     ev.preventDefault();
     try {
       const uploadSetting = new Promise(async (resolve, reject) => {
-      const res = await fetch("/api/createNewMenu", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-       if (res.ok) {
-        resolve()
-        // Reset form fields
-
-        setMenuList({
-          title: "",
-          description: "",
-          price: "",
-          image: "/images/no-photo.png",
+        const res = await fetch("/api/createNewMenu", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
         });
+        if (res.ok) {
+          resolve();
+          // Reset form fields
 
-        setSizes([]);
-        setIngredients([]);
-        getMenuList()
+          setMenuList({
+            title: "",
+            description: "",
+            price: "",
+            image: "/images/no-photo.png",
+          });
 
-      } else {
-        reject()
-      }
-    })
-     await toast.promise(uploadSetting, {
-       loading: "Loading ...",
-       success: "New menu is created",
-       error: "Unable to create new menu.",
-     });
+          setSizes([]);
+          setIngredients([]);
+          getMenuList();
+        } else {
+          reject();
+        }
+      });
+      await toast.promise(uploadSetting, {
+        loading: "Loading ...",
+        success: "New menu is created",
+        error: "Unable to create new menu.",
+      });
     } catch (error) {
       console.error("An error occurred while creating a new item:", error);
       toast.error("An error occurred while creating a new item");
     }
+  };
+
+  //delete menu
+  const handleDeleteMenu = (item) => {
+    swal
+      .fire({
+        title: "Are you sure?",
+        text: `Do you want to delete ${item.title}`,
+        showCancelButton: true,
+        cancelButtonText: "Cancel",
+        confirmButtonText: "Delete",
+        reverseButtons: true,
+        showLoaderOnConfirm: true, // Show loading indicator
+      })
+      .then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            const res = await fetch("/api/deleteMenu", {
+              method: "DELETE",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ _id: item._id }),
+            });
+            if (res.ok) {
+              const data = await res.json();
+              swal.fire("Deleted", data.message, "success");
+              if (item.public_id){
+              await deletePhoto(item.public_id)
+              }
+              await getMenuList();
+            } else {
+              // Handle failure to delete
+              const data = await res.json();
+              swal.fire("Error", data.message, "error");
+            }
+          } catch (error) {
+            // Handle fetch errors
+            console.error("An error occurred while deleting the menu:", error);
+            swal.fire(
+              "Error",
+              "An error occurred while deleting the category",
+              "error"
+            );
+          }
+        } 
+      });
   };
 
   return (
@@ -147,4 +194,4 @@ const AdminPage = () => {
   );
 };
 
-export default AdminPage;
+export default withSwal(AdminPage);
