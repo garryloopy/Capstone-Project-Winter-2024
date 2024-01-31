@@ -27,6 +27,8 @@ const ContactPage = () => {
 
   const [submittedUser, setSubmittedUser] = useState(defaultSubmittedUser);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  
+  
 
   /**
    * Handler for the name change
@@ -105,10 +107,10 @@ const ContactPage = () => {
     <div className="flex flex-col justify-center h-screen gap-12 items-center">
       {showConfirmation && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-filter backdrop-blur-sm">
-          <div className="flex- flex-col bg-white/75 p-8 rounded-md">
-            <div className="text-right">
-              <button onClick={handleOnCloseConfirmation}>X</button>
-            </div>
+          <div className="flex flex-col bg-white/95 p-8 pb-12 rounded-md">
+            <button className="text-gray-700 font-bold hover:text-gray-800 hover:bg-red-400 hover: ml-auto p-1 px-2" onClick={handleOnCloseConfirmation}>
+              X
+            </button>
             <div>
               <p>Thank you, {submittedUser.name}.</p>
               <p>
@@ -138,8 +140,9 @@ const ContactPage = () => {
         </div>
         <div>
           <InputLabel
-            type="text"
-            placeholder="Phone number*"
+            type="tel"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            placeholder="Phone number* 123-456-7890"
             value={phoneNumber}
             onChange={handleOnPhoneNumberChange}
           />
@@ -189,10 +192,11 @@ function TextAreaLabel({ placeholder, value, onChange }) {
  * @param {String} placeholder The placeholder for the input
  * @param {String} className The class name for the input
  * @param {String} value The value for the input
+ * @param {String} pattern The pattern for the input
  * @param {Function} onChange The handler for the change event
  * @returns The input label for the form
  */
-function InputLabel({ type, placeholder, className, value, onChange }) {
+function InputLabel({ type, placeholder, className, value, onChange, pattern }) {
   return (
     <label className="flex flex-col flex-1">
       <input
@@ -201,6 +205,7 @@ function InputLabel({ type, placeholder, className, value, onChange }) {
         className={`form_input ${className}`}
         value={value}
         onChange={onChange}
+        pattern={pattern}
         required
       />
     </label>
