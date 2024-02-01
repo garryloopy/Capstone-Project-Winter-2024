@@ -7,7 +7,8 @@ import React from 'react';
 
 // temporary menu display
 // to be deleted after the actual menu is implemented
-// 
+// client wants a cutout photo to be displayed
+// might have to use photoshop to cutout the photo
 
 
 function Menu() {
@@ -35,7 +36,7 @@ function Menu() {
 
                 <div className="container relative group text-slate-100 h-32 w-48 m-7 border-4 rounded-md border-slate-300 flex items-center justify-center">
                 <span>Food 3</span>
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <button className="bg-orange-400 text-white px-4 py-2 rounded">Add to Order</button>
                 </div>
                 </div>
