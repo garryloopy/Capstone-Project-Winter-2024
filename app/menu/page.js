@@ -8,7 +8,7 @@ import React from 'react';
 // temporary menu display
 // to be deleted after the actual menu is implemented
 // client wants a cutout photo to be displayed
-// might have to use photoshop to cutout the photo
+// might have to use photoshop to produce cutout photos
 
 
 function Menu() {
