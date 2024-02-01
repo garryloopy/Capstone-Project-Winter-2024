@@ -30,7 +30,8 @@ export default function Header() {
     return (
       <header className="md:px-[4rem] px-2 py-[1rem] flex justify-between items-center bg-black/25 border-b border-gray-600 shadow-md z-10 sticky top-0">
         {/* logo and text */}
-        <div className="flex gap-4 justify-center items-center text-white md:w-[30%] w-1/2">
+        <Link className="flex gap-4 justify-center items-center text-white md:w-[30%] w-1/2"
+          href="/">
           <div className="">
             <Image
               src="/images/logo-01.jpg"
@@ -46,7 +47,7 @@ export default function Header() {
             <span className="lg:text-[40px] text-md text-orange-400">M</span>
             unchies
           </p>
-        </div>
+        </Link>
 
         {/* navbar links */}
         <nav className=" xl:flex hidden justify-center items-center gap-16 text-white mt-16 sm:text-xl text-md ">
