@@ -3,6 +3,7 @@ import ClientMenu from '@/components/ClientMenu';
 import SubHeader from '@/components/SubHeader';
 import React, { useEffect, useState } from 'react';
 
+
 // temporary menu display
 // to be deleted after the actual menu is implemented
 // client wants a cutout photo to be displayed
@@ -12,6 +13,7 @@ import React, { useEffect, useState } from 'react';
 function Menu() {
     const [menuList, setMenuList] = useState([]);
     const [loading, setLoading] = useState(true)
+
      async function getAllMenu() {
         setLoading(true)
        try {
@@ -43,19 +45,12 @@ function Menu() {
     
 
   return (
-    <section className='flex flex-col justify-center items-center gap-6'>
-        <SubHeader header2="Menu"/>
-
-        <div className="flex flex-col items-center">
-
-
-            <div className="flex mt-20">
-                {menuList?.length>0 && menuList.map((menu) =>(
-               <ClientMenu {...menu}/>
-                ))}
-
-              </div>
-        </div>
+    <section className="p-[2rem] flex flex-col justify-center items-center gap-6">
+      <SubHeader header2="Menu" />
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-col-2 grid-cols-1 gap-4 mt-6 mb-8">
+        {menuList?.length > 0 &&
+          menuList.map((menu) => <ClientMenu {...menu} />)}
+      </div>
     </section>
   );
 }

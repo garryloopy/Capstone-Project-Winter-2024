@@ -9,12 +9,14 @@ import {
   faBars,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import MobileMenu from "./MobileMenu";
 import { signOut, useSession } from "next-auth/react";
+import { CartContext } from "./Providers";
 
 
 export default function Header() {
+  const { cartProducts } = useContext(CartContext);
   const session = useSession()
    const {name} = session?.data?.user || {};
    let username = name
@@ -30,8 +32,10 @@ export default function Header() {
     return (
       <header className="md:px-[4rem] px-2 py-[1rem] flex justify-between items-center bg-black/25 border-b border-gray-600 shadow-md z-10 sticky top-0">
         {/* logo and text */}
-        <Link className="flex gap-4 justify-center items-center text-white md:w-[30%] w-1/2"
-          href="/">
+        <Link
+          className="flex gap-4 justify-center items-center text-white md:w-[30%] w-1/2"
+          href="/"
+        >
           <div className="">
             <Image
               src="/images/logo-01.jpg"
@@ -59,8 +63,8 @@ export default function Header() {
           {session.status === "authenticated" ? (
             <div className="xl:flex hidden gap-4 text-white lg:text-lg text-md items-center ">
               <div className="font-semibold ">
-                <Link href= "/menu-list">
-                <h2>Hello, {username}</h2>
+                <Link href="/menu-list">
+                  <h2>Hello, {username}</h2>
                 </Link>
               </div>
               <div>
@@ -75,9 +79,13 @@ export default function Header() {
           ) : (
             <Link
               href="/cart"
-              className="flex flex-col justify-center items-center"
+              className="flex flex-col justify-center items-center mb-2 bg-black/40 p-3 rounded-md"
             >
-              <span className=" text-white">0</span>
+              {cartProducts?.length > 0 && (
+                <span className="text-xs bg-orange-500 rounded-full leading-3 p-1 text-white">
+                  {cartProducts.length}
+                </span>
+              )}
               <FontAwesomeIcon
                 icon={faCartShopping}
                 style={{ color: "#F1F0E8" }}
