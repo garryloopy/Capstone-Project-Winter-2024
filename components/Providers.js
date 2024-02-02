@@ -42,9 +42,9 @@ const Providers = ({ children, session }) => {
   }
 
 
-  function addToCart (product, size=null, extra=[]){
+  function addToCart (product, sizes=null, extra=[]){
    setCartProducts(prev => {
-    const newProduct = [...prev, {...product, size, extra}]
+    const newProduct = [...prev, {...product, sizes, extra}]
     saveProductsToLocalStorage(newProduct)
     return newProduct
    })
@@ -54,8 +54,8 @@ const Providers = ({ children, session }) => {
   const calculateTotalPrice = (product) => {
     let totalPrice = parseFloat(product.price?.replace(/[$,]/g, "") || 0);
 
-    if (product.size) {
-      totalPrice += parseFloat(product.size.price || 0);
+    if (product.sizes) {
+      totalPrice += parseFloat(product.sizes.price || 0);
     }
     if (product.extra?.length > 0) {
       for (const extra of product.extra) {

@@ -1,9 +1,7 @@
-
-/**
- * This is a menu page
- * @returns 
- */
-import React from 'react';
+"use client"
+import ClientMenu from '@/components/ClientMenu';
+import SubHeader from '@/components/SubHeader';
+import React, { useEffect, useState } from 'react';
 
 // temporary menu display
 // to be deleted after the actual menu is implemented
@@ -12,60 +10,53 @@ import React from 'react';
 
 
 function Menu() {
+    const [menuList, setMenuList] = useState([]);
+    const [loading, setLoading] = useState(true)
+     async function getAllMenu() {
+        setLoading(true)
+       try {
+         const res = await fetch("/api/getMenuList", {
+           cache: "no-store",
+           method: "GET",
+           headers: { "Content-Type": "application/json" },
+         });
+
+         if (res.ok) {
+           const data = await res.json();
+           setMenuList(data);
+         } else {
+           console.log("Failed to fetch menu list");
+         }
+         setLoading(false)
+       } catch (error) {
+         console.error(
+           "An error occurred while fetching the menu list:",
+           error
+         );
+         throw error;
+       }
+     }
+     useEffect(() => {
+       getAllMenu();
+     }, []);
+
+    
+
   return (
-    <div>
-        <div>menu</div>
+    <section className='flex flex-col justify-center items-center gap-6'>
+        <SubHeader header2="Menu"/>
 
         <div className="flex flex-col items-center">
 
 
             <div className="flex mt-20">
-                <div className="container relative group text-slate-100 h-32 w-48 m-7 border-4 rounded-md border-slate-300 flex items-center justify-center">
-                <span>Food 1</span>
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button className="bg-orange-400 text-white px-4 py-2 rounded">Add to Order</button>
-                </div>
-                </div>
+                {menuList?.length>0 && menuList.map((menu) =>(
+               <ClientMenu {...menu}/>
+                ))}
 
-                <div className="container relative group text-slate-100 h-32 w-48 m-7 border-4 rounded-md border-slate-300 flex items-center justify-center">
-                <span>Food 2</span>
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button className="bg-orange-400 text-white px-4 py-2 rounded">Add to Order</button>
-                </div>
-                </div>
-
-                <div className="container relative group text-slate-100 h-32 w-48 m-7 border-4 rounded-md border-slate-300 flex items-center justify-center">
-                <span>Food 3</span>
-                <div className="absolute flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button className="bg-orange-400 text-white px-4 py-2 rounded">Add to Order</button>
-                </div>
-                </div>
-            </div>
-
-            <div className="flex mb-20">
-                <div className="container relative group text-slate-100 h-32 w-48 m-7 border-4 rounded-md border-slate-300 flex items-center justify-center">
-                <span>Food 4</span>
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button className="bg-orange-400 text-white px-4 py-2 rounded">Add to Order</button>
-                </div>
-                </div>
-
-                <div className="container relative group text-slate-100 h-32 w-48 m-7 border-4 rounded-md border-slate-300 flex items-center justify-center">
-                <span>Food 5</span>
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button className="bg-orange-400 text-white px-4 py-2 rounded">Add to Order</button>
-                </div>
-                </div>
-
-                <div className="container relative group text-slate-100 h-32 w-48 m-7 border-4 rounded-md border-slate-300 flex items-center justify-center">
-                <span>Food 6</span>
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button className="bg-orange-400 text-white px-4 py-2 rounded">Add to Order</button>
-                </div>
-                </div>
-            </div>
+              </div>
         </div>
-    </div>
+    </section>
   );
 }
 
