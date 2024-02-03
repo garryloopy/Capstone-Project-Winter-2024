@@ -22,7 +22,11 @@ const ClientMenu = (menuList) => {
      setShowPopUp(false);
      return;
    }
-   if (menuList.sizes?.length === 0 && menuList.extra?.length === 0) {
+   if (
+     (menuList.sizes?.length === 0 &&
+     menuList.extra?.length === 0) ||
+     menuList.sizes?.length === 1
+   ) {
      addToCart(menuList);
      toast.success("Added to cart");
    } else {
