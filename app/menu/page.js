@@ -1,5 +1,6 @@
 "use client"
 import ClientMenu from '@/components/ClientMenu';
+import Loading from '@/components/Loading';
 import SubHeader from '@/components/SubHeader';
 import React, { useEffect, useState } from 'react';
 
@@ -45,13 +46,19 @@ function Menu() {
     
 
   return (
-    <section className="p-[2rem] flex flex-col justify-center items-center gap-6">
-      <SubHeader header2="Menu" />
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-col-2 grid-cols-1 gap-4 mt-6 mb-8">
-        {menuList?.length > 0 &&
-          menuList.map((menu) => <ClientMenu {...menu} />)}
-      </div>
-    </section>
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <section className="p-[2rem] flex flex-col justify-center items-center gap-6">
+          <SubHeader header2="Menu" />
+          <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-col-2 grid-cols-1 gap-4 mt-6 mb-8">
+            {menuList?.length > 0 &&
+              menuList.map((menu) => <ClientMenu key={menu._id} {...menu} />)}
+          </div>
+        </section>
+      )}
+    </>
   );
 }
 
