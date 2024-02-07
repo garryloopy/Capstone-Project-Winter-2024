@@ -5,8 +5,6 @@ import SubHeader from '@/components/SubHeader';
 import React, { useEffect, useState } from 'react';
 
 
-// temporary menu display
-// to be deleted after the actual menu is implemented
 // client wants a cutout photo to be displayed
 // might have to use photoshop to produce cutout photos
 

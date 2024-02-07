@@ -25,11 +25,12 @@ const MobileMenu = ({setToggleMenu}) => {
               Menu
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link href="/about" onClick={() => setToggleMenu(false)}>
               About Us
             </Link>
           </li>
+          */}
           <li>
             <Link href="/contact" onClick={() => setToggleMenu(false)}>
               Contact Us

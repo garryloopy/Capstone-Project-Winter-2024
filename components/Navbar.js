@@ -20,11 +20,12 @@ const Navbar = () => {
         <div className={`${path === "/menu" ? "active" : ""}`}></div>
       </div>
 
-      <div className="relative flex flex-col items-center">
+      {/* <div className="relative flex flex-col items-center">
         <Link href="/about">About Us</Link>
 
         <div className={`${path === "/about" ? "active" : ""}`}></div>
       </div>
+      */}
       <div className="relative flex flex-col justify-center items-center">
         <Link href="/contact">Contact Us</Link>
 
