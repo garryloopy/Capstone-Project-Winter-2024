@@ -107,7 +107,7 @@ export default function SignInPage() {
             </button>
           </form>
           <Link className="mt-4 self-end text-sm" href="/register">
-            Don't have account?{" "}
+            Don't have an account?{" "}
             <span className="underline font-semibold">Register</span>
           </Link>
         </section>
