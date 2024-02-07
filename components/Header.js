@@ -82,7 +82,7 @@ export default function Header() {
               className="flex flex-col justify-center items-center mb-2 bg-black/40 p-3 rounded-md"
             >
               {cartProducts?.length > 0 && (
-                <span className="text-xs bg-orange-500 rounded-full leading-3 p-1 text-white">
+                <span className="text-xs bg-orange-500 text-center rounded-full leading-3 p-1 text-white">
                   {cartProducts.length}
                 </span>
               )}
