@@ -18,6 +18,20 @@ const defaultSubmittedUser = {
   message: "",
 };
 
+/**
+ * Checks if the email is valid or not
+ * @param {String} emailToValidate The email to validate
+ * @returns Json format from API call
+ */
+const validateEmail = async (emailToValidate) => {
+  const response = await fetch(
+    `https://www.disify.com/api/email/${emailToValidate}`
+  );
+  const data = await response.json();
+
+  return data;
+};
+
 const ContactPage = () => {
   // States for the form
   const [name, setName] = useState("");
@@ -25,10 +39,10 @@ const ContactPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
 
+  const [emailValidity, setEmailValidity] = useState(false);
+
   const [submittedUser, setSubmittedUser] = useState(defaultSubmittedUser);
   const [showConfirmation, setShowConfirmation] = useState(false);
-  
-  
 
   /**
    * Handler for the name change
@@ -73,14 +87,22 @@ const ContactPage = () => {
     setMessage("");
   };
 
+  const handleValidationEmail = async () => {
+    const data = await validateEmail(email);
+
+    setEmailValidity(data.format);
+  };
+
   /**
    * Handler for the submit event
    * @param {Event} e The event
    */
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
 
     //Do some stuff, send email to the business email
+
+    handleValidationEmail();
 
     //Show confirmation
     setSubmittedUser({
@@ -107,16 +129,25 @@ const ContactPage = () => {
     <div className="flex flex-col justify-center h-screen gap-12 items-center">
       {showConfirmation && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-filter backdrop-blur-sm">
-          <div className="flex flex-col bg-white/95 p-8 pb-12 rounded-md">
-            <button className="text-gray-700 font-bold hover:text-gray-800 hover:bg-red-400 hover: ml-auto p-1 px-2" onClick={handleOnCloseConfirmation}>
+          <div className="flex flex-col border bg-white/95 p-8 pb-12 rounded-md">
+            <button
+              className="text-gray-700 font-bold hover:text-gray-800 hover:bg-red-400 hover: ml-auto p-1 px-2"
+              onClick={handleOnCloseConfirmation}
+            >
               X
             </button>
-            <div>
-              <p>Thank you, {submittedUser.name}.</p>
-              <p>
-                A confirmation email has been sent to {submittedUser.email}.
+            <div className="flex flex-col gap-8">
+              <p className="text-gray-800 font-bold text-2xl">
+                Thank you, {submittedUser.name}.
               </p>
-              <p>We will get back to you in 3-5 business days.</p>
+              <div>
+                <p className="text-gray-800">
+                  A confirmation email has been sent to {submittedUser.email}.
+                </p>
+                <p className="text-gray-800">
+                  We will get back to you in 3-5 business days.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -125,31 +156,41 @@ const ContactPage = () => {
       <form onSubmit={handleOnSubmit} className="flex flex-col gap-4 p-12">
         <p className="text-center text-2xl mb-4">Get in touch with us!</p>
         <div className="flex flex-row gap-8">
-          <InputLabel
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={handleOnNameChange}
-          />
-          <InputLabel
-            type="text"
-            placeholder="Email*"
-            value={email}
-            onChange={handleOnEmailChange}
-          />
+          <div>
+            <p className="text-gray-900 font-thin text-md text-sm">Name*</p>
+            <InputLabel
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={handleOnNameChange}
+            />
+          </div>
+          <div>
+            <p className="text-gray-900 font-thin text-sm">Email address*</p>
+            <InputLabel
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={handleOnEmailChange}
+            />
+          </div>
         </div>
         <div>
+          <p className="text-gray-900 font-thin text-md text-sm">
+            Phone number*
+          </p>
           <InputLabel
             type="tel"
             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            placeholder="Phone number* 123-456-7890"
+            placeholder="Phone number 123-456-7890"
             value={phoneNumber}
             onChange={handleOnPhoneNumberChange}
           />
         </div>
         <div>
+          <p className="text-gray-900 font-thin text-md text-sm">Message*</p>
           <TextAreaLabel
-            placeholder="Message*"
+            placeholder="Message"
             value={message}
             onChange={handleOnMessageChange}
           />
@@ -196,7 +237,14 @@ function TextAreaLabel({ placeholder, value, onChange }) {
  * @param {Function} onChange The handler for the change event
  * @returns The input label for the form
  */
-function InputLabel({ type, placeholder, className, value, onChange, pattern }) {
+function InputLabel({
+  type,
+  placeholder,
+  className,
+  value,
+  onChange,
+  pattern,
+}) {
   return (
     <label className="flex flex-col flex-1">
       <input
