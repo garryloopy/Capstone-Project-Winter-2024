@@ -4,13 +4,12 @@ import { useState } from "react";
 
 import Image from "next/image";
 
-import lord_farquaad from "@/public/images/lord_farquaad.jpg";
-
 import React from "react";
 
 // The business email
 const BUSINESS_EMAIL = "francessicam@gmail.com";
 
+// Default submitted user
 const defaultSubmittedUser = {
   name: "",
   email: "",
@@ -20,8 +19,11 @@ const defaultSubmittedUser = {
 
 /**
  * Checks if the email is valid or not
+ * Uses Disify API
+ * For more info:
+ *  https://www.disify.com/
  * @param {String} emailToValidate The email to validate
- * @returns Json format from API call
+ * @returns Json format from API call, or promise
  */
 const validateEmail = async (emailToValidate) => {
   const response = await fetch(
@@ -32,6 +34,10 @@ const validateEmail = async (emailToValidate) => {
   return data;
 };
 
+/**
+ * Represents a contact us page component
+ * @returns A contact page component
+ */
 const ContactPage = () => {
   // States for the form
   const [name, setName] = useState("");
@@ -39,6 +45,7 @@ const ContactPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
 
+  // Handles state for email validity
   const [emailValidity, setEmailValidity] = useState(false);
 
   const [submittedUser, setSubmittedUser] = useState(defaultSubmittedUser);
@@ -87,6 +94,9 @@ const ContactPage = () => {
     setMessage("");
   };
 
+  /**
+   * Handler for checking if email is valid
+   */
   const handleValidationEmail = async () => {
     const data = await validateEmail(email);
 
@@ -113,6 +123,7 @@ const ContactPage = () => {
     });
     setShowConfirmation(true);
 
+    // Reset values
     resetValue();
   };
 
