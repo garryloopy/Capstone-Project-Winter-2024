@@ -19,9 +19,15 @@ export default function HomePage() {
             className="rounded-full border-2 border-orange-400"
           />
         </div>
+        <div>
+          <Image
+            src="/images/facebook-logo.png"
+            alt="facebook-logo"
+          />
+        </div>
         <div className="w-full">
           <p className="">
-            <div>--About Us will be displayed here--</div>
+            --About Us will be displayed here--
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
