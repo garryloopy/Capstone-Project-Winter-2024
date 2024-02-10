@@ -37,7 +37,7 @@ export default function HomePage() {
         <div className="flex gap-7 justify-start">
           <Link href="">
             <Image
-              src="/images/facebook-logo.png"
+              src="/images/facebook-logo2.png"
               alt="facebook-logo"
               width={34}
               height={34}
