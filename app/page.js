@@ -34,7 +34,6 @@ export default function HomePage() {
         </div>
         <p className="mt-[2rem] mb-3">Follow us on:</p>
         
-        {/* Social Media Icons */}
         <div className="flex gap-7 justify-start">
           <Link href="">
             <Image

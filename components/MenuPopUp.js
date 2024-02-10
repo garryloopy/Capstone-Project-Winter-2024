@@ -79,7 +79,7 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
             )}
             {menuList.extra?.length > 0 && (
               <div className="py-2">
-                <h3 className="text-center mt-2">Pick extra ingredient</h3>
+                <h3 className="text-center mt-2">Extras</h3>
                 {menuList.extra.map((extra, index) => (
                   <label
                     key={index}
