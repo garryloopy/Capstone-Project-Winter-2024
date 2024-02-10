@@ -95,8 +95,8 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
                 ))}
               </div>
             )}
-            <div className="special-request py-2">
-              <label htmlFor="specialRequest" className="text-center mt-2 block">
+            <div className="py-2">
+              <label className="text-center mt-2 block">
                 Special Instructions:
               </label>
               <textarea
