@@ -156,7 +156,7 @@ const ContactPage = () => {
                   A confirmation email has been sent to {submittedUser.email}.
                 </p>
                 <p className="text-gray-800">
-                  We will get back to you in 3-5 business days.
+                  We will get back to you in 1-2 business days.
                 </p>
               </div>
             </div>

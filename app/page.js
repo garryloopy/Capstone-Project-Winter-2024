@@ -33,24 +33,28 @@ export default function HomePage() {
           </div>
         </div>
         <p className="mt-[2rem] mb-3">Follow us on:</p>
+        
+        {/* Social Media Icons */}
         <div className="flex gap-7 justify-start">
           <Link href="">
             <Image
               src="/images/facebook-logo.png"
               alt="facebook-logo"
-              width={44}
-              height={44}
+              width={34}
+              height={34}
             />
            </Link> 
           <Link href="https://www.instagram.com/miggysmunchies/">
             <Image
               src="/images/instagram-logo.png"
               alt="facebook-logo"
-              width={50}
-              height={50}
+              width={40}
+              height={40}
             />
            </Link> 
-          </div>  
+          </div>
+
+        {/* Hours of Operation   
         <div className="flex flex-col items-center mt-4">
           <p>Hours of Operation:</p>
             <ul className="text-center">
@@ -62,7 +66,8 @@ export default function HomePage() {
             Order Now
           </Link>
         </div>
-        
+        */}
+
         <div>
             <AdminModal />
         </div>
