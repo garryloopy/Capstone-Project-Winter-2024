@@ -102,7 +102,7 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
               </label>
               <textarea
                 name="specialInstructions"
-                placeholder="Special Instructions"
+                placeholder="Special Instructions (e.g. Add more sauce)"
                 rows="3"
                 cols="40"
                 className="border border-gray-300 rounded-md w-full pl-2 pt-1" //focus:border-[color]-400 won't work
