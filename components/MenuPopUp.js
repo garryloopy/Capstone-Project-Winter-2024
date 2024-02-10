@@ -98,7 +98,7 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
             <div className="py-2">
               <label
                 className="text-center mt-2 block">
-                Special Instructions:
+                Special Instructions
               </label>
               <textarea
                 id="specialInstructions"
