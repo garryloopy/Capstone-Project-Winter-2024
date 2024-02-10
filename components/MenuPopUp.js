@@ -101,7 +101,6 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
                 Special Instructions
               </label>
               <textarea
-                id="specialInstructions"
                 name="specialInstructions"
                 rows="3"
                 cols="40"
@@ -111,6 +110,23 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
               >
               </textarea>
             </div>
+              {/* style 2 
+            <div className="py-2">
+              <label
+                className="absolute top-2 left-2 text-blue-500">
+                Special Instructions
+              </label>
+              <textarea
+                name="specialInstructions"
+                rows="3"
+                cols="40"
+                className="border border-gray-300 rounded-md w-full p-2 pl-2" //focus:border-[color]-400 won't work
+                value={specialRequest}
+                onChange={handleSpecialInstructionsChange}
+              >
+              </textarea>
+            </div>
+            */}
             <button
               type="button"
               className="sign_button sticky bottom-0"
