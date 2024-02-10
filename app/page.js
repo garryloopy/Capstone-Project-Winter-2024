@@ -32,7 +32,7 @@ export default function HomePage() {
             </p>
           </div>
         </div>
-        <p className="mt-[2rem] mb-3">(move to left/start) Follow us on:</p>
+        <p className="mt-[2rem] mb-3">Follow us on:</p>
         <div className="flex gap-7 justify-start">
           <Link href="">
             <Image
@@ -50,7 +50,13 @@ export default function HomePage() {
               height={50}
             />
            </Link> 
-          </div>
+          </div>  
+        <div className="flex flex-col items-center mt-4">
+          <p>Hours of Operation:</p>
+            <ul className="text-center">
+              <li>Saturday - Sunday: 12:00pm - 8:00pm</li>
+            </ul>
+        </div>
         <div className="mt-[6rem]">
           <Link className="btnStyle" href="/menu">
             Order Now
