@@ -98,13 +98,14 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
             <div className="py-2">
               <label
                 className="text-center m-2 block">
-                Special Instructions
+                Other
               </label>
               <textarea
                 name="specialInstructions"
+                placeholder="Special Instructions"
                 rows="3"
                 cols="40"
-                className="border border-gray-300 rounded-md w-full p-2" //focus:border-[color]-400 won't work
+                className="border border-gray-300 rounded-md w-full pl-2 pt-1" //focus:border-[color]-400 won't work
                 value={specialRequest}
                 onChange={handleSpecialInstructionsChange}
               >
