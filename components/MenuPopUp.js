@@ -8,6 +8,8 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
   const numericalString = menuList.price.replace(/[$,]/g, "");
   const priceAsNumber = parseFloat(numericalString);
 
+  const [specialRequest, setSpecialInstructions] = useState(''); //added this in for special instructions
+
    const handleSelectedExtra = (ev, extra) => {
      const checked = ev.target.checked;
      if (checked) {
@@ -18,6 +20,11 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
        });
      }
    };
+
+   // handle special instructions
+   const handleSpecialInstructionsChange = (event) => {
+    setSpecialInstructions(event.target.value);
+  };
 
   let selectedPrice = priceAsNumber;
   if (selectedSize) {
@@ -57,7 +64,7 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
                 {menuList.sizes.map((size, index) => (
                   <label
                     key={index}
-                    className="flex items-center gap-2 p-4 border rounded-md m-1"
+                    className="flex items-center gap-3 p-4 border rounded-md m-2"
                   >
                     <input
                       type="radio"
@@ -88,6 +95,21 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
                 ))}
               </div>
             )}
+            <div className="special-request py-2">
+              <label htmlFor="specialRequest" className="text-center mt-2 block">
+                Special Instructions:
+              </label>
+              <textarea
+                id="specialInstructions"
+                name="specialInstructions"
+                rows="4"
+                cols="50"
+                className="border border-gray-300 rounded-md w-full p-2" //focus:border-[color]-400 won't work
+                value={specialRequest}
+                onChange={handleSpecialInstructionsChange}
+              >
+              </textarea>
+            </div>
             <button
               type="button"
               className="sign_button sticky bottom-0"
