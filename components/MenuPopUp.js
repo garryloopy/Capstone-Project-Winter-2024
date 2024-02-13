@@ -1,14 +1,39 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from "next/image"
 
 const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, selectedSize, setSelectedSize, selectedExtra, setSelectedExtra}) => {
   
-  const numericalString = menuList.price.replace(/[$,]/g, "");
-  const priceAsNumber = parseFloat(numericalString);
+  
+  const basePrice = menuList.price.replace(/[$,]/g, "");
+  const priceAsNumber = parseFloat(basePrice);
 
   const [specialRequest, setSpecialInstructions] = useState(''); //added this in for special instructions
+
+   const [selectedPrice, setSelectedPrice] = useState(0); // Initialize selectedPrice state
+    let price = menuList.price.replace(/[$,]/g, "");
+    price = parseFloat(price);
+
+   useEffect(() => {
+    
+
+     if (selectedSize) {
+       price += selectedSize.price; 
+     }
+     for (const extra of selectedExtra) {
+       price += extra.price; 
+     }
+
+     setSelectedPrice(price); 
+   }, [menuList, selectedSize, selectedExtra]);
+
+   //useEffect to reset selectedPrice
+   useEffect(() => {
+    setSelectedPrice(price)
+    setSelectedSize(menuList.sizes[0])
+   },[showPopUp])
+   console.log(selectedSize)
 
    const handleSelectedExtra = (ev, extra) => {
      const checked = ev.target.checked;
@@ -26,13 +51,23 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
     setSpecialInstructions(event.target.value);
   };
 
-  let selectedPrice = priceAsNumber;
-  if (selectedSize) {
-    selectedPrice += selectedSize.price;
-  }
-  for (const extra of selectedExtra) {
-    selectedPrice += extra.price;
-  }
+  // let selectedPrice;
+  // selectedPrice = priceAsNumber ;
+  //  if (selectedSize) {
+  //      selectedPrice += selectedSize.price;
+  //    }
+  //    for (const extra of selectedExtra) {
+  //      selectedPrice += extra.price;
+  //    }
+
+     
+
+     
+    
+
+  
+ 
+  
   return (
     <>
       {showPopUp && (
@@ -70,7 +105,7 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
                       type="radio"
                       name="size"
                       onClick={() => setSelectedSize(size)}
-                      checked={selectedSize?.name === size.name}
+                      checked={selectedSize.name === size.name}
                     />
                     {size.name} ${priceAsNumber + size.price}
                   </label>
@@ -96,10 +131,7 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
               </div>
             )}
             <div className="py-2">
-              <label
-                className="text-center m-2 block">
-                Other
-              </label>
+              <label className="text-center m-2 block">Other</label>
               <textarea
                 name="specialInstructions"
                 placeholder="Special Instructions (e.g. Add more sauce)"
@@ -108,10 +140,9 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
                 className="border border-gray-300 rounded-md w-full pl-2 pt-1" //focus:border-[color]-400 won't work
                 value={specialRequest}
                 onChange={handleSpecialInstructionsChange}
-              >
-              </textarea>
+              ></textarea>
             </div>
-              {/* style 2 
+            {/* style 2 
             <div className="py-2">
               <label
                 className="absolute top-2 left-2 text-blue-500">
@@ -133,7 +164,7 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
               className="sign_button sticky bottom-0"
               onClick={handleAddToCartClick}
             >
-              Add to Cart ${selectedPrice}
+              Add to Cart ${selectedPrice.toFixed(2)}
             </button>
             <button
               type="button"

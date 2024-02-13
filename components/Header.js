@@ -82,9 +82,9 @@ export default function Header() {
               className="flex flex-col justify-center items-center mb-2 bg-black/40 p-3 rounded-md"
             >
               {cartProducts?.length > 0 && (
-                <span className="text-xs bg-orange-500 text-center rounded-full leading-3 p-1 text-white">
+                <div className="self-end text-[.7rem] w-[1.2rem] h-[1.2rem] bg-orange-500 flex items-center justify-center rounded-full text-white">
                   {cartProducts.length}
-                </span>
+                </div>
               )}
               <FontAwesomeIcon
                 icon={faCartShopping}
