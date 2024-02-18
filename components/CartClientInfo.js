@@ -2,10 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "./Providers";
 import { usePathname } from "next/navigation";
 
-const CartClientInfo = ({
-  deliveryAmount,
-  totalPrice
-}) => {
+const CartClientInfo = ({ deliveryAmount, totalPrice }) => {
   const [clientInfo, setClientInfo] = useState({
     email: "",
     address: "",
@@ -16,7 +13,6 @@ const CartClientInfo = ({
   });
   const { cartProducts } = useContext(CartContext);
 
- 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setClientInfo((prev) => ({
@@ -27,8 +23,15 @@ const CartClientInfo = ({
 
   const handleCheckout = async (ev) => {
     ev.preventDefault();
-    console.log(clientInfo)
-   
+    console.log(clientInfo);
+  };
+
+  const handlePickup = () => {
+    console.log("Pick up clicked");
+  };
+
+  const handleDelivery = () => {
+    console.log("Delivery clicked");
   };
 
   return (
@@ -118,10 +121,16 @@ const CartClientInfo = ({
             className="form_input"
           />
         </label>
-        
-          <button className="sign_button" type="submit">
-            Pay ${totalPrice + deliveryAmount}
-          </button>
+
+        <button onClick={handlePickup} className="sign_button">
+          Pick up
+        </button>
+        <button onClick={handleDelivery} className="sign_button">
+          Delivery
+        </button>
+        <button className="sign_button" type="submit">
+          Pay ${totalPrice + deliveryAmount}
+        </button>
       </form>
     </div>
   );
