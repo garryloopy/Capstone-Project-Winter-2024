@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "./Providers";
 import { usePathname } from "next/navigation";
 
-const CartClientInfo = ({ deliveryAmount, totalPrice }) => {
+const CartClientInfo = ({ totalPrice }) => {
   const [clientInfo, setClientInfo] = useState({
     email: "",
     address: "",
@@ -12,6 +12,7 @@ const CartClientInfo = ({ deliveryAmount, totalPrice }) => {
     tel: "",
   });
   const { cartProducts } = useContext(CartContext);
+  const [deliveryAmount, setDeliveryAmount] = useState(0);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,10 +29,12 @@ const CartClientInfo = ({ deliveryAmount, totalPrice }) => {
 
   const handlePickup = () => {
     console.log("Pick up clicked");
+    setDeliveryAmount(0);
   };
 
   const handleDelivery = () => {
     console.log("Delivery clicked");
+    setDeliveryAmount(5);
   };
 
   return (
@@ -122,12 +125,15 @@ const CartClientInfo = ({ deliveryAmount, totalPrice }) => {
           />
         </label>
 
-        <button onClick={handlePickup} className="sign_button">
-          Pick up
-        </button>
-        <button onClick={handleDelivery} className="sign_button">
-          Delivery
-        </button>
+        <div style={{ display: "flex", gap: 10 }}>
+          <button onClick={handlePickup} className="sign_button">
+            Pick up
+          </button>
+          <button onClick={handleDelivery} className="sign_button">
+            Delivery
+          </button>
+        </div>
+
         <button className="sign_button" type="submit">
           Pay ${totalPrice + deliveryAmount}
         </button>
