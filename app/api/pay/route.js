@@ -3,7 +3,6 @@ import { randomUUID } from "crypto";
 import { NextResponse } from "next/server";
 import Menu from "@/app/models/Menu";
 import { connectToDB } from "@/app/utils/DB-connect";
-import Order from "@/app/models/Order";
 
 BigInt.prototype.toJSON = function () {
   return this.toString();
@@ -21,7 +20,7 @@ export async function POST(req, res) {
 
     let productPrice;
     let paid;
-    let paymentId;
+    let orderId;
 
     //calculate the total price
     for (const product of cartProducts) {
@@ -53,15 +52,10 @@ export async function POST(req, res) {
         amount: productPrice * 100,
       },
     });
-    paymentId = result.payment.id;
+    orderId = result.payment.orderId;
     paid = result.payment.status;
 
-     const orderItems = await Order.create({
-      paymentId,
-       clientInfo,
-       cartProducts,
-       paid,
-     });
+     
 
     return new NextResponse(JSON.stringify(result), { status: 200 });
   } catch (error) {
