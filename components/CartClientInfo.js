@@ -13,40 +13,16 @@ const AddressAutofill = dynamic(
   { ssr: false }
 );
 
-const CartClientInfo = ({
-  clientInfo,
-  setClientInfo,
-  setInputValid,
-  setMessage,
-}) => {
+const CartClientInfo = ({ deliveryAmount, totalPrice }) => {
+  const [clientInfo, setClientInfo] = useState({
+    email: "",
+    address: "",
+    city: "",
+    province: "",
+    zip: "",
+    tel: "",
+  });
   const { cartProducts } = useContext(CartContext);
-
-  //  const emailRegExp = /^\S+@\S+\.\S+$/;
-  const emailRegExp = new RegExp("^\\S+@\\S+\\.\\S+$");
-  const zipRegExp = /^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$/;
-  const apartmentRegExp = /^[a-zA-Z0-9\s-]{1,10}$/;
-  const cityRegExp = /^[a-zA-Z\s-]{2,}$/;
-  const phoneRegExp = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
-
-  const [isEmailValid, setIsEmailValid] = useState();
-  const [isZipValid, setIsZipValid] = useState();
-  const [isCityValid, setIsCityValid] = useState();
-  const [isApptValid, setIsApptValid] = useState(true);
-  const [isTelValid, setIsTelValid] = useState();
-
-  let isValid;
-
-  useEffect(() => {
-    if (!clientInfo.address) {
-      setClientInfo((prev) => ({
-        ...prev,
-        city: "",
-        province: "",
-        zip: "",
-        apartment: "",
-      }));
-    }
-  }, [clientInfo?.address]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -82,11 +58,19 @@ const CartClientInfo = ({
       [name]: value,
     }));
   };
-  if (isEmailValid && isZipValid && isCityValid && isApptValid && isTelValid) {
-    setInputValid(true);
-  } else {
-    setInputValid(false);
-  }
+
+  const handleCheckout = async (ev) => {
+    ev.preventDefault();
+    console.log(clientInfo);
+  };
+
+  const handlePickup = () => {
+    console.log("Pick up clicked");
+  };
+
+  const handleDelivery = () => {
+    console.log("Delivery clicked");
+  };
 
   return (
     <div className="w-full text-white">
@@ -227,7 +211,15 @@ const CartClientInfo = ({
           </div>
         </label>
 
-        <DeliveryType onChange={handleChange} />
+        <button onClick={handlePickup} className="sign_button">
+          Pick up
+        </button>
+        <button onClick={handleDelivery} className="sign_button">
+          Delivery
+        </button>
+        <button className="sign_button" type="submit">
+          Pay ${totalPrice + deliveryAmount}
+        </button>
       </form>
     </div>
   );
