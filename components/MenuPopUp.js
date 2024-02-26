@@ -3,51 +3,56 @@
 import React, { useEffect, useState } from 'react'
 import Image from "next/image"
 
-const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, selectedSize, setSelectedSize, selectedExtra, setSelectedExtra}) => {
-  
-  
+const MenuPopUp = ({
+  showPopUp,
+  setShowPopUp,
+  menuList,
+  handleAddToCartClick,
+  selectedSize,
+  setSelectedSize,
+  selectedExtra,
+  setSelectedExtra,
+  specialRequest,
+  setSpecialInstructions,
+}) => {
   const basePrice = menuList.price.replace(/[$,]/g, "");
   const priceAsNumber = parseFloat(basePrice);
 
-  const [specialRequest, setSpecialInstructions] = useState(''); //added this in for special instructions
 
-   const [selectedPrice, setSelectedPrice] = useState(0); // Initialize selectedPrice state
-    let price = menuList.price.replace(/[$,]/g, "");
-    price = parseFloat(price);
+  const [selectedPrice, setSelectedPrice] = useState(0);
+  let price = menuList.price.replace(/[$,]/g, "");
+  price = parseFloat(price);
 
-   useEffect(() => {
-    
+  useEffect(() => {
+    if (selectedSize) {
+      price += selectedSize.price;
+    }
+    for (const extra of selectedExtra) {
+      price += extra.price;
+    }
 
-     if (selectedSize) {
-       price += selectedSize.price; 
-     }
-     for (const extra of selectedExtra) {
-       price += extra.price; 
-     }
+    setSelectedPrice(price);
+  }, [menuList, selectedSize, selectedExtra]);
 
-     setSelectedPrice(price); 
-   }, [menuList, selectedSize, selectedExtra]);
+  //useEffect to reset selectedPrice
+  useEffect(() => {
+    setSelectedPrice(price);
+    setSelectedSize(menuList.sizes[0]);
+  }, [showPopUp]);
 
-   //useEffect to reset selectedPrice
-   useEffect(() => {
-    setSelectedPrice(price)
-    setSelectedSize(menuList.sizes[0])
-   },[showPopUp])
-   console.log(selectedSize)
+  const handleSelectedExtra = (ev, extra) => {
+    const checked = ev.target.checked;
+    if (checked) {
+      setSelectedExtra((prev) => [...prev, extra]);
+    } else {
+      setSelectedExtra((prev) => {
+        return prev.filter((e) => e.name !== extra.name);
+      });
+    }
+  };
 
-   const handleSelectedExtra = (ev, extra) => {
-     const checked = ev.target.checked;
-     if (checked) {
-       setSelectedExtra((prev) => [...prev, extra]);
-     } else {
-       setSelectedExtra((prev) => {
-         return prev.filter((e) => e.name !== extra.name);
-       });
-     }
-   };
-
-   // handle special instructions
-   const handleSpecialInstructionsChange = (event) => {
+  // handle special instructions
+  const handleSpecialInstructionsChange = (event) => {
     setSpecialInstructions(event.target.value);
   };
 
@@ -60,14 +65,6 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
   //      selectedPrice += extra.price;
   //    }
 
-     
-
-     
-    
-
-  
- 
-  
   return (
     <>
       {showPopUp && (
@@ -178,6 +175,6 @@ const MenuPopUp = ({showPopUp, setShowPopUp, menuList, handleAddToCartClick, sel
       )}
     </>
   );
-}
+};
 
 export default MenuPopUp

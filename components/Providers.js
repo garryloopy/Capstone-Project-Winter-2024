@@ -42,9 +42,9 @@ const Providers = ({ children, session }) => {
   }
 
 
-  function addToCart (product, sizes=null, extra=[]){
+  function addToCart (product, sizes=null, extra=[],specialRequest=""){
    setCartProducts(prev => {
-    const newProduct = [...prev, {...product, sizes, extra}]
+    const newProduct = [...prev, {...product, sizes, extra,specialRequest}]
     saveProductsToLocalStorage(newProduct)
     return newProduct
    })

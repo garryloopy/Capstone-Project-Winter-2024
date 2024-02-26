@@ -1,14 +1,11 @@
+"use client";
 import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "./Providers";
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import TrashBin from "@/app/icons/TrashBin";
 
-const CartMenuList = ({onDelete, totalPrice, deliveryAmount}) => {
-
-  const {calculateTotalPrice,cartProducts} = useContext(CartContext);
-  
-  
+const CartMenuList = ({ onDelete, totalPrice, deliveryAmount }) => {
+  const { calculateTotalPrice, cartProducts } = useContext(CartContext);
 
   return (
     <div>
@@ -43,18 +40,15 @@ const CartMenuList = ({onDelete, totalPrice, deliveryAmount}) => {
                   ))}
                 </div>
               )}
+              <p className="text-sm text-gray-500">{product.specialRequest}</p>
             </div>
-            <div className="text-sm mr-4">${calculateTotalPrice(product)}</div>
+            <div className="text-sm mr-4">
+              ${calculateTotalPrice(product).toFixed(2)}
+            </div>
             {onDelete && (
               <div>
                 <button type="button" onClick={() => onDelete(index)}>
-                  {" "}
-                  <FontAwesomeIcon
-                    icon={faTrash}
-                    size="sm"
-                    style={{ color: "#ee2b2b" }}
-                    className="p-2 border border-orange-300 rounded-md hover:bg-orange-300"
-                  />
+                  <TrashBin className="w-[2rem] h-[2rem] border bg-gray-300 p-[.3rem] rounded-md border-gray-400 hover:bg-gray-200" />
                 </button>
               </div>
             )}
@@ -67,10 +61,14 @@ const CartMenuList = ({onDelete, totalPrice, deliveryAmount}) => {
           <span className="text-gray-600">Total:</span>
         </div>
         <div className="flex flex-col justify-center">
-          <span className="text-lg font-semibold pl-2">${totalPrice} </span>
-          <span className="text-lg font-semibold pl-2">${deliveryAmount}</span>
           <span className="text-lg font-semibold pl-2">
-            ${totalPrice + deliveryAmount}
+            ${totalPrice.toFixed(2)}{" "}
+          </span>
+          <span className="text-lg font-semibold pl-2">
+            ${deliveryAmount.toFixed(2)}
+          </span>
+          <span className="text-lg font-semibold pl-2">
+            ${(totalPrice + deliveryAmount).toFixed(2)}
           </span>
         </div>
       </div>

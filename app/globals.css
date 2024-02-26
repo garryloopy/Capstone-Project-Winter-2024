@@ -14,7 +14,6 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  max-height: 100vh;
 
 }
 body::before {
@@ -64,7 +63,7 @@ p{
 
 /* Styles for Modal */
 .form_input, select {
-  @apply  block w-full rounded-md mb-4 p-2 text-sm border border-gray-300 bg-orange-100 text-gray-500;
+  @apply  w-full rounded-md mb-4 p-2 text-sm border border-gray-300 bg-gray-100 text-gray-500;
 }
 
 .activeButton{

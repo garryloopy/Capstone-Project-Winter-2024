@@ -6,44 +6,41 @@ import MenuPopUp from './MenuPopUp';
 
 
 const ClientMenu = (menuList) => {
-   const [showPopUp, setShowPopUp] = useState(false);
-   const { addToCart } = useContext(CartContext);
-   const [selectedSize, setSelectedSize] = useState(
-     menuList.sizes?.[0] || null
-   );
-   const [selectedExtra, setSelectedExtra] = useState([]);
-   
+  const [showPopUp, setShowPopUp] = useState(false);
+  const { addToCart } = useContext(CartContext);
+  const [selectedSize, setSelectedSize] = useState(menuList.sizes?.[0] || null);
+  const [specialRequest, setSpecialInstructions] = useState(""); //added this in for special instructions
 
+  const [selectedExtra, setSelectedExtra] = useState([]);
 
- const handleAddToCartClick = () => {
-   if (showPopUp) {
-     addToCart(menuList, selectedSize, selectedExtra);
-     toast.success("Added to cart");
-     setShowPopUp(false);
-     return;
-   }
-   if (
-     (menuList.sizes?.length === 0 &&
-     menuList.extra?.length === 0) ||
-     menuList.sizes?.length === 1
-   ) {
-     addToCart(menuList);
-     toast.success("Added to cart");
-   } else {
-     setShowPopUp(true);
-   }
- };
+  const handleAddToCartClick = () => {
+    if (showPopUp) {
+      addToCart(menuList, selectedSize, selectedExtra,specialRequest);
+      toast.success("Added to cart");
+      setShowPopUp(false);
+      return;
+    }
+    if (menuList.sizes?.length === 0 && menuList.extra?.length === 0) {
+      addToCart(menuList);
+      toast.success("Added to cart");
+    } else {
+      setShowPopUp(true);
+    }
+  };
   return (
     <>
-    <MenuPopUp 
-    showPopUp={showPopUp} 
-    setShowPopUp={setShowPopUp} 
-    menuList={menuList} 
-    handleAddToCartClick={handleAddToCartClick} 
-    selectedSize={selectedSize} 
-    setSelectedSize={setSelectedSize} 
-    selectedExtra={selectedExtra}
-    setSelectedExtra={setSelectedExtra}/>
+      <MenuPopUp
+        showPopUp={showPopUp}
+        setShowPopUp={setShowPopUp}
+        menuList={menuList}
+        handleAddToCartClick={handleAddToCartClick}
+        selectedSize={selectedSize}
+        setSelectedSize={setSelectedSize}
+        selectedExtra={selectedExtra}
+        setSelectedExtra={setSelectedExtra}
+        specialRequest={specialRequest}
+        setSpecialInstructions={setSpecialInstructions}
+      />
       <div className="container relative group text-slate-100 p-6 border-2 rounded-md border-slate-300 flex flex-col items-center justify-around gap-4 bg-black/60">
         <div>
           <Image
