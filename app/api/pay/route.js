@@ -3,6 +3,7 @@ import { randomUUID } from "crypto";
 import { NextResponse } from "next/server";
 import Menu from "@/app/models/Menu";
 import { connectToDB } from "@/app/utils/DB-connect";
+import Order from "@/app/models/Order";
 
 BigInt.prototype.toJSON = function () {
   return this.toString();
@@ -21,6 +22,10 @@ export async function POST(req, res) {
     let productPrice;
     let paid;
     let orderId;
+    let cardBrand;
+    let lastFourDigits;
+    let cardStatus;
+    let cardType;
 
     //calculate the total price
     for (const product of cartProducts) {
@@ -54,14 +59,20 @@ export async function POST(req, res) {
     });
     orderId = result.payment.orderId;
     paid = result.payment.status;
+    cardBrand = result.payment.cardDetails.card.cardBrand;
+    lastFourDigits = result.payment.cardDetails.card.last4;
 
-     
-
+    const orderItems = await Order.create({
+      orderId,
+      paid,
+      cardBrand,
+      lastFourDigits,
+      clientInfo,
+      cartProducts,
+      paid,
+    });
     return new NextResponse(JSON.stringify(result), { status: 200 });
   } catch (error) {
-    return new NextResponse(
-      "An error occurred while retrieving data." + error,
-      { status: 500 }
-    );
+    return new NextResponse("Payment is failed." + error, { status: 500 });
   }
 }
