@@ -24,8 +24,8 @@ export async function POST(req, res) {
     let orderId;
     let cardBrand;
     let lastFourDigits;
-    let cardStatus;
-    let cardType;
+    let paymentId;
+   
 
     //calculate the total price
     for (const product of cartProducts) {
@@ -58,12 +58,14 @@ export async function POST(req, res) {
       },
     });
     orderId = result.payment.orderId;
+    paymentId = result.payment.id;
     paid = result.payment.status;
     cardBrand = result.payment.cardDetails.card.cardBrand;
     lastFourDigits = result.payment.cardDetails.card.last4;
 
     const orderItems = await Order.create({
       orderId,
+      paymentId,
       paid,
       cardBrand,
       lastFourDigits,

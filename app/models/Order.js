@@ -6,6 +6,10 @@ const OrderSchema = new Schema(
       type: String,
     },
 
+    paymentId: {
+      type: String,
+    },
+
     paid: {
       type: String,
     },
@@ -17,6 +21,7 @@ const OrderSchema = new Schema(
     lastFourDigits: {
       type: String,
     },
+
 
     clientInfo: Object,
     cartProducts: Object,
