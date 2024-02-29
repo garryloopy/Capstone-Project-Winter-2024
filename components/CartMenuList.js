@@ -4,8 +4,8 @@ import { CartContext } from "./Providers";
 import Image from "next/image";
 import TrashBin from "@/app/icons/TrashBin";
 
-const CartMenuList = ({ onDelete, totalPrice, deliveryAmount }) => {
-  const { calculateTotalPrice, cartProducts } = useContext(CartContext);
+const CartMenuList = ({ cartProducts, onDelete, totalPrice, deliveryAmount }) => {
+  const { calculateTotalPrice} = useContext(CartContext);
 
   return (
     <div>
@@ -61,13 +61,13 @@ const CartMenuList = ({ onDelete, totalPrice, deliveryAmount }) => {
           <span className="text-gray-600">Total:</span>
         </div>
         <div className="flex flex-col justify-center">
-          <span className="text-lg font-semibold pl-2">
+          <span className="text-md font-semibold pl-2">
             ${totalPrice.toFixed(2)}{" "}
           </span>
-          <span className="text-lg font-semibold pl-2">
+          <span className="text-md font-semibold pl-2">
             ${deliveryAmount.toFixed(2)}
           </span>
-          <span className="text-lg font-semibold pl-2">
+          <span className="text-md font-semibold pl-2">
             ${(totalPrice + deliveryAmount).toFixed(2)}
           </span>
         </div>

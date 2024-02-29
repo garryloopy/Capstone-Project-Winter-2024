@@ -75,6 +75,7 @@ export default function CartPage() {
                   Your products
                 </h2>
                 <CartMenuList
+                  cartProducts={cartProducts}
                   onDelete={onDelete}
                   totalPrice={totalPrice}
                   deliveryAmount={deliveryAmount}
@@ -114,7 +115,7 @@ export default function CartPage() {
                               const status = payment.status;
                               const paymentId = payment.id;
                               if (status === "COMPLETED") {
-                                window.location.href = `/receipt/${paymentId}`;
+                                window.location.href = `/receipt/${paymentId}?clear=1`;
                               }
                             } else {
                               reject();
