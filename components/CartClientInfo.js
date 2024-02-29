@@ -8,10 +8,10 @@ import DeliveryType from "./DeliveryType";
 import dynamic from "next/dynamic";
 import ValidateInput from "./ValidateInput";
 
-const AddressAutofill = dynamic(
-  () => import("@mapbox/search-js-react").then((mod) => mod.AddressAutofill),
-  { ssr: false }
-);
+// const AddressAutofill = dynamic(
+//   () => import("@mapbox/search-js-react").then((mod) => mod.AddressAutofill),
+//   { ssr: false }
+// );
 
 const CartClientInfo = ({
   clientInfo,
@@ -117,7 +117,7 @@ const CartClientInfo = ({
             />
           </div>
         </label>
-        <AddressAutofill accessToken={process.env.MAP_ACCESS_TOKEN}>
+        {/* <AddressAutofill accessToken={process.env.MAP_ACCESS_TOKEN}> */}
           <div className="flex gap-4">
             <label className="w-full">
               <span className="text-xs text-gray-400">Address</span>
@@ -150,7 +150,7 @@ const CartClientInfo = ({
               </div>
             </label>
           </div>
-        </AddressAutofill>
+        {/* </AddressAutofill> */}
 
         <div className="flex gap-4 w-full">
           <label className="w-full">
