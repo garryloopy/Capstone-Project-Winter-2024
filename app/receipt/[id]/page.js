@@ -4,7 +4,7 @@ import CartMenuList from "@/components/CartMenuList";
 import Loading from "@/components/Loading";
 import { CartContext } from "@/components/Providers";
 import { useParams } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
 /**
  *
@@ -17,17 +17,16 @@ export default function OrderConfirmationPage() {
   const [cardBrand, setCardBrand] = useState();
   const [lastDigits, setLastDigits] = useState();
   const [orderId, setOrderId] = useState();
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const { calculateTotalPrice, clearCart } = useContext(CartContext);
 
   const { id } = useParams();
   let totalPrice = 0;
   const deliveryAmount = 5;
 
-
   const getOrderInfo = async () => {
     if (id) {
-        setLoading(true)
+      setLoading(true);
       const res = await fetch(`/api/getOrder?id=${id}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -59,7 +58,7 @@ export default function OrderConfirmationPage() {
       } else {
         console.log("Error to fetch order info");
       }
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -75,13 +74,17 @@ export default function OrderConfirmationPage() {
   }, []);
 
   // clear cart shipping
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (window.location.href.includes("clear=1")) {
-        clearCart();
-      }
+  const handleCart = useCallback (() => {
+    clearCart();
+  },[])
+
+    useEffect(() => {
+  if (typeof window !== "undefined") {
+    if (window.location.href.includes("clear=1")) {
+      handleCart();
     }
-  }, [clearCart]);
+  }
+    }, [handleCart]);
   return (
     <>
       {loading ? (
@@ -90,8 +93,12 @@ export default function OrderConfirmationPage() {
         <section className=" bg-gray-300">
           <div className="bg-green-300 w-full px-[4rem] py-[2rem]">
             <div className="flex justify-between my-[2rem]">
-                <h1 className="md:text-xl text-md font-bold mb-[1rem]">Receipt</h1>
-                <h1 className="md:text-xl text-md font-bold mb-[1rem]">${totalPrice.toFixed(2)}</h1>
+              <h1 className="md:text-xl text-md font-bold mb-[1rem]">
+                Receipt
+              </h1>
+              <h1 className="md:text-xl text-md font-bold mb-[1rem]">
+                ${totalPrice.toFixed(2)}
+              </h1>
             </div>
             <div className="mt-[1rem] flex lg:flex-row flex-col lg:justify-around lg:items-center">
               {formattedDate && (
@@ -110,7 +117,7 @@ export default function OrderConfirmationPage() {
               {cardBrand && lastDigits && (
                 <h3>
                   <span className="text-lg font-semibold">Payment:</span>{" "}
-                  {cardBrand} ************{lastDigits}
+                  {cardBrand} xxxxxxxxxxxx{lastDigits}
                 </h3>
               )}
             </div>

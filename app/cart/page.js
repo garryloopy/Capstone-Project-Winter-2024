@@ -24,8 +24,6 @@ export default function CartPage() {
     email: "",
     address: "",
     apartment: "",
-    city: "",
-    province: "",
     zip: "",
     tel: "",
     deliveryType: "",
@@ -75,7 +73,7 @@ export default function CartPage() {
                   Your products
                 </h2>
                 <CartMenuList
-                  cartProducts={cartProducts}
+                cartProducts={cartProducts}
                   onDelete={onDelete}
                   totalPrice={totalPrice}
                   deliveryAmount={deliveryAmount}

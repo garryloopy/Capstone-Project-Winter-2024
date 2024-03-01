@@ -25,12 +25,12 @@ const CartClientInfo = ({
   const emailRegExp = new RegExp("^\\S+@\\S+\\.\\S+$");
   const zipRegExp = /^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$/;
   const apartmentRegExp = /^[a-zA-Z0-9\s-]{1,10}$/;
-  const cityRegExp = /^[a-zA-Z\s-]{2,}$/;
+  // const cityRegExp = /^[a-zA-Z\s-]{2,}$/;
   const phoneRegExp = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
 
   const [isEmailValid, setIsEmailValid] = useState();
   const [isZipValid, setIsZipValid] = useState();
-  const [isCityValid, setIsCityValid] = useState();
+  // const [isCityValid, setIsCityValid] = useState();
   const [isApptValid, setIsApptValid] = useState(true);
   const [isTelValid, setIsTelValid] = useState();
 
@@ -40,8 +40,6 @@ const CartClientInfo = ({
     if (!clientInfo.address) {
       setClientInfo((prev) => ({
         ...prev,
-        city: "",
-        province: "",
         zip: "",
         apartment: "",
       }));
@@ -67,10 +65,6 @@ const CartClientInfo = ({
       setIsApptValid(isValid);
     }
 
-    if (name === "city") {
-      isValid = cityRegExp.test(value);
-      setIsCityValid(isValid);
-    }
 
     if (name === "tel") {
       isValid = phoneRegExp.test(value);
@@ -82,7 +76,7 @@ const CartClientInfo = ({
       [name]: value,
     }));
   };
-  if (isEmailValid && isZipValid && isCityValid && isApptValid && isTelValid) {
+  if (isEmailValid && isZipValid && isApptValid && isTelValid) {
     setInputValid(true);
   } else {
     setInputValid(false);
@@ -155,41 +149,33 @@ const CartClientInfo = ({
         <div className="flex gap-4 w-full">
           <label className="w-full">
             <span className="text-xs text-gray-400">City</span>
-            <div className="flex relative">
               <input
                 type="text"
                 placeholder="City"
                 name="city"
-                value={clientInfo?.city}
-                onChange={handleChange}
-                className="form_input"
-                autoComplete="address-level2"
-              />
-              <ValidateInput
-                clientInfo={clientInfo?.city}
-                isValid={isCityValid}
-              />
-            </div>
+                value="Calgary"
+                className="form_input text-gray-500"
+                disabled
+              />     
           </label>
-          {/* <label className="w-full">
+          <label className="w-full">
             <span className="text-xs text-gray-400">Province</span>
             <input
               type="text"
               placeholder="Province"
               name="province"
-              value={clientInfo.province}
-              onChange={handleChange}
-              className="form_input"
-              required
+              value="Alberta"
+              className="form_input text-gray-500"
+              disabled
             />
-          </label> */}
-          <label className="w-full">
+          </label>
+          {/* <label className="w-full">
             <span className="text-xs text-gray-400">Province</span>
             <ProvincesDropDown
               onChange={handleChange}
               clientInfo={clientInfo}
             />
-          </label>
+          </label> */}
           <label className="w-full">
             <span className="text-xs text-gray-400">Postal code</span>
             <div className="flex relative">
