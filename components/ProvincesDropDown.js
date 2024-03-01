@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 import provincesData from "../dataConstant/provincesData";
 const provinces = provincesData.provinces;
-const ProvincesDropDown = ({onChange, clientInfo}) => {
- const handleProvinceChange = (e) => {
-   onChange(e); 
- }
+const ProvincesDropDown = ({ onChange, clientInfo }) => {
+  const handleProvinceChange = (e) => {
+    onChange(e);
+  };
   return (
     <select
       name="province"
@@ -21,6 +21,6 @@ const ProvincesDropDown = ({onChange, clientInfo}) => {
         ))}
     </select>
   );
-}
+};
 
-export default ProvincesDropDown
+export default ProvincesDropDown;
