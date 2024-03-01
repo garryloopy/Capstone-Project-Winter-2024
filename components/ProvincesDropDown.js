@@ -1,6 +1,6 @@
 import React from "react";
 
-import provincesData from "../app/dataConstant/provincesData";
+import provincesData from "../dataConstant/provincesData";
 const provinces = provincesData.provinces;
 const ProvincesDropDown = ({ onChange, clientInfo }) => {
   const handleProvinceChange = (e) => {
