@@ -1,12 +1,9 @@
-"use client"
-import Image from "next/image"
-import Link from "next/link"
+"use client";
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import AdminModal from "./(admin)/components/AdminModal";
 export default function HomePage() {
-  
-
-  
   return (
     <section className="md:px-[4rem] px-[2rem] py-[2rem] text-white flex flex-col items-center justify-center my-[6rem]">
       <div className="flex lg:flex-row flex-col justify-evenly gap-10 lg:w-[80%] mx-auto w-full ">
@@ -56,21 +53,19 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col items-left mt-4">
             <p>Hours of Operation:</p>
-              <ul>
-                <li>Saturday - Sunday: 12:00pm - 8:00pm</li>
-                <li>Address: 123 AddressHere NE, Calgary, AB, Canada</li>
-              </ul>
-            </div>
+            <ul>
+              <li>Saturday - Sunday: 12:00pm - 8:00pm</li>
+              <li>Address: 123 AddressHere NE, Calgary, AB, Canada</li>
+            </ul>
+          </div>
         </div>
       </div>
-        
 
-        <div>
-          <Link className="btnStyle" href="/menu">
-            Order Now
-          </Link>
-        </div>
-       
+      <div>
+        <Link className="btnStyle" href="/menu">
+          Order Now
+        </Link>
+      </div>
 
       <div>
         <AdminModal />

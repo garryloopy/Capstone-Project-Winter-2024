@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 
-import Image from "next/image";
-
 import React from "react";
 
 // The business email
@@ -26,12 +24,18 @@ const defaultSubmittedUser = {
  * @returns Json format from API call, or promise
  */
 const validateEmail = async (emailToValidate) => {
-  const response = await fetch(
-    `https://www.disify.com/api/email/${emailToValidate}`
-  );
-  const data = await response.json();
+  try {
+    const response = await fetch(
+      `https://www.disify.com/api/email/${emailToValidate}`
+    );
+    const data = await response.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    console.error("Error validating email:", error);
+    // Handle the error or return an appropriate response
+    return { error: "Failed to validate email" };
+  }
 };
 
 /**
@@ -52,11 +56,14 @@ const ContactPage = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   /**
-   * Handler for the name change
+   * Handler for the name change, sanitizes name input to only accept alphabetic characters
    * @param {Event} e The event
    */
   const handleOnNameChange = (e) => {
-    setName(e.target.value);
+    const input = e.target.value;
+    const sanitizedInput = input.replace(/[^A-Za-z ]/g, "");
+
+    setName(sanitizedInput);
   };
 
   /**
@@ -68,11 +75,15 @@ const ContactPage = () => {
   };
 
   /**
-   * Handleer for the phone number change
+   * Handler for the phone number change
    * @param {Event} e The event
    */
   const handleOnPhoneNumberChange = (e) => {
-    setPhoneNumber(e.target.value);
+    const input = e.target.value;
+
+    const sanitizedInput = input.replace(/\D/g, "");
+
+    setPhoneNumber(sanitizedInput);
   };
 
   /**
@@ -95,15 +106,6 @@ const ContactPage = () => {
   };
 
   /**
-   * Handler for checking if email is valid
-   */
-  const handleValidationEmail = async () => {
-    const data = await validateEmail(email);
-
-    setEmailValidity(data.format);
-  };
-
-  /**
    * Handler for the submit event
    * @param {Event} e The event
    */
@@ -112,7 +114,8 @@ const ContactPage = () => {
 
     //Do some stuff, send email to the business email
 
-    handleValidationEmail();
+    const data = await validateEmail(email);
+    setEmailValidity(data.format);
 
     //Show confirmation
     setSubmittedUser({
@@ -123,8 +126,22 @@ const ContactPage = () => {
     });
     setShowConfirmation(true);
 
+    // Make API call to the server
+    fetch("api/email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        phoneNumber,
+        message,
+      }),
+    });
+
     // Reset values
-    resetValue();
+    //resetValue();
   };
 
   /**
@@ -164,7 +181,10 @@ const ContactPage = () => {
         </div>
       )}
 
-      <form onSubmit={handleOnSubmit} className="flex flex-col gap-4 p-12">
+      <form
+        onSubmit={handleOnSubmit}
+        className="flex flex-col gap-4 p-12 bg-gray-100/80 shadow-md rounded-md"
+      >
         <p className="text-center text-2xl mb-4">Get in touch with us!</p>
         <div className="flex flex-row gap-8">
           <div>
@@ -192,8 +212,8 @@ const ContactPage = () => {
           </p>
           <InputLabel
             type="tel"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            placeholder="Phone number 123-456-7890"
+            pattern="[0-9]{10}"
+            placeholder="Phone number"
             value={phoneNumber}
             onChange={handleOnPhoneNumberChange}
           />
