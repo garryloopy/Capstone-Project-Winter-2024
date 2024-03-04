@@ -4,6 +4,10 @@ import { useState } from "react";
 
 import React from "react";
 
+import Link from "next/link";
+
+import Image from "next/image";
+
 // The business email
 const BUSINESS_EMAIL = "francessicam@gmail.com";
 
@@ -232,6 +236,29 @@ const ContactPage = () => {
           </button>
         </div>
       </form>
+
+      <div className="flex flex-col items-center justify-center">
+        <p className="mt-[2rem] mb-3 text-lg">Follow us on:</p>
+
+        <div className="flex gap-4 items-center">
+          <Link href="">
+            <Image
+              src="/images/facebook-logo2.png"
+              alt="facebook-logo"
+              width={34}
+              height={34}
+            />
+          </Link>
+          <Link href="https://www.instagram.com/miggysmunchies/">
+            <Image
+              src="/images/instagram-logo.png"
+              alt="facebook-logo"
+              width={40}
+              height={40}
+            />
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
