@@ -109,6 +109,32 @@ const ContactPage = () => {
     setMessage("");
   };
 
+
+  async function handleAPICall() {
+    try {
+      const res = await fetch("api/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phoneNumber,
+          message,
+        }),
+      });  
+      if (res.status === 200) {
+        setShowConfirmation(true);
+      } else {
+        console.error("Failed to send email. Server responded with status:", res.status);
+      }
+    } catch (error) {
+      console.error("An error occurred while sending email:", error);
+    }
+  }
+  
+
   /**
    * Handler for the submit event
    * @param {Event} e The event
@@ -121,6 +147,9 @@ const ContactPage = () => {
     const data = await validateEmail(email);
     setEmailValidity(data.format);
 
+    // Make API call to the server
+    handleAPICall();
+
     //Show confirmation
     setSubmittedUser({
       name: name,
@@ -130,22 +159,10 @@ const ContactPage = () => {
     });
     setShowConfirmation(true);
 
-    // Make API call to the server
-    fetch("api/email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        phoneNumber,
-        message,
-      }),
-    });
+
 
     // Reset values
-    //resetValue();
+    resetValue();
   };
 
   /**
