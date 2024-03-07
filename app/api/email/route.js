@@ -72,6 +72,7 @@ export async function POST(req) {
             Phone Number: ${data.phoneNumber}\n
             Email Address: ${data.email}\n
             Message: ${data.message}`,
+            // html: `<h1>Hi, ${data.name}</h1>
     };
 
     await transporter.sendMail(mailOptions);
