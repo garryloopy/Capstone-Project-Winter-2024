@@ -1,17 +1,17 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
-import { CartContext } from "./Providers";
-import ProvincesDropDown from "./ProvincesDropDown";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { CartContext, ClientLocationContext } from "./Providers";
+// import ProvincesDropDown from "./ProvincesDropDown";
 import DeliveryType from "./DeliveryType";
 
 // import { AddressAutofill } from "@mapbox/search-js-react";
 import dynamic from "next/dynamic";
 import ValidateInput from "./ValidateInput";
 
-// const AddressAutofill = dynamic(
-//   () => import("@mapbox/search-js-react").then((mod) => mod.AddressAutofill),
-//   { ssr: false }
-// );
+const AddressAutofill = dynamic(
+  () => import("@mapbox/search-js-react").then((mod) => mod.AddressAutofill),
+  { ssr: false }
+);
 
 const CartClientInfo = ({
   clientInfo,
@@ -20,6 +20,10 @@ const CartClientInfo = ({
   setMessage,
 }) => {
   const { cartProducts } = useContext(CartContext);
+  const { clientLocation, setClientLocation } = useContext(
+    ClientLocationContext
+  );
+  const selectedAddressRef = useRef(null);
 
   //  const emailRegExp = /^\S+@\S+\.\S+$/;
   const emailRegExp = new RegExp("^\\S+@\\S+\\.\\S+$");
@@ -65,7 +69,6 @@ const CartClientInfo = ({
       setIsApptValid(isValid);
     }
 
-
     if (name === "tel") {
       isValid = phoneRegExp.test(value);
       setIsTelValid(isValid);
@@ -90,6 +93,26 @@ const CartClientInfo = ({
   //    console.log("Delivery clicked");
   //  };
 
+  //retrieve the location (longitude and latitude) of the client 
+  const getCoordinate = async (address) => {
+    if (address) {
+      const res = await fetch(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?proximity=ip&access_token=${process.env.MAP_ACCESS_TOKEN}`
+      );
+      const result = await res.json();
+      setClientLocation({
+        longitude: result?.features[0]?.geometry?.coordinates[0],
+        latitude: result?.features[0]?.geometry?.coordinates[1],
+      });
+    }
+  };
+
+  const handleSelect = () => {
+    if (selectedAddressRef.current) {
+      getCoordinate(selectedAddressRef.current.value);
+    }
+  };
+
   return (
     <div className="w-full text-white">
       <form>
@@ -111,11 +134,15 @@ const CartClientInfo = ({
             />
           </div>
         </label>
-        {/* <AddressAutofill accessToken={process.env.MAP_ACCESS_TOKEN}> */}
+        <AddressAutofill
+          accessToken={process.env.MAP_ACCESS_TOKEN}
+          onSelect={() => handleSelect(e)}
+        >
           <div className="flex gap-4">
             <label className="w-full">
               <span className="text-xs text-gray-400">Address</span>
               <input
+                ref={selectedAddressRef}
                 type="text"
                 placeholder="Address"
                 autoComplete="address-line1"
@@ -123,6 +150,7 @@ const CartClientInfo = ({
                 value={clientInfo?.address}
                 onChange={handleChange}
                 className="form_input"
+                onBlur={handleSelect}
               />
             </label>
             <label>
@@ -144,19 +172,19 @@ const CartClientInfo = ({
               </div>
             </label>
           </div>
-        {/* </AddressAutofill> */}
+        </AddressAutofill>
 
         <div className="flex gap-4 w-full">
           <label className="w-full">
             <span className="text-xs text-gray-400">City</span>
-              <input
-                type="text"
-                placeholder="City"
-                name="city"
-                value="Calgary"
-                className="form_input text-gray-500"
-                disabled
-              />     
+            <input
+              type="text"
+              placeholder="City"
+              name="city"
+              value="Calgary"
+              className="form_input text-gray-500"
+              disabled
+            />
           </label>
           <label className="w-full">
             <span className="text-xs text-gray-400">Province</span>

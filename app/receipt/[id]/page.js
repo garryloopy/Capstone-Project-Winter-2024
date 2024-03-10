@@ -2,7 +2,7 @@
 import BillingAddress from "@/components/BillingAddress";
 import CartMenuList from "@/components/CartMenuList";
 import Loading from "@/components/Loading";
-import { CartContext } from "@/components/Providers";
+import { CartContext, DeliveryAmountContext } from "@/components/Providers";
 import { useParams } from "next/navigation";
 import { useCallback, useContext, useEffect, useState } from "react";
 
@@ -19,10 +19,10 @@ export default function OrderConfirmationPage() {
   const [orderId, setOrderId] = useState();
   const [loading, setLoading] = useState(true);
   const { calculateTotalPrice, clearCart } = useContext(CartContext);
+  const [deliveryAmount, setDeliveryAmount] = useState(0);
 
   const { id } = useParams();
   let totalPrice = 0;
-  const deliveryAmount = 5;
 
   const getOrderInfo = async () => {
     if (id) {
@@ -73,18 +73,29 @@ export default function OrderConfirmationPage() {
     getOrderInfo();
   }, []);
 
-  // clear cart shipping
-  const handleCart = useCallback (() => {
-    clearCart();
-  },[])
-
-    useEffect(() => {
-  if (typeof window !== "undefined") {
-    if (window.location.href.includes("clear=1")) {
-      handleCart();
+  //calculate delivery amount
+  useEffect(() => {
+    if (clientInfo?.distance >= 10) {
+      setDeliveryAmount(10);
+    } else if (clientInfo?.distance >= 5) {
+      setDeliveryAmount(5);
+    } else {
+      setDeliveryAmount(0);
     }
-  }
-    }, [handleCart]);
+  }, [deliveryAmount,clientInfo?.distance]);
+
+  // clear cart shipping
+  const handleCart = useCallback(() => {
+    clearCart();
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.location.href.includes("clear=1")) {
+        handleCart();
+      }
+    }
+  }, [handleCart]);
   return (
     <>
       {loading ? (
@@ -97,7 +108,7 @@ export default function OrderConfirmationPage() {
                 Receipt
               </h1>
               <h1 className="md:text-xl text-md font-bold mb-[1rem]">
-                ${totalPrice.toFixed(2)}
+                ${(totalPrice + deliveryAmount).toFixed(2)}
               </h1>
             </div>
             <div className="mt-[1rem] flex lg:flex-row flex-col lg:justify-around lg:items-center">
@@ -123,14 +134,14 @@ export default function OrderConfirmationPage() {
             </div>
             <div className="flex justify-center items-center lg:w-[60%] w-full mx-auto text-center my-[2rem]">
               {clientInfo?.deliveryType === "pickup" ? (
-                <h2 className="font-extrabold text-lg text-red-500">
+                <h2 className="font-extrabold text-md text-red-500">
                   Your order will be prepared and ready for pickup at our
                   location. Kindly visit us within the next 20 minutes to
                   collect your items. Your timely pickup will ensure that your
                   order is fresh and ready for your enjoyment.
                 </h2>
               ) : (
-                <h2 className="font-extrabold text-lg text-red-500">
+                <h2 className="font-extrabold text-md text-red-500">
                   Your order will be prepared and will let you know when is out
                   for delivery by sending email at {clientInfo?.email}.
                 </h2>
