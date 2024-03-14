@@ -6,7 +6,7 @@ const MenuScroll = () => {
 
     const toggleVisibility = () => {
         // will adjust threshold some time
-        if (window.scrollY > 500) {
+        if (window.scrollY > 420) {
             setIsVisible(true);
         } else {
             setIsVisible(false);
@@ -39,7 +39,7 @@ const MenuScroll = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
                         
                         {/* this is to add the text under the arrow icon, will fix some other time 
-                        <text x="12" y="22" text-anchor="middle" font-size="0.4rem">Back to Top</text>
+                        <text x="12" y="22" text-anchor="middle" font-size="0.3rem">Back to Top</text>
                         */}
                     </svg>
                 </button>
