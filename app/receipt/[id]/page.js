@@ -131,8 +131,8 @@ export default function OrderConfirmationPage() {
                 </h2>
               ) : (
                 <h2 className="font-extrabold text-lg text-red-500">
-                  Your order will be prepared and will let you know when is out
-                  for delivery by sending email at {clientInfo?.email}.
+                  Your order will be prepared and we will let you know when it's out
+                  for delivery via email at {clientInfo?.email}.
                 </h2>
               )}
             </div>
