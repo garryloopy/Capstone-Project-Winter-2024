@@ -32,7 +32,7 @@ export default function HomePage() {
               <Link href="https://www.instagram.com/miggysmunchies/">
                 <Image
                   src="/images/instagram-logo.png"
-                  alt="facebook-logo"
+                  alt="instagram-logo"
                   width={40}
                   height={40}
                 />
