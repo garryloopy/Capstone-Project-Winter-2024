@@ -24,7 +24,7 @@ export default function HomePage() {
             <p className="mt-[2rem] mb-3 text-lg">Follow us on:</p>
 
             <div className="flex gap-4 items-center">
-              <Link href="">
+              <Link href=""> {/* add link to facebook page */}
                 <Image
                   src="/images/facebook-logo2.png"
                   alt="facebook-logo"
