@@ -2,11 +2,8 @@
 import ClientMenu from '@/components/ClientMenu';
 import Loading from '@/components/Loading';
 import SubHeader from '@/components/SubHeader';
+import MenuScroll from '@/components/MenuScroll';
 import React, { useEffect, useState } from 'react';
-
-
-// client wants a cutout photo to be displayed
-// might have to use photoshop to produce cutout photos
 
 
 function Menu() {
@@ -45,6 +42,7 @@ function Menu() {
 
   return (
     <>
+      <MenuScroll />
       {loading ? (
         <Loading />
       ) : (
