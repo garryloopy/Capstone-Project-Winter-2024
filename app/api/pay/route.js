@@ -16,7 +16,7 @@ const { paymentsApi } = new Client({
 
 export async function POST(req, res) {
   try {
-    const { sourceId, clientInfo, cartProducts } = await req.json();
+    const { sourceId, clientInfo, cartProducts, totalPricePlusDelivery } = await req.json();
     await connectToDB();
 
     let productPrice;
@@ -26,35 +26,12 @@ export async function POST(req, res) {
     let lastFourDigits;
     let paymentId;
    
-
-    //calculate the total price
-    for (const product of cartProducts) {
-      const productDB = await Menu.findById(product._id);
-      productPrice = parseFloat(productDB?.price.replace(/[$,]/g, ""));
-
-      if (product?.sizes) {
-        const size = productDB?.sizes?.find(
-          (size) => size._id.toString() === product?.sizes?._id.toString()
-        );
-        productPrice += size.price;
-      }
-
-      if (product?.extra?.length > 0) {
-        for (const extra of product.extra) {
-          const extraPrice = productDB?.extra?.find(
-            (extra) => extra._id.toString() === extra._id.toString()
-          );
-          productPrice += extraPrice.price;
-        }
-      }
-    }
-
     const { result } = await paymentsApi.createPayment({
       idempotencyKey: randomUUID(),
       sourceId: sourceId,
       amountMoney: {
         currency: "CAD",
-        amount: productPrice * 100,
+        amount: totalPricePlusDelivery * 100,
       },
     });
     orderId = result.payment.orderId;

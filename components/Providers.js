@@ -4,50 +4,65 @@ import { SessionProvider } from "next-auth/react";
 import { createContext, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-export const CartContext = createContext({})
+export const CartContext = createContext({});
+//retrieve the longitude and latitude of current location (business location)
+export const UserLocationContext = createContext();
+//retrieve  the longitude and latitude of client location 
+export const ClientLocationContext = createContext();
+
 
 const Providers = ({ children, session }) => {
   const [cartProducts, setCartProducts] = useState([]);
+  // store the current location of business
+  const [userLocation, setUserLocation] = useState();
+  //store the client's location 
+  const [clientLocation, setClientLocation] = useState()
+ 
+ 
 
   // keep cart content even if refresh the page
-  const localStorage = typeof window !== 'undefined' ? window.localStorage : null;
+  const localStorage =
+    typeof window !== "undefined" ? window.localStorage : null;
 
   useEffect(() => {
-    if (localStorage && localStorage.getItem('cart')){
-      setCartProducts(JSON.parse(localStorage.getItem('cart')))
+    if (localStorage && localStorage.getItem("cart")) {
+      setCartProducts(JSON.parse(localStorage.getItem("cart")));
     }
-  },[])
+  }, []);
 
-  function saveProductsToLocalStorage(cartProducts){
-    if (localStorage){
-      localStorage.setItem('cart', JSON.stringify(cartProducts))
+  function saveProductsToLocalStorage(cartProducts) {
+    if (localStorage) {
+      localStorage.setItem("cart", JSON.stringify(cartProducts));
     }
   }
 
   // clear cart shopping
-  function clearCart () {
-    setCartProducts([])
-    saveProductsToLocalStorage([])
+  function clearCart() {
+    setCartProducts([]);
+    saveProductsToLocalStorage([]);
   }
 
   // remove product from cart shipping
-  function removeCartProduct (indexToRemove){
-    setCartProducts(prev => {
-      const newCartProducts = prev.filter((v,index)=> index !== indexToRemove)
-      saveProductsToLocalStorage(newCartProducts)
-      return newCartProducts
-    })
-          toast.success("Item is removed");
-
+  function removeCartProduct(indexToRemove) {
+    setCartProducts((prev) => {
+      const newCartProducts = prev.filter(
+        (v, index) => index !== indexToRemove
+      );
+      saveProductsToLocalStorage(newCartProducts);
+      return newCartProducts;
+    });
+    toast.success("Item is removed");
   }
 
-
-  function addToCart (product, sizes=null, extra=[],specialRequest=""){
-   setCartProducts(prev => {
-    const newProduct = [...prev, {...product, sizes, extra,specialRequest}]
-    saveProductsToLocalStorage(newProduct)
-    return newProduct
-   })
+  function addToCart(product, sizes = null, extra = [], specialRequest = "") {
+    setCartProducts((prev) => {
+      const newProduct = [
+        ...prev,
+        { ...product, sizes, extra, specialRequest },
+      ];
+      saveProductsToLocalStorage(newProduct);
+      return newProduct;
+    });
   }
 
   //calculate the total price
@@ -69,9 +84,22 @@ const Providers = ({ children, session }) => {
   return (
     <SessionProvider session={session}>
       <CartContext.Provider
-        value={{ cartProducts, setCartProducts, addToCart,clearCart, removeCartProduct,calculateTotalPrice, }}
+        value={{
+          cartProducts,
+          setCartProducts,
+          addToCart,
+          clearCart,
+          removeCartProduct,
+          calculateTotalPrice,
+        }}
       >
-        {children}
+        <UserLocationContext.Provider value={{ userLocation, setUserLocation }}>
+          <ClientLocationContext.Provider
+            value={{ clientLocation, setClientLocation }}
+          >
+              {children}
+          </ClientLocationContext.Provider>
+        </UserLocationContext.Provider>
       </CartContext.Provider>
     </SessionProvider>
   );

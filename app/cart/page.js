@@ -1,6 +1,6 @@
 "use client";
 import Loading from "@/components/Loading";
-import { CartContext } from "@/components/Providers";
+import { CartContext, ClientLocationContext, DeliveryAmountContext, UserLocationContext } from "@/components/Providers";
 import SubHeader from "@/components/SubHeader";
 import { useLoadingState } from "@/components/useLoadingState";
 import { useContext, useEffect, useState } from "react";
@@ -27,12 +27,19 @@ export default function CartPage() {
     zip: "",
     tel: "",
     deliveryType: "",
+    distance:"",
+    duration:""
   });
 
   const [message, setMessage] = useState(null);
   const [isInfoComplete, setIsInfoComplete] = useState();
   const loading = useLoadingState();
-  const deliveryAmount = 5;
+  // store the current location of user
+  const {userLocation, setUserLocation} = useContext(UserLocationContext);
+  const {clientLocation, setClientLocation} = useContext(ClientLocationContext)
+  const [distanceDuration, setDistanceDuration] = useState()
+  const [deliveryAmount, setDeliveryAmount] = useState()
+
 
   let totalPrice = 0;
   for (const product of cartProducts) {
@@ -43,6 +50,49 @@ export default function CartPage() {
     removeCartProduct(index);
   };
 
+  //get the current location of user
+  const getUserLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setUserLocation({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      });
+    });
+  };
+  useEffect(() => {
+    getUserLocation();
+  }, []);
+
+  //get the distance and duration
+   const getDirectionRoute = async () => {
+    if (userLocation && clientLocation) {
+    const res = await fetch(
+      `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${userLocation.longitude},${userLocation.latitude};${clientLocation.longitude},${clientLocation.latitude}?overview=full&geometries=geojson&access_token=${process.env.MAP_ACCESS_TOKEN}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+     
+    );
+    const result = await res.json();
+    if (result && result.routes.length > 0){
+    let distanceInKm = Math.floor(result.routes[0].distance * 0.001);
+    let durationInMin = Math.round(result.routes[0].duration/60)
+
+    setClientInfo((prev) => ({...prev, distance: distanceInKm, duration: durationInMin}))
+    }
+    setDistanceDuration(result)
+     }
+  };
+
+  useEffect(() => {
+    if (userLocation && clientLocation) {
+      getDirectionRoute();
+    }
+  }, [userLocation, clientLocation]);
+
+  
   useEffect(() => {
     // const infoComplete = Object.values(clientInfo).every(
     //   (value) => value !== ""
@@ -53,6 +103,24 @@ export default function CartPage() {
 
     setIsInfoComplete(infoComplete);
   }, [clientInfo]);
+
+  //calculate the distance between the business and client
+  useEffect(() => {
+    if (clientInfo.distance && clientInfo.deliveryType === "delivery") {
+      if (clientInfo.distance >= 10) {
+        setDeliveryAmount(10);
+      } else if (clientInfo.distance >= 5) {
+        setDeliveryAmount(5);
+      } else {
+        setDeliveryAmount(0);
+      }
+    } else {
+      setDeliveryAmount(0);
+    }
+  }, [clientInfo.deliveryType, deliveryAmount, clientInfo.distance]);
+  
+  //calculate the total price with delivery Amount  
+   const totalPricePlusDelivery = totalPrice + deliveryAmount
 
   return (
     <>
@@ -73,7 +141,7 @@ export default function CartPage() {
                   Your products
                 </h2>
                 <CartMenuList
-                cartProducts={cartProducts}
+                  cartProducts={cartProducts}
                   onDelete={onDelete}
                   totalPrice={totalPrice}
                   deliveryAmount={deliveryAmount}
@@ -105,6 +173,7 @@ export default function CartPage() {
                                 sourceId: token.token,
                                 clientInfo,
                                 cartProducts,
+                                totalPricePlusDelivery,
                               }),
                             });
                             if (res?.ok) {
@@ -136,8 +205,6 @@ export default function CartPage() {
                   }}
                 >
                   <CartClientInfo
-                    deliveryAmount={deliveryAmount}
-                    totalPrice={totalPrice}
                     clientInfo={clientInfo}
                     setClientInfo={setClientInfo}
                     setInputValid={setInputValid}
@@ -157,7 +224,10 @@ export default function CartPage() {
                       }}
                       render={(Button) => (
                         <Button>
-                          ${(totalPrice + deliveryAmount).toFixed(2)}
+                          ${`${(
+                            totalPrice +
+                            (deliveryAmount >= 5 ? deliveryAmount : 0)
+                          ).toFixed(2)}`}
                         </Button>
                       )}
                     />
