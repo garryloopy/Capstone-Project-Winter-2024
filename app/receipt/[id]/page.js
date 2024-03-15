@@ -82,7 +82,7 @@ export default function OrderConfirmationPage() {
     } else {
       setDeliveryAmount(0);
     }
-  }, [deliveryAmount,clientInfo?.distance]);
+  }, [deliveryAmount, clientInfo?.distance]);
 
   // clear cart shipping
   const handleCart = useCallback(() => {
@@ -141,7 +141,10 @@ export default function OrderConfirmationPage() {
                   order is fresh and ready for your enjoyment.
                 </h2>
               ) : (
-
+                <h2 className="font-extrabold text-md text-red-500">
+                  Your order will be prepared and will let you know when is out
+                  for delivery by sending email at {clientInfo?.email}.
+                </h2>
               )}
             </div>
           </div>
