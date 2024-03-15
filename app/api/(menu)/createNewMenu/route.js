@@ -15,7 +15,7 @@ export async function POST(req) {
     const newItem = await Menu.create(data);
 
     return NextResponse.json(
-      { message: "New meal is created" },
+      { message: "New item is created" },
       { status: 200 }
     );
   } catch (error) {

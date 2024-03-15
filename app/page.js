@@ -24,7 +24,7 @@ export default function HomePage() {
             <p className="mt-[2rem] mb-3 text-lg">Follow us on:</p>
 
             <div className="flex gap-4 items-center">
-              <Link href="">
+              <Link href=""> {/* add link to facebook page */}
                 <Image
                   src="/images/facebook-logo2.png"
                   alt="facebook-logo"
@@ -54,16 +54,17 @@ export default function HomePage() {
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
           </p>
+          <div className="flex flex-col items-left mt-4">
+            <p>Hours of Operation:</p>
+              <ul>
+                <li>Saturday - Sunday: 12:00pm - 8:00pm</li>
+                <li>Address: 123 AddressHere NE, Calgary, AB, Canada</li>
+              </ul>
+            </div>
         </div>
       </div>
+        
 
-      {/* Hours of Operation   
-        <div className="flex flex-col items-center mt-4">
-          <p>Hours of Operation:</p>
-            <ul className="text-center">
-              <li>Saturday - Sunday: 12:00pm - 8:00pm</li>
-            </ul>
-        </div> */}
         <div>
           <Link className="btnStyle" href="/menu">
             Order Now

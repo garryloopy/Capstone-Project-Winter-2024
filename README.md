@@ -1,36 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Miggy's Munchies
+
+With partnership with Miggy's Munchies, Miggy's Munchies is web application acting as a service for consumers. Users can view, edit, and purchase order items such as Baked Macaroni, Mango Graham, Sushi Bake, and Spam Musubi. Orders made can be picked up or delivered. Miggy's Munchies is built using NextJS, React, Tailwind CSS, and MongoDB. 
+
 
 ## Getting Started
-
-First, run the development server:
-
-```bash
+```javascript
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Made by
+#### Rimon Alqoshi - [Rimon Alqoshi](https://github.com/Rimon83) - Rimon.Alqoshi@edu.sait.ca
+#### Garry Jr Dayag - [Garry Jr Dayag](https://github.com/garryloopy) - garrydayagjr@gmail.com
+#### Edward Montilla - [Edward Montilla](https://github.com/edwardmontilla) - edanmontilla@gmail.com
+#### Ho Ming Kevin Wong - [Ho Ming Kevin Wong](https://github.com/kevinw1222)
