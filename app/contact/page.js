@@ -164,11 +164,11 @@ const ContactPage = () => {
         </div>
       )}
 
-      <form onSubmit={handleOnSubmit} className="flex flex-col gap-4 p-12">
+      <form onSubmit={handleOnSubmit} className="flex flex-col gap-4 p-12 text-white">
         <p className="text-center text-2xl mb-4">Get in touch with us!</p>
         <div className="flex flex-row gap-8">
           <div>
-            <p className="text-gray-900 font-thin text-md text-sm">Name*</p>
+            <p className="font-thin text-md text-sm">Name*</p>
             <InputLabel
               type="text"
               placeholder="Name"
@@ -177,7 +177,7 @@ const ContactPage = () => {
             />
           </div>
           <div>
-            <p className="text-gray-900 font-thin text-sm">Email address*</p>
+            <p className="font-thin text-sm">Email address*</p>
             <InputLabel
               type="text"
               placeholder="Email"
@@ -187,7 +187,7 @@ const ContactPage = () => {
           </div>
         </div>
         <div>
-          <p className="text-gray-900 font-thin text-md text-sm">
+          <p className="font-thin text-md text-sm">
             Phone number*
           </p>
           <InputLabel
@@ -199,7 +199,7 @@ const ContactPage = () => {
           />
         </div>
         <div>
-          <p className="text-gray-900 font-thin text-md text-sm">Message*</p>
+          <p className="font-thin text-md text-sm">Message*</p>
           <TextAreaLabel
             placeholder="Message"
             value={message}

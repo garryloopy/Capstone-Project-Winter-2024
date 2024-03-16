@@ -34,8 +34,9 @@ body, html{
 
 }
 
+/* font should change, */
 p{
-      font-family: 'Just Me Again Down Here', cursive;
+  font-family: sans-serif;
 
 
 }
