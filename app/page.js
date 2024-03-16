@@ -13,7 +13,7 @@ export default function HomePage() {
         <div>
           <div>
             <Image
-              src="/images/Logo-02.jpg"
+              src="/images/macaroni_shutterstock.jpg"
               alt="logo"
               width={400}
               height={400}

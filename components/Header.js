@@ -38,7 +38,7 @@ export default function Header() {
         >
           <div className="">
             <Image
-              src="/images/logo-01.jpg"
+              src="/images/macaroni_shutterstock.jpg"
               alt="logo"
               width={80}
               height={80}
