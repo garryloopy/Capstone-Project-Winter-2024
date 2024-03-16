@@ -110,7 +110,6 @@ const ContactPage = () => {
     setMessage("");
   };
 
-
   async function handleAPICall() {
     try {
       const res = await fetch("api/email", {
@@ -124,17 +123,19 @@ const ContactPage = () => {
           phoneNumber,
           message,
         }),
-      });  
+      });
       if (res.status === 200) {
         setShowConfirmation(true);
       } else {
-        console.error("Failed to send email. Server responded with status:", res.status);
+        console.error(
+          "Failed to send email. Server responded with status:",
+          res.status
+        );
       }
     } catch (error) {
       console.error("An error occurred while sending email:", error);
     }
   }
-  
 
   /**
    * Handler for the submit event
@@ -160,8 +161,6 @@ const ContactPage = () => {
     });
     setShowConfirmation(true);
 
-
-
     // Reset values
     resetValue();
   };
@@ -177,7 +176,7 @@ const ContactPage = () => {
 
   return (
     <div className="flex flex-col justify-center items-center pt-[2rem]">
-    <SubHeader header2="Contact Us"/>
+      <SubHeader header2="Contact Us" />
       <div className="flex flex-col justify-center h-screen gap-12 items-center">
         {showConfirmation && (
           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-filter backdrop-blur-sm">
@@ -205,54 +204,55 @@ const ContactPage = () => {
           </div>
         )}
 
-      <form onSubmit={handleOnSubmit} className="flex flex-col gap-4 p-12">
-        <p className="text-center text-2xl mb-4">Get in touch with us!</p>
-        <div className="flex flex-row gap-8">
+        <form onSubmit={handleOnSubmit} className="flex flex-col gap-4 p-12">
+          <p className="text-center text-2xl mb-4">Get in touch with us!</p>
+          <div className="flex flex-row gap-8">
+            <div>
+              <p className="text-gray-900 font-thin text-md text-sm">Name*</p>
+              <InputLabel
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={handleOnNameChange}
+              />
+            </div>
+            <div>
+              <p className="text-gray-900 font-thin text-sm">Email address*</p>
+              <InputLabel
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={handleOnEmailChange}
+              />
+            </div>
+          </div>
           <div>
-            <p className="text-gray-900 font-thin text-md text-sm">Name*</p>
+            <p className="text-gray-900 font-thin text-md text-sm">
+              Phone number*
+            </p>
             <InputLabel
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={handleOnNameChange}
+              type="tel"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              placeholder="Phone number 123-456-7890"
+              value={phoneNumber}
+              onChange={handleOnPhoneNumberChange}
             />
           </div>
           <div>
-            <p className="text-gray-900 font-thin text-sm">Email address*</p>
-            <InputLabel
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={handleOnEmailChange}
+            <p className="text-gray-900 font-thin text-md text-sm">Message*</p>
+            <TextAreaLabel
+              placeholder="Message"
+              value={message}
+              onChange={handleOnMessageChange}
             />
           </div>
-        </div>
-        <div>
-          <p className="text-gray-900 font-thin text-md text-sm">
-            Phone number*
-          </p>
-          <InputLabel
-            type="tel"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            placeholder="Phone number 123-456-7890"
-            value={phoneNumber}
-            onChange={handleOnPhoneNumberChange}
-          />
-        </div>
-        <div>
-          <p className="text-gray-900 font-thin text-md text-sm">Message*</p>
-          <TextAreaLabel
-            placeholder="Message"
-            value={message}
-            onChange={handleOnMessageChange}
-          />
-        </div>
-        <div className="flex flex-row">
-          <button type="submit" className="sign_button mx-24">
-            Submit
-          </button>
-        </div>
-      </form>
+          <div className="flex flex-row">
+            <button type="submit" className="sign_button mx-24">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
