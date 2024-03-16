@@ -13,7 +13,7 @@ export default function HomePage() {
         <div>
           <div>
             <Image
-              src="/images/Logo-02.jpg"
+              src="/images/macaroni_shutterstock.jpg"
               alt="logo"
               width={400}
               height={400}
@@ -24,10 +24,10 @@ export default function HomePage() {
             <p className="mt-[2rem] mb-3 text-lg">Follow us on:</p>
 
             <div className="flex gap-4 items-center">
-              <Link href=""> {/* add link to facebook page */}
+              <Link href=""> {/* add link to social media */}
                 <Image
-                  src="/images/facebook-logo2.png"
-                  alt="facebook-logo"
+                  src="/images/onlyfans.png"
+                  alt="other-sc-logo"
                   width={34}
                   height={34}
                 />
@@ -58,7 +58,7 @@ export default function HomePage() {
             <p>Hours of Operation:</p>
               <ul>
                 <li>Saturday - Sunday: 12:00pm - 8:00pm</li>
-                <li>Address: 123 AddressHere NE, Calgary, AB, Canada</li>
+                <li>Address: 79 Castleridge Close NE, Calgary, AB, Canada</li>
               </ul>
             </div>
         </div>

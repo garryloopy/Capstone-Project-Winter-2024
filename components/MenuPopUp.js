@@ -82,7 +82,7 @@ const MenuPopUp = ({
               alt={menuList.title}
               width={300}
               height={200}
-              className="mx-auto circular-image-menu "
+              className="mx-auto circular-image-menu"
             />
             <h2 className="text-lg font-bold text-center mb-2">
               {menuList.title}

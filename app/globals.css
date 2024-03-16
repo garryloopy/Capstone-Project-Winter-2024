@@ -5,8 +5,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;1,600&family=Just+Me+Again+Down+Here&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 body {
-  background-image: url("/images/background.jpg");
-  /*background-color: darkgray;*/
+  /*background-image: url("/images/background.jpg");*/
+  background-color: darkslategray;
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y:25% ;
@@ -34,8 +34,9 @@ body, html{
 
 }
 
+/* font should change, */
 p{
-      font-family: 'Just Me Again Down Here', cursive;
+  font-family: sans-serif;
 
 
 }
@@ -88,7 +89,7 @@ p{
   width: 200px; 
   height: 200px; 
   border-radius: 50%; 
-  object-fit: cover; 
+  object-fit: cover;
 }
 
 

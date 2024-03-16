@@ -44,15 +44,15 @@ const ClientMenu = (menuList) => {
       <div className="container relative group text-slate-100 p-6 border-2 rounded-md border-slate-300 flex flex-col items-center justify-around gap-4 bg-black/60">
         <div>
           <Image
-            className="circular-image-menu mx-auto"
+            className="object-cover"
             src={menuList.image}
             alt={menuList.title}
-            width={200}
-            height={200}
+            width={250}
+            height={250}
           />
         </div>
-        <h4 className="lg:text-xl text-md text-orange-400">{menuList.title}</h4>
-        <p className="text-center text-gray-300">{menuList.description}</p>
+        <h4 className="lg:text-xl text-md text-orange-300">{menuList.title}</h4>
+        <p className="text-sm font-sans text-center text-gray-300">{menuList.description}</p>
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           <button
             className="bg-orange-400 text-white px-4 py-2 rounded"
