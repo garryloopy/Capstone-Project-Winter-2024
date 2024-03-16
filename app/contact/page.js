@@ -204,7 +204,10 @@ const ContactPage = () => {
           </div>
         )}
 
-        <form onSubmit={handleOnSubmit} className="flex flex-col gap-4 p-12">
+        <form
+          onSubmit={handleOnSubmit}
+          className="flex flex-col gap-4 p-12 bg-gray-50/50 rounded-md shadow-md"
+        >
           <p className="text-center text-2xl mb-4">Get in touch with us!</p>
           <div className="flex flex-row gap-8">
             <div>
