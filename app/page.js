@@ -58,7 +58,7 @@ export default function HomePage() {
             <p>Hours of Operation:</p>
               <ul>
                 <li>Saturday - Sunday: 12:00pm - 8:00pm</li>
-                <li>Address: 123 AddressHere NE, Calgary, AB, Canada</li>
+                <li>Address: 79 Castleridge Close NE, Calgary, AB, Canada</li>
               </ul>
             </div>
         </div>
