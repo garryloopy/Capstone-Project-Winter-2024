@@ -26,13 +26,13 @@ const NewFlavor = () => {
     <div className="gallery flex justify-center items-center mb-[4rem]">
       <div className="gallery-content">
         <h1 className="headtext__cormorant">Discover New Flavors</h1>
-        <p className="p__opensans" style={{ color: "#aaa", marginTop: "2rem" }}>
+        <p className="text-gray-400 my-[2rem]">
           {" "}
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim
         </p>
-        <div className='my-[2rem]'>
+        <div className="my-[2rem]">
           <Link className="btnStyle" href="/menu">
             Order Now
           </Link>
@@ -47,7 +47,11 @@ const NewFlavor = () => {
               key={`gallery_image-${index + 1}`}
             >
               <img src={image} alt="gallery" />
-             
+              <p className="gallery-desc">
+                {" "}
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut
+              </p>
             </div>
           ))}
         </div>
