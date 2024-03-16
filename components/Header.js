@@ -30,7 +30,7 @@ export default function Header() {
     }
 
     return (
-      <header className="md:px-[4rem] px-2 py-[1rem] flex justify-between items-center bg-black/25 border-b border-gray-600 shadow-md z-10 sticky top-0">
+      <header className="md:px-[4rem] px-2 py-[1rem] flex justify-between items-center bg-slate-800 border-b border-gray-600 shadow-md z-10 sticky top-0">
         {/* logo and text */}
         <Link
           className="flex gap-4 justify-center items-center text-white md:w-[30%] w-1/2"
@@ -79,7 +79,7 @@ export default function Header() {
           ) : (
             <Link
               href="/cart"
-              className="flex flex-col justify-center items-center mb-2 bg-black/40 p-3 rounded-md"
+              className="flex flex-col justify-center items-center mb-2 p-3 rounded-md"
             >
               {cartProducts?.length > 0 && (
                 <div className="self-end text-[.7rem] w-[1.2rem] h-[1.2rem] bg-orange-500 flex items-center justify-center rounded-full text-white">

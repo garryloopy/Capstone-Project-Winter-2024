@@ -5,6 +5,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 import React from "react";
+import SubHeader from "@/components/SubHeader";
 
 // The business email
 const BUSINESS_EMAIL = "francessicam@gmail.com";
@@ -137,81 +138,85 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center h-screen gap-12 items-center">
-      {showConfirmation && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-filter backdrop-blur-sm">
-          <div className="flex flex-col border bg-white/95 p-8 pb-12 rounded-md">
-            <button
-              className="text-gray-700 font-bold hover:text-gray-800 hover:bg-red-400 hover: ml-auto p-1 px-2"
-              onClick={handleOnCloseConfirmation}
-            >
-              X
-            </button>
-            <div className="flex flex-col gap-8">
-              <p className="text-gray-800 font-bold text-2xl">
-                Thank you, {submittedUser.name}.
-              </p>
-              <div>
-                <p className="text-gray-800">
-                  A confirmation email has been sent to {submittedUser.email}.
+    <div className="flex flex-col justify-center items-center pt-[2rem]">
+    <SubHeader header2="Contact Us"/>
+      <div className="flex flex-col justify-center h-screen gap-12 items-center">
+        {showConfirmation && (
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-filter backdrop-blur-sm">
+            <div className="flex flex-col border bg-white/95 p-8 pb-12 rounded-md">
+              <button
+                className="text-gray-700 font-bold hover:text-gray-800 hover:bg-red-400 hover: ml-auto p-1 px-2"
+                onClick={handleOnCloseConfirmation}
+              >
+                X
+              </button>
+              <div className="flex flex-col gap-8">
+                <p className="text-gray-800 font-bold text-2xl">
+                  Thank you, {submittedUser.name}.
                 </p>
-                <p className="text-gray-800">
-                  We will get back to you in 1-2 business days.
-                </p>
+                <div>
+                  <p className="text-gray-800">
+                    A confirmation email has been sent to {submittedUser.email}.
+                  </p>
+                  <p className="text-gray-800">
+                    We will get back to you in 1-2 business days.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <form onSubmit={handleOnSubmit} className="flex flex-col gap-4 p-12 text-white">
-        <p className="text-center text-2xl mb-4">Get in touch with us!</p>
-        <div className="flex flex-row gap-8">
+        <form
+          onSubmit={handleOnSubmit}
+          className="flex flex-col gap-4 p-12 text-white"
+        >
+          <p className="text-center text-2xl mb-4">Get in touch with us!</p>
+          <div className="flex flex-row gap-8">
+            <div>
+              <p className="font-thin text-md text-sm">Name*</p>
+              <InputLabel
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={handleOnNameChange}
+              />
+            </div>
+            <div>
+              <p className="font-thin text-sm">Email address*</p>
+              <InputLabel
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={handleOnEmailChange}
+              />
+            </div>
+          </div>
           <div>
-            <p className="font-thin text-md text-sm">Name*</p>
+            <p className="font-thin text-md text-sm">Phone number*</p>
             <InputLabel
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={handleOnNameChange}
+              type="tel"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              placeholder="123-456-7890"
+              value={phoneNumber}
+              onChange={handleOnPhoneNumberChange}
             />
           </div>
           <div>
-            <p className="font-thin text-sm">Email address*</p>
-            <InputLabel
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={handleOnEmailChange}
+            <p className="font-thin text-md text-sm">Message*</p>
+            <TextAreaLabel
+              placeholder="Message"
+              value={message}
+              onChange={handleOnMessageChange}
             />
           </div>
-        </div>
-        <div>
-          <p className="font-thin text-md text-sm">
-            Phone number*
-          </p>
-          <InputLabel
-            type="tel"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            placeholder="123-456-7890"
-            value={phoneNumber}
-            onChange={handleOnPhoneNumberChange}
-          />
-        </div>
-        <div>
-          <p className="font-thin text-md text-sm">Message*</p>
-          <TextAreaLabel
-            placeholder="Message"
-            value={message}
-            onChange={handleOnMessageChange}
-          />
-        </div>
-        <div className="flex flex-row">
-          <button type="submit" className="sign_button mx-24">
-            Submit
-          </button>
-        </div>
-      </form>
+          <div className="flex flex-row">
+            <button type="submit" className="sign_button mx-24">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

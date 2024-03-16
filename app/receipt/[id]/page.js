@@ -3,6 +3,7 @@ import BillingAddress from "@/components/BillingAddress";
 import CartMenuList from "@/components/CartMenuList";
 import Loading from "@/components/Loading";
 import { CartContext, DeliveryAmountContext } from "@/components/Providers";
+import SubHeader from "@/components/SubHeader";
 import { useParams } from "next/navigation";
 import { useCallback, useContext, useEffect, useState } from "react";
 
@@ -102,16 +103,14 @@ export default function OrderConfirmationPage() {
         <Loading />
       ) : (
         <section className=" bg-gray-300">
-          <div className="bg-green-300 w-full px-[4rem] py-[2rem]">
-            <div className="flex justify-between my-[2rem]">
-              <h1 className="md:text-xl text-md font-bold mb-[1rem]">
-                Receipt
-              </h1>
-              <h1 className="md:text-xl text-md font-bold mb-[1rem]">
+          <div className="bg-slate-700 w-full px-[4rem] py-[2rem]">
+            <div className="my-[2rem] flex justify-between">
+              <SubHeader header2="Receipt" />
+              <h1 className="md:text-xl text-md font-bold mt-[2.5rem] text-white">
                 ${(totalPrice + deliveryAmount).toFixed(2)}
               </h1>
             </div>
-            <div className="mt-[1rem] flex lg:flex-row flex-col lg:justify-around lg:items-center">
+            <div className="mt-[1rem] flex lg:flex-row flex-col lg:justify-around lg:items-center text-white">
               {formattedDate && (
                 <h3>
                   <span className="text-lg font-semibold">Date:</span>{" "}
@@ -134,14 +133,14 @@ export default function OrderConfirmationPage() {
             </div>
             <div className="flex justify-center items-center lg:w-[60%] w-full mx-auto text-center my-[2rem]">
               {clientInfo?.deliveryType === "pickup" ? (
-                <h2 className="font-extrabold text-md text-red-500">
+                <h2 className="font-extrabold text-md text-orange-500">
                   Your order will be prepared and ready for pickup at our
                   location. Kindly visit us within the next 20 minutes to
                   collect your items. Your timely pickup will ensure that your
                   order is fresh and ready for your enjoyment.
                 </h2>
               ) : (
-                <h2 className="font-extrabold text-md text-red-500">
+                <h2 className="font-extrabold text-md text-orange-500">
                   Your order will be prepared and will let you know when is out
                   for delivery by sending email at {clientInfo?.email}.
                 </h2>
@@ -159,7 +158,7 @@ export default function OrderConfirmationPage() {
                 deliveryAmount={deliveryAmount}
               />
             </div>
-            <div className="basis-[40%] border border-green-500 h-fit p-[2rem] my-[2rem]">
+            <div className="basis-[40%] border border-slate-700 h-fit p-[2rem] my-[2rem]">
               <h2 className="text-lg font-bold text-gray-500">
                 Contact Information
               </h2>
