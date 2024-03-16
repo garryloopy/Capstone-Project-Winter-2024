@@ -149,13 +149,14 @@ select {
   height: 447px;
   margin-right: 2rem;
 }
-.gallery-image-icon {
+.gallery-desc {
   position: absolute;
   color: #fff;
   font-size: 2rem;
   opacity: 0.5;
   transition: 0.5s ease;
-  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
 }
 
 .gallery-images-card img {
