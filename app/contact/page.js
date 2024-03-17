@@ -9,6 +9,8 @@ import Link from "next/link";
 import Image from "next/image";
 import SubHeader from "@/components/SubHeader";
 
+import MenuScroll from "@/components/MenuScroll";
+
 // The business email
 const BUSINESS_EMAIL = "francessicam@gmail.com";
 
@@ -206,7 +208,7 @@ const ContactPage = () => {
 
         <form
           onSubmit={handleOnSubmit}
-          className="flex flex-col gap-4 p-12 bg-gray-50/50 rounded-md shadow-md"
+          className="flex flex-col gap-4 p-12 bg-gray-50/50 rounded-md shadow-md border border-slate-500"
         >
           <p className="text-center text-2xl mb-4">Get in touch with us!</p>
           <div className="flex flex-row gap-8">

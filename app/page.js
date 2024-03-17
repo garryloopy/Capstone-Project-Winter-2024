@@ -1,11 +1,10 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
 import AdminModal from "./(admin)/components/AdminModal";
 import NewFlavor from "@/components/NewFlavor";
 import About from "@/components/About";
 import { useSession } from "next-auth/react";
+
+
 export default function HomePage() {
   const session = useSession();
   const {status} = session;
