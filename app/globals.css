@@ -102,7 +102,6 @@ select {
 .gallery {
   font-display: flex;
   flex-direction: row;
-  /* background: #0C0C0C; */
   padding: 4rem 0 4rem 6rem;
 }
 
@@ -112,12 +111,8 @@ select {
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  min-width: 500px;
-  padding-right: 2rem;
-}
-
-.gallery-content button {
-  margin-top: 1rem;
+  min-width: 450px;
+  padding: 0 1rem;
 }
 
 .gallery-images {
@@ -135,8 +130,7 @@ select {
   width: max-content;
   overflow-x: scroll;
 
-  /* -ms-overflow-style: none; */
-  /* scrollbar-width: none; */
+  
 }
 
 .gallery-images-container::-webkit-scrollbar {
@@ -147,7 +141,7 @@ select {
   position: relative;
   min-width: 300px;
   height: 447px;
-  margin-right: 2rem;
+  margin-right: 1rem;
 }
 .gallery-desc {
   position: absolute;
