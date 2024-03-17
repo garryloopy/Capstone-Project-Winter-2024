@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react'
-import Image from "next/image"
-import { CartContext } from './Providers';
+import React, { useContext, useState } from "react";
+import Image from "next/image";
+import { CartContext } from "./Providers";
 import toast, { Toaster } from "react-hot-toast";
-import MenuPopUp from './MenuPopUp';
-
+import MenuPopUp from "./MenuPopUp";
 
 const ClientMenu = (menuList) => {
   const [showPopUp, setShowPopUp] = useState(false);
@@ -15,7 +14,7 @@ const ClientMenu = (menuList) => {
 
   const handleAddToCartClick = () => {
     if (showPopUp) {
-      addToCart(menuList, selectedSize, selectedExtra,specialRequest);
+      addToCart(menuList, selectedSize, selectedExtra, specialRequest);
       toast.success("Added to cart");
       setShowPopUp(false);
       return;
@@ -41,7 +40,7 @@ const ClientMenu = (menuList) => {
         specialRequest={specialRequest}
         setSpecialInstructions={setSpecialInstructions}
       />
-      <div className="container relative group text-slate-100 p-6 border-2 rounded-md border-slate-300 flex flex-col items-center justify-around gap-4 bg-black/60">
+      <div className="container relative group text-slate-100 p-6 border  rounded-md border-slate-500 shadow-lg flex flex-col items-center justify-around gap-4 bg-black/60 ">
         <div>
           <Image
             className="object-cover"
@@ -52,10 +51,12 @@ const ClientMenu = (menuList) => {
           />
         </div>
         <h4 className="lg:text-xl text-md text-orange-300">{menuList.title}</h4>
-        <p className="text-sm font-sans text-center text-gray-300">{menuList.description}</p>
+        <p className="text-sm font-sans text-center text-gray-300">
+          {menuList.description}
+        </p>
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           <button
-            className="bg-orange-400 text-white px-4 py-2 rounded"
+            className="bg-orange-400 text-white px-6 py-2 rounded"
             onClick={handleAddToCartClick}
           >
             Add to Order
@@ -64,6 +65,6 @@ const ClientMenu = (menuList) => {
       </div>
     </>
   );
-}
+};
 
-export default ClientMenu
+export default ClientMenu;
