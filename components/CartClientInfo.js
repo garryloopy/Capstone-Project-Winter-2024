@@ -93,7 +93,7 @@ const CartClientInfo = ({
   //    console.log("Delivery clicked");
   //  };
 
-  //retrieve the location (longitude and latitude) of the client 
+  //retrieve the location (longitude and latitude) of the client
   const getCoordinate = async (address) => {
     if (address) {
       const res = await fetch(

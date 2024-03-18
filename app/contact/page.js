@@ -237,8 +237,8 @@ const ContactPage = () => {
             </p>
             <InputLabel
               type="tel"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-              placeholder="Phone number 123-456-7890"
+              pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+              placeholder="Phone number 1234567890"
               value={phoneNumber}
               onChange={handleOnPhoneNumberChange}
             />
