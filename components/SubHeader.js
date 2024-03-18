@@ -6,10 +6,11 @@ import React from 'react'
 const SubHeader = ({header2}) => {
  
   return (
-    <div className=" w-full text-center p-4 bg-gray-100/80 my-[2rem] shadow-xl rounded-lg lg:w-[50%]">
-      <h2 className="text-orange-600 font-bold lg:text-2xl text-lg">
+    <div className="my-[2rem]">
+      <p className="lg:text-3xl text-lg font-extrabold text-orange-500 tracking-wider	mb-[.5rem]">
         {header2}
-      </h2>
+      </p>
+      <img src="/images/spoon.png" alt="spoon" className="w-[45px]" />
     </div>
   );
 }

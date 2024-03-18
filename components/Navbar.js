@@ -1,12 +1,10 @@
-"use client"
-import React from 'react'
-import Link from "next/link"
-import { usePathname } from 'next/navigation';
-
+"use client";
+import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
-       const path = usePathname();
-      
+  const path = usePathname();
 
   return (
     <>
@@ -33,6 +31,6 @@ const Navbar = () => {
       </div>
     </>
   );
-}
+};
 
-export default Navbar
+export default Navbar;

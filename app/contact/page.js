@@ -2,9 +2,14 @@
 
 import { useState } from "react";
 
-import Image from "next/image";
-
 import React from "react";
+
+import Link from "next/link";
+
+import Image from "next/image";
+import SubHeader from "@/components/SubHeader";
+
+import MenuScroll from "@/components/MenuScroll";
 
 // The business email
 const BUSINESS_EMAIL = "francessicam@gmail.com";
@@ -26,12 +31,18 @@ const defaultSubmittedUser = {
  * @returns Json format from API call, or promise
  */
 const validateEmail = async (emailToValidate) => {
-  const response = await fetch(
-    `https://www.disify.com/api/email/${emailToValidate}`
-  );
-  const data = await response.json();
+  try {
+    const response = await fetch(
+      `https://www.disify.com/api/email/${emailToValidate}`
+    );
+    const data = await response.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    console.error("Error validating email:", error);
+    // Handle the error or return an appropriate response
+    return { error: "Failed to validate email" };
+  }
 };
 
 /**
@@ -52,11 +63,14 @@ const ContactPage = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   /**
-   * Handler for the name change
+   * Handler for the name change, sanitizes name input to only accept alphabetic characters
    * @param {Event} e The event
    */
   const handleOnNameChange = (e) => {
-    setName(e.target.value);
+    const input = e.target.value;
+    const sanitizedInput = input.replace(/[^A-Za-z ]/g, "");
+
+    setName(sanitizedInput);
   };
 
   /**
@@ -68,11 +82,15 @@ const ContactPage = () => {
   };
 
   /**
-   * Handleer for the phone number change
+   * Handler for the phone number change
    * @param {Event} e The event
    */
   const handleOnPhoneNumberChange = (e) => {
-    setPhoneNumber(e.target.value);
+    const input = e.target.value;
+
+    const sanitizedInput = input.replace(/\D/g, "");
+
+    setPhoneNumber(sanitizedInput);
   };
 
   /**
@@ -94,14 +112,32 @@ const ContactPage = () => {
     setMessage("");
   };
 
-  /**
-   * Handler for checking if email is valid
-   */
-  const handleValidationEmail = async () => {
-    const data = await validateEmail(email);
-
-    setEmailValidity(data.format);
-  };
+  async function handleAPICall() {
+    try {
+      const res = await fetch("api/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phoneNumber,
+          message,
+        }),
+      });
+      if (res.status === 200) {
+        setShowConfirmation(true);
+      } else {
+        console.error(
+          "Failed to send email. Server responded with status:",
+          res.status
+        );
+      }
+    } catch (error) {
+      console.error("An error occurred while sending email:", error);
+    }
+  }
 
   /**
    * Handler for the submit event
@@ -112,7 +148,11 @@ const ContactPage = () => {
 
     //Do some stuff, send email to the business email
 
-    handleValidationEmail();
+    const data = await validateEmail(email);
+    setEmailValidity(data.format);
+
+    // Make API call to the server
+    handleAPICall();
 
     //Show confirmation
     setSubmittedUser({
@@ -137,81 +177,87 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center h-screen gap-12 items-center">
-      {showConfirmation && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-filter backdrop-blur-sm">
-          <div className="flex flex-col border bg-white/95 p-8 pb-12 rounded-md">
-            <button
-              className="text-gray-700 font-bold hover:text-gray-800 hover:bg-red-400 hover: ml-auto p-1 px-2"
-              onClick={handleOnCloseConfirmation}
-            >
-              X
-            </button>
-            <div className="flex flex-col gap-8">
-              <p className="text-gray-800 font-bold text-2xl">
-                Thank you, {submittedUser.name}.
-              </p>
-              <div>
-                <p className="text-gray-800">
-                  A confirmation email has been sent to {submittedUser.email}.
+    <div className="flex flex-col justify-center items-center pt-[2rem]">
+      <SubHeader header2="Contact Us" />
+      <div className="flex flex-col justify-center h-screen gap-12 items-center">
+        {showConfirmation && (
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-filter backdrop-blur-sm">
+            <div className="flex flex-col border bg-white/95 p-8 pb-12 rounded-md">
+              <button
+                className="text-gray-700 font-bold hover:text-gray-800 hover:bg-red-400 hover: ml-auto p-1 px-2"
+                onClick={handleOnCloseConfirmation}
+              >
+                X
+              </button>
+              <div className="flex flex-col gap-8">
+                <p className="text-gray-800 font-bold text-2xl">
+                  Thank you, {submittedUser.name}.
                 </p>
-                <p className="text-gray-800">
-                  We will get back to you in 1-2 business days.
-                </p>
+                <div>
+                  <p className="text-gray-800">
+                    A confirmation email has been sent to {submittedUser.email}.
+                  </p>
+                  <p className="text-gray-800">
+                    We will get back to you in 1-2 business days.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <form onSubmit={handleOnSubmit} className="flex flex-col gap-4 p-12 text-white">
-        <p className="text-center text-2xl mb-4">Get in touch with us!</p>
-        <div className="flex flex-row gap-8">
+        <form
+          onSubmit={handleOnSubmit}
+          className="flex flex-col gap-4 p-12 bg-gray-50/50 rounded-md shadow-md border border-slate-500"
+        >
+          <p className="text-center text-2xl mb-4">Get in touch with us!</p>
+          <div className="flex flex-row gap-8">
+            <div>
+              <p className="text-gray-900 font-thin text-md text-sm">Name*</p>
+              <InputLabel
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={handleOnNameChange}
+              />
+            </div>
+            <div>
+              <p className="text-gray-900 font-thin text-sm">Email address*</p>
+              <InputLabel
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={handleOnEmailChange}
+              />
+            </div>
+          </div>
           <div>
-            <p className="font-thin text-md text-sm">Name*</p>
+            <p className="text-gray-900 font-thin text-md text-sm">
+              Phone number*
+            </p>
             <InputLabel
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={handleOnNameChange}
+              type="tel"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              placeholder="Phone number 123-456-7890"
+              value={phoneNumber}
+              onChange={handleOnPhoneNumberChange}
             />
           </div>
           <div>
-            <p className="font-thin text-sm">Email address*</p>
-            <InputLabel
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={handleOnEmailChange}
+            <p className="text-gray-900 font-thin text-md text-sm">Message*</p>
+            <TextAreaLabel
+              placeholder="Message"
+              value={message}
+              onChange={handleOnMessageChange}
             />
           </div>
-        </div>
-        <div>
-          <p className="font-thin text-md text-sm">
-            Phone number*
-          </p>
-          <InputLabel
-            type="tel"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            placeholder="123-456-7890"
-            value={phoneNumber}
-            onChange={handleOnPhoneNumberChange}
-          />
-        </div>
-        <div>
-          <p className="font-thin text-md text-sm">Message*</p>
-          <TextAreaLabel
-            placeholder="Message"
-            value={message}
-            onChange={handleOnMessageChange}
-          />
-        </div>
-        <div className="flex flex-row">
-          <button type="submit" className="sign_button mx-24">
-            Submit
-          </button>
-        </div>
-      </form>
+          <div className="flex flex-row">
+            <button type="submit" className="sign_button mx-24">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
