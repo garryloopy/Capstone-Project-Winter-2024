@@ -4,8 +4,11 @@ import { FaEllipsis, FaAngleUp } from "react-icons/fa6";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { useState, useEffect, useRef } from "react";
 
+import OrderStatus from "./OrderStatus";
+
 const IndividualOrder = ({
   orderId,
+  paymentId = "B6vbT12q90tcJxwqY2BYR6CRNRTZY",
   orderStatus,
   orderAmount,
   orderName,
@@ -39,11 +42,11 @@ const IndividualOrder = ({
     <div className="w-full min-h-16 flex flex-row  text-center h-20 border rounded-md bg-gray-100 shadow-md relative hover:bg-gray-200 hover:shadow-lg active:bg-gray-200/80 transition-all duration-100">
       {/* More Options */}
       <div
-        className="absolute inset-0 flex items-center justify-end px-8"
+        className="absolute inset-0 flex items-center justify-end px-4"
         ref={moreOptionsRef}
       >
         <button
-          className="pointer-events-auto cursor-pointer border p-3 rounded-lg hover:bg-gray-50"
+          className="pointer-events-auto cursor-pointer border p-2 rounded-lg hover:bg-gray-50"
           onClick={handleOnMoreOptionButtonClicked}
         >
           {isMoreOptionsOpen ? (
@@ -58,14 +61,14 @@ const IndividualOrder = ({
           <div className="absolute min-w-44 min-h-12 bg-gray-50 border shadow-lg top-16 flex flex-col group divide-y items-center justify-center rounded-md z-10 ">
             <Link
               className="px-6 py-4 w-full hover:bg-gray-100 "
-              href={`/orders/${orderId}`}
+              href={`/orders/${paymentId}`}
             >
               Open
             </Link>
             <a
               className="px-6 py-4 w-full hover:bg-gray-100 flex flex-row items-center gap-4 "
               target="_blank"
-              href={`/orders/${orderId}`}
+              href={`/orders/${paymentId}`}
             >
               <p>Open in new tab</p>
               <FaExternalLinkAlt size={16} />
@@ -83,7 +86,7 @@ const IndividualOrder = ({
         )}
       </div>
 
-      <div className="w-1/6 h-full flex items-center justify-center">
+      <div className="w-2/6 h-full flex items-center justify-center">
         <p className="text-wrap truncate">{orderId}</p>
       </div>
       <div className="w-1/6 h-full flex items-center justify-center">
@@ -93,19 +96,9 @@ const IndividualOrder = ({
         <p className="text-wrap truncate">{orderDate}</p>
       </div>
       <div className="w-1/6 h-full flex items-center justify-center">
-        <p
-          className={`text-wrap truncate border w-36 py-2 ${
-            orderStatus === "COMPLETED"
-              ? "bg-green-50 border-green-200 text-green-800"
-              : orderStatus === "PENDING"
-              ? "bg-orange-50 border-orange-200 text-orange-800"
-              : "bg-red-50 border-red-200 text-red-800"
-          } font-medium rounded-lg`}
-        >
-          {orderStatus}
-        </p>
+        <OrderStatus orderStatus={orderStatus} />
       </div>
-      <div className="w-2/6 h-full flex items-center justify-center">
+      <div className="w-1/6 h-full flex items-center justify-center">
         <p className="text-wrap truncate">${orderAmount}</p>
       </div>
     </div>
