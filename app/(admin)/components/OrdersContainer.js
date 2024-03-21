@@ -6,13 +6,77 @@ import FilterButton from "../components/FilterButton";
 
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function OrdersContainer({ ordersList }) {
+  const [currentSearchValue, setCurrentSearchValue] = useState("");
   const [currentFilter, setCurrentFilter] = useState("ALL");
+
+  const [displayedItems, setDisplayedItems] = useState([]);
+
+  useEffect(() => {
+    setDisplayedItems(ordersList);
+  }, [ordersList]);
+
+  // useEffect(() => {
+  //   if (currentSearchValue.length <= 0) {
+  //     updateDisplayedItems();
+  //     return;
+  //   }
+  //   const newOrders = displayedItems.filter((order) =>
+  //     order.orderId.toLowerCase().includes(currentSearchValue.toLowerCase())
+  //   );
+  //   setDisplayedItems(newOrders);
+  // }, [currentSearchValue]);
+
+  const updateDisplayedItems = () => {
+    let newOrders = [];
+    if (currentSearchValue.length > 0) {
+      newOrders = ordersList.filter((order) =>
+        order.orderId.toLowerCase().includes(currentSearchValue.toLowerCase())
+      );
+    } else {
+      newOrders = ordersList;
+    }
+
+    if (currentFilter === "PENDING") {
+      newOrders = newOrders.filter((order) => order.orderStatus === "PENDING");
+      setDisplayedItems(newOrders);
+    } else if (currentFilter === "CANCELLED") {
+      newOrders = newOrders.filter(
+        (order) => order.orderStatus === "CANCELLED"
+      );
+      setDisplayedItems(newOrders);
+    } else if (currentFilter === "COMPLETED") {
+      newOrders = newOrders.filter(
+        (order) => order.orderStatus === "COMPLETED"
+      );
+
+      setDisplayedItems(newOrders);
+    } else {
+      setDisplayedItems(newOrders);
+    }
+  };
+
+  useEffect(() => {
+    updateDisplayedItems();
+  }, [currentFilter]);
+
   const handleOnFilterButtonClick = (filter) => {
     setCurrentFilter(filter);
   };
+
+  const handleOnSearch = (e) => {
+    e.preventDefault();
+
+    updateDisplayedItems();
+  };
+
+  const handleOnSearchChange = (e) => {
+    const value = e.target.value;
+    setCurrentSearchValue(value);
+  };
+
   return (
     <div className="h-screen w-full bg-gray-200 mb-8 overflow-auto flex flex-col rounded-md">
       {/* Top section */}
@@ -23,7 +87,7 @@ export default function OrdersContainer({ ordersList }) {
               contents="All"
               filterType="ALL"
               currentFilter={currentFilter}
-              onnFilterButtonClick={handleOnFilterButtonClick}
+              onFilterButtonClick={handleOnFilterButtonClick}
             />
             <FilterButton
               contents="Pending"
@@ -46,18 +110,20 @@ export default function OrdersContainer({ ordersList }) {
           </div>
         </div>
 
-        <form className="h-full py-6">
+        <form className="h-full py-6" onSubmit={handleOnSearch}>
           <div className="h-full relative">
             <input
-              type="text w-full"
+              type="text"
               placeholder="Search order ID"
               className="px-4 py-2 h-full rounded-md border border-gray-500 w-96"
+              onChange={handleOnSearchChange}
             />
-
-            <FaMagnifyingGlass
-              size={20}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2"
-            />
+            <button type="submit">
+              <FaMagnifyingGlass
+                size={20}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 hover"
+              />
+            </button>
           </div>
         </form>
       </div>
@@ -75,9 +141,19 @@ export default function OrdersContainer({ ordersList }) {
 
         {/* Orders Container  */}
         <div className="w-full h-full px-6 py-8 flex flex-col gap-4 relative">
-          <p className="pb-4">Total Items: {ordersList.length}</p>
-          {ordersList &&
-            ordersList.map((order) => {
+          {displayedItems && (
+            <p className="pb-4">
+              {displayedItems.length} item{" "}
+              {displayedItems.length > 1 ? "s" : ""} found in {currentFilter}
+              {currentSearchValue.length > 0
+                ? ` with id of
+              ${currentSearchValue}`
+                : ""}
+            </p>
+          )}
+          {displayedItems &&
+            ordersList &&
+            displayedItems.map((order) => {
               return (
                 <IndividualOrder
                   objectId={order._id}
