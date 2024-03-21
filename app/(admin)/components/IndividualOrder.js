@@ -8,7 +8,7 @@ import OrderStatus from "./OrderStatus";
 
 const IndividualOrder = ({
   orderId,
-  paymentId = "B6vbT12q90tcJxwqY2BYR6CRNRTZY",
+  paymentId,
   orderStatus,
   orderAmount,
   orderName,
@@ -99,7 +99,7 @@ const IndividualOrder = ({
         <OrderStatus orderStatus={orderStatus} />
       </div>
       <div className="w-1/6 h-full flex items-center justify-center">
-        <p className="text-wrap truncate">${orderAmount}</p>
+        <p className="text-wrap truncate">{orderAmount}</p>
       </div>
     </div>
   );
