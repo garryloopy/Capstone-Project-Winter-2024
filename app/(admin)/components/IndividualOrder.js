@@ -14,6 +14,7 @@ const IndividualOrder = ({
   orderAmount,
   orderName,
   orderDate,
+  onOrderStatusChange,
 }) => {
   const [isMoreOptionsOpen, setIsMoreOptionsOpen] = useState(false);
   const [currentStatus, setCurrentStatus] = useState(orderStatus);
@@ -37,6 +38,10 @@ const IndividualOrder = ({
     };
   }, []);
 
+  const handleOnOrderStatusChange = (newStatus) => {
+    onOrderStatusChange(orderId, newStatus);
+  };
+
   const handleOnStatusChange = async (newStatus) => {
     if (orderStatus === newStatus) {
       setIsMoreOptionsOpen(false);
@@ -58,6 +63,7 @@ const IndividualOrder = ({
       if (response.ok) {
         setCurrentStatus(newStatus);
         setIsMoreOptionsOpen(false);
+        handleOnOrderStatusChange(newStatus);
       }
     } catch (error) {
       console.error("An error occurred while updating order status:", error);

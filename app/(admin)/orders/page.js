@@ -50,6 +50,22 @@ const OrdersPage = () => {
     getOrdersList();
   }, []);
 
+  const onOrderStatusChange = (orderId, newStatus) => {
+    const newOrders = ordersList.map((order) => {
+      if (order.orderId === orderId) {
+        const newOrder = {
+          ...order,
+          orderStatus: newStatus,
+        };
+
+        return newOrder;
+      } else {
+        return order;
+      }
+    });
+    setOrdersList(newOrders);
+  };
+
   return (
     <section className="flex flex-col justify-center items-center px-12">
       <AdminNavbar path={path} />
@@ -57,7 +73,10 @@ const OrdersPage = () => {
 
       {/* CONTAINER */}
       {status !== "unathenticated" && (
-        <OrdersContainer ordersList={ordersList} />
+        <OrdersContainer
+          ordersList={ordersList}
+          onOrderStatusChange={onOrderStatusChange}
+        />
       )}
     </section>
   );

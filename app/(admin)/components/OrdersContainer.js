@@ -8,7 +8,7 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 
 import { useEffect, useState } from "react";
 
-export default function OrdersContainer({ ordersList }) {
+export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
   const [currentSearchValue, setCurrentSearchValue] = useState("");
   const [currentFilter, setCurrentFilter] = useState("ALL");
 
@@ -17,17 +17,6 @@ export default function OrdersContainer({ ordersList }) {
   useEffect(() => {
     setDisplayedItems(ordersList);
   }, [ordersList]);
-
-  // useEffect(() => {
-  //   if (currentSearchValue.length <= 0) {
-  //     updateDisplayedItems();
-  //     return;
-  //   }
-  //   const newOrders = displayedItems.filter((order) =>
-  //     order.orderId.toLowerCase().includes(currentSearchValue.toLowerCase())
-  //   );
-  //   setDisplayedItems(newOrders);
-  // }, [currentSearchValue]);
 
   const updateDisplayedItems = () => {
     let newOrders = [];
@@ -75,6 +64,10 @@ export default function OrdersContainer({ ordersList }) {
   const handleOnSearchChange = (e) => {
     const value = e.target.value;
     setCurrentSearchValue(value);
+  };
+
+  const handleOnOrderStatusChange = (orderId, newStatus) => {
+    onOrderStatusChange(orderId, newStatus);
   };
 
   return (
@@ -143,12 +136,8 @@ export default function OrdersContainer({ ordersList }) {
         <div className="w-full h-full px-6 py-8 flex flex-col gap-4 relative">
           {displayedItems && (
             <p className="pb-4">
-              {displayedItems.length} item{" "}
+              {displayedItems.length} item
               {displayedItems.length > 1 ? "s" : ""} found in {currentFilter}
-              {currentSearchValue.length > 0
-                ? ` with id of
-              ${currentSearchValue}`
-                : ""}
             </p>
           )}
           {displayedItems &&
@@ -164,6 +153,7 @@ export default function OrdersContainer({ ordersList }) {
                   paymentId={order.paymentId}
                   orderDate={order.updatedAt}
                   orderName={order.clientInfo.email}
+                  onOrderStatusChange={handleOnOrderStatusChange}
                 />
               );
             })}
