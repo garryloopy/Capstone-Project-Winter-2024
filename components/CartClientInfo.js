@@ -13,6 +13,10 @@ const AddressAutofill = dynamic(
   { ssr: false }
 );
 
+// REMOVE IN PRODUCTION!!!!
+const MAP_ACCESS_TOKEN =
+  "pk.eyJ1IjoibWlnZ3lzbXVuY2hpZXMiLCJhIjoiY2x0aHo5cmM3MGFyajJqcmhwNjloeXVmZyJ9.uh6peap6GzUgYZ5qB_STbg";
+
 const CartClientInfo = ({
   clientInfo,
   setClientInfo,
@@ -93,11 +97,11 @@ const CartClientInfo = ({
   //    console.log("Delivery clicked");
   //  };
 
-  //retrieve the location (longitude and latitude) of the client 
+  //retrieve the location (longitude and latitude) of the client
   const getCoordinate = async (address) => {
     if (address) {
       const res = await fetch(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?proximity=ip&access_token=${process.env.MAP_ACCESS_TOKEN}`
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?proximity=ip&access_token=${MAP_ACCESS_TOKEN}`
       );
       const result = await res.json();
       setClientLocation({
