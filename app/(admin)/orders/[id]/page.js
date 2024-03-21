@@ -23,6 +23,10 @@ export default function OrderDetailsPage({ params }) {
   const [lastDigits, setLastDigits] = useState();
   const [orderId, setOrderId] = useState();
 
+  const [orderStatus, setOrderStatus] = useState("");
+
+  const [objectId, setObjectId] = useState();
+
   const [isMoreOptionsOpened, setIsMoreOptionsOpened] = useState(false);
 
   const { id } = useParams();
@@ -43,7 +47,6 @@ export default function OrderDetailsPage({ params }) {
       });
       if (res.ok) {
         const result = await res.json();
-        console.log(result);
 
         //format the date of order
         const createdAtDate = new Date(result[0]?.createdAt);
@@ -66,6 +69,8 @@ export default function OrderDetailsPage({ params }) {
         setOrderId(result[0]?.orderId);
         setCardBrand(result[0]?.cardBrand);
         setLastDigits(result[0]?.lastFourDigits);
+        setOrderStatus(result[0]?.orderStatus);
+        setObjectId(result[0]?._id);
       } else {
         console.log("Error to fetch order info");
       }
@@ -77,6 +82,33 @@ export default function OrderDetailsPage({ params }) {
       getOrderInfo();
     }
   }, []);
+
+  const handleOnStatusChange = async (newStatus) => {
+    if (orderStatus === newStatus) {
+      setIsMoreOptionsOpened(false);
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/updateOrderStatus", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          _id: objectId,
+          orderStatus: newStatus,
+        }),
+      });
+
+      if (response.ok) {
+        setOrderStatus(newStatus);
+        setIsMoreOptionsOpened(false);
+      }
+    } catch (error) {
+      console.error("An error occurred while updating order status:", error);
+    }
+  };
 
   const handleOnMoreOptionsButtonClick = () => {
     setIsMoreOptionsOpened(!isMoreOptionsOpened);
@@ -160,9 +192,6 @@ export default function OrderDetailsPage({ params }) {
               <div className="flex-1 overflow-y-auto">
                 {cartProducts?.length > 0 &&
                   cartProducts.map((product) => {
-                    console.log(product);
-                    console.log(product.specialRequest);
-
                     return (
                       <div className="flex flex-row border py-3 px-4 bg-gray-100 rounded-md">
                         <Image
@@ -209,7 +238,7 @@ export default function OrderDetailsPage({ params }) {
                 </p>
 
                 <div className="relative">
-                  <OrderStatus orderStatus="PENDING" />
+                  <OrderStatus orderStatus={orderStatus} />
                   <div
                     className="absolute inset-0 flex items-center justify-end p-2 cursor-pointer"
                     onClick={handleOnMoreOptionsButtonClick}
@@ -222,13 +251,22 @@ export default function OrderDetailsPage({ params }) {
 
                     {isMoreOptionsOpened && (
                       <div className="min-w-56 min-h-12 h-max bg-gray-100 absolute inset-y-11 right-0 divide-y rounded-md overflow-hidden">
-                        <button className="px-6 py-4 w-full hover:bg-gray-100 ">
+                        <button
+                          className="px-6 py-4 w-full hover:bg-gray-100 "
+                          onClick={() => handleOnStatusChange("COMPLETED")}
+                        >
                           Mark as completed
                         </button>
-                        <button className="px-6 py-4 w-full hover:bg-gray-100 ">
+                        <button
+                          className="px-6 py-4 w-full hover:bg-gray-100 "
+                          onClick={() => handleOnStatusChange("PENDING")}
+                        >
                           Mark as pending
                         </button>
-                        <button className="px-6 py-4 w-full hover:bg-gray-100 ">
+                        <button
+                          className="px-6 py-4 w-full hover:bg-gray-100 "
+                          onClick={() => handleOnStatusChange("CANCELLED")}
+                        >
                           Mark as cancelled
                         </button>
                       </div>

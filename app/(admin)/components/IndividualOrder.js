@@ -7,6 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import OrderStatus from "./OrderStatus";
 
 const IndividualOrder = ({
+  objectId,
   orderId,
   paymentId,
   orderStatus,
@@ -15,6 +16,8 @@ const IndividualOrder = ({
   orderDate,
 }) => {
   const [isMoreOptionsOpen, setIsMoreOptionsOpen] = useState(false);
+  const [currentStatus, setCurrentStatus] = useState(orderStatus);
+
   const moreOptionsRef = useRef(null);
 
   useEffect(() => {
@@ -33,6 +36,33 @@ const IndividualOrder = ({
       document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, []);
+
+  const handleOnStatusChange = async (newStatus) => {
+    if (orderStatus === newStatus) {
+      setIsMoreOptionsOpen(false);
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/updateOrderStatus", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          _id: objectId,
+          orderStatus: newStatus,
+        }),
+      });
+
+      if (response.ok) {
+        setCurrentStatus(newStatus);
+        setIsMoreOptionsOpen(false);
+      }
+    } catch (error) {
+      console.error("An error occurred while updating order status:", error);
+    }
+  };
 
   const handleOnMoreOptionButtonClicked = () => {
     setIsMoreOptionsOpen(!isMoreOptionsOpen);
@@ -73,13 +103,22 @@ const IndividualOrder = ({
               <p>Open in new tab</p>
               <FaExternalLinkAlt size={16} />
             </a>
-            <button className="px-6 py-4 w-full hover:bg-gray-100 ">
+            <button
+              className="px-6 py-4 w-full hover:bg-gray-100 "
+              onClick={() => handleOnStatusChange("COMPLETED")}
+            >
               Mark as completed
             </button>
-            <button className="px-6 py-4 w-full hover:bg-gray-100 ">
+            <button
+              className="px-6 py-4 w-full hover:bg-gray-100 "
+              onClick={() => handleOnStatusChange("PENDING")}
+            >
               Mark as pending
             </button>
-            <button className="px-6 py-4 w-full hover:bg-gray-100 ">
+            <button
+              className="px-6 py-4 w-full hover:bg-gray-100 "
+              onClick={() => handleOnStatusChange("CANCELLED")}
+            >
               Mark as cancelled
             </button>
           </div>
@@ -96,7 +135,7 @@ const IndividualOrder = ({
         <p className="text-wrap truncate">{orderDate}</p>
       </div>
       <div className="w-1/6 h-full flex items-center justify-center">
-        <OrderStatus orderStatus={orderStatus} />
+        <OrderStatus orderStatus={currentStatus} />
       </div>
       <div className="w-1/6 h-full flex items-center justify-center">
         <p className="text-wrap truncate">{orderAmount}</p>

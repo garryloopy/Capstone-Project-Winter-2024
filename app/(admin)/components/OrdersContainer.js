@@ -77,17 +77,20 @@ export default function OrdersContainer({ ordersList }) {
         <div className="w-full h-full px-6 py-8 flex flex-col gap-4 relative">
           <p className="pb-4">Total Items: {ordersList.length}</p>
           {ordersList &&
-            ordersList.map((order) => (
-              <IndividualOrder
-                key={order.orderId}
-                orderId={order.orderId}
-                orderStatus="PENDING"
-                orderAmount={order.cartProducts.length}
-                paymentId={order.paymentId}
-                orderDate={order.updatedAt}
-                orderName={order.clientInfo.email}
-              />
-            ))}
+            ordersList.map((order) => {
+              return (
+                <IndividualOrder
+                  objectId={order._id}
+                  key={order.orderId}
+                  orderId={order.orderId}
+                  orderStatus={order.orderStatus}
+                  orderAmount={order.cartProducts.length}
+                  paymentId={order.paymentId}
+                  orderDate={order.updatedAt}
+                  orderName={order.clientInfo.email}
+                />
+              );
+            })}
         </div>
       </div>
     </div>
