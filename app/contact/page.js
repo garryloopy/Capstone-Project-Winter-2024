@@ -90,7 +90,7 @@ const ContactPage = () => {
 
     const sanitizedInput = input.replace(/\D/g, "");
 
-    setPhoneNumber(sanitizedInput);
+    setPhoneNumber(input);
   };
 
   /**
@@ -237,7 +237,7 @@ const ContactPage = () => {
             </p>
             <InputLabel
               type="tel"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              pattern="[0-9]{10}"
               placeholder="Phone number 123-456-7890"
               value={phoneNumber}
               onChange={handleOnPhoneNumberChange}

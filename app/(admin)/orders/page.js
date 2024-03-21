@@ -7,43 +7,48 @@ import { useSession } from "next-auth/react";
 import { redirect, usePathname } from "next/navigation";
 import Loading from "@/components/Loading";
 
-import IndividualOrder from "../components/IndividualOrder";
+import OrdersContainer from "../components/OrdersContainer";
 
-import { FaMagnifyingGlass } from "react-icons/fa6";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const OrdersPage = () => {
   const session = useSession();
   const { status } = session;
   const path = usePathname();
 
-  const [currentFilter, setCurrentFilter] = useState("ALL");
+  const [ordersList, setOrdersList] = useState([]);
 
-  if (status === "loading") {
-    return <Loading />;
-  }
   if (status === "unauthenticated") {
     return redirect("/sign-in");
   }
 
-  const handleOnFilterButtonClick = (filter) => {
-    setCurrentFilter(filter);
-  };
+  useEffect(() => {
+    async function getOrdersList() {
+      try {
+        const res = await fetch("/api/getOrderList", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Cache-Control": "no-cache",
+          },
+        });
 
-  const FilterButton = ({ contents, filterType }) => {
-    return (
-      <button
-        className={`text-lg font-medium ${
-          currentFilter === filterType
-            ? "text-orange-600 border-b-2 border-orange-600"
-            : "text-gray-800"
-        }`}
-        onClick={() => handleOnFilterButtonClick(filterType)}
-      >
-        {contents}
-      </button>
-    );
-  };
+        if (res.ok) {
+          const data = await res.json();
+
+          setOrdersList(data);
+        } else {
+          console.log("Failed to fetch menu list");
+        }
+      } catch (error) {
+        console.error(
+          "An error occurred while fetching the order list:",
+          error
+        );
+      }
+    }
+    getOrdersList();
+  }, []);
 
   return (
     <section className="flex flex-col justify-center items-center px-12">
@@ -51,68 +56,9 @@ const OrdersPage = () => {
       <SubHeader header2="Orders" />
 
       {/* CONTAINER */}
-      <div className="h-screen w-full bg-gray-200 mb-8 overflow-auto flex flex-col rounded-md">
-        {/* Top section */}
-        <div className="flex flex-row items-center justify-between h-24 w-full px-8">
-          <div className="h-full flex flex-row items-center gap-6">
-            <FilterButton contents="All" filterType="ALL" />
-            <FilterButton contents="Pending" filterType="PENDING" />
-            <FilterButton contents="Completed" filterType="COMPLETED" />
-            <FilterButton contents="Cancelled" filterType="CANCELLED" />
-          </div>
-
-          <form className="h-full py-6">
-            <div className="h-full relative">
-              <input
-                type="text w-full"
-                placeholder="Search order ID"
-                className="px-4 h-full rounded-md border border-gray-500 w-96"
-              />
-              <FaMagnifyingGlass
-                size={20}
-                className="absolute top-[0.65rem] right-2 text-gray-600"
-              />
-            </div>
-          </form>
-        </div>
-
-        {/* Main section */}
-        <div className="bg-gray-50 w-full h-full overflow-auto">
-          {/* Top section  */}
-          <div className="flex flex-row w-full text-center h-16 items-center divide-x divide-gray-400 px-4 sticky top-0 bg-gray-50 z-10 shadow-sm">
-            <p className="w-2/6">ID</p>
-            <p className="w-1/6">Name</p>
-            <p className="w-1/6">Date</p>
-            <p className="w-1/6">Status</p>
-            <p className="w-1/6">Amount</p>
-          </div>
-
-          {/* Orders Container  */}
-          <div className="w-full h-full px-6 py-8 flex flex-col gap-4">
-            <IndividualOrder
-              orderId="SQyU1tRYaQivEQYMw6KzyVHrWdcZY"
-              orderStatus="COMPLETED"
-              orderAmount="100.00"
-              orderDate="3/20/2024"
-              orderName="Garry Jr Dayag"
-            />
-            <IndividualOrder
-              orderId={2}
-              orderStatus="PENDING"
-              orderAmount="100.00"
-              orderDate="3/20/2024"
-              orderName="Garry Jr Dayag"
-            />
-            <IndividualOrder
-              orderId={3}
-              orderStatus="CANCELLED"
-              orderAmount="100.00"
-              orderDate="3/20/2024"
-              orderName="Garry Jr Dayag"
-            />
-          </div>
-        </div>
-      </div>
+      {status !== "unathenticated" && (
+        <OrdersContainer ordersList={ordersList} />
+      )}
     </section>
   );
 };

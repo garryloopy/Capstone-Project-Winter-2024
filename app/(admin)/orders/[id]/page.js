@@ -92,7 +92,7 @@ export default function OrderDetailsPage({ params }) {
   };
 
   return (
-    <section className="flex flex-col items-center w-full min-h-screen h-screen px-12 py-8 overflow-auto">
+    <section className="flex flex-col items-center w-full min-h-screen px-12 py-8 overflow-auto">
       <button className="px-4 py-2 border bg-gray-50" onClick={debug}>
         Debug
       </button>
@@ -112,21 +112,34 @@ export default function OrderDetailsPage({ params }) {
         </div>
 
         {/* Main section  */}
-        <div className="flex-1 h-full bg-gray-50 flex flex-col">
+        <div className="flex-1 min-h-screen bg-gray-50 flex flex-col">
           {/* Main section header  */}
           <div className="flex flex-row justify-between h-24 items-center px-8 border-b divide-x">
             {orderId && (
-              <p className="text-center w-full">Order ID: {orderId}</p>
-            )}
-            {formattedDate && (
-              <p className="text-center  w-full">Date: {formattedDate}</p>
-            )}
-            {cardBrand && lastDigits && (
-              <p className="text-center  w-full">
-                Payment: {cardBrand} xxxxxxxxxxxx{lastDigits}
+              <p className="text-center w-full font-semibold">
+                Order ID:{" "}
+                <span className="text-sm font-medium ">{orderId}</span>
               </p>
             )}
-            {id && <p className="text-center  w-full">Payment ID: {id}</p>}
+            {formattedDate && (
+              <p className="text-center  w-full font-semibold">
+                Date:{" "}
+                <span className="text-sm font-medium ">{formattedDate}</span>
+              </p>
+            )}
+            {cardBrand && lastDigits && (
+              <p className="text-center  w-full font-semibold">
+                Payment:{" "}
+                <span className="text-sm font-medium ">
+                  {cardBrand} xxxxxxxxxxxx{lastDigits}
+                </span>
+              </p>
+            )}
+            {id && (
+              <p className="text-center  w-full font-semibold">
+                Payment ID: <span className="text-sm font-medium ">{id}</span>
+              </p>
+            )}
           </div>
 
           {/* Container  */}
