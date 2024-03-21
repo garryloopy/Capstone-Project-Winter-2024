@@ -51,17 +51,17 @@ const OrdersPage = () => {
       <SubHeader header2="Orders" />
 
       {/* CONTAINER */}
-      <div className="h-screen w-full bg-gray-50/50 mb-8 overflow-auto flex flex-col">
+      <div className="h-screen w-full bg-gray-200 mb-8 overflow-auto flex flex-col rounded-md">
         {/* Top section */}
-        <div className="flex flex-row items-center justify-between h-16 w-full px-8">
-          <div className="h-full flex flex-row items-center gap-4">
+        <div className="flex flex-row items-center justify-between h-24 w-full px-8">
+          <div className="h-full flex flex-row items-center gap-6">
             <FilterButton contents="All" filterType="ALL" />
             <FilterButton contents="Pending" filterType="PENDING" />
             <FilterButton contents="Completed" filterType="COMPLETED" />
             <FilterButton contents="Cancelled" filterType="CANCELLED" />
           </div>
 
-          <form className="h-full py-3">
+          <form className="h-full py-6">
             <div className="h-full relative">
               <input
                 type="text w-full"
@@ -79,18 +79,18 @@ const OrdersPage = () => {
         {/* Main section */}
         <div className="bg-gray-50 w-full h-full overflow-auto">
           {/* Top section  */}
-          <div className="flex flex-row w-full text-center h-16 items-center divide-x divide-gray-400 px-4">
-            <p className="w-1/6">ID</p>
+          <div className="flex flex-row w-full text-center h-16 items-center divide-x divide-gray-400 px-4 sticky top-0 bg-gray-50 z-10 shadow-sm">
+            <p className="w-2/6">ID</p>
             <p className="w-1/6">Name</p>
             <p className="w-1/6">Date</p>
             <p className="w-1/6">Status</p>
-            <p className="w-2/6">Amount</p>
+            <p className="w-1/6">Amount</p>
           </div>
 
           {/* Orders Container  */}
-          <div className="w-full h-full px-4 py-8 flex flex-col gap-4">
+          <div className="w-full h-full px-6 py-8 flex flex-col gap-4">
             <IndividualOrder
-              orderId={1}
+              orderId="SQyU1tRYaQivEQYMw6KzyVHrWdcZY"
               orderStatus="COMPLETED"
               orderAmount="100.00"
               orderDate="3/20/2024"
