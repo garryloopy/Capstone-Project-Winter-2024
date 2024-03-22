@@ -68,6 +68,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
 
   const handleOnOrderStatusChange = (orderId, newStatus) => {
     onOrderStatusChange(orderId, newStatus);
+    updateDisplayedItems();
   };
 
   return (
