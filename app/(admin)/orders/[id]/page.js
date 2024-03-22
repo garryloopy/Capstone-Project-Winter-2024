@@ -133,7 +133,7 @@ export default function OrderDetailsPage({ params }) {
 
       <div className="bg-gray-100 w-full h-full rounded-md flex flex-col">
         {/* Top section  */}
-        <div className="relative flex-none h-16 w-full px-6">
+        <div className="relative flex-none h-24 w-full px-6">
           <Link
             href="/orders"
             className="flex flex-row items-center gap-1 w-max h-full text-xl font-medium text-gray-600 hover:text-gray-950 transition-colors duration-200"

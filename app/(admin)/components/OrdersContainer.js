@@ -123,7 +123,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
       </div>
 
       {/* Main section */}
-      <div className="bg-gray-50 w-full pb-64 overflow">
+      <div className="bg-gray-50 w-full pb-64 overflow h-full">
         {/* Top section  */}
         <div className="flex flex-row w-full text-center h-16 items-center divide-x divide-gray-400 px-4 sticky top-0 bg-gray-50 z-10 shadow-sm">
           <p className="w-2/6">ID</p>
@@ -144,6 +144,21 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
           {displayedItems &&
             ordersList &&
             displayedItems.map((order) => {
+              console.log(order);
+              //format the date of order
+              const createdAtDate = new Date(order.createdAt);
+
+              const options = {
+                year: "numeric",
+                month: "short",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+              };
+
+              const dateTimeFormat = new Intl.DateTimeFormat("en-US", options);
+              const formattedDate = dateTimeFormat.format(createdAtDate);
               return (
                 <IndividualOrder
                   objectId={order._id}
@@ -152,7 +167,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                   orderStatus={order.orderStatus}
                   orderAmount={order.cartProducts.length}
                   paymentId={order.paymentId}
-                  orderDate={order.updatedAt}
+                  orderDate={formattedDate}
                   orderName={order.clientInfo.email}
                   onOrderStatusChange={handleOnOrderStatusChange}
                 />

@@ -1,7 +1,7 @@
 export default function OrderStatus({ orderStatus }) {
   return (
     <div
-      className={`text-wrap truncate border w-36 h-10 flex items-center justify-center ${
+      className={`text-wrap truncate border w-44 h-10 flex items-center justify-center ${
         orderStatus === "COMPLETED"
           ? "bg-green-50 border-green-200 text-green-800"
           : orderStatus === "PENDING"
