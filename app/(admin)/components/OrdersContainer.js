@@ -8,7 +8,11 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 
 import { useEffect, useState } from "react";
 
+import { TailSpin } from "react-loader-spinner";
+
 export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const [currentSearchValue, setCurrentSearchValue] = useState("");
   const [currentFilter, setCurrentFilter] = useState("ALL");
 
@@ -19,6 +23,8 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
   }, [ordersList]);
 
   const updateDisplayedItems = () => {
+    setIsLoading(true);
+
     let newOrders = [];
     if (currentSearchValue.length > 0) {
       newOrders = ordersList.filter((order) =>
@@ -45,6 +51,8 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
     } else {
       setDisplayedItems(newOrders);
     }
+
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -123,7 +131,15 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
       </div>
 
       {/* Main section */}
-      <div className="bg-gray-50 w-full pb-64 overflow h-full">
+      <div className="bg-gray-50 w-full pb-64 overflow h-full relative">
+        {/* Loading container  */}
+        {isLoading && (
+          <div className="absolute inset-0 z-20 flex flex-col gap-8 items-center justify-center">
+            <TailSpin color="#fb923c" visible={isLoading} />
+            <p className="text-xl font-medium text-gray-600">Loading...</p>
+          </div>
+        )}
+
         {/* Top section  */}
         <div className="flex flex-row w-full text-center h-16 items-center divide-x divide-gray-400 px-4 sticky top-0 bg-gray-50 z-10 shadow-sm">
           <p className="w-2/6">ID</p>
@@ -144,7 +160,6 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
           {displayedItems &&
             ordersList &&
             displayedItems.map((order) => {
-              console.log(order);
               //format the date of order
               const createdAtDate = new Date(order.createdAt);
 

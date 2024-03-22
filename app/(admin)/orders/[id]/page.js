@@ -15,7 +15,11 @@ import OrderStatus from "../../components/OrderStatus";
 
 import Image from "next/image";
 
+import { TailSpin } from "react-loader-spinner";
+
 export default function OrderDetailsPage({ params }) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const [clientInfo, setClientInfo] = useState();
   const [cartProducts, setCartProducts] = useState([]);
   const [formattedDate, setFormattedDate] = useState();
@@ -78,12 +82,17 @@ export default function OrderDetailsPage({ params }) {
   };
 
   useEffect(() => {
+    setIsLoading(true);
+
     if (params && params.id && id) {
       getOrderInfo();
     }
+
+    setIsLoading(false);
   }, []);
 
   const handleOnStatusChange = async (newStatus) => {
+    setIsLoading(true);
     if (orderStatus === newStatus) {
       setIsMoreOptionsOpened(false);
       return;
@@ -108,6 +117,8 @@ export default function OrderDetailsPage({ params }) {
     } catch (error) {
       console.error("An error occurred while updating order status:", error);
     }
+
+    setIsLoading(false);
   };
 
   const handleOnMoreOptionsButtonClick = () => {
@@ -132,6 +143,13 @@ export default function OrderDetailsPage({ params }) {
       <SubHeader header2="Order Details" />
 
       <div className="bg-gray-100 w-full h-full rounded-md flex flex-col">
+        {isLoading && (
+          <div className="absolute inset-0 z-20 flex flex-col gap-8 items-center justify-center">
+            <TailSpin color="#fb923c" visible={isLoading} />
+            <p className="text-xl font-medium text-gray-600">Loading...</p>
+          </div>
+        )}
+
         {/* Top section  */}
         <div className="relative flex-none h-24 w-full px-6">
           <Link
