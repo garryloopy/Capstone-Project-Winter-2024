@@ -72,13 +72,13 @@ function Menu() {
       {loading ? (
         <Loading />
       ) : (
-        <section className="pt-[2rem] pb-[12rem] pl-[12rem] pr-[12rem] flex flex-col justify-center items-center gap-6">
+        <section className="md:p-[6rem] p-4 flex flex-col justify-center items-center gap-6">
           <SubHeader header2="Menu" />
 
           {/* search bar */}
           <form className="md:max-w-[50%] w-full flex my-[2rem] justify-center" onSubmit={handleSearchSubmit}>
             <input
-              className="w-full flex-[1.5] min-h-[50px] text-[20px] bg-orange-100 border border-orange-500 border-r-0 px-[1rem] rounded-tl-[5px] rounded-bl-[5px] tracking-wider"
+              className="flex-[1.5] min-h-[50px] text-[20px] bg-orange-100 border border-orange-500 border-r-0 px-[1rem] rounded-tl-[5px] rounded-bl-[5px] tracking-wider"
               type="search"
               placeholder="search"
               value={search}
@@ -91,7 +91,7 @@ function Menu() {
               Search
             </button>
           </form>
-          <div className="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-col-2 grid-cols-1 gap-4 mt-6 mb-8">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-col-2 grid-cols-1 gap-4 mt-6 mb-8">
             {menuListSearch?.length > 0
               ? menuListSearch.map((menu) => (
                   <ClientMenu key={menu._id} {...menu} />
