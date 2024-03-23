@@ -1,5 +1,6 @@
 import { Schema, model, models } from "mongoose";
 
+//GARRY, ADD orderStatus to the Order model
 const OrderSchema = new Schema(
   {
     orderId: {
@@ -21,9 +22,12 @@ const OrderSchema = new Schema(
     lastFourDigits: {
       type: String,
     },
-
+    orderStatus: {
+      type: String,
+    },
 
     clientInfo: Object,
+
     cartProducts: Object,
   },
   { timestamps: true }

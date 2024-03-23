@@ -90,7 +90,7 @@ const ContactPage = () => {
 
     const sanitizedInput = input.replace(/\D/g, "");
 
-    setPhoneNumber(sanitizedInput);
+    setPhoneNumber(input);
   };
 
   /**
@@ -164,7 +164,7 @@ const ContactPage = () => {
     setShowConfirmation(true);
 
     // Reset values
-    resetValue();
+    // resetValue();
   };
 
   /**
@@ -198,7 +198,7 @@ const ContactPage = () => {
                     A confirmation email has been sent to {submittedUser.email}.
                   </p>
                   <p className="text-gray-800">
-                    We will get back to you in 1-2 business days.
+                    We will get back to you shortly.
                   </p>
                 </div>
               </div>
@@ -237,7 +237,7 @@ const ContactPage = () => {
             </p>
             <InputLabel
               type="tel"
-              pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+              pattern="[0-9]{10}"
               placeholder="Phone number 1234567890"
               value={phoneNumber}
               onChange={handleOnPhoneNumberChange}
