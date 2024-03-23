@@ -16,11 +16,17 @@ const IndividualOrder = ({
   orderDate,
   onOrderStatusChange,
 }) => {
+  // State for displaying options
   const [isMoreOptionsOpen, setIsMoreOptionsOpen] = useState(false);
+
+  // Current status of the order
   const [currentStatus, setCurrentStatus] = useState(orderStatus);
 
+  // Ref for more options
   const moreOptionsRef = useRef(null);
 
+  // Handle any outside click
+  // Close more options if click is anything other than itself
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (
@@ -38,17 +44,28 @@ const IndividualOrder = ({
     };
   }, []);
 
+  /**
+   * Sub-handler for any status changes within the component. Call parent function
+   * @param {String} newStatus The new status
+   */
   const handleOnOrderStatusChange = (newStatus) => {
+    // Call parent function
     onOrderStatusChange(orderId, newStatus);
   };
 
+  /**
+   * Main handler for status change within the component
+   * @param {String} newStatus The new status
+   */
   const handleOnStatusChange = async (newStatus) => {
+    // Do nothing, close more options
     if (orderStatus === newStatus) {
       setIsMoreOptionsOpen(false);
       return;
     }
 
     try {
+      // Change order status within the server
       const response = await fetch("/api/updateOrderStatus", {
         method: "PUT",
         headers: {
@@ -60,6 +77,7 @@ const IndividualOrder = ({
         }),
       });
 
+      // Do this if response if okay
       if (response.ok) {
         setCurrentStatus(newStatus);
         setIsMoreOptionsOpen(false);
@@ -70,6 +88,9 @@ const IndividualOrder = ({
     }
   };
 
+  /**
+   * Handler for when the more options button is clicked by the user
+   */
   const handleOnMoreOptionButtonClicked = () => {
     setIsMoreOptionsOpen(!isMoreOptionsOpen);
   };
@@ -114,6 +135,12 @@ const IndividualOrder = ({
               onClick={() => handleOnStatusChange("COMPLETED")}
             >
               Mark as completed
+            </button>
+            <button
+              className="px-6 py-4 w-full hover:bg-gray-100 "
+              onClick={() => handleOnStatusChange("IN PROGRESS")}
+            >
+              Mark as in progress
             </button>
             <button
               className="px-6 py-4 w-full hover:bg-gray-100 "

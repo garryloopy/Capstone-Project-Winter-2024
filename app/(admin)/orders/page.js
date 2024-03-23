@@ -11,13 +11,19 @@ import OrdersContainer from "../components/OrdersContainer";
 
 import { useEffect, useState } from "react";
 
+/**
+ * An orders page that displays orders
+ * @returns An orders page
+ */
 const OrdersPage = () => {
   const session = useSession();
   const { status } = session;
   const path = usePathname();
 
+  // Loading state
   const [isLoading, setIsLoading] = useState(true);
 
+  // Orders list
   const [ordersList, setOrdersList] = useState([]);
 
   if (status === "unauthenticated") {
@@ -25,8 +31,12 @@ const OrdersPage = () => {
   }
 
   useEffect(() => {
+    // Set loading
     setIsLoading(true);
 
+    /**
+     * Gets the orders list
+     */
     async function getOrdersList() {
       try {
         const res = await fetch("/api/getOrderList", {
@@ -53,10 +63,17 @@ const OrdersPage = () => {
     }
     getOrdersList();
 
+    // Set loading
     setIsLoading(false);
   }, []);
 
+  /**
+   * Handler for status changes in order components
+   * @param {String} orderId The orderId to change
+   * @param {String} newStatus The new order status
+   */
   const onOrderStatusChange = (orderId, newStatus) => {
+    // Get new orders, change only the ones matching the orderId given.
     const newOrders = ordersList.map((order) => {
       if (order.orderId === orderId) {
         const newOrder = {
@@ -69,6 +86,9 @@ const OrdersPage = () => {
         return order;
       }
     });
+
+    // Use new orders list as the current order
+    // New orders list should propagate through children
     setOrdersList(newOrders);
   };
 
@@ -77,6 +97,7 @@ const OrdersPage = () => {
       <AdminNavbar path={path} />
       <SubHeader header2="Orders" />
 
+      {/* Loader  */}
       {isLoading && (
         <div className="absolute inset-0 z-20 flex flex-col gap-8 items-center justify-center">
           <TailSpin color="#fb923c" visible={isLoading} />

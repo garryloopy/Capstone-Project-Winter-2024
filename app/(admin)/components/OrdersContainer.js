@@ -10,22 +10,49 @@ import { useEffect, useState } from "react";
 
 import { TailSpin } from "react-loader-spinner";
 
+/**
+ * A component that displays, filters, updates, and opens orders based on the passed list array
+ * @param {Array} ordersList Orders list array
+ * @param {Function} onOrderStatusChange Function handler of when an order status changes within children
+ * @returns A container for handling orders
+ */
 export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
+  console.log(ordersList, onOrderStatusChange);
+
+  // Loading state
   const [isLoading, setIsLoading] = useState(false);
 
+  // Current search value, string entered though the search bar
   const [currentSearchValue, setCurrentSearchValue] = useState("");
+
+  // Current filter selected. Usually ALL, PENDING, COMPLETED, AND CANCELLED
   const [currentFilter, setCurrentFilter] = useState("ALL");
 
+  // Items to display
   const [displayedItems, setDisplayedItems] = useState([]);
 
+  // Each time orders list is changed then change displayed items to orders list
   useEffect(() => {
     setDisplayedItems(ordersList);
   }, [ordersList]);
 
+  /**
+   * Updates the displayed items.
+   * Steps are:
+   * 1. Set loader true
+   * 2. Filter the current displayed items via the current search value
+   * 3. Filter the displayed items to the current filter (ALL, PENDING, COMPLETED, CANCELLED)
+   * 4. Set to displayed items to new filtered items
+   * 5. Set loader false
+   */
   const updateDisplayedItems = () => {
+    // Loader state
     setIsLoading(true);
 
+    // Represents new orders to display
     let newOrders = [];
+
+    // Filter current orders with search values
     if (currentSearchValue.length > 0) {
       newOrders = ordersList.filter((order) =>
         order.orderId.toLowerCase().includes(currentSearchValue.toLowerCase())
@@ -34,6 +61,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
       newOrders = ordersList;
     }
 
+    // Filter items with selected filter
     if (currentFilter === "PENDING") {
       newOrders = newOrders.filter((order) => order.orderStatus === "PENDING");
       setDisplayedItems(newOrders);
@@ -52,30 +80,49 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
       setDisplayedItems(newOrders);
     }
 
+    // Loader state
     setIsLoading(false);
   };
 
+  // Change displayed items when selected filter changes
   useEffect(() => {
     updateDisplayedItems();
   }, [currentFilter]);
 
+  /**
+   * Handler for clicking a filter button
+   * @param {String} filter The new filter
+   */
   const handleOnFilterButtonClick = (filter) => {
     setCurrentFilter(filter);
   };
 
+  /**
+   * Handler for for the search bar
+   * @param {Event} e The event
+   */
   const handleOnSearch = (e) => {
     e.preventDefault();
 
     updateDisplayedItems();
   };
 
+  /**
+   * Handler for change value event on search bar
+   * @param {Event} e The event
+   */
   const handleOnSearchChange = (e) => {
     const value = e.target.value;
     setCurrentSearchValue(value);
   };
 
+  /**
+   * Handler for when an order status changes, usually propagated upwards into the parent component
+   * @param {String} orderId The order Id to change
+   * @param {String} newStatus The new status
+   */
   const handleOnOrderStatusChange = (orderId, newStatus) => {
-    onOrderStatusChange(orderId, newStatus);
+    if (onOrderStatusChange) onOrderStatusChange(orderId, newStatus);
     updateDisplayedItems();
   };
 

@@ -8,27 +8,23 @@ import AdminNavbar from "@/app/(admin)/components/AdminNavbar";
 import { useSession } from "next-auth/react";
 import { redirect, usePathname } from "next/navigation";
 import { useParams } from "next/navigation";
-
 import { FaAngleLeft, FaAngleDown, FaAngleUp } from "react-icons/fa6";
-
 import OrderStatus from "../../components/OrderStatus";
-
 import Image from "next/image";
-
 import { TailSpin } from "react-loader-spinner";
 
 export default function OrderDetailsPage({ params }) {
+  // Loader state
   const [isLoading, setIsLoading] = useState(false);
 
+  // Client states
   const [clientInfo, setClientInfo] = useState();
   const [cartProducts, setCartProducts] = useState([]);
   const [formattedDate, setFormattedDate] = useState();
   const [cardBrand, setCardBrand] = useState();
   const [lastDigits, setLastDigits] = useState();
   const [orderId, setOrderId] = useState();
-
   const [orderStatus, setOrderStatus] = useState("");
-
   const [objectId, setObjectId] = useState();
 
   const [isMoreOptionsOpened, setIsMoreOptionsOpened] = useState(false);
@@ -39,10 +35,14 @@ export default function OrderDetailsPage({ params }) {
   const { status } = session;
   const path = usePathname();
 
+  // Redirect user if unauthenticated
   if (status === "unauthenticated") {
     return redirect("/sign-in");
   }
 
+  /**
+   * Gets the order info
+   */
   const getOrderInfo = async () => {
     if (id) {
       const res = await fetch(`/api/getOrder?id=${id}`, {
@@ -68,6 +68,7 @@ export default function OrderDetailsPage({ params }) {
         const formattedDate = dateTimeFormat.format(createdAtDate);
         setFormattedDate(formattedDate);
 
+        // Set client statuses
         setClientInfo(result[0]?.clientInfo);
         setCartProducts(result[0]?.cartProducts);
         setOrderId(result[0]?.orderId);
@@ -81,6 +82,9 @@ export default function OrderDetailsPage({ params }) {
     }
   };
 
+  /**
+   * Set loading and get order info
+   */
   useEffect(() => {
     setIsLoading(true);
 
@@ -91,8 +95,15 @@ export default function OrderDetailsPage({ params }) {
     setIsLoading(false);
   }, []);
 
+  /**
+   * Handler for when a status changes within the children components
+   * @param {String} newStatus The new status
+   */
   const handleOnStatusChange = async (newStatus) => {
+    // Set loader
     setIsLoading(true);
+
+    // Do nothing
     if (orderStatus === newStatus) {
       setIsMoreOptionsOpened(false);
       return;
@@ -118,13 +129,20 @@ export default function OrderDetailsPage({ params }) {
       console.error("An error occurred while updating order status:", error);
     }
 
+    // Set loader
     setIsLoading(false);
   };
 
+  /**
+   * Handler for when the more options button is clicked
+   */
   const handleOnMoreOptionsButtonClick = () => {
     setIsMoreOptionsOpened(!isMoreOptionsOpened);
   };
 
+  /**
+   * Debugger :)
+   */
   const debug = () => {
     console.log("Formatted Date: ", formattedDate);
     console.log("Client info: ", clientInfo);
@@ -132,17 +150,27 @@ export default function OrderDetailsPage({ params }) {
     console.log("Order ID: ", orderId);
     console.log("Card brand: ", cardBrand);
     console.log("Last digits: ", lastDigits);
+    console.log(clientInfo.deliveryType);
   };
 
   return (
     <section className="flex flex-col items-center w-full min-h-screen px-12 py-8 overflow-auto">
-      <button className="px-4 py-2 border bg-gray-50" onClick={debug}>
+      <button
+        className="px-4 py-2 border bg-gray-50 relative group"
+        onClick={debug}
+      >
         Debug
+        <div className="bg-gray-50 border shadow-lg absolute -inset-1 -translate-x-28 grid rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+          <p className="text-sm text-gray-700 self-center justify-self-center">
+            Used for debugging
+          </p>
+        </div>
       </button>
       <AdminNavbar path={path} />
       <SubHeader header2="Order Details" />
 
       <div className="bg-gray-100 w-full h-full rounded-md flex flex-col">
+        {/* Loader  */}
         {isLoading && (
           <div className="absolute inset-0 z-20 flex flex-col gap-8 items-center justify-center">
             <TailSpin color="#fb923c" visible={isLoading} />
@@ -164,32 +192,92 @@ export default function OrderDetailsPage({ params }) {
         {/* Main section  */}
         <div className="flex-1 min-h-screen bg-gray-50 flex flex-col">
           {/* Main section header  */}
-          <div className="flex flex-row justify-between h-24 items-center px-8 border-b divide-x">
-            {orderId && (
-              <p className="text-center w-full font-semibold">
-                Order ID:{" "}
-                <span className="text-sm font-medium ">{orderId}</span>
-              </p>
-            )}
-            {formattedDate && (
-              <p className="text-center  w-full font-semibold">
-                Date:{" "}
-                <span className="text-sm font-medium ">{formattedDate}</span>
-              </p>
-            )}
-            {cardBrand && lastDigits && (
-              <p className="text-center  w-full font-semibold">
-                Payment:{" "}
-                <span className="text-sm font-medium ">
-                  {cardBrand} xxxxxxxxxxxx{lastDigits}
-                </span>
-              </p>
-            )}
-            {id && (
-              <p className="text-center  w-full font-semibold">
-                Payment ID: <span className="text-sm font-medium ">{id}</span>
-              </p>
-            )}
+          <div className="flex flex-col border-b">
+            {/* Order Status  */}
+            <div className="w-full h-24 flex flex-row justify-between items-center px-8 border-b">
+              <div className="flex flex-row justify-center items-center gap-8 flex-1">
+                <p className="text-xl font-semibold text-gray-800">
+                  Order Status:
+                </p>
+
+                <div className="relative">
+                  <OrderStatus orderStatus={orderStatus} />
+                  <div
+                    className="absolute inset-0 flex items-center justify-end p-2 cursor-pointer"
+                    onClick={handleOnMoreOptionsButtonClick}
+                  >
+                    {isMoreOptionsOpened ? (
+                      <FaAngleDown size={16} />
+                    ) : (
+                      <FaAngleUp size={16} />
+                    )}
+
+                    {isMoreOptionsOpened && (
+                      <div className="min-w-56 min-h-12 h-max bg-gray-50 border shadow-lg absolute inset-y-11 right-0 divide-y rounded-md overflow-hidden">
+                        <button
+                          className="px-6 py-4 w-full hover:bg-gray-100 "
+                          onClick={() => handleOnStatusChange("COMPLETED")}
+                        >
+                          Mark as completed
+                        </button>
+                        <button
+                          className="px-6 py-4 w-full hover:bg-gray-100 "
+                          onClick={() => handleOnStatusChange("IN PROGRESS")}
+                        >
+                          Mark as in progress
+                        </button>
+                        <button
+                          className="px-6 py-4 w-full hover:bg-gray-100 "
+                          onClick={() => handleOnStatusChange("PENDING")}
+                        >
+                          Mark as pending
+                        </button>
+                        <button
+                          className="px-6 py-4 w-full hover:bg-gray-100 "
+                          onClick={() => handleOnStatusChange("CANCELLED")}
+                        >
+                          Mark as cancelled
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="flex-1 flex justify-center items-center">
+                {clientInfo && (
+                  <p className="text-xl font-semibold text-gray-800">
+                    Delivery Type: {clientInfo.deliveryType}
+                  </p>
+                )}
+              </div>
+            </div>
+            <div className="flex flex-row justify-between h-16 bg-gray-100 items-center px-8 divide-x">
+              {orderId && (
+                <p className="text-center w-full font-semibold">
+                  Order ID:{" "}
+                  <span className="text-sm font-medium ">{orderId}</span>
+                </p>
+              )}
+              {formattedDate && (
+                <p className="text-center  w-full font-semibold">
+                  Date:{" "}
+                  <span className="text-sm font-medium ">{formattedDate}</span>
+                </p>
+              )}
+              {cardBrand && lastDigits && (
+                <p className="text-center  w-full font-semibold">
+                  Payment:{" "}
+                  <span className="text-sm font-medium ">
+                    {cardBrand} xxxxxxxxxxxx{lastDigits}
+                  </span>
+                </p>
+              )}
+              {id && (
+                <p className="text-center  w-full font-semibold">
+                  Payment ID: <span className="text-sm font-medium ">{id}</span>
+                </p>
+              )}
+            </div>
           </div>
 
           {/* Container  */}
@@ -207,11 +295,14 @@ export default function OrderDetailsPage({ params }) {
                 )}
               </div>
               {/* Orders section  */}
-              <div className="flex-1 overflow-y-auto">
+              <div className="flex-1 overflow-y-auto flex flex-col gap-6">
                 {cartProducts?.length > 0 &&
                   cartProducts.map((product) => {
                     return (
-                      <div className="flex flex-row border py-3 px-4 bg-gray-100 rounded-md">
+                      <div
+                        className="flex flex-row border py-3 px-4 bg-gray-100 rounded-md"
+                        key={product._id}
+                      >
                         <Image
                           src={product.image}
                           alt={product.title}
@@ -249,50 +340,6 @@ export default function OrderDetailsPage({ params }) {
 
             {/* Right side  */}
             <div className="flex-1 border-l">
-              {/* Order Status  */}
-              <div className="w-full h-24 flex flex-row justify-between items-center px-8">
-                <p className="text-xl font-semibold text-gray-800">
-                  Order Status:
-                </p>
-
-                <div className="relative">
-                  <OrderStatus orderStatus={orderStatus} />
-                  <div
-                    className="absolute inset-0 flex items-center justify-end p-2 cursor-pointer"
-                    onClick={handleOnMoreOptionsButtonClick}
-                  >
-                    {isMoreOptionsOpened ? (
-                      <FaAngleDown size={16} />
-                    ) : (
-                      <FaAngleUp size={16} />
-                    )}
-
-                    {isMoreOptionsOpened && (
-                      <div className="min-w-56 min-h-12 h-max bg-gray-100 absolute inset-y-11 right-0 divide-y rounded-md overflow-hidden">
-                        <button
-                          className="px-6 py-4 w-full hover:bg-gray-100 "
-                          onClick={() => handleOnStatusChange("COMPLETED")}
-                        >
-                          Mark as completed
-                        </button>
-                        <button
-                          className="px-6 py-4 w-full hover:bg-gray-100 "
-                          onClick={() => handleOnStatusChange("PENDING")}
-                        >
-                          Mark as pending
-                        </button>
-                        <button
-                          className="px-6 py-4 w-full hover:bg-gray-100 "
-                          onClick={() => handleOnStatusChange("CANCELLED")}
-                        >
-                          Mark as cancelled
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-
               {/* Contact info section  */}
               <div className="w-full flex flex-col justify-center items-start gap-4 p-8">
                 <p className="text-2xl font-medium text-gray-700">
