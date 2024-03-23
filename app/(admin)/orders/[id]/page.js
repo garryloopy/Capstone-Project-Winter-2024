@@ -251,30 +251,30 @@ export default function OrderDetailsPage({ params }) {
                 )}
               </div>
             </div>
-            <div className="flex flex-row justify-between h-16 bg-gray-100 items-center px-8 divide-x">
+            <div className="flex flex-row justify-between h-20 bg-gray-100 items-center px-8 divide-x-2 shadow-md">
               {orderId && (
-                <p className="text-center w-full font-semibold">
+                <p className="text-center w-full font-semibold flex flex-col">
                   Order ID:{" "}
-                  <span className="text-sm font-medium ">{orderId}</span>
+                  <span className="text-md font-medium ">{orderId}</span>
                 </p>
               )}
               {formattedDate && (
-                <p className="text-center  w-full font-semibold">
+                <p className="text-center  w-full font-semibold flex flex-col">
                   Date:{" "}
-                  <span className="text-sm font-medium ">{formattedDate}</span>
+                  <span className="text-md font-medium ">{formattedDate}</span>
                 </p>
               )}
               {cardBrand && lastDigits && (
-                <p className="text-center  w-full font-semibold">
+                <p className="text-center  w-full font-semibold flex flex-col">
                   Payment:{" "}
-                  <span className="text-sm font-medium ">
+                  <span className="text-md font-medium ">
                     {cardBrand} xxxxxxxxxxxx{lastDigits}
                   </span>
                 </p>
               )}
               {id && (
-                <p className="text-center  w-full font-semibold">
-                  Payment ID: <span className="text-sm font-medium ">{id}</span>
+                <p className="text-center  w-full font-semibold flex flex-col">
+                  Payment ID: <span className="text-md font-medium ">{id}</span>
                 </p>
               )}
             </div>
@@ -286,9 +286,9 @@ export default function OrderDetailsPage({ params }) {
             <div className="flex-1 p-8 flex flex-col">
               {/* Top section of left side  */}
               <div className="flex h-16 flex-row justify-between">
-                <p>Order Summary:</p>
+                <p className="text-lg font-800">Order Summary:</p>
                 {cartProducts && (
-                  <p>
+                  <p className="text-lg font-800">
                     {cartProducts.length} item
                     {cartProducts.length > 1 ? "s" : ""}
                   </p>
@@ -300,7 +300,7 @@ export default function OrderDetailsPage({ params }) {
                   cartProducts.map((product) => {
                     return (
                       <div
-                        className="flex flex-row border py-3 px-4 bg-gray-100 rounded-md"
+                        className="flex flex-row border py-3 px-4 bg-gray-100 rounded-md shadow-md"
                         key={product._id}
                       >
                         <Image
