@@ -178,59 +178,6 @@ const ContactPage = () => {
 
   return (
     <div className="flex flex-col justify-center items-center pt-[2rem]">
-      <section className="w-full h-full">
-        <div className="pb-8">
-          <p className="text-gray-950 text-xl font-semibold text-center">
-            Thank you for reaching to us here at Miggy's Munchies!
-          </p>
-          <p className="text-gray-950 text-center">
-            We have recieved your message and we will reply to you shortly.
-          </p>
-          <p className="text-gray-950  text-center">
-            Below is the regards the information that you have sent us.
-          </p>
-        </div>
-        <div className="text-gray-950 font-medium text-center">
-          <p>
-            Name: <span className="text-gray-900">Test</span>
-          </p>
-          <p>
-            Phone Number: <span className="text-gray-900">1231231231</span>
-          </p>
-          <p>
-            Email Address: <span className="text-gray-900">test@gmail.com</span>
-          </p>
-          <p>
-            Message: <span className="text-gray-900">test</span>
-          </p>
-        </div>
-      </section>
-
-      <section className="w-full h-full">
-        <div className="pb-8">
-          <p className="text-gray-950 text-xl font-semibold text-center">
-            A message was sent from Miggy's Munchies.
-          </p>
-          <p className="text-gray-950  text-center">
-            Below is the regards the information about the user.
-          </p>
-        </div>
-        <div className="text-gray-950 font-medium text-center">
-          <p>
-            Name: <span className="text-gray-900">Test</span>
-          </p>
-          <p>
-            Phone Number: <span className="text-gray-900">1231231231</span>
-          </p>
-          <p>
-            Email Address: <span className="text-gray-900">test@gmail.com</span>
-          </p>
-          <p>
-            Message: <span className="text-gray-900">test</span>
-          </p>
-        </div>
-      </section>
-
       <SubHeader header2="Contact Us" />
       <div className="flex flex-col justify-center h-screen gap-12 items-center">
         {showConfirmation && (
