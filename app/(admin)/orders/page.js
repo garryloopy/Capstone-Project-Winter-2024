@@ -93,7 +93,7 @@ const OrdersPage = () => {
   };
 
   return (
-    <section className="flex flex-col justify-center items-center px-12">
+    <section className="flex flex-col justify-center items-center px-20">
       <AdminNavbar path={path} />
       <SubHeader header2="Orders" />
 

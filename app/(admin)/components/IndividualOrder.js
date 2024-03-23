@@ -115,7 +115,7 @@ const IndividualOrder = ({
 
         {/* More Options  */}
         {isMoreOptionsOpen && (
-          <div className="absolute min-w-44 min-h-12 bg-gray-50 border shadow-lg top-16 flex flex-col group divide-y items-center justify-center rounded-md z-10 ">
+          <div className="absolute min-w-44 min-h-12 bg-gray-50 border shadow-lg top-16 flex flex-col group divide-y items-center justify-center rounded-md z-10 text-md text-gray-800">
             <Link
               className="px-6 py-4 w-full hover:bg-gray-100 "
               href={`/orders/${paymentId}`}
@@ -159,19 +159,21 @@ const IndividualOrder = ({
       </div>
 
       <div className="w-2/6 h-full flex items-center justify-center">
-        <p className="text-wrap truncate">{orderId}</p>
+        <p className="text-wrap truncate text-md text-gray-800">{orderId}</p>
       </div>
       <div className="w-1/6 h-full flex items-center justify-center">
-        <p className="text-wrap truncate">{orderName}</p>
+        <p className="text-wrap truncate  text-md text-gray-800">{orderName}</p>
       </div>
       <div className="w-1/6 h-full flex items-center justify-center">
-        <p className="text-wrap truncate">{orderDate}</p>
+        <p className="text-wrap truncate  text-md text-gray-800">{orderDate}</p>
       </div>
       <div className="w-1/6 h-full flex items-center justify-center">
         <OrderStatus orderStatus={currentStatus} />
       </div>
       <div className="w-1/6 h-full flex items-center justify-center">
-        <p className="text-wrap truncate">{orderAmount}</p>
+        <p className="text-wrap truncate  text-md text-gray-800">
+          {orderAmount}
+        </p>
       </div>
     </div>
   );
