@@ -232,7 +232,7 @@ export default function ContactForm() {
           <div
             className={`absolute text-gray-950 inset-0 flex items-center p-2 ${
               currentFirstName.length > 0 && "-translate-y-3"
-            }  pointer-events-none peer-valid:text-green-500 opacity-75 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 peer-focus:-translate-y-3`}
+            }  pointer-events-none peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 peer-focus:-translate-y-3`}
           >
             <p className="font-semibold text-sm">Last name</p>
           </div>
@@ -253,7 +253,7 @@ export default function ContactForm() {
           <div
             className={`absolute text-gray-950 inset-0 flex items-center p-2 ${
               currentLastName.length > 0 && "-translate-y-3"
-            }  pointer-events-none peer-valid:text-green-500 opacity-75 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 peer-focus:-translate-y-3`}
+            }  pointer-events-none peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 peer-focus:-translate-y-3`}
           >
             <p className="font-semibold text-sm">First name</p>
           </div>
@@ -275,7 +275,7 @@ export default function ContactForm() {
         <div
           className={`absolute text-sm text-gray-950 inset-0 flex items-center p-2 ${
             currentEmail.length > 0 && "-translate-y-3"
-          }  pointer-events-none peer-focus:-translate-y-3 peer-valid:text-green-500 opacity-75 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300`}
+          }  pointer-events-none peer-focus:-translate-y-3 peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300`}
         >
           <p className="font-semibold text-sm">Email</p>
         </div>
@@ -297,7 +297,7 @@ export default function ContactForm() {
         <div
           className={`absolute text-sm text-gray-950 inset-0 flex items-center p-2 ${
             currentPhoneNumber.length > 0 && "-translate-y-3"
-          }  pointer-events-none peer-focus:-translate-y-3 peer-valid:text-green-500 opacity-75 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300`}
+          }  pointer-events-none peer-focus:-translate-y-3 peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300`}
         >
           <p className="font-semibold text-sm">Phone number</p>
         </div>
@@ -314,7 +314,7 @@ export default function ContactForm() {
           onChange={handleOnMessageChange}
         />
         {/* Top section container  */}
-        <div className="w-full h-16 absolute top-0 flex items-center  border-b border-gray-200 justify-center pointer-events-none text-gray-950 opacity-75 peer-focus:opacity-100 peer-required:text-red-500 peer-valid:text-green-500 peer-valid:opacity-100 transition-all duration-300">
+        <div className="w-full h-16 absolute top-0 flex items-center  border-b border-gray-200 justify-center pointer-events-none text-gray-950 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 peer-valid:text-green-500 peer-valid:opacity-100 transition-all duration-300">
           <p className="font-semibold text-sm">Message</p>
         </div>
       </label>
