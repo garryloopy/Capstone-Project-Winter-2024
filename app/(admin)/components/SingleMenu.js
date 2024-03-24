@@ -6,7 +6,7 @@ import Image from "next/image";
 const SingleMenu = (menu) => {
   return (
     <div className="w-full">
-      <div className="w-full">
+      <div className="w-full flex justify-center items-center">
         <Image
           className="circular-image-menu border-2 border-orange-400"
           src={menu.image}
