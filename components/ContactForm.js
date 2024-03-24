@@ -234,7 +234,7 @@ export default function ContactForm() {
               currentFirstName.length > 0 && "-translate-y-3"
             }  pointer-events-none peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 peer-focus:-translate-y-3`}
           >
-            <p className="font-semibold text-sm">Last name</p>
+            <p className="font-semibold text-sm">First name</p>
           </div>
         </label>
 
@@ -255,7 +255,7 @@ export default function ContactForm() {
               currentLastName.length > 0 && "-translate-y-3"
             }  pointer-events-none peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 peer-focus:-translate-y-3`}
           >
-            <p className="font-semibold text-sm">First name</p>
+            <p className="font-semibold text-sm">Last name</p>
           </div>
         </label>
       </div>
