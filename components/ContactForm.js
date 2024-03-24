@@ -1,0 +1,333 @@
+"use client";
+
+import { useState } from "react";
+
+// Default submitted user
+const defaultSubmittedUser = {
+  name: "",
+  email: "",
+  phoneNumber: "",
+  message: "",
+};
+
+export default function ContactForm() {
+  // States for user
+  const [currentPhoneNumber, setCurrentPhoneNumber] = useState("");
+  const [currentFirstName, setCurrentFirstName] = useState("");
+  const [currentLastName, setCurrentLastName] = useState("");
+  const [currentEmail, setCurrentEmail] = useState("");
+  const [currentMessage, setCurrentMessage] = useState("");
+
+  // Confirmation stuff
+  const [submittedUser, setSubmittedUser] = useState(defaultSubmittedUser);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  /**
+   * Handler for the phone number event change
+   * @param {Event} e The phone number change event
+   */
+  const handleOnPhoneNumberChange = (e) => {
+    const value = e.target.value;
+    const valueLength = value.length;
+
+    // Represents potential phone number
+    let potentialPhoneNumber = ["", "", "", "", "", "", "", "", "", "", "", ""];
+
+    // Return if value is greater than 12
+    if (valueLength > 12) return;
+
+    for (let char = 0; char < valueLength; char++) {
+      if (char === 3 && value[char] != "-") {
+        potentialPhoneNumber[3] = "-";
+        potentialPhoneNumber[4] = value[char];
+        continue;
+      } else if (char === 7 && value[char] != "-") {
+        potentialPhoneNumber[8] = "-";
+        potentialPhoneNumber[9] = value[char];
+        continue;
+      }
+
+      potentialPhoneNumber[char] = value[char];
+    }
+
+    setCurrentPhoneNumber(potentialPhoneNumber.join(""));
+  };
+
+  /**
+   * Handler for the email change
+   * @param {Event} e The email change event
+   */
+  const handleOnEmailChange = (e) => {
+    const value = e.target.value;
+    setCurrentEmail(value);
+  };
+
+  /**
+   * Handler for the first name change
+   * @param {Event} e The first name change event
+   */
+  const handleOnFirstNameChange = (e) => {
+    const value = e.target.value;
+    const valueLength = value.length;
+
+    if (valueLength > 25) return;
+
+    const sanitizedInput = value.replace(/[^A-Za-z ]/g, "");
+
+    setCurrentFirstName(sanitizedInput);
+  };
+
+  /**
+   * Handler for the last name event
+   * @param {Event} e The last name change event
+   */
+  const handleOnLastNameChange = (e) => {
+    const value = e.target.value;
+    const valueLength = value.length;
+
+    if (valueLength > 25) return;
+
+    const sanitizedInput = value.replace(/[^A-Za-z ]/g, "");
+
+    setCurrentLastName(sanitizedInput);
+  };
+
+  /**
+   * Handler for the message change
+   * @param {Event} e The message change event
+   */
+  const handleOnMessageChange = (e) => {
+    const value = e.target.value;
+
+    setCurrentMessage(value);
+  };
+
+  /**
+   * Handler for the submit event
+   * @param {Event} e The event
+   */
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+
+    // Make API call to the server
+    handleAPICall();
+
+    //Show confirmation
+    setSubmittedUser({
+      name: currentFirstName,
+      email: currentEmail,
+      phoneNumber: currentPhoneNumber,
+      message: currentMessage,
+    });
+    setShowConfirmation(true);
+
+    // Reset values
+    resetValue();
+  };
+
+  /**
+   * Resets the values of the states.
+   * Resets name, email, phone number, and message.
+   */
+  const resetValue = () => {
+    setCurrentEmail("");
+    setCurrentFirstName("");
+    setCurrentLastName("");
+    setCurrentMessage("");
+    setCurrentPhoneNumber("");
+  };
+
+  /**
+   * Handles api call
+   */
+  async function handleAPICall() {
+    try {
+      const res = await fetch("api/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: `${currentFirstName} ${currentLastName}`,
+          email: currentEmail,
+          phoneNumber: currentPhoneNumber,
+          message: currentMessage,
+        }),
+      });
+      if (res.status === 200) {
+        setShowConfirmation(true);
+      } else {
+        console.error(
+          "Failed to send email. Server responded with status:",
+          res.status
+        );
+      }
+    } catch (error) {
+      console.error("An error occurred while sending email:", error);
+    }
+  }
+
+  /**
+   * Handler closing the confirmation modal
+   */
+  const handleOnCloseConfirmation = () => {
+    setShowConfirmation(false);
+
+    setSubmittedUser(defaultSubmittedUser);
+  };
+
+  return (
+    <form
+      className="border w-[52rem] min-h-[44rem] shadow-lg bg-gray-100 rounded-md p-12 flex flex-col gap-8"
+      onSubmit={handleOnSubmit}
+    >
+      {/* Confirmation message  */}
+      {showConfirmation && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-filter backdrop-blur-sm z-10">
+          <div className="flex flex-col border bg-white/95 p-8 pb-12 rounded-md">
+            <button
+              className="text-gray-700 font-bold hover:text-gray-800 hover:bg-red-400 hover: ml-auto p-1 px-2"
+              onClick={handleOnCloseConfirmation}
+            >
+              X
+            </button>
+            <div className="flex flex-col gap-8">
+              <p className="text-gray-800 font-bold text-2xl">
+                Thank you, {submittedUser.name}.
+              </p>
+              <div>
+                <p className="text-gray-800">
+                  A confirmation email has been sent to {submittedUser.email}.
+                </p>
+                <p className="text-gray-800">
+                  We will get back to you shortly.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Header for form  */}
+      <div className="border-b w-full h-16 flex items-end justify-center mb-4">
+        <p className="text-3xl font-medium text-gray-600">
+          Get in touch with us
+        </p>
+      </div>
+
+      {/* Section for name  */}
+      <div className="flex flex-row gap-8">
+        {/* First Name  */}
+        <label className="h-16 w-full flex-1 relative flex flex-col justify-end cursor-text border rounded-md overflow-hidden shadow-md">
+          {/* Input for first name  */}
+          <input
+            type="text"
+            className="w-full h-1/2 outline-none peer bg-inherit p-2 text-gray-600"
+            value={currentFirstName}
+            onChange={handleOnFirstNameChange}
+            required
+          />
+
+          {/* Inner container for text  */}
+          <div
+            className={`absolute text-gray-950 inset-0 flex items-center p-2 ${
+              currentFirstName.length > 0 && "-translate-y-3"
+            }  pointer-events-none peer-valid:text-green-500 opacity-75 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 peer-focus:-translate-y-3`}
+          >
+            <p className="font-semibold text-sm">Last name</p>
+          </div>
+        </label>
+
+        {/* Last Name  */}
+        <label className="h-16 w-full flex-1 relative flex flex-col justify-end cursor-text border rounded-md overflow-hidden shadow-md">
+          {/* Input for last name  */}
+          <input
+            type="text"
+            className="w-full h-1/2 outline-none peer in-range:bg-gray-800 p-2 bg-inherit text-gray-600"
+            value={currentLastName}
+            onChange={handleOnLastNameChange}
+            required
+          />
+
+          {/* Inner container for text  */}
+          <div
+            className={`absolute text-gray-950 inset-0 flex items-center p-2 ${
+              currentLastName.length > 0 && "-translate-y-3"
+            }  pointer-events-none peer-valid:text-green-500 opacity-75 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 peer-focus:-translate-y-3`}
+          >
+            <p className="font-semibold text-sm">First name</p>
+          </div>
+        </label>
+      </div>
+
+      {/* Section for email  */}
+      <label className="h-16 w-full relative flex flex-col justify-end cursor-text  border rounded-md overflow-hidden shadow-md">
+        {/* Input  */}
+        <input
+          type="text"
+          className="w-full h-1/2 outline-none peer p-2 bg-inherit text-gray-600"
+          onChange={handleOnEmailChange}
+          value={currentEmail}
+          required
+        />
+
+        {/* Inner container for text  */}
+        <div
+          className={`absolute text-sm text-gray-950 inset-0 flex items-center p-2 ${
+            currentEmail.length > 0 && "-translate-y-3"
+          }  pointer-events-none peer-focus:-translate-y-3 peer-valid:text-green-500 opacity-75 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300`}
+        >
+          <p className="font-semibold text-sm">Email</p>
+        </div>
+      </label>
+
+      {/* Section for phone number  */}
+      <label className="h-16 w-full relative flex flex-col justify-end cursor-text  border rounded-md overflow-hidden shadow-md">
+        {/* Input  */}
+        <input
+          type="text"
+          className="w-full h-1/2 outline-none peer p-2 bg-inherit text-gray-600"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          onChange={handleOnPhoneNumberChange}
+          value={currentPhoneNumber}
+          required
+        />
+
+        {/* Inner container for text  */}
+        <div
+          className={`absolute text-sm text-gray-950 inset-0 flex items-center p-2 ${
+            currentPhoneNumber.length > 0 && "-translate-y-3"
+          }  pointer-events-none peer-focus:-translate-y-3 peer-valid:text-green-500 opacity-75 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300`}
+        >
+          <p className="font-semibold text-sm">Phone number</p>
+        </div>
+      </label>
+
+      {/* Section for message  */}
+      <label className="min-h-max w-full relative flex flex-col justify-start cursor-text border rounded-md overflow-hidden shadow-md">
+        {/* Main section container  */}
+        <textarea
+          className="w-full h-full mt-16 p-4 outline-none peer bg-inherit text-gray-600"
+          rows={4}
+          required
+          value={currentMessage}
+          onChange={handleOnMessageChange}
+        />
+        {/* Top section container  */}
+        <div className="w-full h-16 absolute top-0 flex items-center  border-b border-gray-200 justify-center pointer-events-none text-gray-950 opacity-75 peer-focus:opacity-100 peer-required:text-red-500 peer-valid:text-green-500 peer-valid:opacity-100 transition-all duration-300">
+          <p className="font-semibold text-sm">Message</p>
+        </div>
+      </label>
+
+      {/* Submit  */}
+      <div className="w-full h-16 flex items-center justify-center mt-auto mb-0">
+        <button
+          className="w-1/2 h-12 bg-orange-400 hover:bg-orange-500 hover:text-gray-50 active:bg-orange-400 active:text-gray-100 rounded-md shadow-xl"
+          type="submit"
+        >
+          <p className="text-md text-gray-100">Submit</p>
+        </button>
+      </div>
+    </form>
+  );
+}
