@@ -141,7 +141,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
   };
 
   return (
-    <div className="h-screen w-full bg-gray-200 mb-8 overflow-auto flex flex-col rounded-md">
+    <div className="min-h-screen w-full bg-gray-200 mb-8 overflow-hidden flex flex-col rounded-md">
       {/* Top section */}
       <div className="flex flex-row items-center justify-between h-24 w-full px-8">
         <div className="h-full flex flex-col">
