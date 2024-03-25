@@ -75,6 +75,11 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
         (order) => order.orderStatus === "COMPLETED"
       );
       setDisplayedItems(newOrders);
+    } else if (currentFilter === "IN PROGRESS") {
+      newOrders = newOrders.filter(
+        (order) => order.orderStatus === "IN PROGRESS"
+      );
+      setDisplayedItems(newOrders);
     } else {
       // Group displayed items into categories
       const groupedItems = newOrders.reduce((categorizedItems, item) => {
@@ -150,6 +155,12 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
             <FilterButton
               contents="Pending"
               filterType="PENDING"
+              currentFilter={currentFilter}
+              onFilterButtonClick={handleOnFilterButtonClick}
+            />
+            <FilterButton
+              contents="In Progress"
+              filterType="IN PROGRESS"
               currentFilter={currentFilter}
               onFilterButtonClick={handleOnFilterButtonClick}
             />
