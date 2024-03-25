@@ -357,7 +357,7 @@ export default function ContactForm() {
       {/* Submit  */}
       <div className="w-full h-16 flex items-center justify-center mt-auto mb-0">
         <button
-          className="w-1/2 h-12 bg-orange-400 hover:bg-orange-500 hover:text-gray-50 active:bg-orange-400 active:text-gray-100 rounded-md shadow-md focus:shadow-xl hover:shadow-lg transition-shadow duration-300"
+          className="w-1/2 h-12 bg-orange-400 hover:bg-orange-500 hover:text-gray-50 active:bg-orange-400 active:text-gray-100 rounded-md shadow-md focus:shadow-xl hover:shadow-lg transition-all duration-300 focus-visible:ring-2 focus-visible:ring-orange-500 focus:outline-none"
           type="submit"
         >
           <p className="text-md text-gray-100">Submit</p>
