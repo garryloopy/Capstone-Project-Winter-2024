@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 
 import { TailSpin } from "react-loader-spinner";
 
+import getFormattedDate from "../utils/getFormattedDate";
+
 /**
  * A component that displays, filters, updates, and opens orders based on the passed list array
  * @param {Array} ordersList Orders list array
@@ -34,6 +36,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
   // Each time orders list is changed then change displayed items to orders list
   useEffect(() => {
     setDisplayedItems(ordersList);
+    updateDisplayedItems();
   }, [ordersList]);
 
   /**
@@ -101,7 +104,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
   // Change displayed items when selected filter and displayed items changes
   useEffect(() => {
     updateDisplayedItems();
-  }, [currentFilter, displayedItems]);
+  }, [currentFilter]);
 
   /**
    * Handler for clicking a filter button
@@ -231,19 +234,8 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
             currentFilter !== "ALL" &&
             displayedItems.map((order) => {
               //format the date of order
-              const createdAtDate = new Date(order.createdAt);
+              const formattedDate = getFormattedDate(order.createdAt);
 
-              const options = {
-                year: "numeric",
-                month: "short",
-                day: "2-digit",
-                hour: "2-digit",
-                minute: "2-digit",
-                hour12: true,
-              };
-
-              const dateTimeFormat = new Intl.DateTimeFormat("en-US", options);
-              const formattedDate = dateTimeFormat.format(createdAtDate);
               return (
                 <IndividualOrder
                   objectId={order._id}
@@ -270,22 +262,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                 <div className="flex flex-col gap-4">
                   {categorizedItems[category].map((order) => {
                     //format the date of order
-                    const createdAtDate = new Date(order.createdAt);
-
-                    const options = {
-                      year: "numeric",
-                      month: "short",
-                      day: "2-digit",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      hour12: true,
-                    };
-
-                    const dateTimeFormat = new Intl.DateTimeFormat(
-                      "en-US",
-                      options
-                    );
-                    const formattedDate = dateTimeFormat.format(createdAtDate);
+                    const formattedDate = getFormattedDate(order.createdAt);
                     return (
                       <IndividualOrder
                         objectId={order._id}
