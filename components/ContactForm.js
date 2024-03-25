@@ -218,7 +218,7 @@ export default function ContactForm() {
       {/* Section for name  */}
       <div className="flex flex-row gap-8">
         {/* First Name  */}
-        <label className="h-16 w-full flex-1 relative flex flex-col justify-end cursor-text border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300">
+        <label className="h-16 w-full flex-1 relative flex flex-col justify-end cursor-text border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300 group">
           {/* Input for first name  */}
           <input
             type="text"
@@ -232,7 +232,7 @@ export default function ContactForm() {
           <div
             className={`absolute text-gray-950 inset-0 flex items-center p-2 ${
               currentFirstName.length > 0 && "-translate-y-3"
-            }  pointer-events-none peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 peer-focus:-translate-y-3`}
+            }  pointer-events-none peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 peer-focus:-translate-y-3 group-hover:opacity-100`}
           >
             <p className="font-semibold text-sm">First name</p>
           </div>
@@ -246,7 +246,7 @@ export default function ContactForm() {
         </label>
 
         {/* Last Name  */}
-        <label className="h-16 w-full flex-1 relative flex flex-col justify-end cursor-text border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300">
+        <label className="h-16 w-full flex-1 relative flex flex-col justify-end cursor-text border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300 group">
           {/* Input for last name  */}
           <input
             type="text"
@@ -260,7 +260,7 @@ export default function ContactForm() {
           <div
             className={`absolute text-gray-950 inset-0 flex items-center p-2 ${
               currentLastName.length > 0 && "-translate-y-3"
-            }  pointer-events-none peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 peer-focus:-translate-y-3`}
+            }  pointer-events-none peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 peer-focus:-translate-y-3 group-hover:opacity-100`}
           >
             <p className="font-semibold text-sm">Last name</p>
           </div>
@@ -275,7 +275,7 @@ export default function ContactForm() {
       </div>
 
       {/* Section for email  */}
-      <label className="h-16 w-full relative flex flex-col justify-end cursor-text  border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300">
+      <label className="h-16 w-full relative flex flex-col justify-end cursor-text  border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300 group">
         {/* Input  */}
         <input
           type="email"
@@ -289,7 +289,7 @@ export default function ContactForm() {
         <div
           className={`absolute text-sm text-gray-950 inset-0 flex items-center p-2 ${
             currentEmail.length > 0 && "-translate-y-3"
-          }  pointer-events-none peer-focus:-translate-y-3 peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300`}
+          }  pointer-events-none peer-focus:-translate-y-3 peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 group-hover:opacity-100`}
         >
           <p className="font-semibold text-sm">Email</p>
         </div>
@@ -303,7 +303,7 @@ export default function ContactForm() {
       </label>
 
       {/* Section for phone number  */}
-      <label className="h-16 w-full relative flex flex-col justify-end cursor-text  border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300">
+      <label className="h-16 w-full relative flex flex-col justify-end cursor-text  border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300 group">
         {/* Input  */}
         <input
           type="text"
@@ -318,7 +318,7 @@ export default function ContactForm() {
         <div
           className={`absolute text-sm text-gray-950 inset-0 flex items-center p-2 ${
             currentPhoneNumber.length > 0 && "-translate-y-3"
-          }  pointer-events-none peer-focus:-translate-y-3 peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300`}
+          }  pointer-events-none peer-focus:-translate-y-3 peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 group-hover:opacity-100`}
         >
           <p className="font-semibold text-sm">Phone number</p>
         </div>
@@ -332,7 +332,7 @@ export default function ContactForm() {
       </label>
 
       {/* Section for message  */}
-      <label className="min-h-max w-full relative flex flex-col justify-start cursor-text border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300">
+      <label className="min-h-max w-full relative flex flex-col justify-start cursor-text border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300 group ">
         {/* Main section container  */}
         <textarea
           className="w-full h-full mt-16 p-4 outline-none peer bg-inherit text-gray-600"
@@ -342,7 +342,7 @@ export default function ContactForm() {
           onChange={handleOnMessageChange}
         />
         {/* Top section container  */}
-        <div className="w-full h-16 absolute top-0 flex items-center  border-b border-gray-200 justify-center pointer-events-none text-gray-950 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 peer-valid:text-green-500 peer-valid:opacity-100 transition-all duration-300">
+        <div className="w-full h-16 absolute top-0 flex items-center  border-b border-gray-200 justify-center pointer-events-none text-gray-950 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 peer-valid:text-green-500 peer-valid:opacity-100 transition-all duration-300 group-hover:opacity-100">
           <p className="font-semibold text-sm">Message</p>
         </div>
 
@@ -357,7 +357,7 @@ export default function ContactForm() {
       {/* Submit  */}
       <div className="w-full h-16 flex items-center justify-center mt-auto mb-0">
         <button
-          className="w-1/2 h-12 bg-orange-400 hover:bg-orange-500 hover:text-gray-50 active:bg-orange-400 active:text-gray-100 rounded-md shadow-xl"
+          className="w-1/2 h-12 bg-orange-400 hover:bg-orange-500 hover:text-gray-50 active:bg-orange-400 active:text-gray-100 rounded-md shadow-md focus:shadow-xl hover:shadow-lg transition-shadow duration-300"
           type="submit"
         >
           <p className="text-md text-gray-100">Submit</p>
