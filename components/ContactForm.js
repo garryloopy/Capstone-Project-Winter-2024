@@ -218,7 +218,7 @@ export default function ContactForm() {
       {/* Section for name  */}
       <div className="flex flex-row gap-8">
         {/* First Name  */}
-        <label className="h-16 w-full flex-1 relative flex flex-col justify-end cursor-text border rounded-md shadow-md">
+        <label className="h-16 w-full flex-1 relative flex flex-col justify-end cursor-text border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300">
           {/* Input for first name  */}
           <input
             type="text"
@@ -246,7 +246,7 @@ export default function ContactForm() {
         </label>
 
         {/* Last Name  */}
-        <label className="h-16 w-full flex-1 relative flex flex-col justify-end cursor-text border rounded-md shadow-md">
+        <label className="h-16 w-full flex-1 relative flex flex-col justify-end cursor-text border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300">
           {/* Input for last name  */}
           <input
             type="text"
@@ -275,7 +275,7 @@ export default function ContactForm() {
       </div>
 
       {/* Section for email  */}
-      <label className="h-16 w-full relative flex flex-col justify-end cursor-text  border rounded-md shadow-md">
+      <label className="h-16 w-full relative flex flex-col justify-end cursor-text  border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300">
         {/* Input  */}
         <input
           type="email"
@@ -303,7 +303,7 @@ export default function ContactForm() {
       </label>
 
       {/* Section for phone number  */}
-      <label className="h-16 w-full relative flex flex-col justify-end cursor-text  border rounded-md shadow-md">
+      <label className="h-16 w-full relative flex flex-col justify-end cursor-text  border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300">
         {/* Input  */}
         <input
           type="text"
@@ -332,7 +332,7 @@ export default function ContactForm() {
       </label>
 
       {/* Section for message  */}
-      <label className="min-h-max w-full relative flex flex-col justify-start cursor-text border rounded-md shadow-md">
+      <label className="min-h-max w-full relative flex flex-col justify-start cursor-text border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300">
         {/* Main section container  */}
         <textarea
           className="w-full h-full mt-16 p-4 outline-none peer bg-inherit text-gray-600"
