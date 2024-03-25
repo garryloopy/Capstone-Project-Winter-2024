@@ -347,7 +347,7 @@ export default function ContactForm() {
         </div>
 
         {/* Invalid  */}
-        <div className="absolute inset-0 -inset-y-6 px-2 flex flex-col justify-end opacity-0 peer-invalid:opacity-65 transition-opacity duration-300 pointer-events-none">
+        <div className="absolute inset-0 -inset-y-5 px-2 flex flex-col justify-end opacity-0 peer-invalid:opacity-65 transition-opacity duration-300 pointer-events-none">
           <p className="text-sm font-medium text-red-500 text-center">
             Message cannot be empty.
           </p>
