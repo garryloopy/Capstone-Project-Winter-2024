@@ -264,7 +264,7 @@ export default function ContactForm() {
       <label className="h-16 w-full relative flex flex-col justify-end cursor-text  border rounded-md overflow-hidden shadow-md">
         {/* Input  */}
         <input
-          type="text"
+          type="email"
           className="w-full h-1/2 outline-none peer p-2 bg-inherit text-gray-600"
           onChange={handleOnEmailChange}
           value={currentEmail}

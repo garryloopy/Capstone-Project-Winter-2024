@@ -17,7 +17,5 @@ export default function getFormattedDate(date) {
 
   const dateTimeFormat = new Intl.DateTimeFormat("en-US", options);
   const formattedDate = dateTimeFormat.format(createdAtDate);
-  console.log(formattedDate);
-
   return formattedDate;
 }
