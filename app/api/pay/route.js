@@ -16,7 +16,8 @@ const { paymentsApi } = new Client({
 
 export async function POST(req, res) {
   try {
-    const { sourceId, clientInfo, cartProducts, totalPricePlusDelivery } = await req.json();
+    const { sourceId, clientInfo, cartProducts, totalPricePlusDelivery } =
+      await req.json();
     await connectToDB();
 
     let productPrice;
@@ -25,7 +26,10 @@ export async function POST(req, res) {
     let cardBrand;
     let lastFourDigits;
     let paymentId;
-   
+
+    // GARRY, ADD orderStatus to the Order model
+    let orderStatus = "PENDING";
+
     const { result } = await paymentsApi.createPayment({
       idempotencyKey: randomUUID(),
       sourceId: sourceId,
@@ -40,6 +44,7 @@ export async function POST(req, res) {
     cardBrand = result.payment.cardDetails.card.cardBrand;
     lastFourDigits = result.payment.cardDetails.card.last4;
 
+    // GARRY, ADD orderStatus to the Order model
     const orderItems = await Order.create({
       orderId,
       paymentId,
@@ -48,7 +53,7 @@ export async function POST(req, res) {
       lastFourDigits,
       clientInfo,
       cartProducts,
-      paid,
+      orderStatus,
     });
     return new NextResponse(JSON.stringify(result), { status: 200 });
   } catch (error) {
