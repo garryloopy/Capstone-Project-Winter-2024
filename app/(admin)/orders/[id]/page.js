@@ -12,6 +12,7 @@ import { FaAngleLeft, FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import OrderStatus from "../../components/OrderStatus";
 import Image from "next/image";
 import { TailSpin } from "react-loader-spinner";
+import Loading from "@/components/Loading";
 
 export default function OrderDetailsPage({ params }) {
   // Loader state
@@ -106,6 +107,7 @@ export default function OrderDetailsPage({ params }) {
     // Do nothing
     if (orderStatus === newStatus) {
       setIsMoreOptionsOpened(false);
+      setIsLoading(false);
       return;
     }
 
@@ -171,12 +173,7 @@ export default function OrderDetailsPage({ params }) {
 
       <div className="bg-gray-100 w-full h-full rounded-md flex flex-col">
         {/* Loader  */}
-        {isLoading && (
-          <div className="absolute inset-0 z-20 flex flex-col gap-8 items-center justify-center">
-            <TailSpin color="#fb923c" visible={isLoading} />
-            <p className="text-xl font-medium text-gray-600">Loading...</p>
-          </div>
-        )}
+        <Loading isLoading={isLoading} />
 
         {/* Top section  */}
         <div className="relative flex-none h-24 w-full px-6">

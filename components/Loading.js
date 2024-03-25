@@ -1,10 +1,14 @@
 import React from "react";
+import { TailSpin } from "react-loader-spinner";
 
-const Loading = () => {
-  return (
-    <div className="flex justify-center items-center w-full h-screen">
-      <h1 className="text-gray-300 text-2xl font-bold">Loading ...</h1>
+const Loading = ({ isLoading = true }) => {
+  return isLoading ? (
+    <div className="fixed top-0 left-0 h-full w-full z-20 flex flex-col gap-8 items-center justify-center">
+      <TailSpin color="#fb923c" visible={isLoading} />
+      <p className="text-xl font-medium text-gray-600">Loading...</p>
     </div>
+  ) : (
+    <></>
   );
 };
 

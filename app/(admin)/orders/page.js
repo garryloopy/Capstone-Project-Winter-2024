@@ -7,6 +7,8 @@ import { useSession } from "next-auth/react";
 import { redirect, usePathname } from "next/navigation";
 import { TailSpin } from "react-loader-spinner";
 
+import Loading from "@/components/Loading";
+
 import OrdersContainer from "../components/OrdersContainer";
 
 import { useEffect, useState } from "react";
@@ -98,12 +100,7 @@ const OrdersPage = () => {
       <SubHeader header2="Orders" />
 
       {/* Loader  */}
-      {isLoading && (
-        <div className="absolute inset-0 z-20 flex flex-col gap-8 items-center justify-center">
-          <TailSpin color="#fb923c" visible={isLoading} />
-          <p className="text-xl font-medium text-gray-600">Loading...</p>
-        </div>
-      )}
+      <Loading isLoading={false} />
 
       {/* CONTAINER */}
       {status !== "unathenticated" && (
