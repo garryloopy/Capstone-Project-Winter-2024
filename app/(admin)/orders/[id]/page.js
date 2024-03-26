@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 
+import getFormattedDate from "../../utils/getFormattedDate";
+
 import SubHeader from "@/components/SubHeader";
 import { useEffect, useState } from "react";
 import AdminNavbar from "@/app/(admin)/components/AdminNavbar";
@@ -18,6 +20,9 @@ export default function OrderDetailsPage({ params }) {
   // Loader state
   const [isLoading, setIsLoading] = useState(false);
 
+  // Used for displaying error message
+  const [isInvalidId, setIsInvalidId] = useState(false);
+
   // Client states
   const [clientInfo, setClientInfo] = useState();
   const [cartProducts, setCartProducts] = useState([]);
@@ -27,6 +32,7 @@ export default function OrderDetailsPage({ params }) {
   const [orderId, setOrderId] = useState();
   const [orderStatus, setOrderStatus] = useState("");
   const [objectId, setObjectId] = useState();
+  const [paymentId, setPaymentId] = useState();
 
   const [isMoreOptionsOpened, setIsMoreOptionsOpened] = useState(false);
 
@@ -45,41 +51,35 @@ export default function OrderDetailsPage({ params }) {
    * Gets the order info
    */
   const getOrderInfo = async () => {
-    if (id) {
-      const res = await fetch(`/api/getOrder?id=${id}`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
-      if (res.ok) {
-        const result = await res.json();
+    try {
+      if (id) {
+        const res = await fetch(`/api/getOrder?id=${id}`, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        });
+        if (res.ok) {
+          const result = await res.json();
 
-        //format the date of order
-        const createdAtDate = new Date(result[0]?.createdAt);
+          //format the date of order
+          const formattedDate = getFormattedDate(result[0]?.createdAt);
+          setFormattedDate(formattedDate);
 
-        const options = {
-          year: "numeric",
-          month: "short",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: true,
-        };
-
-        const dateTimeFormat = new Intl.DateTimeFormat("en-US", options);
-        const formattedDate = dateTimeFormat.format(createdAtDate);
-        setFormattedDate(formattedDate);
-
-        // Set client statuses
-        setClientInfo(result[0]?.clientInfo);
-        setCartProducts(result[0]?.cartProducts);
-        setOrderId(result[0]?.orderId);
-        setCardBrand(result[0]?.cardBrand);
-        setLastDigits(result[0]?.lastFourDigits);
-        setOrderStatus(result[0]?.orderStatus);
-        setObjectId(result[0]?._id);
-      } else {
-        console.log("Error to fetch order info");
+          // Set client statuses
+          setClientInfo(result[0]?.clientInfo);
+          setCartProducts(result[0]?.cartProducts);
+          setOrderId(result[0]?.orderId);
+          setCardBrand(result[0]?.cardBrand);
+          setLastDigits(result[0]?.lastFourDigits);
+          setOrderStatus(result[0]?.orderStatus);
+          setObjectId(result[0]?._id);
+          setPaymentId(result[0]?.paymentId);
+        } else {
+          console.log("Error to fetch order info");
+        }
       }
+    } catch (error) {
+      //Invalid payment id or something went wrong with fetching data
+      setIsInvalidId(true);
     }
   };
 
@@ -142,34 +142,37 @@ export default function OrderDetailsPage({ params }) {
     setIsMoreOptionsOpened(!isMoreOptionsOpened);
   };
 
-  /**
-   * Debugger :)
-   */
-  const debug = () => {
-    console.log("Formatted Date: ", formattedDate);
-    console.log("Client info: ", clientInfo);
-    console.log("Cart products: ", cartProducts);
-    console.log("Order ID: ", orderId);
-    console.log("Card brand: ", cardBrand);
-    console.log("Last digits: ", lastDigits);
-    console.log(clientInfo.deliveryType);
-  };
-
-  return (
-    <section className="flex flex-col items-center w-full min-h-screen px-12 py-8 overflow-auto">
-      <button
-        className="px-4 py-2 border bg-gray-50 relative group"
-        onClick={debug}
-      >
-        Debug
-        <div className="bg-gray-50 border shadow-lg absolute -inset-1 -translate-x-28 grid rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-          <p className="text-sm text-gray-700 self-center justify-self-center">
-            Used for debugging
-          </p>
-        </div>
-      </button>
+  return status !== "unauthenticated" ? (
+    <section className="flex flex-col items-center w-full min-h-screen px-12 py-8 overflow-auto relative">
       <AdminNavbar path={path} />
       <SubHeader header2="Order Details" />
+
+      {/* This is for displaying error message such as invalid id or failed id fetch */}
+      <div
+        className={`absolute -inset-0 z-10 flex items-center justify-center ${
+          isInvalidId ? "opacity-100" : "opacity-0"
+        } transition-opacity duration-300 backdrop-brightness-90`}
+      >
+        <div className="bg-gray-50 min-size-64 p-8 flex flex-col items-center justify-between border-2 rounded-md shadow-md">
+          <div className="text-center text-md text-orange-600">
+            <p>Something went wrong with fetching the information.</p>
+            <p>Please ensure that the payment ID is valid.</p>
+          </div>
+          {/* Top section  */}
+          <div className="relative flex-none h-24 w-full px-6 flex items-center justify-center">
+            <Link
+              href="/orders"
+              className="flex flex-row items-center gap-1 w-max h-full text-sm font-medium text-gray-600 hover:text-gray-950 transition-colors duration-200 group"
+            >
+              <FaAngleLeft
+                size={20}
+                className="text-orange-600 group-hover:-translate-x-2 transition-transform duration-300"
+              />
+              Back to orders
+            </Link>
+          </div>
+        </div>
+      </div>
 
       <div className="bg-gray-100 w-full h-full rounded-md flex flex-col">
         {/* Loader  */}
@@ -286,9 +289,10 @@ export default function OrderDetailsPage({ params }) {
                   </span>
                 </p>
               )}
-              {id && (
+              {paymentId && (
                 <p className="text-center  w-full font-semibold flex flex-col">
-                  Payment ID: <span className="text-md font-medium ">{id}</span>
+                  Payment ID:{" "}
+                  <span className="text-md font-medium ">{paymentId}</span>
                 </p>
               )}
             </div>
@@ -381,5 +385,7 @@ export default function OrderDetailsPage({ params }) {
         </div>
       </div>
     </section>
+  ) : (
+    <></>
   );
 }
