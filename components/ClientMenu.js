@@ -54,9 +54,12 @@ const ClientMenu = (menuList) => {
         <p className="text-sm font-sans text-center text-gray-300">
           {menuList.description}
         </p>
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        
+        {/* below is for hover transition */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity
+        bg-black bg-opacity-60">
           <button
-            className="bg-orange-400 text-white px-6 py-2 rounded"
+            className="bg-orange-400 text-white px-6 py-2 rounded button-animation"
             onClick={handleAddToCartClick}
           >
             Add to Order
