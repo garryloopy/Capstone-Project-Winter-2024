@@ -252,7 +252,7 @@ export default function ContactForm() {
 
           {/* Invalid  */}
           <div className="absolute h-1/2 w-full -bottom-8 px-2 opacity-0 peer-invalid:opacity-65 transition-opacity duration-300 pointer-events-none">
-            <p className="text-xs font-medium text-red-500">
+            <p className="text-xs font-medium text-red-500 italic">
               First name cannot be empty.
             </p>
           </div>
@@ -280,7 +280,7 @@ export default function ContactForm() {
 
           {/* Invalid  */}
           <div className="absolute h-1/2 w-full -bottom-8 px-2 opacity-0 peer-invalid:opacity-65 transition-opacity duration-300 pointer-events-none">
-            <p className="text-xs font-medium text-red-500">
+            <p className="text-xs font-medium text-red-500 italic">
               Last name cannot be empty.
             </p>
           </div>
@@ -304,12 +304,12 @@ export default function ContactForm() {
             currentEmail.length > 0 && "-translate-y-3"
           }  pointer-events-none peer-focus:-translate-y-3 peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 group-hover:opacity-100`}
         >
-          <p className="font-semibold text-sm">Email</p>
+          <p className="font-semibold text-sm ">Email</p>
         </div>
 
         {/* Invalid  */}
         <div className="absolute h-1/2 w-full -bottom-8 px-2 opacity-0 peer-invalid:opacity-65 transition-opacity duration-300 pointer-events-none">
-          <p className="text-xs font-medium text-red-500">
+          <p className="text-xs font-medium text-red-500 italic">
             Please enter a valid email address.
           </p>
         </div>
@@ -338,7 +338,7 @@ export default function ContactForm() {
 
         {/* Invalid  */}
         <div className="absolute h-1/2 w-full -bottom-8 px-2 opacity-0 peer-invalid:opacity-65 transition-opacity duration-300 pointer-events-none">
-          <p className="text-xs font-medium text-red-500">
+          <p className="text-xs font-medium text-red-500 italic">
             Please enter a valid phone number. 123-456-7890.
           </p>
         </div>
@@ -361,7 +361,7 @@ export default function ContactForm() {
 
         {/* Invalid  */}
         <div className="absolute inset-0 -inset-y-5 px-2 flex flex-col justify-end opacity-0 peer-invalid:opacity-65 transition-opacity duration-300 pointer-events-none">
-          <p className="text-xs font-medium text-red-500 text-center">
+          <p className="text-xs font-medium text-red-500 text-center italic">
             Message cannot be empty.
           </p>
         </div>
