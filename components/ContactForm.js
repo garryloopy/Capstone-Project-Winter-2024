@@ -218,7 +218,7 @@ export default function ContactForm() {
       {/* Section for name  */}
       <div className="flex flex-row gap-8">
         {/* First Name  */}
-        <label className="h-14  text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group">
+        <label className="h-14  text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group">
           {/* Input for first name  */}
           <input
             type="text"
@@ -332,10 +332,10 @@ export default function ContactForm() {
       </label>
 
       {/* Section for message  */}
-      <label className="min-h-max w-full relative flex flex-col justify-start cursor-text border rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group ">
+      <label className="min-h-max w-full relative flex flex-col justify-start cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group ">
         {/* Main section container  */}
         <textarea
-          className="w-full h-full mt-16 p-4 outline-none peer bg-inherit text-gray-600"
+          className="w-full h-full mt-16 p-4 outline-none peer text-sm bg-inherit text-gray-600"
           rows={4}
           required
           value={currentMessage}
