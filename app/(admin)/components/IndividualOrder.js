@@ -96,7 +96,7 @@ const IndividualOrder = ({
   };
 
   return (
-    <div className="w-full min-h-16 flex flex-row  text-center h-20 border rounded-md bg-gray-100 shadow-md relative hover:bg-gray-200 hover:shadow-lg active:bg-gray-200/80 transition-all duration-100">
+    <div className="w-full min-h-16 flex flex-row  text-center h-20 border rounded-md bg-gray-50 shadow-md relative hover:bg-gray-100 hover:shadow-lg active:bg-gray-100/80 transition-all duration-100">
       {/* More Options */}
       <div
         className="absolute inset-0 flex items-center justify-end px-4"

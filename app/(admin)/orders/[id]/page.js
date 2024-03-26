@@ -150,7 +150,7 @@ export default function OrderDetailsPage({ params }) {
       {/* This is for displaying error message such as invalid id or failed id fetch */}
       <div
         className={`absolute -inset-0 z-10 flex items-center justify-center ${
-          isInvalidId ? "opacity-100" : "opacity-0"
+          isInvalidId ? "opacity-100" : "opacity-0 invisible"
         } transition-opacity duration-300 backdrop-brightness-90`}
       >
         <div className="bg-gray-50 min-size-64 p-8 flex flex-col items-center justify-between border-2 rounded-md shadow-md">
@@ -229,7 +229,9 @@ export default function OrderDetailsPage({ params }) {
 
                     <div
                       className={`min-w-56 min-h-12 h-max bg-gray-50 border shadow-lg absolute inset-y-11 right-0 divide-y rounded-md overflow-hidden  ${
-                        isMoreOptionsOpened ? "opacity-100" : "opacity-0"
+                        isMoreOptionsOpened
+                          ? "opacity-100"
+                          : "opacity-0 invisible"
                       } transition-opacity duration-100`}
                     >
                       <button

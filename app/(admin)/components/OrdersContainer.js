@@ -144,7 +144,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gray-200 mb-8 overflow-hidden flex flex-col rounded-md">
+    <div className="min-h-screen w-full bg-gray-100/90 mb-8 overflow-hidden flex flex-col rounded-md">
       {/* Top section */}
       <div className="flex flex-row items-center justify-between h-24 w-full px-8">
         <div className="h-full flex flex-col">
@@ -201,7 +201,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
       </div>
 
       {/* Main section */}
-      <div className="bg-gray-50 w-full pb-64 overflow h-full relative">
+      <div className="w-full pb-64 overflow h-full relative">
         {/* Loading container  */}
         {isLoading && (
           <div className="absolute inset-0 z-20 flex flex-col gap-8 items-center justify-center">
@@ -211,7 +211,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
         )}
 
         {/* Top section  */}
-        <div className="flex flex-row w-full text-center h-16 items-center divide-x-2 divide-gray-400 px-4 sticky top-0 bg-gray-50 z-10 shadow-sm">
+        <div className="flex flex-row w-full text-center h-16 items-center divide-x-2 divide-gray-400 px-4 sticky top-0 bg-gray-100 z-10 shadow-sm">
           <p className="w-2/6 text-gray-950 text-lg">ID</p>
           <p className="w-1/6 text-gray-950 text-lg">Email</p>
           <p className="w-1/6 text-gray-950 text-lg">Date</p>
