@@ -6,7 +6,7 @@
 
 body {
   /*background-image: url("/images/background.jpg");*/
-  background-color: darkslategray;
+  background-color: lightgray;
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: 25%;
@@ -31,6 +31,18 @@ html {
   width: 100vw;
   overflow-x: hidden;
   letter-spacing: 1px;
+}
+
+/* for logo animation - check Function and handler in About.js */
+.logo-animation:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+/* for menu item animation add to order button */
+.button-animation:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
 }
 
 /* font should change, */
@@ -102,7 +114,6 @@ select {
 .gallery {
   font-display: flex;
   flex-direction: row;
-  /* background: #0C0C0C; */
   padding: 4rem 0 4rem 6rem;
 }
 
@@ -112,12 +123,8 @@ select {
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  min-width: 500px;
-  padding-right: 2rem;
-}
-
-.gallery-content button {
-  margin-top: 1rem;
+  min-width: 450px;
+  padding: 0 1rem;
 }
 
 .gallery-images {
@@ -135,8 +142,7 @@ select {
   width: max-content;
   overflow-x: scroll;
 
-  /* -ms-overflow-style: none; */
-  /* scrollbar-width: none; */
+  
 }
 
 .gallery-images-container::-webkit-scrollbar {
@@ -147,15 +153,16 @@ select {
   position: relative;
   min-width: 300px;
   height: 447px;
-  margin-right: 2rem;
+  margin-right: 1rem;
 }
-.gallery-image-icon {
+.gallery-desc {
   position: absolute;
   color: #fff;
   font-size: 2rem;
   opacity: 0.5;
   transition: 0.5s ease;
-  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
 }
 
 .gallery-images-card img {
@@ -248,3 +255,6 @@ select {
     height: 320px;
   }
 }
+
+
+

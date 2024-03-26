@@ -41,6 +41,7 @@ export async function POST(req, res) {
     cardBrand = result.payment.cardDetails.card.cardBrand;
     lastFourDigits = result.payment.cardDetails.card.last4;
 
+    // GARRY, ADD orderStatus to the Order model
     const orderItems = await Order.create({
       orderId,
       paymentId,
@@ -49,7 +50,7 @@ export async function POST(req, res) {
       lastFourDigits,
       clientInfo,
       cartProducts,
-      paid,
+      orderStatus,
     });
     return new NextResponse(JSON.stringify(result), { status: 200 });
   } catch (error) {

@@ -123,7 +123,11 @@ export default function CartPage() {
 
   //calculate the distance between the business and client
   useEffect(() => {
-    if (clientInfo.distance && clientInfo.deliveryType === "delivery") {
+    if (
+      clientInfo.distance &&
+      clientInfo.deliveryType === "delivery" &&
+      clientInfo.address
+    ) {
       if (clientInfo.distance >= 10) {
         setDeliveryAmount(10);
       } else if (clientInfo.distance >= 5) {
@@ -134,7 +138,12 @@ export default function CartPage() {
     } else {
       setDeliveryAmount(0);
     }
-  }, [clientInfo.deliveryType, deliveryAmount, clientInfo.distance]);
+  }, [
+    clientInfo.deliveryType,
+    deliveryAmount,
+    clientInfo.distance,
+    clientInfo.address,
+  ]);
 
   //calculate the total price with delivery Amount
   const totalPricePlusDelivery = totalPrice + deliveryAmount;
@@ -147,7 +156,7 @@ export default function CartPage() {
         <section className="p-[2rem] flex flex-col justify-center items-center z-50">
           <SubHeader header2="Cart" />
           {cartProducts?.length === 0 ? (
-            <div className="flex justify-center text-lg h-screen">
+            <div className="flex justify-center text-lg h-screen text-white">
               {" "}
               No products in shopping cart
             </div>
