@@ -27,9 +27,6 @@ export async function POST(req, res) {
     let lastFourDigits;
     let paymentId;
 
-    // GARRY, ADD orderStatus to the Order model
-    let orderStatus = "PENDING";
-
     const { result } = await paymentsApi.createPayment({
       idempotencyKey: randomUUID(),
       sourceId: sourceId,

@@ -22,7 +22,7 @@
     "joi": "^17.12.0",
     "mongodb": "^6.3.0",
     "mongoose": "^8.1.1",
-    "next": "14.1.0",
+    "next": "^14.1.4",
     "next-auth": "^4.24.5",
     "nodemailer": "^6.9.11",
     "react": "^18.2.0",
@@ -31,8 +31,8 @@
     "react-icons": "^5.0.1",
     "react-loader-spinner": "^6.1.6",
     "react-square-web-payments-sdk": "^3.2.1",
-    "react-sweetalert2": "^0.6.0",
-    "square": "^10.0.0",
+    "react-sweetalert2": "^0.5.2",
+    "square": "^25.1.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

@@ -11,10 +11,17 @@ import { useLoadingState } from "@/components/useLoadingState";
 import { useContext, useEffect, useState } from "react";
 import CartMenuList from "@/components/CartMenuList";
 import CartClientInfo from "@/components/CartClientInfo";
-import { CreditCard, PaymentForm } from "react-square-web-payments-sdk";
+import {
+  ApplePay,
+  GooglePay,
+  CreditCard,
+  PaymentForm,
+} from "react-square-web-payments-sdk";
 import toast, { Toaster } from "react-hot-toast";
-
-import GooglePayButton from "@/components/GooglePayButton";
+import {
+  buildPaymentRequest,
+  initializeApplePay,
+} from "@/components/ApplePayButton";
 
 /**
  * This is a cart page
@@ -222,6 +229,14 @@ export default function CartPage() {
                       );
                     }
                   }}
+                  createPaymentRequest={() => ({
+                    countryCode: "CA",
+                    currencyCode: "CAD",
+                    total: {
+                      amount: "1.0",
+                      label: "Total",
+                    },
+                  })}
                 >
                   <CartClientInfo
                     clientInfo={clientInfo}
@@ -230,9 +245,9 @@ export default function CartPage() {
                     setMessage={setMessage}
                   />
 
-                  <GooglePayButton />
-
                   <div>
+                    <ApplePay id="apple-pay-button" />
+                    <GooglePay />
                     <CreditCard
                       includeInputLabels
                       focus="cardNumber"
