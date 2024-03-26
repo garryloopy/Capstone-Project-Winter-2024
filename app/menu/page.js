@@ -77,9 +77,9 @@ function Menu() {
           <form className="md:max-w-[50%] w-full flex my-[2rem] justify-center">
             <label className="relative w-full flex">
               <input
-                className=" w-full min-h-[50px] text-[20px] bg-orange-100 border-2 border-orange-500 px-[1rem] rounded-md tracking-wider"
+                className=" w-full min-h-[50px] text-[20px] bg-white border-2 border-orange-500 px-[1rem] rounded-md tracking-wider"
                 type="text"
-                placeholder="search"
+                placeholder="Search"
                 value={search}
                 onChange={handleSearchChange}
               />
