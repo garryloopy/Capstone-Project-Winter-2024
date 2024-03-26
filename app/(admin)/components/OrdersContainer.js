@@ -144,9 +144,9 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gray-100/90 mb-8 overflow-hidden flex flex-col rounded-md">
+    <div className="min-h-screen w-full bg-gray-100/90 mb-8 flex flex-col overflow-hidden rounded-md shadow-md">
       {/* Top section */}
-      <div className="flex flex-row items-center justify-between h-24 w-full px-8">
+      <div className="flex flex-row items-center justify-between h-24 w-full px-8 bg-gray-100/75">
         <div className="h-full flex flex-col">
           <div className="h-full flex flex-row items-center gap-6 ">
             <FilterButton
@@ -182,18 +182,28 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
           </div>
         </div>
 
+        {/* Search  */}
         <form className="h-full py-6" onSubmit={handleOnSearch}>
           <div className="h-full relative">
             <input
               type="text"
-              placeholder="Search order ID"
-              className="px-4 py-2 h-full rounded-md border border-gray-500 w-96"
+              className="px-4 py-3 h-full rounded-md border-2 focus:border-0 border-gray-400 w-96 peer bg-gray-100/75 shadow-md outline-none focus:ring-2 focus:ring-orange-500 transition-shadow duration-75 text-md text-gray-700"
               onChange={handleOnSearchChange}
             />
-            <button type="submit">
+            <div
+              className={`absolute inset-0 flex flex-row justify-between px-2 items-center pointer-events-none peer-focus:-translate-y-6 peer-focus:text-orange-600 text-gray-800 peer-focus:opacity-100 ${
+                currentSearchValue.length > 0
+                  ? "-translate-y-6 opacity-100 text-orange-600"
+                  : "opacity-50"
+              } transition-all duration-300 ease-in-out`}
+            >
+              <p className="bg-gray-100 px-2">Search order id</p>
+            </div>
+
+            <button type="submit" className="text-gray-500">
               <FaMagnifyingGlass
                 size={20}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 hover"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 hover "
               />
             </button>
           </div>
@@ -211,20 +221,21 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
         )}
 
         {/* Top section  */}
-        <div className="flex flex-row w-full text-center h-16 items-center divide-x-2 divide-gray-400 px-4 sticky top-0 bg-gray-100 z-10 shadow-sm">
-          <p className="w-2/6 text-gray-950 text-lg">ID</p>
-          <p className="w-1/6 text-gray-950 text-lg">Email</p>
-          <p className="w-1/6 text-gray-950 text-lg">Date</p>
-          <p className="w-1/6 text-gray-950 text-lg">Status</p>
-          <p className="w-1/6 text-gray-950 text-lg">Items</p>
+        <div className="flex flex-row w-full text-center h-16 items-center divide-x-2 px-6 divide-gray-400 bg-gray-100/90 shadow-md text-gray-600 font-semibold text-lg">
+          <p className="w-2/6">ID</p>
+          <p className="w-1/6">Email</p>
+          <p className="w-1/6">Date</p>
+          <p className="w-1/6">Status</p>
+          <p className="w-1/6">Items</p>
         </div>
 
         {/* Orders Container  */}
-        <div className="w-full h-full px-6 py-8 flex flex-col gap-4 relative">
+        <div className="w-full h-full px-6 py-8 flex flex-col gap-8 relative">
           {displayedItems && (
-            <p className="pb-8 text-lg text-gray-500 text-center">
+            <p className="pb-8 text-sm font-semibold text-gray-500 text-center">
               {displayedItems.length} item
-              {displayedItems.length > 1 ? "s" : ""} found in {currentFilter}
+              {displayedItems.length > 1 ? "s" : ""} found in{" "}
+              <span className="text-orange-400">{currentFilter}</span>
             </p>
           )}
 
@@ -258,7 +269,9 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
             currentFilter === "ALL" &&
             Object.keys(categorizedItems).map((category) => (
               <div key={category} className="flex flex-col gap-4 mb-12 pb-8">
-                <p className="text-lg text-center text-gray-800">{category}</p>
+                <p className="text-lg font-semibold text-center text-gray-600 border-b-2 border-gray-300 pb-2">
+                  {category}
+                </p>
                 <div className="flex flex-col gap-4">
                   {categorizedItems[category].map((order) => {
                     //format the date of order

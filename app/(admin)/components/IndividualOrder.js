@@ -158,22 +158,22 @@ const IndividualOrder = ({
         )}
       </div>
 
-      <div className="w-2/6 h-full flex items-center justify-center">
-        <p className="text-wrap truncate text-md text-gray-800">{orderId}</p>
-      </div>
-      <div className="w-1/6 h-full flex items-center justify-center">
-        <p className="text-wrap truncate  text-md text-gray-800">{orderName}</p>
-      </div>
-      <div className="w-1/6 h-full flex items-center justify-center">
-        <p className="text-wrap truncate  text-md text-gray-800">{orderDate}</p>
-      </div>
-      <div className="w-1/6 h-full flex items-center justify-center">
-        <OrderStatus orderStatus={currentStatus} />
-      </div>
-      <div className="w-1/6 h-full flex items-center justify-center">
-        <p className="text-wrap truncate  text-md text-gray-800">
-          {orderAmount}
-        </p>
+      <div className="flex flex-row items-center h-full w-full divide-x-2 py-6 divide-gray-400 text-wrap truncate text-md font-semibold text-gray-600/90">
+        <div className="w-2/6 h-full flex items-center justify-center">
+          <p>{orderId}</p>
+        </div>
+        <div className="w-1/6 h-full flex items-center justify-center">
+          <p>{orderName}</p>
+        </div>
+        <div className="w-1/6 h-full flex items-center justify-center">
+          <p>{orderDate}</p>
+        </div>
+        <div className="w-1/6 h-full flex items-center justify-center">
+          <OrderStatus orderStatus={currentStatus} />
+        </div>
+        <div className="w-1/6 h-full flex items-center justify-center">
+          <p>{orderAmount}</p>
+        </div>
       </div>
     </div>
   );
