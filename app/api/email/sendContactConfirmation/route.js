@@ -89,8 +89,8 @@ export async function POST(req) {
     `,
     };
 
-    await transporter.sendMail(adminMailOptions);
-    await transporter.sendMail(customerMailOptions);
+    transporter.sendMail(adminMailOptions);
+    transporter.sendMail(customerMailOptions);
     return NextResponse.json(
       { message: "Email sent successfully" },
       { status: 200 }
