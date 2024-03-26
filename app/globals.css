@@ -6,7 +6,7 @@
 
 body {
   /*background-image: url("/images/background.jpg");*/
-  background-color: darkslategray;
+  background-color: lightgray;
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: 25%;
@@ -35,7 +35,7 @@ html {
 
 /* for logo animation - check Function and handler in About.js */
 .logo-animation:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
   transition: transform 0.3s ease;
 }
 
