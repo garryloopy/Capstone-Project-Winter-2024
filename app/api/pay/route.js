@@ -16,8 +16,7 @@ const { paymentsApi } = new Client({
 
 export async function POST(req, res) {
   try {
-    const { sourceId, clientInfo, cartProducts, totalPricePlusDelivery } =
-      await req.json();
+    const { sourceId, clientInfo, cartProducts, totalPricePlusDelivery } = await req.json();
     await connectToDB();
 
     let productPrice;
@@ -26,7 +25,7 @@ export async function POST(req, res) {
     let cardBrand;
     let lastFourDigits;
     let paymentId;
-
+   
     const { result } = await paymentsApi.createPayment({
       idempotencyKey: randomUUID(),
       sourceId: sourceId,
