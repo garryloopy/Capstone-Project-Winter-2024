@@ -218,7 +218,7 @@ export default function ContactForm() {
       {/* Section for name  */}
       <div className="flex flex-row gap-8">
         {/* First Name  */}
-        <label className="h-16 w-full flex-1 relative flex flex-col justify-end cursor-text border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300 group">
+        <label className="h-14  text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group">
           {/* Input for first name  */}
           <input
             type="text"
@@ -239,14 +239,14 @@ export default function ContactForm() {
 
           {/* Invalid  */}
           <div className="absolute h-1/2 w-full -bottom-8 px-2 opacity-0 peer-invalid:opacity-65 transition-opacity duration-300">
-            <p className="text-sm font-medium text-red-500">
+            <p className="text-xs font-medium text-red-500">
               First name cannot be empty.
             </p>
           </div>
         </label>
 
         {/* Last Name  */}
-        <label className="h-16 w-full flex-1 relative flex flex-col justify-end cursor-text border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300 group">
+        <label className="h-14 text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group">
           {/* Input for last name  */}
           <input
             type="text"
@@ -267,7 +267,7 @@ export default function ContactForm() {
 
           {/* Invalid  */}
           <div className="absolute h-1/2 w-full -bottom-8 px-2 opacity-0 peer-invalid:opacity-65 transition-opacity duration-300 pointer-events-none">
-            <p className="text-sm font-medium text-red-500">
+            <p className="text-xs font-medium text-red-500">
               Last name cannot be empty.
             </p>
           </div>
@@ -275,11 +275,11 @@ export default function ContactForm() {
       </div>
 
       {/* Section for email  */}
-      <label className="h-16 w-full relative flex flex-col justify-end cursor-text  border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300 group">
+      <label className="h-14 w-full relative flex flex-col justify-end cursor-text  border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group">
         {/* Input  */}
         <input
           type="email"
-          className="w-full h-1/2 outline-none peer p-2 bg-inherit text-gray-600"
+          className="w-full h-1/2 outline-none peer p-2 bg-inherit text-sm text-gray-600"
           onChange={handleOnEmailChange}
           value={currentEmail}
           required
@@ -296,18 +296,18 @@ export default function ContactForm() {
 
         {/* Invalid  */}
         <div className="absolute h-1/2 w-full -bottom-8 px-2 opacity-0 peer-invalid:opacity-65 transition-opacity duration-300 pointer-events-none">
-          <p className="text-sm font-medium text-red-500">
+          <p className="text-xs font-medium text-red-500">
             Please enter a valid email address.
           </p>
         </div>
       </label>
 
       {/* Section for phone number  */}
-      <label className="h-16 w-full relative flex flex-col justify-end cursor-text  border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300 group">
+      <label className="h-14 w-full relative flex flex-col justify-end cursor-text  border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group">
         {/* Input  */}
         <input
           type="text"
-          className="w-full h-1/2 outline-none peer p-2 bg-inherit text-gray-600"
+          className="w-full h-1/2 outline-none peer p-2 bg-inherit text-sm text-gray-600"
           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           onChange={handleOnPhoneNumberChange}
           value={currentPhoneNumber}
@@ -325,14 +325,14 @@ export default function ContactForm() {
 
         {/* Invalid  */}
         <div className="absolute h-1/2 w-full -bottom-8 px-2 opacity-0 peer-invalid:opacity-65 transition-opacity duration-300 pointer-events-none">
-          <p className="text-sm font-medium text-red-500">
-            Please enter a valid email phone number. 123-456-7890.
+          <p className="text-xs font-medium text-red-500">
+            Please enter a valid phone number. 123-456-7890.
           </p>
         </div>
       </label>
 
       {/* Section for message  */}
-      <label className="min-h-max w-full relative flex flex-col justify-start cursor-text border rounded-md shadow-md focus-within:shadow-lg transition-shadow duration-300 group ">
+      <label className="min-h-max w-full relative flex flex-col justify-start cursor-text border rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group ">
         {/* Main section container  */}
         <textarea
           className="w-full h-full mt-16 p-4 outline-none peer bg-inherit text-gray-600"
@@ -348,7 +348,7 @@ export default function ContactForm() {
 
         {/* Invalid  */}
         <div className="absolute inset-0 -inset-y-5 px-2 flex flex-col justify-end opacity-0 peer-invalid:opacity-65 transition-opacity duration-300 pointer-events-none">
-          <p className="text-sm font-medium text-red-500 text-center">
+          <p className="text-xs font-medium text-red-500 text-center">
             Message cannot be empty.
           </p>
         </div>
