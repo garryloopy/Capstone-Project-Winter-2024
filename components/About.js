@@ -26,7 +26,7 @@ const About = () => {
                 {" "}
                 {/* add link to social media */}
                 <Image
-                  src="/images/onlyfans.png"
+                  src="/images/facebook-logo2.png"
                   alt="other-sc-logo"
                   width={34}
                   height={34}
@@ -44,19 +44,19 @@ const About = () => {
           </div>
         </div>
         <div className="w-full mt-[5rem]">
-          <p className="">--About Us will be displayed here--</p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+          <p className="">Our journey began with our newborn, leading me to discover solace 
+          and joy in the kitchen during maternity leave amidst the pandemic. What started as 
+          a quest to beat boredom evolved into a passion for creating homemade delicacies. 
+          Experimenting with recipes became my creative outlet, inspired by the little one 
+          who brought newfound purpose into our lives. Encouraged by positive feedback, 
+          Miggy’s Munchies was born—a commitment to crafting delicious, heartwarming treats 
+          reflecting our family's journey. Each recipe tells a story of quality, authenticity, 
+          and innovation. Join us for a flavorful adventure, where every bite embodies love, 
+          passion, and creativity.
           </p>
-          <div className="flex flex-col items-left mt-4">
+          <div className="flex flex-col items-left mt-10">
             <p>Hours of Operation:</p>
-            <ul>
+            <ul className="font-bold">
               <li>Saturday - Sunday: 12:00pm - 8:00pm</li>
               <li>Address: 79 Castleridge Close NE, Calgary, AB, Canada</li>
             </ul>
