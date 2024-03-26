@@ -257,7 +257,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
             ordersList &&
             currentFilter === "ALL" &&
             Object.keys(categorizedItems).map((category) => (
-              <div key={category} className="flex flex-col gap-4 mb-12">
+              <div key={category} className="flex flex-col gap-4 mb-12 pb-8">
                 <p className="text-lg text-center text-gray-800">{category}</p>
                 <div className="flex flex-col gap-4">
                   {categorizedItems[category].map((order) => {

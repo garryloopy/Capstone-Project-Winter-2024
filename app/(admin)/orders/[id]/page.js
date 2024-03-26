@@ -179,9 +179,12 @@ export default function OrderDetailsPage({ params }) {
         <div className="relative flex-none h-24 w-full px-6">
           <Link
             href="/orders"
-            className="flex flex-row items-center gap-1 w-max h-full text-xl font-medium text-gray-600 hover:text-gray-950 transition-colors duration-200"
+            className="flex flex-row items-center gap-1 w-max h-full text-xl font-medium text-gray-600 hover:text-gray-950 transition-colors duration-200 group"
           >
-            <FaAngleLeft size={28} className="text-orange-600" />
+            <FaAngleLeft
+              size={28}
+              className="text-orange-600 group-hover:-translate-x-3 transition-transform duration-300"
+            />
             Back to orders
           </Link>
         </div>
@@ -197,46 +200,60 @@ export default function OrderDetailsPage({ params }) {
                   Order Status:
                 </p>
 
-                <div className="relative">
+                {/* Order Status  */}
+                <div
+                  className={`relative ${
+                    isMoreOptionsOpened ? "opacity-100" : "opacity-65"
+                  } hover:opacity-100 transition-opacity duration-300`}
+                >
                   <OrderStatus orderStatus={orderStatus} />
+
                   <div
                     className="absolute inset-0 flex items-center justify-end p-2 cursor-pointer"
                     onClick={handleOnMoreOptionsButtonClick}
                   >
-                    {isMoreOptionsOpened ? (
+                    <FaAngleUp
+                      size={16}
+                      className={`${
+                        isMoreOptionsOpened ? "rotate-0" : "rotate-180"
+                      } transition-all duration-200`}
+                    />
+                    {/* {isMoreOptionsOpened ? (
                       <FaAngleDown size={16} />
                     ) : (
                       <FaAngleUp size={16} />
-                    )}
+                    )} */}
 
-                    {isMoreOptionsOpened && (
-                      <div className="min-w-56 min-h-12 h-max bg-gray-50 border shadow-lg absolute inset-y-11 right-0 divide-y rounded-md overflow-hidden">
-                        <button
-                          className="px-6 py-4 w-full hover:bg-gray-100 "
-                          onClick={() => handleOnStatusChange("COMPLETED")}
-                        >
-                          Mark as completed
-                        </button>
-                        <button
-                          className="px-6 py-4 w-full hover:bg-gray-100 "
-                          onClick={() => handleOnStatusChange("IN PROGRESS")}
-                        >
-                          Mark as in progress
-                        </button>
-                        <button
-                          className="px-6 py-4 w-full hover:bg-gray-100 "
-                          onClick={() => handleOnStatusChange("PENDING")}
-                        >
-                          Mark as pending
-                        </button>
-                        <button
-                          className="px-6 py-4 w-full hover:bg-gray-100 "
-                          onClick={() => handleOnStatusChange("CANCELLED")}
-                        >
-                          Mark as cancelled
-                        </button>
-                      </div>
-                    )}
+                    <div
+                      className={`min-w-56 min-h-12 h-max bg-gray-50 border shadow-lg absolute inset-y-11 right-0 divide-y rounded-md overflow-hidden  ${
+                        isMoreOptionsOpened ? "opacity-100" : "opacity-0"
+                      } transition-opacity duration-100`}
+                    >
+                      <button
+                        className="px-6 py-4 w-full hover:bg-gray-100 "
+                        onClick={() => handleOnStatusChange("COMPLETED")}
+                      >
+                        Mark as completed
+                      </button>
+                      <button
+                        className="px-6 py-4 w-full hover:bg-gray-100 "
+                        onClick={() => handleOnStatusChange("IN PROGRESS")}
+                      >
+                        Mark as in progress
+                      </button>
+                      <button
+                        className="px-6 py-4 w-full hover:bg-gray-100 "
+                        onClick={() => handleOnStatusChange("PENDING")}
+                      >
+                        Mark as pending
+                      </button>
+                      <button
+                        className="px-6 py-4 w-full hover:bg-gray-100 "
+                        onClick={() => handleOnStatusChange("CANCELLED")}
+                      >
+                        Mark as cancelled
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
