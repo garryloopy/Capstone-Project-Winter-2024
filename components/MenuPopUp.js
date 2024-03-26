@@ -130,6 +130,7 @@ const MenuPopUp = ({
             <div className="py-2">
               <label className="text-center m-2 block">Other</label>
               <textarea
+                id="specialInstructions"
                 name="specialInstructions"
                 placeholder="Special Instructions (e.g. Add more sauce)"
                 rows="3"

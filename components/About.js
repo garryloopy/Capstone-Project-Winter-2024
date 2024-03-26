@@ -11,7 +11,7 @@ const About = () => {
     // can be any url so long as it's a valid URL
     const googleMapsUrl = "https://www.google.com/maps/place/79+Castleridge+Close+NE,+Calgary,+AB,+Canada";
     window.open(googleMapsUrl, "_blank", "noopener,noreferrer,width=800,height=600");
-    // added noopener and noreferrer to the window.open for security measures, just google it lol
+    // added noopener and noreferrer to the window.open for security measures, just googled it lol
   };
 
   return (
