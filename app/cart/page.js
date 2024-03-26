@@ -11,7 +11,11 @@ import { useLoadingState } from "@/components/useLoadingState";
 import { useContext, useEffect, useState } from "react";
 import CartMenuList from "@/components/CartMenuList";
 import CartClientInfo from "@/components/CartClientInfo";
-import { CreditCard, PaymentForm } from "react-square-web-payments-sdk";
+import {
+  GooglePay,
+  CreditCard,
+  PaymentForm,
+} from "react-square-web-payments-sdk";
 import toast, { Toaster } from "react-hot-toast";
 
 /**
