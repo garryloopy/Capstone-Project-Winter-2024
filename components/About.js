@@ -1,9 +1,19 @@
-import React from 'react'
-import Link from "next/link"
-import Image from "next/image"
+import React from 'react';
+import Link from "next/link";
+import Image from "next/image";
 import SubHeader from './SubHeader';
 
 const About = () => {
+  // we can use google maps' static API to show just the map image 
+  // instead of opening a new window to Google Maps
+  
+  const openGoogleMaps = () => {
+    // can be any url so long as it's a valid URL
+    const googleMapsUrl = "https://www.google.com/maps/place/79+Castleridge+Close+NE,+Calgary,+AB,+Canada";
+    window.open(googleMapsUrl, "_blank", "noopener,noreferrer,width=800,height=600");
+    // added noopener and noreferrer to the window.open for security measures, just google it lol
+  };
+
   return (
     <>
     <SubHeader header2="About Us"/>
@@ -22,22 +32,24 @@ const About = () => {
             <p className="mt-[2rem] mb-3 text-lg">Follow us on:</p>
 
             <div className="flex gap-4 items-center">
-              <Link href="">
-                {" "}
-                {/* add link to social media */}
-                <Image
-                  src="/images/facebook-logo2.png"
-                  alt="other-sc-logo"
-                  width={34}
-                  height={34}
-                />
-              </Link>
+              {/* adding more comments so I don't forget what I did here
+              add OnClick Handler to the logo */}
+              <Image
+                src="/images/facebook-logo2.png"
+                alt="other-logo"
+                width={34}
+                height={34}
+                onClick={openGoogleMaps}
+                style={{ cursor: "pointer" }}
+                className="logo-animation"
+              />
               <Link href="https://www.instagram.com/miggysmunchies/">
                 <Image
                   src="/images/instagram-logo.png"
-                  alt="facebook-logo"
+                  alt="instagram-logo"
                   width={40}
                   height={40}
+                  className="logo-animation"
                 />
               </Link>
             </div>
@@ -67,4 +79,4 @@ const About = () => {
   );
 }
 
-export default About
+export default About;
