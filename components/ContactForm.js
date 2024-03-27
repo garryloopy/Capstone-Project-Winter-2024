@@ -121,7 +121,7 @@ export default function ContactForm() {
 
     //Show confirmation
     setSubmittedUser({
-      name: currentFirstName,
+      name: currentFirstName.trim(),
       email: currentEmail,
       phoneNumber: currentPhoneNumber,
       message: currentMessage,
@@ -158,7 +158,7 @@ export default function ContactForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: `${currentFirstName} ${currentLastName}`,
+          name: `${currentFirstName.trim()} ${currentLastName.trim()}`,
           email: currentEmail,
           phoneNumber: currentPhoneNumber,
           message: currentMessage,
