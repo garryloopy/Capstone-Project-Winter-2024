@@ -5,7 +5,7 @@ const MenuScroll = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     const toggleVisibility = () => {
-        // threshold can eb adjusted
+        // threshold can be adjusted
         if (window.scrollY > 420) {
             setIsVisible(true);
         } else {

@@ -45,6 +45,22 @@ html {
   transition: transform 0.2s ease;
 }
 
+/* for the image slideshow in the home page */
+.each-slide-effect > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  height: 350px;
+}
+
+.each-slide-effect span {
+  padding: 20px;
+  font-size: 20px;
+  background: #efefef;
+  text-align: center;
+}
+
 /* font should change, */
 p {
   font-family: sans-serif;
