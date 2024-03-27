@@ -7,7 +7,7 @@ const About = () => {
   return (
     <>
     <SubHeader header2="About Us"/>
-      <div className="flex lg:flex-row flex-col justify-evenly gap-10 lg:w-[80%] mx-auto w-full ">
+      <div className="flex lg:flex-row flex-col justify-evenly gap-10 lg:w-[80%] mx-auto w-full p-[2rem] ">
         <div>
           <div>
             <Image
@@ -45,7 +45,7 @@ const About = () => {
         </div>
         <div className="w-full mt-[5rem]">
           <p className="">--About Us will be displayed here--</p>
-          <p>
+          <p className="p__opensans">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut

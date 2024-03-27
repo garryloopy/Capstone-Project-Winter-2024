@@ -100,13 +100,13 @@ select {
 
 /* style NewFlavor component */
 .gallery {
-  font-display: flex;
+  display: flex;
   flex-direction: row;
   padding: 4rem 0 4rem 6rem;
+  width:100%;
 }
 
 .gallery-content {
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -141,7 +141,7 @@ select {
   position: relative;
   min-width: 300px;
   height: 447px;
-  margin-right: 1rem;
+  margin-right: .5rem;
 }
 .gallery-desc {
   position: absolute;
@@ -151,6 +151,7 @@ select {
   transition: 0.5s ease;
   font-size: 16px;
   text-align: center;
+  padding: 0 1rem
 }
 
 .gallery-images-card img {
@@ -239,9 +240,27 @@ select {
     min-width: 100%;
   }
   .gallery-images-card {
-    min-width: 240px;
+    min-width: 310px;
     height: 320px;
   }
+  
+  .gallery-images-arrow{
+    display:none;
+  }
+}
+
+/* style the scroll bar  */
+::-webkit-scrollbar {
+  height: 0;
+  width: 0.6rem;
+}
+::-webkit-scrollbar-track {
+    background-color: rgb(30 41 59);
+
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(249 115 22);
+  border-radius: 5rem;
 }
 
 
