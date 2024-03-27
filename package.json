@@ -28,6 +28,7 @@
     "react": "^18.2.0",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
+    "react-slideshow-image": "^4.3.1",
     "react-square-web-payments-sdk": "^3.2.1",
     "react-sweetalert2": "^0.6.0",
     "square": "^10.0.0",
