@@ -33,19 +33,19 @@ html {
   letter-spacing: 1px;
 }
 
-/* Logo Animation - check Function and handler in About.js */
+/* ----- Logo Animation - check Function and handler in About.js ----- */
 .logo-animation:hover {
   transform: scale(1.1);
   transition: transform 0.3s ease;
 }
 
-/* Menu Item animation add to order button */
+/* ----- Menu Item animation add to order button ----- */
 .button-animation:hover {
   transform: scale(1.1);
   transition: transform 0.2s ease;
 }
 
-/* Image Slideshow in the home page */
+/* ----- Image Slideshow in the home page ----- */
 .each-slide-effect > div {
   display: flex;
   align-items: center;
