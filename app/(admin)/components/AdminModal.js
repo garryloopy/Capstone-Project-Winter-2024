@@ -12,7 +12,7 @@ const AdminModal = () => {
     <>
       {showModal && (
         <div className="fixed bottom-0 right-[.1rem] lg:mr-4 lg:mb-4 text-white">
-          <div className="bg-black/60 p-2 rounded-md shadow-md border flex flex-col ">
+          <div className="bg-black/60 p-2 rounded-md shadow-md border flex flex-col text-center ">
             <span
               className="text-gray-500 font-bold text-2xl p-2 pt-1 pb-1 rounded-md hover:bg-red-400 cursor-pointer self-end"
               onClick={handleClose}

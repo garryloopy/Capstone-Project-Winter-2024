@@ -17,7 +17,7 @@ const About = () => {
   return (
     <>
     <SubHeader header2="About Us"/>
-      <div className="flex lg:flex-row flex-col justify-evenly gap-10 lg:w-[80%] mx-auto w-full ">
+      <div className="flex lg:flex-row flex-col justify-evenly gap-10 lg:w-[80%] mx-auto w-full p-[2rem] ">
         <div>
           <div>
             <Image

@@ -1,12 +1,13 @@
-"use client";
-import React, { useRef, useState, useEffect } from "react";
+"use client"
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
 import { useLoadingState } from "@/components/useLoadingState";
 import Loading from "@/components/Loading";
+import OpenEye from "@/app/icons/OpenEye";
+import CloseEye from "@/app/icons/CloseEye";
+
+
 
 const Register = () => {
   const [viewMessage, setViewMessage] = useState();
@@ -49,34 +50,41 @@ const Register = () => {
   };
 
   const handleSubmitClick = async (ev) => {
-    setButtonLoading(true);
     ev.preventDefault();
-    const formData = new FormData(ev.currentTarget);
-    const userInput = Object.fromEntries(formData);
+    if (
+      passwordLength &&
+      lowercaseValidate &&
+      uppercaseValidate &&
+      digitValidate &&
+      specialCharValid
+    ) {
+      setButtonLoading(true);
+      const formData = new FormData(ev.currentTarget);
+      const userInput = Object.fromEntries(formData);
 
-    try {
-      const res = await fetch("/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userInput),
-      });
+      try {
+        const res = await fetch("/api/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userInput),
+        });
 
-      const { message } = await res.json();
-      setViewMessage(message);
+        const { message } = await res.json();
+        setViewMessage(message);
 
-      setPassword("");
-      setTimeout(() => {
-        setViewMessage("");
-      }, 10000);
+        setPassword("");
 
-      if (res.ok) {
-        formRef.current.reset();
-        router.push("/sign-in");
+        if (res.ok) {
+          formRef.current.reset();
+          router.push("/sign-in");
+        }
+        setButtonLoading(false);
+      } catch (error) {
+        console.log(error);
+        setViewMessage("An error occurred. Please try again.");
       }
-      setButtonLoading(false);
-    } catch (error) {
-      console.log(error);
-      setViewMessage("An error occurred. Please try again.");
+    } else {
+      setViewMessage("The password is not matched");
     }
   };
 
@@ -128,14 +136,19 @@ const Register = () => {
                 name="password"
                 value={password}
                 className="form_input"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setViewMessage("");
+                }}
                 required
               />
-              <FontAwesomeIcon
-                className="absolute top-[45%] right-[10px] cursor-pointer"
-                icon={showPassword ? faEye : faEyeSlash}
+            
+              <div
+                className="w-4 h-4 absolute top-[40%] right-[15px] cursor-pointer"
                 onClick={togglePassword}
-              />
+              >
+                {showPassword ? <OpenEye /> : <CloseEye />}
+              </div>
             </label>
 
             <label className="w-full">
@@ -147,41 +160,55 @@ const Register = () => {
                 name="employeeId"
                 required
                 className="form_input"
+                onChange={() => {
+                  setViewMessage("");
+                }}
               />
             </label>
+
             <div className="text-sm flex flex-col gap-2 self-start ">
-              <div className="flex gap-4 items-center">
-                {passwordLength && (
-                  <FontAwesomeIcon icon={faCheck} style={{ color: "green" }} />
-                )}
+              <div className="flex gap-4 items-center ">
+                <input
+                  type="checkbox"
+                  checked={passwordLength}
+                  className="w-4 h-4"
+                />
                 <p>At least 8 characters in length</p>
               </div>
-              <div className="flex gap-4 items-center">
-                {lowercaseValidate && (
-                  <FontAwesomeIcon icon={faCheck} style={{ color: "green" }} />
-                )}
 
+              <div className="flex gap-4 items-center">
+                <input
+                  type="checkbox"
+                  checked={lowercaseValidate}
+                  className="w-4 h-4"
+                />
                 <p>Contains at least one lowercase letter</p>
               </div>
-              <div className="flex gap-4 items-center">
-                {uppercaseValidate && (
-                  <FontAwesomeIcon icon={faCheck} style={{ color: "green" }} />
-                )}
 
+              <div className="flex gap-4 items-center">
+                <input
+                  type="checkbox"
+                  checked={uppercaseValidate}
+                  className="w-4 h-4"
+                />
                 <p>Contains at least one uppercase letter</p>
               </div>
-              <div className="flex gap-4 items-center">
-                {digitValidate && (
-                  <FontAwesomeIcon icon={faCheck} style={{ color: "green" }} />
-                )}
 
+              <div className="flex gap-4 items-center">
+                <input
+                  type="checkbox"
+                  checked={digitValidate}
+                  className="w-4 h-4"
+                />
                 <p>Contains at least one digit</p>
               </div>
-              <div className="flex gap-4 items-center">
-                {specialCharValid && (
-                  <FontAwesomeIcon icon={faCheck} style={{ color: "green" }} />
-                )}
 
+              <div className="flex gap-4 items-center">
+                <input
+                  type="checkbox"
+                  checked={specialCharValid}
+                  className="w-4 h-4"
+                />
                 <p>
                   Contains at least one special character from the set [@$!%*?&]
                 </p>

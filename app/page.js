@@ -16,6 +16,7 @@ export default function HomePage() {
         <SlideContent />
       </div>
       {/* <NewFlavor /> */}
+
       <About />
 
       {status === "unauthenticated" ? (

@@ -38,6 +38,30 @@
 //           </Link>
 //         </div>
 //       </div>
+  const scroll = (direction) => {
+    const { current } = scrollRef;
+    if (direction === "left") {
+      current.scrollLeft -= 300;
+    } else {
+      current.scrollLeft += 300;
+    }
+  };
+  return (
+    <div className="gallery">
+      <div className="gallery-content">
+        <h1 className="headtext__cormorant">Discover New Flavors</h1>
+        <p className="text-gray-400 my-[2rem]">
+          {" "}
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim
+        </p>
+        <div className="my-[2rem] hidden md:flex">
+          <Link className="btnStyle" href="/menu">
+            Order Now
+          </Link>
+        </div>
+      </div>
 
 //       <div className="gallery-images">
 //         <div className="gallery-images-container" ref={scrollRef}>
@@ -70,5 +94,24 @@
 //     </div>
 //   );
 // }
+        <div className="gallery-images-arrow">
+          <BsArrowLeftShort
+            className="gallery-arrow-icon"
+            onClick={() => scroll("left")}
+          />
+          <BsArrowRightShort
+            className="gallery-arrow-icon"
+            onClick={() => scroll("right")}
+          />
+        </div>
+      </div>
+      <div className="flex justify-center md:hidden">
+        <Link className="btnStyle" href="/menu">
+          Order Now
+        </Link>
+      </div>
+    </div>
+  );
+}
 
 // export default NewFlavor
