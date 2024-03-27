@@ -103,7 +103,7 @@ const OrdersPage = () => {
       <Loading isLoading={false} />
 
       {/* CONTAINER */}
-      {status !== "unathenticated" && (
+      {status !== "unauthenticated" && (
         <OrdersContainer
           ordersList={ordersList}
           onOrderStatusChange={onOrderStatusChange}
