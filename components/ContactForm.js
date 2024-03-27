@@ -159,9 +159,9 @@ export default function ContactForm() {
         },
         body: JSON.stringify({
           name: `${currentFirstName.trim()} ${currentLastName.trim()}`,
-          email: currentEmail,
-          phoneNumber: currentPhoneNumber,
-          message: currentMessage,
+          email: currentEmail.trim(),
+          phoneNumber: currentPhoneNumber.trim(),
+          message: currentMessage.trim(),
         }),
       });
       if (res.status === 200) {
