@@ -11,11 +11,11 @@ export default function HomePage() {
   const session = useSession();
   const {status} = session;
   return (
-    <section className="md:px-[4rem] px-[2rem] py-[2rem] text-white flex flex-col items-center justify-center my-[6rem]">
-      <div className="slide-container">
+    <section className=" text-white flex flex-col items-center justify-center my-[6rem]">
+      {/* <div className="slide-container">
         <SlideContent />
-      </div>
-      {/* <NewFlavor /> */}
+      </div> */}
+      <NewFlavor />
 
       <About />
 
