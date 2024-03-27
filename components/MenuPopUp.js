@@ -67,6 +67,7 @@ const MenuPopUp = ({
 
   return (
     <>
+    {/* this is the popup! it will show when you click on the menu item */}
       {showPopUp && (
         <div
           className="fixed inset-0 bg-black/70 flex justify-center items-center z-50 "
@@ -130,8 +131,9 @@ const MenuPopUp = ({
             <div className="py-2">
               <label className="text-center m-2 block">Other</label>
               <textarea
+                id="specialInstructions"
                 name="specialInstructions"
-                placeholder="Special Instructions (e.g. Add more sauce)"
+                placeholder="Special Instructions (e.g. add more sauce)"
                 rows="3"
                 cols="40"
                 className="border border-gray-300 rounded-md w-full pl-2 pt-1" //focus:border-[color]-400 won't work
@@ -146,6 +148,7 @@ const MenuPopUp = ({
                 Special Instructions
               </label>
               <textarea
+                id="specialInstructions"
                 name="specialInstructions"
                 rows="3"
                 cols="40"
@@ -154,8 +157,8 @@ const MenuPopUp = ({
                 onChange={handleSpecialInstructionsChange}
               >
               </textarea>
-            </div>
-            */}
+            </div> */}
+           
             <button
               type="button"
               className="sign_button sticky bottom-0"

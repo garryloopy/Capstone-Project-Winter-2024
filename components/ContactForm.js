@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Loading from "./Loading";
 
 // Default submitted user
 const defaultSubmittedUser = {
@@ -17,6 +18,9 @@ export default function ContactForm() {
   const [currentLastName, setCurrentLastName] = useState("");
   const [currentEmail, setCurrentEmail] = useState("");
   const [currentMessage, setCurrentMessage] = useState("");
+
+  // Loader
+  const [isLoading, setIsLoading] = useState(false);
 
   // Confirmation stuff
   const [submittedUser, setSubmittedUser] = useState(defaultSubmittedUser);
@@ -107,6 +111,9 @@ export default function ContactForm() {
    * @param {Event} e The event
    */
   const handleOnSubmit = async (e) => {
+    // Set loading
+    setIsLoading(true);
+
     e.preventDefault();
 
     // Make API call to the server
@@ -123,6 +130,9 @@ export default function ContactForm() {
 
     // Reset values
     resetValue();
+
+    // Set loading
+    setIsLoading(false);
   };
 
   /**
@@ -142,7 +152,7 @@ export default function ContactForm() {
    */
   async function handleAPICall() {
     try {
-      const res = await fetch("api/email", {
+      const res = await fetch("api/email/sendContactConfirmation", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -178,9 +188,12 @@ export default function ContactForm() {
 
   return (
     <form
-      className="border w-[52rem] min-h-[44rem] shadow-lg bg-gray-100 rounded-md p-12 flex flex-col gap-8"
+      className="border w-[52rem] min-h-[44rem] shadow-lg bg-gray-100/90 rounded-md p-12 flex flex-col gap-10"
       onSubmit={handleOnSubmit}
     >
+      {/* Loading  */}
+      <Loading isLoading={isLoading} />
+
       {/* Confirmation message  */}
       {showConfirmation && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-filter backdrop-blur-sm z-10">
@@ -209,8 +222,8 @@ export default function ContactForm() {
       )}
 
       {/* Header for form  */}
-      <div className="border-b w-full h-16 flex items-end justify-center mb-4">
-        <p className="text-3xl font-medium text-gray-600">
+      <div className="border-b border-orange-400 w-full h-16 flex items-end justify-center mb-4 pb-2">
+        <p className="text-3xl font-medium text-orange-500">
           Get in touch with us
         </p>
       </div>
@@ -218,11 +231,11 @@ export default function ContactForm() {
       {/* Section for name  */}
       <div className="flex flex-row gap-8">
         {/* First Name  */}
-        <label className="h-16 w-full flex-1 relative flex flex-col justify-end cursor-text border rounded-md overflow-hidden shadow-md">
+        <label className="h-14  text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-gray-50">
           {/* Input for first name  */}
           <input
             type="text"
-            className="w-full h-1/2 outline-none peer bg-inherit p-2 text-gray-600"
+            className="w-full h-1/2 outline-none peer bg-inherit p-2 text-gray-600 rounded-b-md"
             value={currentFirstName}
             onChange={handleOnFirstNameChange}
             required
@@ -232,18 +245,25 @@ export default function ContactForm() {
           <div
             className={`absolute text-gray-950 inset-0 flex items-center p-2 ${
               currentFirstName.length > 0 && "-translate-y-3"
-            }  pointer-events-none peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 peer-focus:-translate-y-3`}
+            }  pointer-events-none peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 peer-focus:-translate-y-3 group-hover:opacity-100`}
           >
             <p className="font-semibold text-sm">First name</p>
+          </div>
+
+          {/* Invalid  */}
+          <div className="absolute h-1/2 w-full -bottom-8 px-2 opacity-0 peer-invalid:opacity-65 transition-opacity duration-300 pointer-events-none">
+            <p className="text-xs font-medium text-red-500 italic">
+              First name cannot be empty.
+            </p>
           </div>
         </label>
 
         {/* Last Name  */}
-        <label className="h-16 w-full flex-1 relative flex flex-col justify-end cursor-text border rounded-md overflow-hidden shadow-md">
+        <label className="h-14 text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-gray-50">
           {/* Input for last name  */}
           <input
             type="text"
-            className="w-full h-1/2 outline-none peer in-range:bg-gray-800 p-2 bg-inherit text-gray-600"
+            className="w-full h-1/2 outline-none peer in-range:bg-gray-800 p-2 bg-inherit text-gray-600 rounded-b-md"
             value={currentLastName}
             onChange={handleOnLastNameChange}
             required
@@ -253,19 +273,26 @@ export default function ContactForm() {
           <div
             className={`absolute text-gray-950 inset-0 flex items-center p-2 ${
               currentLastName.length > 0 && "-translate-y-3"
-            }  pointer-events-none peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 peer-focus:-translate-y-3`}
+            }  pointer-events-none peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 peer-focus:-translate-y-3 group-hover:opacity-100`}
           >
             <p className="font-semibold text-sm">Last name</p>
+          </div>
+
+          {/* Invalid  */}
+          <div className="absolute h-1/2 w-full -bottom-8 px-2 opacity-0 peer-invalid:opacity-65 transition-opacity duration-300 pointer-events-none">
+            <p className="text-xs font-medium text-red-500 italic">
+              Last name cannot be empty.
+            </p>
           </div>
         </label>
       </div>
 
       {/* Section for email  */}
-      <label className="h-16 w-full relative flex flex-col justify-end cursor-text  border rounded-md overflow-hidden shadow-md">
+      <label className="h-14 w-full relative flex flex-col justify-end cursor-text  border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-gray-50">
         {/* Input  */}
         <input
-          type="text"
-          className="w-full h-1/2 outline-none peer p-2 bg-inherit text-gray-600"
+          type="email"
+          className="w-full h-1/2 outline-none peer p-2 bg-inherit text-sm text-gray-600 rounded-b-md"
           onChange={handleOnEmailChange}
           value={currentEmail}
           required
@@ -275,18 +302,25 @@ export default function ContactForm() {
         <div
           className={`absolute text-sm text-gray-950 inset-0 flex items-center p-2 ${
             currentEmail.length > 0 && "-translate-y-3"
-          }  pointer-events-none peer-focus:-translate-y-3 peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300`}
+          }  pointer-events-none peer-focus:-translate-y-3 peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 group-hover:opacity-100`}
         >
-          <p className="font-semibold text-sm">Email</p>
+          <p className="font-semibold text-sm ">Email</p>
+        </div>
+
+        {/* Invalid  */}
+        <div className="absolute h-1/2 w-full -bottom-8 px-2 opacity-0 peer-invalid:opacity-65 transition-opacity duration-300 pointer-events-none">
+          <p className="text-xs font-medium text-red-500 italic">
+            Please enter a valid email address.
+          </p>
         </div>
       </label>
 
       {/* Section for phone number  */}
-      <label className="h-16 w-full relative flex flex-col justify-end cursor-text  border rounded-md overflow-hidden shadow-md">
+      <label className="h-14 w-full relative flex flex-col justify-end cursor-text  border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-gray-50">
         {/* Input  */}
         <input
           type="text"
-          className="w-full h-1/2 outline-none peer p-2 bg-inherit text-gray-600"
+          className="w-full h-1/2 outline-none peer p-2 bg-inherit text-sm text-gray-600 rounded-b-md"
           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           onChange={handleOnPhoneNumberChange}
           value={currentPhoneNumber}
@@ -297,32 +331,46 @@ export default function ContactForm() {
         <div
           className={`absolute text-sm text-gray-950 inset-0 flex items-center p-2 ${
             currentPhoneNumber.length > 0 && "-translate-y-3"
-          }  pointer-events-none peer-focus:-translate-y-3 peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300`}
+          }  pointer-events-none peer-focus:-translate-y-3 peer-valid:text-green-500 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 transition-all duration-300 group-hover:opacity-100`}
         >
           <p className="font-semibold text-sm">Phone number</p>
+        </div>
+
+        {/* Invalid  */}
+        <div className="absolute h-1/2 w-full -bottom-8 px-2 opacity-0 peer-invalid:opacity-65 transition-opacity duration-300 pointer-events-none">
+          <p className="text-xs font-medium text-red-500 italic">
+            Please enter a valid phone number. 123-456-7890.
+          </p>
         </div>
       </label>
 
       {/* Section for message  */}
-      <label className="min-h-max w-full relative flex flex-col justify-start cursor-text border rounded-md overflow-hidden shadow-md">
+      <label className="min-h-max w-full relative flex flex-col justify-start cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-gray-50">
         {/* Main section container  */}
         <textarea
-          className="w-full h-full mt-16 p-4 outline-none peer bg-inherit text-gray-600"
+          className="w-full h-full mt-16 p-4 outline-none peer text-sm bg-inherit text-gray-600 rounded-b-md"
           rows={4}
           required
           value={currentMessage}
           onChange={handleOnMessageChange}
         />
         {/* Top section container  */}
-        <div className="w-full h-16 absolute top-0 flex items-center  border-b border-gray-200 justify-center pointer-events-none text-gray-950 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 peer-valid:text-green-500 peer-valid:opacity-100 transition-all duration-300">
+        <div className="w-full h-16 absolute top-0 flex items-center  border-b border-gray-200 justify-center pointer-events-none text-gray-950 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 peer-valid:text-green-500 peer-valid:opacity-100 transition-all duration-300 group-hover:opacity-100 bg-gray-100 rounded-t-md">
           <p className="font-semibold text-sm">Message</p>
+        </div>
+
+        {/* Invalid  */}
+        <div className="absolute inset-0 -inset-y-5 px-2 flex flex-col justify-end opacity-0 peer-invalid:opacity-65 transition-opacity duration-300 pointer-events-none">
+          <p className="text-xs font-medium text-red-500 text-center italic">
+            Message cannot be empty.
+          </p>
         </div>
       </label>
 
       {/* Submit  */}
       <div className="w-full h-16 flex items-center justify-center mt-auto mb-0">
         <button
-          className="w-1/2 h-12 bg-orange-400 hover:bg-orange-500 hover:text-gray-50 active:bg-orange-400 active:text-gray-100 rounded-md shadow-xl"
+          className="w-1/2 h-12 bg-orange-400 hover:bg-orange-500 hover:text-gray-50 active:bg-orange-400 active:text-gray-100 rounded-md shadow-md focus:shadow-xl hover:shadow-lg transition-all duration-300 focus-visible:ring-2 focus-visible:ring-orange-500 focus:outline-none"
           type="submit"
         >
           <p className="text-md text-gray-100">Submit</p>

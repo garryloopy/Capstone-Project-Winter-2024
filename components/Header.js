@@ -71,7 +71,7 @@ export default function Header() {
                 className="px-2 py-1 border border-gray-400 rounded-md hover:bg-black hover:text-white"
                 onClick={() => signOut({ callbackUrl: "/" })}
               >
-                logout
+                Logout
               </button>
             </div>
           </div>

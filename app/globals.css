@@ -6,7 +6,7 @@
 
 body {
   /*background-image: url("/images/background.jpg");*/
-  background-color: darkslategray;
+  background-color: lightgray;
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: 25%;
@@ -31,6 +31,34 @@ html {
   width: 100vw;
   overflow-x: hidden;
   letter-spacing: 1px;
+}
+
+/* ----- Logo Animation - check Function and handler in About.js ----- */
+.logo-animation:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+/* ----- Menu Item animation add to order button ----- */
+.button-animation:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+/* ----- Image Slideshow in the home page ----- */
+.each-slide-effect > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  height: 350px;
+}
+
+.each-slide-effect span {
+  padding: 20px;
+  font-size: 20px;
+  background: #efefef;
+  text-align: center;
 }
 
 /* font should change, */
