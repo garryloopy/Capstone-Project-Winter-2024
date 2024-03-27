@@ -10,10 +10,9 @@ import AdminNavbar from "@/app/(admin)/components/AdminNavbar";
 import { useSession } from "next-auth/react";
 import { redirect, usePathname } from "next/navigation";
 import { useParams } from "next/navigation";
-import { FaAngleLeft, FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import { FaAngleLeft, FaAngleUp } from "react-icons/fa6";
 import OrderStatus from "../../components/OrderStatus";
 import Image from "next/image";
-import { TailSpin } from "react-loader-spinner";
 import Loading from "@/components/Loading";
 
 export default function OrderDetailsPage({ params }) {

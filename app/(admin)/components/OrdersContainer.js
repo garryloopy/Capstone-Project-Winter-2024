@@ -5,6 +5,7 @@ import IndividualOrder from "../components/IndividualOrder";
 import FilterButton from "../components/FilterButton";
 
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { FaQuestion } from "react-icons/fa";
 
 import { useEffect, useState } from "react";
 
@@ -197,7 +198,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                   : "opacity-50"
               } transition-all duration-300 ease-in-out`}
             >
-              <p className="bg-gray-100 px-2">Search order id</p>
+              <p className="bg-gray-100 px-2">Search by order id</p>
             </div>
 
             <button type="submit" className="text-gray-500">
@@ -222,11 +223,126 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
 
         {/* Top section  */}
         <div className="flex flex-row w-full text-center h-16 items-center divide-x-2 px-6 divide-gray-400 bg-gray-100/90 shadow-md text-gray-600 font-semibold text-lg">
-          <p className="w-2/6">ID</p>
-          <p className="w-1/6">Email</p>
-          <p className="w-1/6">Date</p>
-          <p className="w-1/6">Status</p>
-          <p className="w-1/6">Items</p>
+          <p className="w-3/6 flex flex-row justify-center items-center gap-4 text-center relative">
+            Order ID
+            {/* ICON  */}
+            <FaQuestion
+              size={14}
+              className="cursor-pointer text-orange-500 peer transition-opacity opacity-50 hover:opacity-100 duration-500"
+            />
+            {/* HELP CONTAINER  */}
+            <div className="bg-gray-50 rounded-md shadow-md border-2 border-gray-300 absolute w-1/2 top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
+              <p>
+                Represents the{" "}
+                <span className="italic text-orange-500">unique order Id</span>{" "}
+                for the order.
+              </p>
+            </div>
+          </p>
+          <p className="w-1/6 flex flex-row justify-center items-center gap-4 text-center relative">
+            Email
+            {/* ICON  */}
+            <FaQuestion
+              size={14}
+              className="cursor-pointer text-orange-500 peer transition-opacity opacity-50 hover:opacity-100 duration-500"
+            />
+            {/* HELP CONTAINER  */}
+            <div className="bg-gray-50 rounded-md shadow-md border-2 border-gray-300 absolute w-full top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
+              <p>
+                Represents the{" "}
+                <span className="italic text-orange-500">email</span> of the
+                customer for the order.
+              </p>
+            </div>
+          </p>
+          <p className="w-1/6 flex flex-row justify-center items-center gap-4 text-center relative">
+            Date
+            {/* ICON  */}
+            <FaQuestion
+              size={14}
+              className="cursor-pointer text-orange-500 peer transition-opacity opacity-50 hover:opacity-100 duration-500"
+            />
+            {/* HELP CONTAINER  */}
+            <div className="bg-gray-50 rounded-md shadow-md border-2 border-gray-300 absolute w-full top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
+              <p>
+                Represents the{" "}
+                <span className="italic text-orange-500">order date</span> of
+                the order.
+              </p>
+            </div>
+          </p>
+          <p className="w-1/6 flex flex-row justify-center items-center gap-4 text-center relative">
+            Order Status
+            {/* ICON  */}
+            <FaQuestion
+              size={14}
+              className="cursor-pointer text-orange-500 peer transition-opacity opacity-50 hover:opacity-100 duration-500"
+            />
+            {/* HELP CONTAINER  */}
+            <div className="bg-gray-50 rounded-md shadow-md border-2 border-gray-300 absolute w-full top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
+              <p>
+                Order statuses can 4 have possible states:{" "}
+                <span className="bg-green-50 border-green-200 text-green-800 border p-[2px] rounded-md">
+                  COMPLETED
+                </span>
+                ,{" "}
+                <span className="bg-blue-50 border-blue-200 text-blue-800 border p-[2px] rounded-md">
+                  IN PROGRESS
+                </span>
+                ,{" "}
+                <span className="bg-orange-50 border-orange-200 text-orange-800 border p-[2px] rounded-md">
+                  PENDING
+                </span>
+                , and{" "}
+                <span className="bg-red-50 border-red-200 text-red-800 border p-[2px] rounded-md">
+                  CANCELLED
+                </span>
+              </p>
+              <p>
+                As an order is created, the order will start of with a{" "}
+                <span className="bg-orange-50 border-orange-200 text-orange-800 border p-[2px] rounded-md">
+                  PENDING
+                </span>{" "}
+                status.
+              </p>
+              <p>
+                Depending on the order type, an order status of{" "}
+                <span className="bg-blue-50 border-blue-200 text-blue-800 border p-[2px] rounded-md">
+                  IN PROGRESS
+                </span>{" "}
+                will email the customer that the order is in delivery (for
+                delivery) or that the order is being made (for pickup).
+              </p>
+              <p>
+                An order status of{" "}
+                <span className="bg-green-50 border-green-200 text-green-800 border p-[2px] rounded-md">
+                  COMPLETED
+                </span>{" "}
+                or{" "}
+                <span className="bg-red-50 border-red-200 text-red-800 border p-[2px] rounded-md">
+                  CANCELLED
+                </span>{" "}
+                will mark the end of an order and will send an email to the
+                customer for confirmation and acknowledgement.
+              </p>
+            </div>
+          </p>
+          <p className="w-1/6 flex flex-row justify-center items-center gap-4 text-center relative">
+            Items
+            {/* ICON  */}
+            <FaQuestion
+              size={14}
+              className="cursor-pointer text-orange-500 peer transition-opacity opacity-50 hover:opacity-100 duration-500"
+            />
+            {/* HELP CONTAINER  */}
+            <div className="bg-gray-50 rounded-md shadow-md border-2 border-gray-300 absolute w-full top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
+              <p>
+                Represents the{" "}
+                <span className="italic text-orange-500">total item count</span>{" "}
+                for the order.
+              </p>
+            </div>
+          </p>
         </div>
 
         {/* Orders Container  */}
