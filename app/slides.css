@@ -48,34 +48,39 @@ just play with it */
     border-radius: 10px;
 }
 
-/* dots in the slideshow */
-.slideDots {
-    position: absolute;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    list-style: none;
-    padding: 0;
-    margin: 0;
+/* --------------------------------------- */
+/* dots for the slideshow (outside) */
+.slideshowDots {
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-/* we used a list to create the dots, might have to use an alternative */
-.slideDots li {
+/* uncomment for INSIDE VERSION            */
+/*
+    position: absolute;
+    bottom: 10px; /* Adjust as needed      
+    left: 50%;
+    transform: translateX(-50%); 
+*/
+/* --------------------------------------- */
+
+.slideshowDot {
     display: inline-block;
-    width: 8px;
-    height: 8px;
-    background-color: #bbb;
+    height: 10px;
+    width: 10px;
     border-radius: 50%;
-    margin: 0 5px; /* spacing between dots */
     cursor: pointer;
+    margin: 0 5px;
+    background-color: #c4c4c4;
 }
-  
-.slideDots li.active {
+
+.slideshowDot.active {
     background-color: #fa5e03;
 }
+
 /* ----- This is to adjust the position of the slideSHow -----*/
-@media (min-width: 768px) { /* Adjust the breakpoint as needed */
+@media (min-width: 768px) {
     .slideshow {
-        margin-top: 5rem; /* Adjust as needed */
+        margin-top: 5rem; /* adjust as needed */
     }
 }

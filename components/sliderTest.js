@@ -28,7 +28,7 @@ function Slideshow() {
 
     return () => clearInterval(slideshowInterval);
   }, []);
-
+  
   // to make the dots clickable
   const handleOnClick = (index) => {
     setActiveIndex(index);
@@ -47,16 +47,14 @@ function Slideshow() {
           </div>
         ))}
       </div>
-      <div>
-        <ul className="slideDots">
-          {imagePaths.map((_, index) => (
-            <li
-              key={index}
-              className={index === activeIndex ? "active" : ""}
-              onClick={() => handleOnClick(index)}
-            />
-          ))}
-        </ul>
+      <div className="slideshowDots">
+        {imagePaths.map((_, index) => (
+          <div
+            key={index}
+            className={`slideshowDot ${index === activeIndex ? "active" : ""}`}
+            onClick={() => handleOnClick(index)}
+          />
+        ))}
       </div>
     </div>
   );

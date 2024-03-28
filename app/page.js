@@ -17,7 +17,7 @@ export default function HomePage() {
         <div className="w-full md:w-1/2">
           <NewFlavor />
         </div>
-        <div className="w-full md:w-1/2 mt-12 md:mt-0">
+        <div className="w-full md:w-1/2 mt-12 md:mt-0"> {/* we can adjust the margin top here */}
           <Slideshow />
         </div>
       </div>      <About />
