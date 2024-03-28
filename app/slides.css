@@ -82,6 +82,6 @@ just play with it */
 /* ----- This is to adjust the position of the slideSHow -----*/
 @media (min-width: 768px) {
     .slideshow {
-        margin-top: 4.5rem; /* adjust as needed */
+        margin-top: 3rem; /* adjust as needed */
     }
 }
