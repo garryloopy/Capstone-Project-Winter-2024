@@ -13,10 +13,14 @@ export default function HomePage() {
   const {status} = session;
   return (
     <section className="md:px-[4rem] px-[2rem] py-[2rem] text-white flex flex-col items-center justify-center my-[6rem]">
-      <Slideshow />
-      {/* <NewFlavor /> */}
-
-      <About />
+      <div className="flex flex-wrap justify-center items-start">
+        <div className="w-full md:w-1/2">
+          <NewFlavor />
+        </div>
+        <div className="w-full md:w-1/2 mt-12 md:mt-0">
+          <Slideshow />
+        </div>
+      </div>      <About />
 
       {status === "unauthenticated" ? (
         <div>

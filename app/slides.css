@@ -5,12 +5,15 @@
     overflow: hidden;
     max-width: 500px; /* this is the container size for the whole slideshow, adjust as needed (50% or 500px is good) */
     position: relative; /* positioning for navigation dots */
+
 }
 
 .slider {
     white-space: nowrap;
     overflow: hidden;
     width: 100%; /* full width slider */
+    
+    
 }
 
 .slide {
@@ -18,6 +21,7 @@
     width: 100%; /* each slide takes up the full width of the container */
     height: 300px; /* to set a fixed height for all slides */
     position: relative; /* Needed for positioning */
+
 }
 
 .slide img {
@@ -51,4 +55,10 @@
   
 .slideDots li.active {
     background-color: #fa5e03;
+}
+/* ----- This is to adjust the position of the slideSHow -----*/
+@media (min-width: 768px) { /* Adjust the breakpoint as needed */
+    .slideshow {
+        margin-top: 5rem; /* Adjust as needed */
+    }
 }
