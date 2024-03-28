@@ -16,7 +16,7 @@ const CartMenuList = ({ cartProducts, onDelete, totalPrice, deliveryAmount }) =>
             key={index}
             className="flex justify-evenly gap-4 mb-2 border-b p-4 border-orange-400 items-center"
           >
-            <div>
+            <div className="w-full">
               <Image
                 src={product.image}
                 alt={product.title}
@@ -25,7 +25,7 @@ const CartMenuList = ({ cartProducts, onDelete, totalPrice, deliveryAmount }) =>
                 className="circular-image"
               />
             </div>
-            <div>
+            <div className="w-full">
               <h3 className="text-orange-500 font-semibold">{product.title}</h3>
               {product.sizes && (
                 <div className="text-sm ">
