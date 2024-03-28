@@ -24,7 +24,7 @@ function Slideshow() {
       } else {
         slideshowRef.current.scrollBy({ left: slideWidth, behavior: "smooth" });
       }
-    }, 3000); // --- this is to set the timer in milliseconds ---
+    }, 3000); // --- this is to set the timer (in milliseconds) ---
 
     return () => clearInterval(slideshowInterval);
   }, []);
