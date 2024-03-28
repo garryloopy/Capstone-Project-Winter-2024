@@ -6,7 +6,8 @@
 
 body {
   /*background-image: url("/images/background.jpg");*/
-  background-color: lightgray;
+  /* background-color: lightgray; */
+  @apply bg-gray-50;
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: 25%;

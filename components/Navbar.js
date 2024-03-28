@@ -7,29 +7,32 @@ const Navbar = () => {
   const path = usePathname();
 
   return (
-    <>
-      <div className="relative flex flex-col items-center">
-        <Link href="/">Home</Link>
-        <div className={`${path === "/" ? "active" : ""}`}></div>
-      </div>
-
-      <div className="relative flex flex-col items-center">
-        <Link href="/menu">Menu</Link>
-        <div className={`${path === "/menu" ? "active" : ""}`}></div>
-      </div>
-
-      {/* <div className="relative flex flex-col items-center">
-        <Link href="/about">About Us</Link>
-
-        <div className={`${path === "/about" ? "active" : ""}`}></div>
-      </div>
-      */}
-      <div className="relative flex flex-col justify-center items-center">
-        <Link href="/contact">Contact Us</Link>
-
-        <div className={`${path === "/contact" ? "active" : ""}`}></div>
-      </div>
-    </>
+    <nav className=" xl:flex hidden justify-center items-center gap-10 text-slate-800 font-semibold sm:text-2xl text-md ">
+      <Link
+        href="/"
+        className={`hover:opacity-100 transition-opacity duration-500 ${
+          path === "/" ? "opacity-100" : "opacity-50"
+        }`}
+      >
+        Home
+      </Link>
+      <Link
+        href="/menu"
+        className={`hover:opacity-100 transition-opacity duration-500 ${
+          path === "/menu" ? "opacity-100" : "opacity-50"
+        }`}
+      >
+        Menu
+      </Link>
+      <Link
+        href="/contact"
+        className={`hover:opacity-100 transition-opacity duration-500 ${
+          path === "/contact" ? "opacity-100" : "opacity-50"
+        }`}
+      >
+        Contact us
+      </Link>
+    </nav>
   );
 };
 

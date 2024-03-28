@@ -4,32 +4,24 @@ import NewFlavor from "@/components/NewFlavor";
 import About from "@/components/About";
 import { useSession } from "next-auth/react";
 import Slideshow from "@/components/sliderTest";
-import './slides.css';
-
-
+import "./slides.css";
 
 export default function HomePage() {
   const session = useSession();
-  const {status} = session;
+  const { status } = session;
   return (
-    <section className="md:px-[4rem] px-[2rem] py-[2rem] text-white flex flex-col items-center justify-center my-[6rem]">
+    <section className="md:px-[4rem] px-[2rem] py-[2rem] text-slate-800 flex flex-col items-center justify-center my-[6rem]">
       <div className="flex flex-wrap justify-center items-start">
         <div className="w-full md:w-1/2">
           <NewFlavor />
         </div>
-        <div className="w-full md:w-1/2 mt-12 md:mt-0"> {/* we can adjust the margin top here */}
+        <div className="w-full md:w-1/2 mt-12 md:mt-0">
+          {/* we can adjust the margin top here */}
           <Slideshow />
         </div>
-      </div>      <About />
-
-      {status === "unauthenticated" ? (
-        <div>
-          <AdminModal />
-        </div>
-      ) : (
-        null
-      )}
+      </div>
+      <About />
+      {status === "unauthenticated" ? <AdminModal /> : null}
     </section>
   );
 }
-

@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { CiLogout } from "react-icons/ci";
 import {
   faCartShopping,
   faBars,
@@ -13,6 +15,8 @@ import { useContext, useState } from "react";
 import MobileMenu from "./MobileMenu";
 import { signOut, useSession } from "next-auth/react";
 import { CartContext } from "./Providers";
+
+import Logo from "@/public/images/Logo-01.jpg";
 
 export default function Header() {
   const { cartProducts } = useContext(CartContext);
@@ -29,89 +33,96 @@ export default function Header() {
   };
 
   return (
-    <header className="md:px-[4rem] px-2 py-[1rem] flex justify-between items-center bg-slate-800 border-b border-gray-600 shadow-md z-10 sticky top-0">
+    <header className="md:px-[4rem] px-2 py-[1rem] flex justify-between items-center z-10 fixed top-0 w-full bg-gray-50 h-32">
       {/* logo and text */}
       <Link
-        className="flex gap-4 justify-center items-center text-white md:w-[30%] w-1/2"
+        className="flex justify-center items-center text-slate-700  overflow-hidden rounded-full shadow-md"
         href="/"
       >
-        <div className="">
+        <div className="size-24 bg-gray-600 rounded-full relative">
           <Image
-            src="/images/macaroni_shutterstock.jpg"
-            alt="logo"
-            width={80}
-            height={80}
-            className="rounded-full border-2 border-orange-400"
+            src={Logo}
+            alt="Miggy's Munchies logo"
+            fill={true}
+            sizes="(max-width: 1024px) 50vw, (max-width: 768px) 80vw, 1200px"
+            className="object-cover"
           />
         </div>
-        <p className="md:text-lg text-sm header-font">
+
+        {/* <p className="md:text-lg font-semibold text-sm header-font">
           <span className="lg:text-[40px] text-md text-orange-400">M</span>
           iggy's{" "}
           <span className="lg:text-[40px] text-md text-orange-400">M</span>
           unchies
-        </p>
+        </p> */}
       </Link>
 
       {/* navbar links */}
-      <nav className=" xl:flex hidden justify-center items-center gap-16 text-white mt-16 sm:text-xl text-md ">
-        <Navbar />
-      </nav>
+      <Navbar />
 
       {/* cart Icon */}
       <div className="flex gap-6 items-center justify-center">
         {session.status === "authenticated" ? (
-          <div className="xl:flex hidden gap-4 text-white lg:text-lg text-md items-center ">
-            <div className="font-semibold ">
-              <Link href="/menu-list">
-                <h2>Hello, {username}</h2>
-              </Link>
-            </div>
-            <div>
-              <button
-                className="px-2 py-1 border border-gray-400 rounded-md hover:bg-black hover:text-white"
-                onClick={() => signOut({ callbackUrl: "/" })}
-              >
-                Logout
-              </button>
-            </div>
+          // <div className="xl:flex hidden gap-4 text-slate-800 lg:text-lg text-md items-center ">
+          //   <div className="font-semibold ">
+          //     <Link href="/menu-list">
+          //       <h2>Hello, {username}</h2>
+          //     </Link>
+          //   </div>
+          //   <div>
+          //     <button
+          //       className="px-2 py-1 border border-gray-400 rounded-md hover:bg-black hover:text-white"
+          //       onClick={() => signOut({ callbackUrl: "/" })}
+          //     >
+          //       Logout
+          //     </button>
+          //   </div>
+          // </div>
+          <div className="hidden xl:flex flex-row justify-center h-40 gap-6 text-xl text-slate-800 items-center">
+            <Link className="font-semibold " href="/menu-list">
+              <h2>Hello, {username}</h2>
+            </Link>
+
+            <button
+              className="px-4 py-2 border flex flex-row items-center justify-center gap-4 bg-yellow-400 text-slate-800 font-semibold rounded-md shadow-md"
+              onClick={() => signOut({ callbackUrl: "/" })}
+            >
+              Logout
+              <CiLogout size={24} />
+            </button>
           </div>
         ) : (
           <Link
             href="/cart"
-            className="relative flex justify-center items-center p-3 rounded-md"
+            className="relative flex justify-center items-center p-4"
           >
             {cartProducts?.length > 0 && (
-              <div className="absolute -top-1 -right-1 text-[.7rem] w-[1.2rem] h-[1.2rem] bg-orange-500 flex items-center justify-center rounded-full">
-                <p className="text-center text-white">{cartProducts.length}</p>
+              <div className="absolute -top-1 -right-1 size-5 bg-yellow-400 rounded-full grid place-items-center">
+                <p className="text-center text-slate-700 text-xs font-semibold">
+                  {cartProducts.length}
+                </p>
               </div>
             )}
             <FontAwesomeIcon
+              className="text-slate-900"
               icon={faCartShopping}
-              style={{ color: "#F1F0E8" }}
-              size="lg"
+              size="xl"
             />
           </Link>
         )}
+
         {/* burger menu */}
-        <div className="bg-orange-500 rounded-md p-2 xl:hidden flex">
-          {toggleMenu ? (
-            <button type="button" onClick={handleToggleMenu}>
-              <FontAwesomeIcon
-                icon={faXmark}
-                size="xl"
-                style={{ color: "#F1F0E8" }}
-              />
-            </button>
-          ) : (
-            <button type="button" onClick={handleToggleMenu}>
-              <FontAwesomeIcon
-                icon={faBars}
-                size="xl"
-                style={{ color: "#F1F0E8" }}
-              />
-            </button>
-          )}
-        </div>
+        <button
+          type="button"
+          onClick={handleToggleMenu}
+          className="bg-yellow-400 size-12 rounded-md shadow-md grid place-items-center xl:hidden ml-4"
+        >
+          <FontAwesomeIcon
+            className="text-slate-800"
+            icon={toggleMenu ? faXmark : faBars}
+            size="xl"
+          />
+        </button>
         {toggleMenu && <MobileMenu setToggleMenu={setToggleMenu} />}
       </div>
     </header>
