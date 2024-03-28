@@ -12,7 +12,8 @@
     white-space: nowrap;
     overflow: hidden;
     width: 100%; /* full width slider */
-    
+    border-radius: 10px; /* added this in because when a new image is loaded, it initially displays without 
+                            the border-radius until it's fully loaded and displayed with the border-radius applied */
     
 }
 
@@ -20,7 +21,8 @@
     display: inline-block;
     width: 100%; /* each slide takes up the full width of the container */
     height: 300px; /* to set a fixed height for all slides */
-    position: relative; /* Needed for positioning */
+    position: relative; /* needed for positioning */
+    border-radius: 10px;
 
 }
 
@@ -45,8 +47,8 @@
 /* we used a list to create the dots, might have to use an alternative */
 .slideDots li {
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background-color: #bbb;
     border-radius: 50%;
     margin: 0 5px; /* spacing between dots */
