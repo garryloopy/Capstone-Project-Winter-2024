@@ -14,7 +14,7 @@ just play with it */
 .slideshow {
     margin: 0 auto;
     overflow: hidden;
-    max-width: 800px; /* this is the container size for the whole slideshow, adjust as needed (50% or 500px is good) */
+    max-width: 800px; /* this is the container size for the whole slideshow, adjust as needed (50% or 800px is good) */
     position: relative; /* positioning for navigation dots */
     /* add heigth if needed */
     
