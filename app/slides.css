@@ -1,0 +1,96 @@
+/* Slideshow */
+/* NOTE: .slideshow
+         .slider
+         .slide
+
+    ARE ALL REQUIRED CLASSES FOR THE SLIDESHOW TO WORK PROPERLY
+    If adjsuting the size of the container, adjust the max-width of the .slideshow class
+    and the width of the .slider class
+    and the height of the .slide class
+
+just play with it */
+
+/* ----- this one shows only one box of images, kind of like the screen where everything will show -----*/
+.slideshow {
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 700px; /* this is the container size for the whole slideshow, adjust as needed (50% or 800px is good) */
+    position: relative; /* positioning for navigation dots */
+    /* add height if needed */
+    border-width: 10px;
+    border-radius: 13px;
+    padding: 15px;
+    
+
+}
+
+/* ----- this one shows the images in the slideshow in a horizontal manner -----*/
+.slider {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%; /* full width slider */
+    border-radius: 10px; /* added this in because when a new image is loaded, it initially displays without 
+                            the border-radius until it's fully loaded and displayed with the border-radius applied */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), 
+                0 0 0 rgba(0, 0, 0, 0.2);
+}
+
+/* ----- this one plays with the images inside we'll add -----*/
+.slide {
+    display: inline-block;
+    width: 100%; /* each slide takes up the full width of the container */
+    height: 350px; /* to set a fixed height for all slides */
+    position: relative; /* needed for positioning */
+    border-radius: 10px;
+    margin-bottom: -7px; /* this is to fix the bottom height problem */
+
+
+}
+
+.slide img {
+    width: 100%; /* to sure the image fills the entire width of the slide */
+    height: 100%; /* to make the height of the image fill its container */
+    object-fit: cover; /* image maintains its aspect ratio and covers the container */
+    border-radius: 10px;
+
+}
+
+/* --------------------------------------- */
+/* set of dots for the slideshow (outside) */
+.slideshowDots {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* uncomment for INSIDE VERSION            */
+/*
+    position: absolute;
+    bottom: 10px; /* Adjust as needed      
+    left: 50%;
+    transform: translateX(-50%); 
+*/
+/* --------------------------------------- */
+
+/* individual dot */
+.slideshowDot {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 5px;
+    background-color: rgb(131, 130, 130);
+}
+
+/* currently not working, ul - li worked better than this */
+.slideshowDot.active {
+    background-color: #4d4d4d;
+}
+
+/* ----- This is to adjust the position of the slideSHow -----*/
+@media (min-width: 768px) {
+    .slideshow {
+        margin-top: 1rem;
+        margin-bottom: 1rem; /* adjust as needed */
+    }
+}

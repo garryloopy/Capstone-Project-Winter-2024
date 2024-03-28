@@ -1,13 +1,14 @@
 "use client";
 
-"use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { signIn } from "next-auth/react";
 import { useLoadingState } from "@/components/useLoadingState";
 import Loading from "@/components/Loading";
+import { useRouter } from "next/navigation";
+import { trusted } from "mongoose";
+import OpenEye from "@/app/icons/OpenEye";
+import CloseEye from "@/app/icons/CloseEye";
 
 export default function SignInPage() {
   const [clientInput, setClientInput] = useState({
@@ -15,9 +16,10 @@ export default function SignInPage() {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(true);
-  const [viewMessage, setViewMessage] = useState(false);
-  const [buttonLoading, setButtonLoading] = useState(false)
-  const loading = useLoadingState()
+  const [viewMessage, setViewMessage] = useState();
+  const [buttonLoading, setButtonLoading] = useState(false);
+  const loading = useLoadingState();
+  const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,29 +27,32 @@ export default function SignInPage() {
       ...prev,
       [name]: value,
     }));
+    setViewMessage("");
   };
 
   const handleSubmit = async (e) => {
-    setButtonLoading(true)
+    setButtonLoading(true);
     e.preventDefault();
     const { email, password } = clientInput;
 
-    
+    // callbackUrl: "/menu-list",
 
     try {
       const res = await signIn("credentials", {
         email,
         password,
-        callbackUrl: "/menu-list",
+        redirect: false,
+      }).then(({ ok, error }) => {
+        if (ok) {
+          router.push("/menu-list");
+        } else {
+          setViewMessage("Username or password is incorrect");
+        }
       });
-      setButtonLoading(false)
+      setButtonLoading(false);
     } catch (error) {
       setViewMessage("Invalid email or password");
     }
-
-    setTimeout(() => {
-      setViewMessage("");
-    }, 10000);
   };
 
   const togglePassword = () => {
@@ -95,11 +100,13 @@ export default function SignInPage() {
                 className="form_input"
                 onChange={handleChange}
               />
-              <FontAwesomeIcon
-                className="absolute top-[45%] right-[10px] cursor-pointer"
-                icon={showPassword ? faEye : faEyeSlash}
+
+              <div
+                className="w-4 h-4 absolute top-[40%] right-[15px] cursor-pointer"
                 onClick={togglePassword}
-              />
+              >
+                {showPassword ? <OpenEye /> : <CloseEye />}
+              </div>
             </label>
 
             <button type="submit" className="sign_button mt-2">
