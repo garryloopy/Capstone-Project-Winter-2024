@@ -6,7 +6,6 @@ import { signIn } from "next-auth/react";
 import { useLoadingState } from "@/components/useLoadingState";
 import Loading from "@/components/Loading";
 import { useRouter } from "next/navigation";
-import { trusted } from "mongoose";
 import OpenEye from "@/app/icons/OpenEye";
 import CloseEye from "@/app/icons/CloseEye";
 

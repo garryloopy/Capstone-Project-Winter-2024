@@ -22,8 +22,10 @@ const AdminPage = ({ swal }) => {
   const { status } = session;
   const path = usePathname();
   const [menuList, setMenuList] = useState([]);
+  const [loading, setLoading] = useState(true)
 
   async function getMenuList() {
+    setLoading(true)
     try {
       const res = await fetch("/api/getMenuList", {
         method: "GET",
@@ -39,6 +41,7 @@ const AdminPage = ({ swal }) => {
       } else {
         console.log("Failed to fetch menu list");
       }
+      setLoading(false)
     } catch (error) {
       console.error("An error occurred while fetching the menu list:", error);
       throw error;
@@ -146,6 +149,8 @@ const AdminPage = ({ swal }) => {
   };
 
   return (
+    <>
+    {loading ? (<Loading/>) : (
     <section className="flex flex-col justify-center items-center">
       <AdminNavbar path={path} />
       <SubHeader header2="Create new Menu" />
@@ -193,6 +198,8 @@ const AdminPage = ({ swal }) => {
           ))}
       </div>
     </section>
+    )}
+    </>
   );
 };
 
