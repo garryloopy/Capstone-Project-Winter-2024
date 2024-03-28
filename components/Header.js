@@ -48,13 +48,6 @@ export default function Header() {
             className="object-cover"
           />
         </div>
-
-        {/* <p className="md:text-lg font-semibold text-sm header-font">
-          <span className="lg:text-[40px] text-md text-orange-400">M</span>
-          iggy's{" "}
-          <span className="lg:text-[40px] text-md text-orange-400">M</span>
-          unchies
-        </p> */}
       </Link>
 
       {/* navbar links */}
@@ -63,28 +56,13 @@ export default function Header() {
       {/* cart Icon */}
       <div className="flex gap-6 items-center justify-center">
         {session.status === "authenticated" ? (
-          // <div className="xl:flex hidden gap-4 text-slate-800 lg:text-lg text-md items-center ">
-          //   <div className="font-semibold ">
-          //     <Link href="/menu-list">
-          //       <h2>Hello, {username}</h2>
-          //     </Link>
-          //   </div>
-          //   <div>
-          //     <button
-          //       className="px-2 py-1 border border-gray-400 rounded-md hover:bg-black hover:text-white"
-          //       onClick={() => signOut({ callbackUrl: "/" })}
-          //     >
-          //       Logout
-          //     </button>
-          //   </div>
-          // </div>
           <div className="hidden xl:flex flex-row justify-center h-40 gap-6 text-xl text-slate-800 items-center">
             <Link className="font-semibold " href="/menu-list">
               <h2>Hello, {username}</h2>
             </Link>
 
             <button
-              className="px-4 py-2 border flex flex-row items-center justify-center gap-4 bg-yellow-400 text-slate-800 font-semibold rounded-md shadow-md"
+              className="px-4 py-2 flex flex-row items-center justify-center gap-4 bg-yellow-400 text-slate-800 font-semibold rounded-md shadow-md"
               onClick={() => signOut({ callbackUrl: "/" })}
             >
               Logout
