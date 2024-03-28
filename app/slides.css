@@ -1,0 +1,53 @@
+/* Slideshow */
+
+.slideshow {
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 500px; /* this is the container size for the whole slideshow, adjust as needed (50% or 500px is good) */
+    position: relative; /* positioning for navigation dots */
+}
+
+.slider {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%; /* full width slider */
+}
+
+.slide {
+    display: inline-block;
+    width: 100%; /* Each slide takes up the full width of the container */
+    height: 300px; /* Set a fixed height for all slides */
+    position: relative; /* Needed for positioning */
+}
+
+.slide img {
+    width: 100%; /* Make sure the image fills the entire width of the slide */
+    height: 100%; /* Make the height of the image fill its container */
+    object-fit: cover; /* Ensure the image maintains its aspect ratio and covers the container */
+    border-radius: 15px;
+}
+
+/* dots in the slideshow */
+.slideDots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+  
+.slideDots li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin: 0 5px; /* spacing between dots */
+    cursor: pointer;
+}
+  
+.slideDots li.active {
+    background-color: #fa5e03;
+}
