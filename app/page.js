@@ -17,7 +17,7 @@ export default function HomePage() {
         <div className="w-full md:w-1/2">
           <NewFlavor />
         </div>
-        <div className="w-full md:w-1/2 md:mt-0 rounded border-4"> {/* we can adjust the margin top here, this is to accommodate different resolution */}
+        <div className="w-full md:w-1/2 md:mt-0"> {/* we can adjust the margin top here, this is to accommodate different resolution */}
           <Slideshow />
         </div>
       </div>      <About />

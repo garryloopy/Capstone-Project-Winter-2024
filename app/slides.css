@@ -17,6 +17,9 @@ just play with it */
     max-width: 700px; /* this is the container size for the whole slideshow, adjust as needed (50% or 800px is good) */
     position: relative; /* positioning for navigation dots */
     /* add height if needed */
+    border-width: 10px;
+    border-radius: 13px;
+    padding: 15px;
     
 
 }
@@ -28,16 +31,19 @@ just play with it */
     width: 100%; /* full width slider */
     border-radius: 10px; /* added this in because when a new image is loaded, it initially displays without 
                             the border-radius until it's fully loaded and displayed with the border-radius applied */
-    
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), 
+                0 0 0 rgba(0, 0, 0, 0.2);
 }
 
-/* ----- this one plays with the images we'll add -----*/
+/* ----- this one plays with the images inside we'll add -----*/
 .slide {
     display: inline-block;
     width: 100%; /* each slide takes up the full width of the container */
     height: 350px; /* to set a fixed height for all slides */
     position: relative; /* needed for positioning */
     border-radius: 10px;
+    margin-bottom: -7px; /* this is to fix the bottom height problem */
+
 
 }
 
@@ -46,6 +52,7 @@ just play with it */
     height: 100%; /* to make the height of the image fill its container */
     object-fit: cover; /* image maintains its aspect ratio and covers the container */
     border-radius: 10px;
+
 }
 
 /* --------------------------------------- */
@@ -83,6 +90,7 @@ just play with it */
 /* ----- This is to adjust the position of the slideSHow -----*/
 @media (min-width: 768px) {
     .slideshow {
-        margin-top: 3rem; /* adjust as needed */
+        margin-top: 1rem;
+        margin-bottom: 1rem; /* adjust as needed */
     }
 }
