@@ -95,11 +95,9 @@ function Menu() {
             </button> */}
           </form>
           <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-col-2 grid-cols-1 gap-4 mt-6 mb-8">
-            {!search &&
-              menuList.length > 0 &&
-              menuList.map((menu) => <ClientMenu key={menu._id} {...menu} />)}
-
-            {menuListSearch?.length > 0 ? (
+            {!search && menuList.length > 0 ? (
+              menuList.map((menu) => <ClientMenu key={menu._id} {...menu} />)
+            ) : menuListSearch?.length > 0 ? (
               menuListSearch.map((menu) => (
                 <ClientMenu key={menu._id} {...menu} />
               ))
