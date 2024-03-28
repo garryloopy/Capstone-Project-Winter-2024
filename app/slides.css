@@ -1,5 +1,16 @@
 /* Slideshow */
+/* NOTE: .slideshow
+         .slider
+         .slide
 
+    ARE ALL REQUIRED CLASSES FOR THE SLIDESHOW TO WORK PROPERLY
+    If adjsuting the size of the container, adjust the max-width of the .slideshow class
+    and the width of the .slider class
+    and the height of the .slide class
+
+just play with it */
+
+/* ----- this one shows only one box of images, kind of like the screen where everything will show -----*/
 .slideshow {
     margin: 0 auto;
     overflow: hidden;
@@ -8,6 +19,7 @@
 
 }
 
+/* ----- this one shows the images in the slideshow in a horizontal manner -----*/
 .slider {
     white-space: nowrap;
     overflow: hidden;
@@ -17,6 +29,7 @@
     
 }
 
+/* ----- this one plays with the images we'll add -----*/
 .slide {
     display: inline-block;
     width: 100%; /* each slide takes up the full width of the container */
