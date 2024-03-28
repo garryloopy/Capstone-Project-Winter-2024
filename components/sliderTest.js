@@ -47,7 +47,7 @@ function Slideshow() {
           </div>
         ))}
       </div>
-      <div className="slideshowDots">
+      {/* <div className="slideshowDots">
         {imagePaths.map((_, index) => (
           <div
             key={index}
@@ -55,7 +55,7 @@ function Slideshow() {
             onClick={() => handleOnClick(index)}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
