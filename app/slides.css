@@ -15,16 +15,16 @@
 
 .slide {
     display: inline-block;
-    width: 100%; /* Each slide takes up the full width of the container */
-    height: 300px; /* Set a fixed height for all slides */
+    width: 100%; /* each slide takes up the full width of the container */
+    height: 300px; /* to set a fixed height for all slides */
     position: relative; /* Needed for positioning */
 }
 
 .slide img {
-    width: 100%; /* Make sure the image fills the entire width of the slide */
-    height: 100%; /* Make the height of the image fill its container */
-    object-fit: cover; /* Ensure the image maintains its aspect ratio and covers the container */
-    border-radius: 15px;
+    width: 100%; /* to sure the image fills the entire width of the slide */
+    height: 100%; /* to make the height of the image fill its container */
+    object-fit: cover; /* image maintains its aspect ratio and covers the container */
+    border-radius: 10px;
 }
 
 /* dots in the slideshow */
