@@ -35,7 +35,7 @@ just play with it */
 .slide {
     display: inline-block;
     width: 100%; /* each slide takes up the full width of the container */
-    height: 300px; /* to set a fixed height for all slides */
+    height: 350px; /* to set a fixed height for all slides */
     position: relative; /* needed for positioning */
     border-radius: 10px;
 
@@ -49,7 +49,7 @@ just play with it */
 }
 
 /* --------------------------------------- */
-/* dots for the slideshow (outside) */
+/* set of dots for the slideshow (outside) */
 .slideshowDots {
     text-align: center;
     margin-bottom: 10px;
@@ -64,6 +64,7 @@ just play with it */
 */
 /* --------------------------------------- */
 
+/* individual dot */
 .slideshowDot {
     display: inline-block;
     height: 10px;
@@ -71,16 +72,16 @@ just play with it */
     border-radius: 50%;
     cursor: pointer;
     margin: 0 5px;
-    background-color: #686868;
+    background-color: rgb(131, 130, 130);
 }
 
 .slideshowDot.active {
-    background-color: #c2c2c2;
+    background-color: #4d4d4d;
 }
 
 /* ----- This is to adjust the position of the slideSHow -----*/
 @media (min-width: 768px) {
     .slideshow {
-        margin-top: 5rem; /* adjust as needed */
+        margin-top: 4.5rem; /* adjust as needed */
     }
 }
