@@ -37,7 +37,8 @@
     padding: 0;
     margin: 0;
 }
-  
+
+/* we used a list to create the dots, might have to use an alternative */
 .slideDots li {
     display: inline-block;
     width: 10px;
