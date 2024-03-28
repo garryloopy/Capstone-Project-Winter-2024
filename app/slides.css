@@ -75,6 +75,7 @@ just play with it */
     background-color: rgb(131, 130, 130);
 }
 
+/* currently not working, ul - li worked better than this */
 .slideshowDot.active {
     background-color: #4d4d4d;
 }
