@@ -145,9 +145,12 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gray-100/90 mb-8 flex flex-col overflow-hidden rounded-md shadow-md">
+    <div className="min-h-screen w-full bg-neutral-50 mb-8 flex flex-col rounded-xl shadow-md relative">
+      {/* Shadow effect  */}
+      <div className="absolute inset-10 bg-violet-500/50 -z-10 blur-2xl rounded-lg" />
+
       {/* Top section */}
-      <div className="flex flex-row items-center justify-between h-24 w-full px-8 bg-gray-100/75">
+      <div className="flex flex-row items-center justify-between h-24 w-full px-8 bg-gray-100/75 rounded-t-xl">
         <div className="h-full flex flex-col">
           <div className="h-full flex flex-row items-center gap-6 ">
             <FilterButton
