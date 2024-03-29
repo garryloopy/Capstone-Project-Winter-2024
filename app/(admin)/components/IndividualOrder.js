@@ -127,7 +127,7 @@ const IndividualOrder = ({
               target="_blank"
               href={`/orders/${paymentId}`}
             >
-              <p>Open in new tab</p>
+              Open in new tab
               <FaExternalLinkAlt size={16} />
             </a>
             <button

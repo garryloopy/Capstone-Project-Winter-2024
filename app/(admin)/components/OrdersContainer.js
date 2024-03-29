@@ -223,7 +223,11 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
 
         {/* Top section  */}
         <div className="flex flex-row w-full text-center h-16 items-center divide-x-2 px-6 divide-gray-400 bg-gray-100/90 shadow-md text-gray-600 font-semibold text-lg">
+<<<<<<< Updated upstream
           <p className="w-3/6 flex flex-row justify-center items-center gap-4 text-center relative">
+=======
+          <div className="w-2/6 flex flex-row justify-center items-center gap-4 text-center relative">
+>>>>>>> Stashed changes
             Order ID
             {/* ICON  */}
             <FaQuestion
@@ -238,8 +242,8 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                 for the order.
               </p>
             </div>
-          </p>
-          <p className="w-1/6 flex flex-row justify-center items-center gap-4 text-center relative">
+          </div>
+          <div className="w-1/6 flex flex-row justify-center items-center gap-4 text-center relative">
             Email
             {/* ICON  */}
             <FaQuestion
@@ -254,8 +258,8 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                 customer for the order.
               </p>
             </div>
-          </p>
-          <p className="w-1/6 flex flex-row justify-center items-center gap-4 text-center relative">
+          </div>
+          <div className="w-1/6 flex flex-row justify-center items-center gap-4 text-center relative">
             Date
             {/* ICON  */}
             <FaQuestion
@@ -270,8 +274,8 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                 the order.
               </p>
             </div>
-          </p>
-          <p className="w-1/6 flex flex-row justify-center items-center gap-4 text-center relative">
+          </div>
+          <div className="w-1/6 flex flex-row justify-center items-center gap-4 text-center relative">
             Order Status
             {/* ICON  */}
             <FaQuestion
@@ -280,7 +284,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
             />
             {/* HELP CONTAINER  */}
             <div className="bg-gray-50 rounded-md shadow-md border-2 border-gray-300 absolute w-full top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
-              <p>
+              <div>
                 Order statuses can 4 have possible states:{" "}
                 <span className="bg-green-50 border-green-200 text-green-800 border p-[2px] rounded-md">
                   COMPLETED
@@ -297,7 +301,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                 <span className="bg-red-50 border-red-200 text-red-800 border p-[2px] rounded-md">
                   CANCELLED
                 </span>
-              </p>
+              </div>
               <p>
                 As an order is created, the order will start of with a{" "}
                 <span className="bg-orange-50 border-orange-200 text-orange-800 border p-[2px] rounded-md">
@@ -326,8 +330,8 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                 customer for confirmation and acknowledgement.
               </p>
             </div>
-          </p>
-          <p className="w-1/6 flex flex-row justify-center items-center gap-4 text-center relative">
+          </div>
+          <div className="w-1/6 flex flex-row justify-center items-center gap-4 text-center relative">
             Items
             {/* ICON  */}
             <FaQuestion
@@ -342,7 +346,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                 for the order.
               </p>
             </div>
-          </p>
+          </div>
         </div>
 
         {/* Orders Container  */}
@@ -383,32 +387,40 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
             categorizedItems &&
             ordersList &&
             currentFilter === "ALL" &&
-            Object.keys(categorizedItems).map((category) => (
-              <div key={category} className="flex flex-col gap-4 mb-12 pb-8">
-                <p className="text-lg font-semibold text-center text-gray-600 border-b-2 border-gray-300 pb-2">
-                  {category}
-                </p>
-                <div className="flex flex-col gap-4">
-                  {categorizedItems[category].map((order) => {
-                    //format the date of order
-                    const formattedDate = getFormattedDate(order.createdAt);
-                    return (
-                      <IndividualOrder
-                        objectId={order._id}
-                        key={order.orderId}
-                        orderId={order.orderId}
-                        orderStatus={order.orderStatus}
-                        orderAmount={order.cartProducts.length}
-                        paymentId={order.paymentId}
-                        orderDate={formattedDate}
-                        orderName={order.clientInfo.email}
-                        onOrderStatusChange={handleOnOrderStatusChange}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
+            ["PENDING", "IN PROGRESS", "COMPLETED", "CANCELLED"].map(
+              (category) =>
+                categorizedItems[category] ? (
+                  <div
+                    key={category}
+                    className="flex flex-col gap-4 mb-12 pb-8"
+                  >
+                    <p className="text-lg font-semibold text-center text-gray-600 border-b-2 border-gray-300 pb-2">
+                      {category}
+                    </p>
+                    <div className="flex flex-col gap-4">
+                      {categorizedItems[category].map((order) => {
+                        //format the date of order
+                        const formattedDate = getFormattedDate(order.createdAt);
+                        return (
+                          <IndividualOrder
+                            objectId={order._id}
+                            key={order.orderId}
+                            orderId={order.orderId}
+                            orderStatus={order.orderStatus}
+                            orderAmount={order.cartProducts.length}
+                            paymentId={order.paymentId}
+                            orderDate={formattedDate}
+                            orderName={order.clientInfo.email}
+                            onOrderStatusChange={handleOnOrderStatusChange}
+                          />
+                        );
+                      })}
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )
+            )}
         </div>
       </div>
     </div>
