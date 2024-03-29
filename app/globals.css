@@ -7,7 +7,7 @@
 body {
   /*background-image: url("/images/background.jpg");*/
   /* background-color: lightgray; */
-  @apply bg-gray-50;
+  @apply bg-gray-100;
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: 25%;
@@ -132,7 +132,7 @@ select {
   display: flex;
   flex-direction: row;
   padding: 4rem 0 4rem 6rem;
-  width:100%;
+  width: 100%;
 }
 
 .gallery-content {
@@ -149,17 +149,14 @@ select {
   display: flex;
   max-width: 50%;
   position: relative;
-    background: #0c0c0c;
-    padding:1rem;
-
+  background: #0c0c0c;
+  padding: 1rem;
 }
 
 .gallery-images-container {
   display: flex;
   width: max-content;
   overflow-x: scroll;
-
-  
 }
 
 .gallery-images-container::-webkit-scrollbar {
@@ -170,7 +167,7 @@ select {
   position: relative;
   min-width: 300px;
   height: 447px;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 .gallery-desc {
   position: absolute;
@@ -180,7 +177,7 @@ select {
   transition: 0.5s ease;
   font-size: 16px;
   text-align: center;
-  padding: 0 1rem
+  padding: 0 1rem;
 }
 
 .gallery-images-card img {
@@ -220,8 +217,8 @@ select {
 }
 
 .headtext__cormorant {
-  font-family: 'Cormorant Upright', serif ;
-  color: #DCCA87;
+  font-family: "Cormorant Upright", serif;
+  color: #dcca87;
   font-size: 64px;
   line-height: 83.2px;
   letter-spacing: 0.04em;
@@ -272,9 +269,9 @@ select {
     min-width: 310px;
     height: 320px;
   }
-  
-  .gallery-images-arrow{
-    display:none;
+
+  .gallery-images-arrow {
+    display: none;
   }
 }
 
@@ -284,13 +281,9 @@ select {
   width: 0.6rem;
 }
 ::-webkit-scrollbar-track {
-    background-color: rgb(30 41 59);
-
+  background-color: rgb(30 41 59);
 }
 ::-webkit-scrollbar-thumb {
   background-color: rgb(249 115 22);
   border-radius: 5rem;
 }
-
-
-
