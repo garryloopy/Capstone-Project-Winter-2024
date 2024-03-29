@@ -43,7 +43,7 @@ export default function Header() {
   };
 
   return (
-    <header className="md:px-[4rem] px-2 py-[1rem] flex justify-between items-center z-10 fixed top-0 w-full bg-gray-50 h-28">
+    <header className="md:px-[4rem] px-2 py-[1rem] flex justify-between items-center w-full bg-inherit h-28">
       {/* logo and text */}
       <Link
         className="flex justify-center items-center text-slate-700  overflow-hidden rounded-full shadow-md"
@@ -74,38 +74,43 @@ export default function Header() {
               <h2 className="text-md text-slate-800">Hello, {username}</h2>
               <IoChevronDownOutline
                 size={20}
-                className={`${toggleAdminMenu && "rotate-180"}`}
+                className={`${
+                  toggleAdminMenu && "rotate-180"
+                } transition-transform duration-300 ease-in-out`}
               />
             </button>
-
             {/* Admin options  */}
-            {toggleAdminMenu && (
-              <div className="absolute top-16 right-0 bg-gray-50 min-w-64 flex flex-col gap-2 p-5 shadow-lg text-sm text-slate-800 font-semibold border-slate-200 border-2 rounded-lg">
-                <Link
-                  onClick={handleToggleAdminMenu}
-                  href="/menu-list"
-                  className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start  bg-yellow-400 rounded-md shadow-md"
-                >
-                  <IoGridOutline size={24} />
-                  Dashboard
-                </Link>
-                <Link
-                  onClick={handleToggleAdminMenu}
-                  href="/cart"
-                  className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 rounded-md shadow-md"
-                >
-                  <IoCartOutline size={24} />
-                  Cart
-                </Link>
-                <button
-                  className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 rounded-md shadow-md"
-                  onClick={() => signOut({ callbackUrl: "/" })}
-                >
-                  <IoLogOutOutline size={24} />
-                  Sign out
-                </button>
-              </div>
-            )}
+            <div
+              className={`absolute ${
+                toggleAdminMenu
+                  ? "opacity-100 pointer-events-auto"
+                  : "pointer-events-none"
+              } transition-opacity duration-300 opacity-0 top-16 right-0 bg-gray-50 min-w-64 flex flex-col gap-2 p-5 shadow-lg text-sm text-slate-800 font-semibold border-slate-200 border-2 rounded-lg`}
+            >
+              <Link
+                onClick={handleToggleAdminMenu}
+                href="/menu-list"
+                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start  bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
+              >
+                <IoGridOutline size={24} />
+                Dashboard
+              </Link>
+              <Link
+                onClick={handleToggleAdminMenu}
+                href="/cart"
+                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
+              >
+                <IoCartOutline size={24} />
+                Cart
+              </Link>
+              <button
+                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
+                onClick={() => signOut({ callbackUrl: "/" })}
+              >
+                <IoLogOutOutline size={24} />
+                Sign out
+              </button>
+            </div>
           </div>
         ) : (
           <Link

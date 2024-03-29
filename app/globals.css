@@ -7,7 +7,7 @@
 body {
   /*background-image: url("/images/background.jpg");*/
   /* background-color: lightgray; */
-  @apply bg-gray-100;
+  @apply bg-yellow-50/20;
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: 25%;

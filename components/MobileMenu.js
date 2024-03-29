@@ -44,7 +44,7 @@ const MobileMenu = ({ setToggleMenu }) => {
       </Link>
 
       {session.status === "authenticated" && (
-        <div className=" w-full min-h-64 bg-gray-200 p-6 flex flex-col items-center gap-2">
+        <div className=" w-full min-h-64 bg-neutral-200 p-6 flex flex-col items-center gap-2">
           <h2 className="text-slate-800 font-semibold text-xl border-b-2 w-full md:w-2/3 min-w-60 text-center border-slate-300 pb-1 mb-4">
             Hello, {username}
           </h2>
@@ -65,7 +65,7 @@ const MobileMenu = ({ setToggleMenu }) => {
           </Link>
 
           <button
-            className="px-4 py-2 gap-4 h-12 w-full md:w-2/3 flex flex-row items-center justify-center bg-yellow-400 rounded-md shadow-md"
+            className="px-4 py-2 gap-4 h-10 w-full md:w-2/3 flex flex-row items-center justify-center bg-yellow-400 rounded-md shadow-md"
             onClick={() => signOut({ callbackUrl: "/" })}
           >
             <IoLogOutOutline size={24} />

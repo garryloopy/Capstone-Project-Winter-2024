@@ -38,23 +38,6 @@ const Navbar = () => {
       >
         Contact Us
       </Link>
-
-      {/* <Link
-        href="/menu"
-        className={`hover:opacity-100 transition-opacity duration-500 ${
-          path === "/menu" ? "text-yellow-400 opacity-100" : "opacity-50"
-        }`}
-      >
-        Menu
-      </Link>
-      <Link
-        href="/contact"
-        className={`hover:opacity-100 transition-opacity duration-500 ${
-          path === "/contact" ? "text-yellow-400 opacity-100" : "opacity-50"
-        }`}
-      >
-        Contact us
-      </Link> */}
     </nav>
   );
 };
