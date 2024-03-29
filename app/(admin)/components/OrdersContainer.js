@@ -223,11 +223,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
 
         {/* Top section  */}
         <div className="flex flex-row w-full text-center h-16 items-center divide-x-2 px-6 divide-gray-400 bg-gray-100/90 shadow-md text-gray-600 font-semibold text-lg">
-<<<<<<< Updated upstream
-          <p className="w-3/6 flex flex-row justify-center items-center gap-4 text-center relative">
-=======
           <div className="w-2/6 flex flex-row justify-center items-center gap-4 text-center relative">
->>>>>>> Stashed changes
             Order ID
             {/* ICON  */}
             <FaQuestion
