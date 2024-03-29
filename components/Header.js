@@ -3,18 +3,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "./Navbar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
-  faCartShopping,
-  faBars,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
+  IoLogOutOutline,
+  IoCartOutline,
+  IoGridOutline,
+  IoChevronDownOutline,
+  IoClose,
+  IoMenuOutline,
+} from "react-icons/io5";
 import { useContext, useState } from "react";
 import MobileMenu from "./MobileMenu";
 import { signOut, useSession } from "next-auth/react";
 import { CartContext } from "./Providers";
 
+import Logo from "@/public/images/Logo-01.jpg";
+import { usePathname } from "next/navigation";
+
 export default function Header() {
+  const path = usePathname();
+
   const { cartProducts } = useContext(CartContext);
   const session = useSession();
   const { name } = session?.data?.user || {};
@@ -24,94 +32,114 @@ export default function Header() {
   }
   const [toggleMenu, setToggleMenu] = useState(false);
 
+  const [toggleAdminMenu, setToggleAdminMenu] = useState(false);
+
+  const handleToggleAdminMenu = () => {
+    setToggleAdminMenu(!toggleAdminMenu);
+  };
+
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
   };
 
   return (
-    <header className="md:px-[4rem] px-2 py-[1rem] flex justify-between items-center bg-slate-800 border-b border-gray-600 shadow-md z-10 sticky top-0">
+    <header className="md:px-[4rem] px-2 py-[1rem] flex justify-between items-center w-full bg-inherit h-28">
       {/* logo and text */}
       <Link
-        className="flex gap-4 justify-center items-center text-white md:w-[30%] w-1/2"
+        className="flex justify-center items-center text-slate-700  overflow-hidden rounded-full shadow-md"
         href="/"
       >
-        <div className="">
+        <div className="size-20 rounded-full relative">
           <Image
-            src="/images/macaroni_shutterstock.jpg"
-            alt="logo"
-            width={80}
-            height={80}
-            className="rounded-full border-2 border-orange-400"
+            src={Logo}
+            alt="Miggy's Munchies logo"
+            fill={true}
+            sizes="(max-width: 1024px) 50vw, (max-width: 768px) 80vw, 1200px"
+            className="object-cover"
           />
         </div>
-        <p className="md:text-lg text-sm header-font">
-          <span className="lg:text-[40px] text-md text-orange-400">M</span>
-          iggy's{" "}
-          <span className="lg:text-[40px] text-md text-orange-400">M</span>
-          unchies
-        </p>
       </Link>
 
       {/* navbar links */}
-      <nav className=" xl:flex hidden justify-center items-center gap-16 text-white mt-16 sm:text-xl text-md ">
-        <Navbar />
-      </nav>
+      <Navbar />
 
       {/* cart Icon */}
-      <div className="flex gap-6 items-center justify-center">
+      <div className="flex gap-6 items-center justify-center h-full">
         {session.status === "authenticated" ? (
-          <div className="xl:flex hidden gap-4 text-white lg:text-lg text-md items-center ">
-            <div className="font-semibold ">
-              <Link href="/menu-list">
-                <h2>Hello, {username}</h2>
+          <div className="hidden relative xl:flex flex-row justify-center h-full gap-6 items-center">
+            <button
+              className="font-semibold flex flex-row items-center justify-center gap-3 bg-yellow-400 px-6 py-2 rounded-lg shadow-md"
+              onClick={handleToggleAdminMenu}
+            >
+              <h2 className="text-md text-slate-800">Hello, {username}</h2>
+              <IoChevronDownOutline
+                size={20}
+                className={`${
+                  toggleAdminMenu && "rotate-180"
+                } transition-transform duration-300 ease-in-out`}
+              />
+            </button>
+            {/* Admin options  */}
+            <div
+              className={`absolute ${
+                toggleAdminMenu
+                  ? "opacity-100 pointer-events-auto"
+                  : "pointer-events-none"
+              } transition-opacity duration-300 opacity-0 top-16 right-0 bg-gray-50 min-w-64 flex flex-col gap-2 p-5 shadow-lg text-sm text-slate-800 font-semibold border-slate-200 border-2 rounded-lg`}
+            >
+              <Link
+                onClick={handleToggleAdminMenu}
+                href="/menu-list"
+                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start  bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
+              >
+                <IoGridOutline size={24} />
+                Dashboard
               </Link>
-            </div>
-            <div>
+              <Link
+                onClick={handleToggleAdminMenu}
+                href="/cart"
+                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
+              >
+                <IoCartOutline size={24} />
+                Cart
+              </Link>
               <button
-                className="px-2 py-1 border border-gray-400 rounded-md hover:bg-black hover:text-white"
+                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
                 onClick={() => signOut({ callbackUrl: "/" })}
               >
-                Logout
+                <IoLogOutOutline size={24} />
+                Sign out
               </button>
             </div>
           </div>
         ) : (
           <Link
             href="/cart"
-            className="relative flex justify-center items-center p-3 rounded-md"
+            className="relative flex justify-center items-center p-3"
           >
             {cartProducts?.length > 0 && (
-              <div className="absolute -top-1 -right-1 text-[.7rem] w-[1.2rem] h-[1.2rem] bg-orange-500 flex items-center justify-center rounded-full">
-                <p className="text-center text-white">{cartProducts.length}</p>
+              <div className="absolute top-0 right-0 size-5 bg-yellow-400 rounded-full grid place-items-center">
+                <p className="text-center text-slate-700 text-xs font-semibold">
+                  {cartProducts.length}
+                </p>
               </div>
             )}
-            <FontAwesomeIcon
-              icon={faCartShopping}
-              style={{ color: "#F1F0E8" }}
-              size="lg"
-            />
+            <IoCartOutline className="text-slate-900" size={30} />
           </Link>
         )}
+
         {/* burger menu */}
-        <div className="bg-orange-500 rounded-md p-2 xl:hidden flex">
+        <button
+          type="button"
+          onClick={handleToggleMenu}
+          className="bg-yellow-400 size-10 rounded-md shadow-md grid place-items-center xl:hidden"
+        >
           {toggleMenu ? (
-            <button type="button" onClick={handleToggleMenu}>
-              <FontAwesomeIcon
-                icon={faXmark}
-                size="xl"
-                style={{ color: "#F1F0E8" }}
-              />
-            </button>
+            <IoClose size={28} className="text-slate-800" />
           ) : (
-            <button type="button" onClick={handleToggleMenu}>
-              <FontAwesomeIcon
-                icon={faBars}
-                size="xl"
-                style={{ color: "#F1F0E8" }}
-              />
-            </button>
+            <IoMenuOutline size={28} className="text-slate-800" />
           )}
-        </div>
+        </button>
         {toggleMenu && <MobileMenu setToggleMenu={setToggleMenu} />}
       </div>
     </header>

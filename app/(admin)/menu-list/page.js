@@ -9,13 +9,11 @@ import Loading from "@/components/Loading";
 import MenuForm from "../components/MenuForm";
 import toast, { Toaster } from "react-hot-toast";
 import SingleMenu from "../components/SingleMenu";
-import Link from "next/link"
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { withSwal } from "react-sweetalert2";
 import { deletePhoto } from "@/actions/uploadImage";
-
-
 
 const AdminPage = ({ swal }) => {
   const session = useSession();
@@ -123,8 +121,8 @@ const AdminPage = ({ swal }) => {
             if (res.ok) {
               const data = await res.json();
               swal.fire("Deleted", data.message, "success");
-              if (item.public_id){
-              await deletePhoto(item.public_id)
+              if (item.public_id) {
+                await deletePhoto(item.public_id);
               }
               await getMenuList();
             } else {
@@ -141,12 +139,12 @@ const AdminPage = ({ swal }) => {
               "error"
             );
           }
-        } 
+        }
       });
   };
 
   return (
-    <section className="flex flex-col justify-center items-center">
+    <section className="flex flex-col justify-center items-center mt-32">
       <AdminNavbar path={path} />
       <SubHeader header2="Create new Menu" />
       <MenuForm handleSubmit={handleSubmit} buttonText="Create Menu" />
@@ -160,7 +158,6 @@ const AdminPage = ({ swal }) => {
           menuList.map((item) => (
             <div
               key={item._id}
-              
               /* this is for admin menu list */
               className="bg-neutral-200 p-4 rounded-lg text-center hover:shadow-md hover:shadow-orange-500 flex flex-col justify-around"
             >
