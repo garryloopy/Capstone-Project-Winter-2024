@@ -92,5 +92,11 @@ just play with it */
     .slideshow {
         margin-top: 1rem;
         margin-bottom: 1rem; /* adjust as needed */
+        min-width:700px
     }
 }
+/* @media (min-width: 375px) {
+    .slideshow {
+       width:100%
+    }
+} */

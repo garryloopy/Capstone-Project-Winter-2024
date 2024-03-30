@@ -23,7 +23,7 @@ const NewFlavor = () => {
     }
   };
   return (
-    <div className="gallery flex justify-center items-center mb-[4rem]">
+    <div className="gallery flex justify-center items-center mb-[4rem] ">
       <div className="gallery-content">
         <h1 className="headtext__cormorant">Discover New Flavors</h1>
         <p className="text-gray-400 my-[2rem]">
@@ -32,7 +32,7 @@ const NewFlavor = () => {
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim
         </p>
-        <div className="my-[2rem]">
+        <div className="my-[2rem] hidden xl:block">
           <Link className="btnStyle" href="/menu">
             Order Now
           </Link>
@@ -66,6 +66,7 @@ const NewFlavor = () => {
           />
         </div>
       </div> */}
+      
     </div>
   );
 }
