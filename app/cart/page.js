@@ -224,8 +224,7 @@ export default function CartPage() {
                       );
                     }
                   }}
-
-  // ------ this is for Google Pay ------
+                  // ------ this is for Google Pay ------
                   createPaymentRequest={() => ({
                     countryCode: "CA",
                     currencyCode: "CDN",
@@ -257,7 +256,13 @@ export default function CartPage() {
                         },
                       }}
                       render={(Button) => (
-                        <Button>
+                        <Button
+                          style={{
+                            backgroundColor: "rgb(250, 204, 21)",
+                            color: "black",
+                            hover: { backgroundColor: "rgb(240, 180, 18)" },
+                          }}
+                        >
                           $
                           {`${(
                             totalPrice +
