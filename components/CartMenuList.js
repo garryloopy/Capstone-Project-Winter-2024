@@ -26,7 +26,7 @@ const CartMenuList = ({ cartProducts, onDelete, totalPrice, deliveryAmount }) =>
               />
             </div>
             <div>
-              <h3 className="text-orange-500 font-semibold">{product.title}</h3>
+              <h3 className="text-violet-500 font-semibold">{product.title}</h3>
               {product.sizes && (
                 <div className="text-sm ">
                   <span>{product.sizes.name}</span>
