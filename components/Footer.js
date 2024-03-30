@@ -17,7 +17,7 @@ export default function Footer() {
   };
   return (
     <footer className="bg-slate-800 flex-col flex justify-start items-center text-gray-400 pb-4">
-      <div className="w-full flex justify-center items-center mt-[5rem] py-0 px-[2rem]">
+      <div className="w-full flex  lg:flex-row flex-col justify-center items-center mt-[5rem] py-0 px-[2rem]">
         <div className="flex-1 m-[1rem] text-center">
           <h1 className="text-white font-bold tracking-[0.08em] text-lg mb-[1rem]">
             Find Us
@@ -30,7 +30,7 @@ export default function Footer() {
 
         <div className="flex-1 m-[1rem] flex flex-col justify-start items-center">
           {/* text-[#DCCA87]  */}
-          <h2 className="text-[2rem] text-yellow-400 font-semibold text-start mb-[2rem]">
+          <h2 className="text-[2rem] text-yellow-400 font-semibold mb-[2rem] text-center">
             Miggy's Munchies
           </h2>
           <img
@@ -51,7 +51,7 @@ export default function Footer() {
         </div>
 
         <div className="flex-1 m-[1rem] text-center">
-          <h1 className="text-white font-bold tracking-[0.08em] text-lg mb-[2rem]">
+          <h1 className="text-white font-bold tracking-[0.08em] text-lg mb-[1rem]">
             Working Hours
           </h1>
           <p className="p__opensans">Sat - Sun:</p>
@@ -61,11 +61,13 @@ export default function Footer() {
       {/* <p className="my-[1rem]">
         Copyright ©️ Miggy's Munchies {new Date().getFullYear()}
       </p> */}
-      <p className="my-[1rem]">
-        ©️ {new Date().getFullYear()}{" "}
-        <span className="text-yellow-400 font-bold">Miggy's Munchies</span> All
-        rights reserved.
-      </p>
+      <div className="w-full p-4 my-[1rem] text-center">
+        <p className=" ">
+          ©️ {new Date().getFullYear()}{" "}
+          <span className="text-yellow-400 font-bold">Miggy's Munchies</span>{" "}
+          All rights reserved.
+        </p>
+      </div>
     </footer>
   );
 }
