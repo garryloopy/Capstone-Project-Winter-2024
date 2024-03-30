@@ -25,6 +25,7 @@ export async function POST(req, res) {
     let cardBrand;
     let lastFourDigits;
     let paymentId;
+    let orderStatus=""
    
     const { result } = await paymentsApi.createPayment({
       idempotencyKey: randomUUID(),
@@ -39,6 +40,7 @@ export async function POST(req, res) {
     paid = result.payment.status;
     cardBrand = result.payment.cardDetails.card.cardBrand;
     lastFourDigits = result.payment.cardDetails.card.last4;
+
 
     // GARRY, ADD orderStatus to the Order model
     const orderItems = await Order.create({

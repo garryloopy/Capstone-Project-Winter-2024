@@ -231,7 +231,7 @@ export default function ContactForm() {
       {/* Section for name  */}
       <div className="flex flex-row gap-8">
         {/* First Name  */}
-        <label className="h-14  text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-gray-50">
+        <label className="h-14  text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
           {/* Input for first name  */}
           <input
             type="text"
@@ -259,7 +259,7 @@ export default function ContactForm() {
         </label>
 
         {/* Last Name  */}
-        <label className="h-14 text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-gray-50">
+        <label className="h-14 text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
           {/* Input for last name  */}
           <input
             type="text"
@@ -288,7 +288,7 @@ export default function ContactForm() {
       </div>
 
       {/* Section for email  */}
-      <label className="h-14 w-full relative flex flex-col justify-end cursor-text  border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-gray-50">
+      <label className="h-14 w-full relative flex flex-col justify-end cursor-text  border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
         {/* Input  */}
         <input
           type="email"
@@ -316,7 +316,7 @@ export default function ContactForm() {
       </label>
 
       {/* Section for phone number  */}
-      <label className="h-14 w-full relative flex flex-col justify-end cursor-text  border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-gray-50">
+      <label className="h-14 w-full relative flex flex-col justify-end cursor-text  border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
         {/* Input  */}
         <input
           type="text"
@@ -345,7 +345,7 @@ export default function ContactForm() {
       </label>
 
       {/* Section for message  */}
-      <label className="min-h-max w-full relative flex flex-col justify-start cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-gray-50">
+      <label className="min-h-max w-full relative flex flex-col justify-start cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
         {/* Main section container  */}
         <textarea
           className="w-full h-full mt-16 p-4 outline-none peer text-sm bg-inherit text-gray-600 rounded-b-md"
@@ -355,7 +355,7 @@ export default function ContactForm() {
           onChange={handleOnMessageChange}
         />
         {/* Top section container  */}
-        <div className="w-full h-16 absolute top-0 flex items-center  border-b border-gray-200 justify-center pointer-events-none text-gray-950 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 peer-valid:text-green-500 peer-valid:opacity-100 transition-all duration-300 group-hover:opacity-100 bg-gray-100 rounded-t-md">
+        <div className="w-full h-16 absolute top-0 flex items-center  border-b border-gray-200 justify-center pointer-events-none text-gray-950 opacity-50 peer-focus:opacity-100 peer-required:text-red-500 peer-valid:text-green-500 peer-valid:opacity-100 transition-all duration-300 group-hover:opacity-100 bg-gray-50 rounded-t-md">
           <p className="font-semibold text-sm">Message</p>
         </div>
 
