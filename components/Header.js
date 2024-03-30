@@ -85,7 +85,7 @@ export default function Header() {
                 toggleAdminMenu
                   ? "opacity-100 pointer-events-auto"
                   : "pointer-events-none"
-              } transition-opacity duration-300 opacity-0 top-16 right-0 bg-gray-50 min-w-64 flex flex-col gap-2 p-5 shadow-lg text-sm text-slate-800 font-semibold border-slate-200 border-2 rounded-lg`}
+              } transition-opacity duration-300 opacity-0 top-16 right-0 bg-gray-50 min-w-64 flex flex-col gap-2 p-5 shadow-lg text-sm text-slate-800 font-semibold border-slate-200 border-2 rounded-lg z-50`}
             >
               <Link
                 onClick={handleToggleAdminMenu}
