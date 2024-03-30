@@ -223,7 +223,7 @@ export default function ContactForm() {
 
       {/* Header for form  */}
       <div className="w-full h-16 flex items-end justify-center mb-4">
-        <p className="text-3xl font-semibold text-purple-500/95">
+        <p className="lg:text-3xl font-semibold text-purple-500/95 text-lg">
           Get in touch with us
         </p>
       </div>
