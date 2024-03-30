@@ -1,18 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-import {
-  IoLogOutOutline,
-  IoCartOutline,
-  IoGridOutline,
-  IoChevronDownOutline,
-  IoClose,
-  IoMenuOutline,
-  IoLogInOutline,
-} from "react-icons/io5";
-
-import { IoIosClose } from "react-icons/io";
-import { CiLogin } from "react-icons/ci";
+import { IoClose, IoLogInOutline } from "react-icons/io5";
 
 const AdminModal = () => {
   const [showModal, setShowModal] = useState(true);
@@ -38,7 +27,7 @@ const AdminModal = () => {
               href="/sign-in"
               className="px-4 py-2 gap-4 h-10 w-40 flex flex-row items-center justify-start text-slate-800 font-semibold bg-yellow-400 rounded-md shadow-md"
             >
-              <IoLogOutOutline size={24} />
+              <IoLogInOutline size={24} />
               Sign in
             </Link>
           </div>
