@@ -91,7 +91,7 @@ p {
 
 /* button order style */
 .btnStyle {
-  @apply px-6 py-2 border-2 border-orange-400 rounded-md hover:bg-orange-400 shadow-md bg-slate-100 text-black hover:text-white;
+  @apply px-6 py-2 border-2 border-yellow-400 rounded-md hover:bg-yellow-400 shadow-md bg-slate-100 text-black hover:text-white;
 }
 
 /* Styles for Modal */
