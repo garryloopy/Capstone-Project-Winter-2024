@@ -7,99 +7,88 @@ import {
   IoLogOutOutline,
   IoCartOutline,
   IoGridOutline,
-  IoChevronDownOutline,
-  IoClose,
-  IoMenuOutline,
+  IoHomeOutline,
+  IoFastFoodOutline,
+  IoMailOpenOutline,
 } from "react-icons/io5";
+import { usePathname } from "next/navigation";
 
 const MobileMenu = ({ setToggleMenu }) => {
   const session = useSession();
+  const path = usePathname();
   const { name } = session?.data?.user || {};
   let username = name;
   if (username && username.includes(" ")) {
     username = username.split(" ")[0];
   }
   return (
-    <div className="fixed top-28 right-0 left-0 bottom-0 xl:hidden bg-gray-50 z-50 h-screen flex flex-col border-t-2 border-slate-2 divide-y">
-      <Link
-        href="/"
-        onClick={() => setToggleMenu(false)}
-        className="w-full h-16 grid place-items-center text-slate-800 font-semibold text-xl odd:bg-gray-100 even:bg-gray-50"
-      >
-        Home
-      </Link>
-      <Link
-        href="/menu"
-        onClick={() => setToggleMenu(false)}
-        className="w-full h-16 grid place-items-center text-slate-800 font-semibold text-xl odd:bg-gray-100 even:bg-gray-50"
-      >
-        Menu
-      </Link>
-      <Link
-        href="/contact"
-        onClick={() => setToggleMenu(false)}
-        className="w-full h-16 grid place-items-center text-slate-800 font-semibold text-xl odd:bg-gray-100 even:bg-gray-50"
-      >
-        Contact Us
-      </Link>
-
+    <div className="absolute top-28 right-0 left-0 lg:hidden h-max bg-slate-800 z-50 flex flex-col gap-8 border-t-2 border-slate-2 shadow-md p-2 pb-4">
+      {/* Container  */}
+      <div className="w-full h-max rounded-md overflow-hidden flex flex-col gap-2 bg-gray-600/50 p-4">
+        <Link
+          href="/"
+          onClick={() => setToggleMenu(false)}
+          className={`w-full h-12 flex items-center justify-center gap-3 text-slate-800 font-semibold text-xl bg-yellow-400 rounded-lg ${
+            path === "/" ? "opacity-100" : " opacity-75"
+          }`}
+        >
+          <IoHomeOutline size={24} />
+          Home
+        </Link>
+        <Link
+          href="/menu"
+          onClick={() => setToggleMenu(false)}
+          className={`w-full h-12 flex items-center justify-center gap-3 text-slate-800 font-semibold text-xl bg-yellow-400 rounded-lg ${
+            path === "/menu" ? "opacity-100" : " opacity-75"
+          }`}
+        >
+          <IoFastFoodOutline size={24} />
+          Menu
+        </Link>
+        <Link
+          href="/contact"
+          onClick={() => setToggleMenu(false)}
+          className={`w-full h-12 flex items-center justify-center gap-3 text-slate-800 font-semibold text-xl bg-yellow-400 rounded-lg ${
+            path === "/contact" ? "opacity-100" : " opacity-75"
+          }`}
+        >
+          <IoMailOpenOutline size={24} />
+          Contact us
+        </Link>
+      </div>
       {session.status === "authenticated" && (
-        <div className=" w-full min-h-64 bg-neutral-200 p-6 flex flex-col items-center gap-2">
-          <h2 className="text-slate-800 font-semibold text-xl border-b-2 w-full md:w-2/3 min-w-60 text-center border-slate-300 pb-1 mb-4">
-            Hello, {username}
-          </h2>
+        <div className="w-full h-max rounded-md overflow-hidden flex flex-col gap-2 bg-gray-600/50 p-4">
+          <div className=" w-full h-full flex flex-col items-center gap-2 pt-8">
+            <h2 className="text-gray-50 font-semibold text-xl border-b w-full text-center border-slate-300 pb-1 mb-4">
+              Hello, {username}
+            </h2>
 
-          <Link
-            href="/menu-list"
-            className="px-4 py-2 gap-4 h-10 w-full md:w-2/3 flex flex-row items-center justify-center  bg-yellow-400 rounded-md shadow-md"
-          >
-            <IoGridOutline size={24} />
-            Dashboard
-          </Link>
-          <Link
-            href="/cart"
-            className="px-4 py-2 gap-4 h-10 w-full md:w-2/3 flex flex-row items-center justify-center bg-yellow-400 rounded-md shadow-md"
-          >
-            <IoCartOutline size={24} />
-            Cart
-          </Link>
+            <Link
+              href="/menu-list"
+              onClick={() => setToggleMenu(false)}
+              className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-center  bg-yellow-400 rounded-md shadow-md"
+            >
+              <IoGridOutline size={24} />
+              Dashboard
+            </Link>
+            <Link
+              href="/cart"
+              onClick={() => setToggleMenu(false)}
+              className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-center bg-yellow-400 rounded-md shadow-md"
+            >
+              <IoCartOutline size={24} />
+              Cart
+            </Link>
 
-          <button
-            className="px-4 py-2 gap-4 h-10 w-full md:w-2/3 flex flex-row items-center justify-center bg-yellow-400 rounded-md shadow-md"
-            onClick={() => signOut({ callbackUrl: "/" })}
-          >
-            <IoLogOutOutline size={24} />
-            Sign out
-          </button>
+            <button
+              className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-center bg-yellow-400 rounded-md shadow-md"
+              onClick={() => signOut({ callbackUrl: "/" })}
+            >
+              <IoLogOutOutline size={24} />
+              Sign out
+            </button>
+          </div>
         </div>
-        // <div className="flex flex-col justify-center w-full py-8 gap-2 text-xl text-slate-800 items-center border-2 border-gray-900 odd:bg-gray-100 even:bg-gray-50">
-        //   <h2 className="font-semibold border-b-2 w-1/2 min-w-60 text-center border-slate-300 pb-1 mb-4">
-        //     Hello, {username}
-        //   </h2>
-
-        //   <Link
-        //     href="/menu-list"
-        //     className="px-4 py-2 gap-4 h-10 w-60 flex flex-row items-center justify-start  bg-yellow-400 rounded-md shadow-md"
-        //   >
-        //     <IoGridOutline size={24} />
-        //     Dashboard
-        //   </Link>
-        //   <Link
-        //     href="/cart"
-        //     className="px-4 py-2 gap-4 h-10 w-60 flex flex-row items-center justify-start bg-yellow-400 rounded-md shadow-md"
-        //   >
-        //     <IoCartOutline size={24} />
-        //     Cart
-        //   </Link>
-
-        //   <button
-        //     className="px-4 py-2 gap-4 h-12 w-60 flex flex-row items-center justify-start bg-yellow-400 rounded-md shadow-md"
-        //     onClick={() => signOut({ callbackUrl: "/" })}
-        //   >
-        //     <IoLogOutOutline size={24} />
-        //     Sign out
-        //   </button>
-        // </div>
       )}
     </div>
   );

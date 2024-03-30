@@ -66,9 +66,9 @@ export default function Header() {
       {/* cart Icon */}
       <div className="flex gap-6 items-center justify-center h-full">
         {session.status === "authenticated" ? (
-          <div className="hidden relative xl:flex flex-row justify-center h-full gap-6 items-center">
+          <div className="hidden relative lg:flex flex-row justify-center h-full gap-6 items-center">
             <button
-              className="font-semibold flex flex-row items-center justify-center gap-3 bg-yellow-400 px-6 py-2 rounded-lg shadow-md"
+              className="font-semibold flex flex-row items-center justify-center gap-3 bg-yellow-400 px-6 py-2 rounded-md shadow-md hover:bg-yellow-300 active:bg-yellow-400 transition-colors duration-100"
               onClick={handleToggleAdminMenu}
             >
               <h2 className="text-md text-slate-800">Hello, {username}</h2>
@@ -90,7 +90,7 @@ export default function Header() {
               <Link
                 onClick={handleToggleAdminMenu}
                 href="/menu-list"
-                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start  bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
+                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start  bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md transition-colors duration-100"
               >
                 <IoGridOutline size={24} />
                 Dashboard
@@ -98,13 +98,13 @@ export default function Header() {
               <Link
                 onClick={handleToggleAdminMenu}
                 href="/cart"
-                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
+                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md transition-colors duration-100"
               >
                 <IoCartOutline size={24} />
                 Cart
               </Link>
               <button
-                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
+                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md transition-colors duration-100"
                 onClick={() => signOut({ callbackUrl: "/" })}
               >
                 <IoLogOutOutline size={24} />
@@ -132,7 +132,7 @@ export default function Header() {
         <button
           type="button"
           onClick={handleToggleMenu}
-          className="bg-yellow-400 size-10 rounded-md shadow-md grid place-items-center xl:hidden"
+          className="bg-yellow-400 size-10 rounded-md shadow-md grid place-items-center lg:hidden"
         >
           {toggleMenu ? (
             <IoClose size={28} className="text-slate-800" />
