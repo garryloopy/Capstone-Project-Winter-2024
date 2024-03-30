@@ -29,7 +29,8 @@ export default function Footer() {
         </div>
 
         <div className="flex-1 m-[1rem] flex flex-col justify-start items-center">
-          <h2 className="text-[2rem] text-[#DCCA87] text-start mb-[2rem]">
+          {/* text-[#DCCA87]  */}
+          <h2 className="text-[2rem] text-yellow-400 font-semibold text-start mb-[2rem]">
             Miggy's Munchies
           </h2>
           <img
@@ -57,8 +58,13 @@ export default function Footer() {
           <p className="p__opensans">12:00pm - 08:00pm</p>
         </div>
       </div>
-      <p className="my-[1rem]">
+      {/* <p className="my-[1rem]">
         Copyright ©️ Miggy's Munchies {new Date().getFullYear()}
+      </p> */}
+      <p className="my-[1rem]">
+        ©️ {new Date().getFullYear()}{" "}
+        <span className="text-yellow-400 font-bold">Miggy's Munchies</span> All
+        rights reserved.
       </p>
     </footer>
   );
