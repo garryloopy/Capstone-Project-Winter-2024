@@ -25,7 +25,7 @@ const AdminModal = () => {
             <p>Sign in as admin to access the dashboard.</p>
             <Link
               href="/sign-in"
-              className="gap-4 h-10 w-40 flex flex-row items-center justify-center text-slate-800 font-semibold bg-yellow-400 rounded-md shadow-md"
+              className="gap-4 h-10 w-40 flex flex-row items-center justify-center text-slate-800 font-semibold bg-yellow-400 rounded-md shadow-md hover:bg-yellow-300"
             >
               <IoLogInOutline size={24} />
               Sign in
