@@ -168,7 +168,7 @@ const MenuPopUp = ({
             </button>
             <button
               type="button"
-              className="px-2 p-1 border border-orange-400 mt-2 w-full rounded-md text-sm hover:bg-orange-400 hover:text-white"
+              className="px-2 p-1 border border-yellow-400 mt-2 w-full rounded-md text-sm hover:bg-yellow-400 text-black"
               onClick={() => setShowPopUp(false)}
             >
               Cancel
