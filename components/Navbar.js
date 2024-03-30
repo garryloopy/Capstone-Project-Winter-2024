@@ -7,7 +7,7 @@ const Navbar = () => {
   const path = usePathname();
 
   return (
-    <nav className=" xl:flex hidden justify-center items-center text-slate-800 font-semibold text-md">
+    <nav className=" lg:flex hidden justify-center items-center text-slate-800 font-semibold text-md">
       <Link
         href="/"
         className={`hover:opacity-100 transition-opacity duration-500 min-w-40 py-2 grid place-items-center ${
