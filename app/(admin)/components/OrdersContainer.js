@@ -369,7 +369,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
               return (
                 <IndividualOrder
                   objectId={order._id}
-                  key={order.orderId}
+                  key={order._id}
                   orderId={order.orderId}
                   orderStatus={order.orderStatus}
                   orderAmount={order.cartProducts.length}
@@ -400,6 +400,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                       {categorizedItems[category].map((order) => {
                         //format the date of order
                         const formattedDate = getFormattedDate(order.createdAt);
+
                         return (
                           <IndividualOrder
                             objectId={order._id}
@@ -409,7 +410,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                             orderAmount={order.cartProducts.length}
                             paymentId={order.paymentId}
                             orderDate={formattedDate}
-                            orderName={order.clientInfo.email}
+                            orderEmail={order.clientInfo.email}
                             onOrderStatusChange={handleOnOrderStatusChange}
                           />
                         );

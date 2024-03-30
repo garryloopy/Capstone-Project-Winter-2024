@@ -12,7 +12,7 @@ const IndividualOrder = ({
   paymentId,
   orderStatus,
   orderAmount,
-  orderName,
+  orderEmail,
   orderDate,
   onOrderStatusChange,
 }) => {
@@ -163,7 +163,7 @@ const IndividualOrder = ({
           <p>{orderId}</p>
         </div>
         <div className="w-1/6 h-full flex items-center justify-center">
-          <p>{orderName}</p>
+          <p>{orderEmail}</p>
         </div>
         <div className="w-1/6 h-full flex items-center justify-center">
           <p>{orderDate}</p>
