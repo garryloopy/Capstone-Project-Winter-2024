@@ -30,7 +30,7 @@ const About = () => {
               alt="logo"
               width={400}
               height={400}
-              className="rounded-full border-2 border-orange-400"
+              className="rounded-full border-2 border-yellow-400"
             />
           </div>
           <div className="flex flex-col items-center justify-center">
