@@ -11,7 +11,7 @@ export default function HomePage() {
   const session = useSession();
   const { status } = session;
   return (
-    <section className="md:px-[4rem] px-[2rem] py-[2rem] text-slate-800 flex flex-col items-center justify-center my-[6rem]">
+    <section className="md:px-[4rem] px-[2rem] py-[2rem] text-white flex flex-col items-center justify-center my-[6rem]">
       <div className="flex flex-wrap justify-center items-start">
         <div className="flex xl:flex-row flex-col">
           <div className="w-full md:w-1/2">
@@ -28,9 +28,13 @@ export default function HomePage() {
             Order Now
           </Link>
         </div>
-      </div>
+      </div>{" "}
       <About />
-      {status === "unauthenticated" ? <AdminModal /> : null}
+      {status === "unauthenticated" ? (
+        <div>
+          <AdminModal />
+        </div>
+      ) : null}
     </section>
   );
 }

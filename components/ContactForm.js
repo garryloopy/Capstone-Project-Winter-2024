@@ -121,7 +121,7 @@ export default function ContactForm() {
 
     //Show confirmation
     setSubmittedUser({
-      name: currentFirstName,
+      name: currentFirstName.trim(),
       email: currentEmail,
       phoneNumber: currentPhoneNumber,
       message: currentMessage,
@@ -158,10 +158,10 @@ export default function ContactForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: `${currentFirstName} ${currentLastName}`,
-          email: currentEmail,
-          phoneNumber: currentPhoneNumber,
-          message: currentMessage,
+          name: `${currentFirstName.trim()} ${currentLastName.trim()}`,
+          email: currentEmail.trim(),
+          phoneNumber: currentPhoneNumber.trim(),
+          message: currentMessage.trim(),
         }),
       });
       if (res.status === 200) {
