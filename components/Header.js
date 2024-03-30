@@ -68,7 +68,7 @@ export default function Header() {
         {session.status === "authenticated" ? (
           <div className="hidden relative lg:flex flex-row justify-center h-full gap-6 items-center">
             <button
-              className="font-semibold flex flex-row items-center justify-center gap-3 bg-yellow-400 px-6 py-2 rounded-md shadow-md hover:bg-yellow-300 active:bg-yellow-400 transition-colors duration-100"
+              className="font-semibold flex flex-row items-center justify-center gap-3 bg-yellow-400 px-6 py-2 rounded-lg shadow-md"
               onClick={handleToggleAdminMenu}
             >
               <h2 className="text-md text-slate-800">Hello, {username}</h2>
@@ -89,22 +89,29 @@ export default function Header() {
             >
               <Link
                 onClick={handleToggleAdminMenu}
+                href="/cart"
+                className="relative px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
+              >
+                <div className="absolute inset-0 flex items-center justify-end px-4 pointer-events-none">
+                  {cartProducts?.length > 0 && (
+                    <p className="bg-violet-600 size-6 grid place-items-center text-xs rounded-full text-gray-50">
+                      {cartProducts?.length}
+                    </p>
+                  )}
+                </div>
+                <IoCartOutline size={24} />
+                Cart
+              </Link>
+              <Link
+                onClick={handleToggleAdminMenu}
                 href="/menu-list"
-                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start  bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md transition-colors duration-100"
+                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start  bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
               >
                 <IoGridOutline size={24} />
                 Dashboard
               </Link>
-              <Link
-                onClick={handleToggleAdminMenu}
-                href="/cart"
-                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md transition-colors duration-100"
-              >
-                <IoCartOutline size={24} />
-                Cart
-              </Link>
               <button
-                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md transition-colors duration-100"
+                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
                 onClick={() => signOut({ callbackUrl: "/" })}
               >
                 <IoLogOutOutline size={24} />
@@ -115,7 +122,7 @@ export default function Header() {
         ) : (
           <Link
             href="/cart"
-            className="relative flex justify-center items-center p-3"
+            className="relative hidden lg:flex justify-center items-center p-3"
           >
             {cartProducts?.length > 0 && (
               <div className="absolute top-0 right-0 size-5 bg-yellow-400 rounded-full grid place-items-center">
