@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
+import { IoLogOutOutline, IoClose } from "react-icons/io5";
+
+import { IoIosClose } from "react-icons/io";
+import { CiLogin } from "react-icons/ci";
+
 const AdminModal = () => {
   const [showModal, setShowModal] = useState(true);
 
