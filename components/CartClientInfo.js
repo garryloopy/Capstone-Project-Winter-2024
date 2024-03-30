@@ -174,7 +174,7 @@ const CartClientInfo = ({
           </div>
         </AddressAutofill>
 
-        <div className="flex gap-4 w-full">
+        <div className="flex lg:flex-row flex-col gap-4 w-full">
           <label className="w-full">
             <span className="text-xs text-gray-400">City</span>
             <input
