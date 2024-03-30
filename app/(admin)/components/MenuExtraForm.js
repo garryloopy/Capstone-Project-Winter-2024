@@ -33,7 +33,7 @@ const MenuExtraForm = ({props, setProps, title, buttonTitle}) => {
     setProps((prev) => prev.filter((value, index) => index !== propRemoved));
   };
   return (
-    <div className=" flex flex-col border border-gray-300 p-2 rounded-md my-2 w-full text-sm gap-2 bg-orange-100">
+    <div className=" flex flex-col border border-gray-300 p-2 rounded-md my-2 w-full text-sm gap-2 bg-yellow-100">
       <div className="text-gray-700 flex gap-2 ">
         <div>
           <button type="button" onClick={() => setIsOpen(!isOpen)}>
