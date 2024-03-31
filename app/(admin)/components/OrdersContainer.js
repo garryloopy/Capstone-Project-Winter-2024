@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { TailSpin } from "react-loader-spinner";
 
 import getFormattedDate from "../utils/getFormattedDate";
+import OrderStatus from "./OrderStatus";
 
 /**
  * A component that displays, filters, updates, and opens orders based on the passed list array
@@ -33,6 +34,11 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
   const [displayedItems, setDisplayedItems] = useState([]);
 
   const [categorizedItems, setCategorizedItems] = useState({});
+
+  //Confirmation modal
+  const [confirmationModal, setConfirmationModal] = useState(false);
+
+  const [confirmationData, setConfirmationData] = useState({});
 
   // Each time orders list is changed then change displayed items to orders list
   useEffect(() => {
@@ -139,15 +145,78 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
    * @param {String} orderId The order Id to change
    * @param {String} newStatus The new status
    */
-  const handleOnOrderStatusChange = (orderId, newStatus) => {
-    if (onOrderStatusChange) onOrderStatusChange(orderId, newStatus);
+  const handleOnOrderStatusChange = (orderId, objectId, newStatus) => {
+    setConfirmationModal(true);
+    setConfirmationData({ orderId, objectId, newStatus });
+    console.log(confirmationData);
+  };
+
+  const handleOnConfirmationAgree = () => {
+    if (onOrderStatusChange)
+      onOrderStatusChange(
+        confirmationData.orderId,
+        confirmationData.objectId,
+        confirmationData.newStatus
+      );
     updateDisplayedItems();
+    setConfirmationData({});
+    setConfirmationModal(false);
+  };
+
+  const handleOnConfirmationDisagree = () => {
+    setConfirmationModal(false);
   };
 
   return (
     <div className="min-h-screen w-full bg-neutral-50 mb-8 flex flex-col rounded-xl shadow-md relative">
       {/* Shadow effect  */}
-      <div className="absolute inset-10 bg-violet-500/50 -z-10 blur-2xl rounded-lg" />
+      <div className="absolute inset-10 bg-violet-500/50 -z-10 blur-3xl rounded-lg" />
+
+      {/* Confirmation  */}
+      <div
+        className={`absolute inset-0 z-10 grid place-items-center backdrop-brightness-90 ${
+          confirmationModal
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="bg-gray-100 h-1/3 w-1/3 flex flex-col items-center justify-center gap-5 rounded-lg shadow-md p-4">
+          {confirmationData && (
+            <div className="flex flex-row items-center gap-3 text-xl font-semibold text-gray-800 text-center">
+              <p>
+                Mark{" "}
+                <span className="text-violet-800">
+                  {confirmationData.orderId}
+                </span>{" "}
+                as{" "}
+              </p>
+              <OrderStatus orderStatus={confirmationData.newStatus} />
+              <p>?</p>
+            </div>
+          )}
+          {confirmationData && (
+            <p className="text-center text-gray-600">
+              Marking {confirmationData.orderId} as {confirmationData.newStatus}{" "}
+              will send a confirmation of email to the customer.
+            </p>
+          )}
+
+          <div className="flex flex-row gap-4 items-center">
+            <button
+              className="w-32 h-10 bg-yellow-400 font-semibold text-gray-800 text-lg rounded-lg shadow-md hover:bg-yellow-300 active:bg-yellow-400"
+              onClick={handleOnConfirmationAgree}
+            >
+              Yes
+            </button>
+            <button
+              className="w-32 h-10 bg-yellow-400 font-semibold text-gray-800 text-lg rounded-lg shadow-md hover:bg-yellow-300 active:bg-yellow-400"
+              onClick={handleOnConfirmationDisagree}
+            >
+              No
+            </button>
+          </div>
+        </div>
+      </div>
 
       {/* Top section */}
       <div className="flex flex-row items-center justify-between h-24 w-full px-8 bg-gray-100/75 rounded-t-xl">
