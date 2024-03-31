@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { withSwal } from "react-sweetalert2";
 import { deletePhoto } from "@/actions/uploadImage";
+import MenuScroll from "@/components/MenuScroll";
 
 const AdminPage = ({ swal }) => {
   const session = useSession();
@@ -144,52 +145,55 @@ const AdminPage = ({ swal }) => {
   };
 
   return (
-    <section className="flex flex-col justify-center items-center mt-32">
-      <AdminNavbar path={path} />
-      <SubHeader header2="Create new Menu" />
-      <MenuForm handleSubmit={handleSubmit} buttonText="Create Menu" />
-      <div className="w-[90%]">
-        <hr className="border-0 w-full bg-yellow-400 block h-[1px] " />
-      </div>
-      <SubHeader header2="Menu List" />
+    <>
+    <MenuScroll/>
+      <section className="flex flex-col justify-center items-center mt-32">
+        <AdminNavbar path={path} />
+        <SubHeader header2="Create new Menu" />
+        <MenuForm handleSubmit={handleSubmit} buttonText="Create Menu" />
+        <div className="w-[90%]">
+          <hr className="border-0 w-full bg-yellow-400 block h-[1px] " />
+        </div>
+        <SubHeader header2="Menu List" />
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-8 my-[5rem] w-[80%]">
-        {menuList &&
-          menuList.map((item) => (
-            <div
-              key={item._id}
-              /* this is for admin menu list */
-              className="bg-neutral-200  p-4 rounded-lg text-center hover:shadow-md hover:shadow-yellow-400 flex flex-col justify-around"
-            >
-              <SingleMenu {...item} />
-              <div className="flex gap-4 justify-center items-center mt-6">
-                <Link
-                  className={`sign_button text-sm flex items-center justify-center gap-2 `}
-                  href={`/menu-list/edit/${item._id}`}
-                >
-                  <FontAwesomeIcon
-                    icon={faPenToSquare}
-                    size="sm"
-                    style={{ color: "#000" }}
-                  />
-                  Edit
-                </Link>
-                <button
-                  className={`sign_button text-sm flex items-center justify-center gap-2`}
-                  onClick={() => handleDeleteMenu(item)}
-                >
-                  <FontAwesomeIcon
-                    icon={faTrash}
-                    size="sm"
-                    style={{ color: "#000" }}
-                  />
-                  Delete
-                </button>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-8 my-[5rem] w-[80%]">
+          {menuList &&
+            menuList.map((item) => (
+              <div
+                key={item._id}
+                /* this is for admin menu list */
+                className="bg-neutral-200  p-4 rounded-lg text-center hover:shadow-md hover:shadow-yellow-400 flex flex-col justify-around"
+              >
+                <SingleMenu {...item} />
+                <div className="flex gap-4 justify-center items-center mt-6">
+                  <Link
+                    className={`sign_button text-sm flex items-center justify-center gap-2 `}
+                    href={`/menu-list/edit/${item._id}`}
+                  >
+                    <FontAwesomeIcon
+                      icon={faPenToSquare}
+                      size="sm"
+                      style={{ color: "#000" }}
+                    />
+                    Edit
+                  </Link>
+                  <button
+                    className={`sign_button text-sm flex items-center justify-center gap-2`}
+                    onClick={() => handleDeleteMenu(item)}
+                  >
+                    <FontAwesomeIcon
+                      icon={faTrash}
+                      size="sm"
+                      style={{ color: "#000" }}
+                    />
+                    Delete
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-      </div>
-    </section>
+            ))}
+        </div>
+      </section>
+    </>
   );
 };
 
