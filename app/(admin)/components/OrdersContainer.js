@@ -359,30 +359,63 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
           )}
 
           {/* CURRENT FILTER IS NOT "ALL" */}
-          {displayedItems &&
-            ordersList &&
-            currentFilter !== "ALL" &&
-            displayedItems.map((order) => {
-              //format the date of order
-              const formattedDate = getFormattedDate(order.createdAt);
+          {displayedItems && ordersList && currentFilter !== "ALL"
+            ? displayedItems.map((order) => {
+                //format the date of order
+                const formattedDate = getFormattedDate(order.createdAt);
 
-              return (
-                <IndividualOrder
-                  objectId={order._id}
-                  key={order._id}
-                  orderId={order.orderId}
-                  orderStatus={order.orderStatus}
-                  orderAmount={order.cartProducts.length}
-                  paymentId={order.paymentId}
-                  orderDate={formattedDate}
-                  orderName={order.clientInfo.email}
-                  onOrderStatusChange={handleOnOrderStatusChange}
-                />
-              );
-            })}
+                return (
+                  <IndividualOrder
+                    objectId={order._id}
+                    key={order._id}
+                    orderId={order.orderId}
+                    orderStatus={order.orderStatus}
+                    orderAmount={order.cartProducts.length}
+                    paymentId={order.paymentId}
+                    orderDate={formattedDate}
+                    orderName={order.clientInfo.email}
+                    onOrderStatusChange={handleOnOrderStatusChange}
+                  />
+                );
+              })
+            : ["PENDING", "IN PROGRESS", "COMPLETED", "CANCELLED"].map(
+                (category) =>
+                  categorizedItems[category] && (
+                    <div
+                      key={category}
+                      className="flex flex-col gap-4 mb-12 pb-8"
+                    >
+                      <p className="text-lg font-semibold text-center text-gray-600 border-b-2 border-gray-300 pb-2">
+                        {category}
+                      </p>
+                      <div className="flex flex-col gap-4">
+                        {categorizedItems[category].map((order) => {
+                          //format the date of order
+                          const formattedDate = getFormattedDate(
+                            order.createdAt
+                          );
+
+                          return (
+                            <IndividualOrder
+                              objectId={order._id}
+                              key={order.orderId}
+                              orderId={order.orderId}
+                              orderStatus={order.orderStatus}
+                              orderAmount={order.cartProducts.length}
+                              paymentId={order.paymentId}
+                              orderDate={formattedDate}
+                              orderEmail={order.clientInfo.email}
+                              onOrderStatusChange={handleOnOrderStatusChange}
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )
+              )}
 
           {/* CURRENT FILTER IS ALL  */}
-          {displayedItems &&
+          {/* {displayedItems &&
             categorizedItems &&
             ordersList &&
             currentFilter === "ALL" &&
@@ -420,7 +453,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                 ) : (
                   <></>
                 )
-            )}
+            )} */}
         </div>
       </div>
     </div>
