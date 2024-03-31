@@ -152,7 +152,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
         </button>
         {menuList && (
           <Link
-            className="p-1 border-2 border-orange-400 w-full text-center my-2 rounded-md hover:bg-orange-500 hover:text-white"
+            className="p-1 border-2 border-yellow-400 w-full text-center my-2 rounded-md hover:bg-yellow-400 "
             href="/menu-list"
           >
             Cancel
