@@ -143,6 +143,21 @@ export default function CartPage() {
   //calculate the total price with delivery Amount
   const totalPricePlusDelivery = totalPrice + deliveryAmount;
 
+  const handleEmail = async (paymentId) => {
+    const res = await fetch("/api/email/sendOrderConfirmationCheckout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        paymentId: paymentId,
+      }),
+    });
+    if (res.ok) {
+      console.log("Email sent successfully");
+    } else {
+      console.log("Failed to send email");
+    }
+  };
+
   return (
     <>
       {loading ? (
@@ -202,6 +217,7 @@ export default function CartPage() {
                               const { payment } = await res?.json();
                               const status = payment.status;
                               const paymentId = payment.id;
+                              await handleEmail(paymentId);
                               if (status === "COMPLETED") {
                                 window.location.href = `/receipt/${paymentId}?clear=1`;
                               }

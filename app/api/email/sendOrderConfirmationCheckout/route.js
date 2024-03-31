@@ -35,13 +35,6 @@ export async function POST(req) {
       orderId = order[0]?.orderId;
       cardBrand = order[0]?.cardBrand;
       lastDigits = order[0]?.lastFourDigits;
-
-      console.log(formattedDate);
-      console.log(clientInfo);
-      console.log(cartProducts);
-      console.log(orderId);
-      console.log(cardBrand);
-      console.log(lastDigits);
     } catch (error) {
       console.log("Error fetching order info:", error);
     }
@@ -54,7 +47,7 @@ export async function POST(req) {
 
     const customerMailOptions = {
       from: process.env.EMAIL_USER,
-      to: data.email,
+      to: clientInfo.email,
       subject: `Miggy's Munchies Order Received`,
       html: `
       <section style="max-width: 32rem; margin: 0 auto; padding: 1rem; font-family: Arial, sans-serif; border: 1px solid #ccc; border-radius: 8px;">
@@ -69,26 +62,48 @@ export async function POST(req) {
         <div style="padding-bottom: 1rem; border-bottom: 1px solid #ccc;">
           <h3 style="color: #374151; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Contact Information:</h3>
           <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>Name:</strong> <span style="color: #4B5563;">${data.name}</span>
+            <strong>Phone number:</strong> <span style="color: #4B5563;">${clientInfo.tel}</span>
           </p>
           <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>Phone Number:</strong> <span style="color: #4B5563;">${data.phoneNumber}</span>
+            <strong>Address:</strong> <span style="color: #4B5563;">${clientInfo.address}</span>
           </p>
           <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>Email Address:</strong> <span style="color: #4B5563;">${data.email}</span>
+            <strong>Apartment:</strong> <span style="color: #4B5563;">${clientInfo.apartment}</span>
+          </p>
+          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
+            <strong>ZIP:</strong> <span style="color: #4B5563;">${clientInfo.zip}</span>
+          </p>
+          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
+            <strong>Payment type:</strong> <span style="color: #4B5563;">${cardBrand} ending with ${lastDigits}</span>
           </p>
         </div>
-        <div style="padding-top: 1rem;">
-          <h3 style="color: #374151; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Message:</h3>
+        <div style="padding-bottom: 1rem; border-bottom: 1px solid #ccc;">
+          <h3 style="color: #374151; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Order details:</h3>
           <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            ${data.message}
+          <strong>Order ID:</strong> <span style="color: #4B5563;">${orderId}</span>
           </p>
+          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
+            <strong>Items:</strong> <span style="color: #4B5563;">${cartProducts.length} item(s)</span>
+          </p>
+          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
+            <strong>Order type:</strong> <span style="color: #4B5563;">${clientInfo.deliveryType}</span>
+          </p>
+          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
+            <strong>Receipt:</strong> <a href="http://localhost:3000/receipt/${paymentId}">http://localhost:3000/receipt/${paymentId}</span>
+          </p>
+          
         </div>
       </section>
     `,
     };
+    //   <div style="padding-top: 1rem;">
+    //   <h3 style="color: #374151; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Message:</h3>
+    //   <p style="color: #6B7280; font-size: 1rem; margin: 0;">
+    //     ${data.message}
+    //   </p>
+    // </div>
 
-    // transporter.sendMail(customerMailOptions);
+    transporter.sendMail(customerMailOptions);
     return NextResponse.json(
       { message: "Email sent successfully" },
       { status: 200 }
