@@ -13,6 +13,7 @@ import { TailSpin } from "react-loader-spinner";
 
 import getFormattedDate from "../utils/getFormattedDate";
 import OrderStatus from "./OrderStatus";
+import { set } from "mongoose";
 
 /**
  * A component that displays, filters, updates, and opens orders based on the passed list array
@@ -37,7 +38,6 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
 
   //Confirmation modal
   const [confirmationModal, setConfirmationModal] = useState(false);
-
   const [confirmationData, setConfirmationData] = useState({});
 
   // Each time orders list is changed then change displayed items to orders list
@@ -148,9 +148,11 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
   const handleOnOrderStatusChange = (orderId, objectId, newStatus) => {
     setConfirmationModal(true);
     setConfirmationData({ orderId, objectId, newStatus });
-    console.log(confirmationData);
   };
 
+  /**
+   * Handler for when the confirmation modal is agreed
+   */
   const handleOnConfirmationAgree = () => {
     if (onOrderStatusChange)
       onOrderStatusChange(
@@ -163,8 +165,12 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
     setConfirmationModal(false);
   };
 
+  /**
+   * Handler for when the confirmation modal is disagreed
+   */
   const handleOnConfirmationDisagree = () => {
     setConfirmationModal(false);
+    setConfirmationData({});
   };
 
   return (

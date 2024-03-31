@@ -5,7 +5,6 @@ import React from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import { useSession } from "next-auth/react";
 import { redirect, usePathname } from "next/navigation";
-import { TailSpin } from "react-loader-spinner";
 
 import Loading from "@/components/Loading";
 
@@ -76,7 +75,6 @@ const OrdersPage = () => {
    * @param {String} newStatus The new order status
    */
   const onOrderStatusChange = async (orderId, objectId, newStatus) => {
-    console.log(orderId, objectId, newStatus);
     try {
       // Change order status within the server
       const response = await fetch("/api/updateOrderStatus", {
@@ -120,7 +118,7 @@ const OrdersPage = () => {
 
   return (
     <>
-    <MenuScroll/>
+      <MenuScroll />
       <section className="flex flex-col justify-center items-center px-20">
         <AdminNavbar path={path} />
         <SubHeader header2="Orders" />
