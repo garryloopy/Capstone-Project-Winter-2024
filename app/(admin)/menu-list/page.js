@@ -149,7 +149,7 @@ const AdminPage = ({ swal }) => {
       <SubHeader header2="Create new Menu" />
       <MenuForm handleSubmit={handleSubmit} buttonText="Create Menu" />
       <div className="w-[90%]">
-        <hr className="border-0 w-full bg-orange-300 block h-[1px] " />
+        <hr className="border-0 w-full bg-yellow-400 block h-[1px] " />
       </div>
       <SubHeader header2="Menu List" />
 
@@ -170,7 +170,7 @@ const AdminPage = ({ swal }) => {
                   <FontAwesomeIcon
                     icon={faPenToSquare}
                     size="sm"
-                    style={{ color: "#EAEAEA" }}
+                    style={{ color: "#000" }}
                   />
                   Edit
                 </Link>
@@ -181,7 +181,7 @@ const AdminPage = ({ swal }) => {
                   <FontAwesomeIcon
                     icon={faTrash}
                     size="sm"
-                    style={{ color: "#EAEAEA" }}
+                    style={{ color: "#000" }}
                   />
                   Delete
                 </button>
