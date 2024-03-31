@@ -12,6 +12,7 @@ import Loading from "@/components/Loading";
 import OrdersContainer from "../components/OrdersContainer";
 
 import { useEffect, useState } from "react";
+import MenuScroll from "@/components/MenuScroll";
 
 /**
  * An orders page that displays orders
@@ -95,21 +96,24 @@ const OrdersPage = () => {
   };
 
   return (
-    <section className="flex flex-col justify-center items-center px-20">
-      <AdminNavbar path={path} />
-      <SubHeader header2="Orders" />
+    <>
+    <MenuScroll/>
+      <section className="flex flex-col justify-center items-center px-20">
+        <AdminNavbar path={path} />
+        <SubHeader header2="Orders" />
 
-      {/* Loader  */}
-      <Loading isLoading={false} />
+        {/* Loader  */}
+        <Loading isLoading={false} />
 
-      {/* CONTAINER */}
-      {status !== "unauthenticated" && (
-        <OrdersContainer
-          ordersList={ordersList}
-          onOrderStatusChange={onOrderStatusChange}
-        />
-      )}
-    </section>
+        {/* CONTAINER */}
+        {status !== "unauthenticated" && (
+          <OrdersContainer
+            ordersList={ordersList}
+            onOrderStatusChange={onOrderStatusChange}
+          />
+        )}
+      </section>
+    </>
   );
 };
 
