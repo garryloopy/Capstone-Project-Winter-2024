@@ -101,10 +101,10 @@ select {
 }
 
 .activeButton {
-  @apply bg-yellow-400 p-2 rounded-md text-black;
+  @apply bg-yellow-400 p-2 rounded-md text-black lg:text-lg text-xs;
 }
 .inactiveButton {
-  @apply border-2 border-yellow-400 p-2 rounded-md text-black;
+  @apply border-2 border-yellow-400 p-2 rounded-md text-black lg:text-lg text-xs;
 }
 
 .sign_button {
