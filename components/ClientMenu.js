@@ -42,8 +42,10 @@ const ClientMenu = (menuList) => {
       />
 
       {/* used transform/hover:translate to give animation effect for each boxes */}
-      <div className="container relative group text-slate-100 p-6 border rounded-md border-slate-500 shadow-lg 
-      flex flex-col items-center justify-around gap-4 bg-black/60 transform hover:translate-y-[-10px]">
+      <div
+        className="container relative group text-slate-100 p-6 border rounded-md border-slate-500 shadow-lg 
+      flex flex-col items-center justify-around gap-4 bg-black/60 transform hover:translate-y-[-10px]"
+      >
         <div>
           <Image
             className="object-cover"
@@ -57,10 +59,12 @@ const ClientMenu = (menuList) => {
         <p className="text-sm font-sans text-center text-gray-300">
           {menuList.description}
         </p>
-        
+
         {/* below is for hover transition/animation/opacity */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity
-        rounded-md bg-black bg-opacity-50">
+        <div
+          className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity
+        rounded-md bg-black bg-opacity-50"
+        >
           <button
             className="bg-yellow-400 text-black px-6 py-2 rounded button-animation"
             onClick={handleAddToCartClick}
