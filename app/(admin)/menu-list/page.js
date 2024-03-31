@@ -153,13 +153,13 @@ const AdminPage = ({ swal }) => {
       </div>
       <SubHeader header2="Menu List" />
 
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-cols-1 gap-8 my-[5rem]">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-8 my-[5rem] w-[80%]">
         {menuList &&
           menuList.map((item) => (
             <div
               key={item._id}
               /* this is for admin menu list */
-              className="bg-neutral-200 p-4 rounded-lg text-center hover:shadow-md hover:shadow-yellow-400 flex flex-col justify-around"
+              className="bg-neutral-200  p-4 rounded-lg text-center hover:shadow-md hover:shadow-yellow-400 flex flex-col justify-around"
             >
               <SingleMenu {...item} />
               <div className="flex gap-4 justify-center items-center mt-6">
