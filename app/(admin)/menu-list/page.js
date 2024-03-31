@@ -159,7 +159,7 @@ const AdminPage = ({ swal }) => {
             <div
               key={item._id}
               /* this is for admin menu list */
-              className="bg-neutral-200 p-4 rounded-lg text-center hover:shadow-md hover:shadow-orange-500 flex flex-col justify-around"
+              className="bg-neutral-200 p-4 rounded-lg text-center hover:shadow-md hover:shadow-yellow-400 flex flex-col justify-around"
             >
               <SingleMenu {...item} />
               <div className="flex gap-4 justify-center items-center mt-6">
