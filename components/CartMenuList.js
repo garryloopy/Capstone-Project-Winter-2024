@@ -3,10 +3,20 @@ import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "./Providers";
 import Image from "next/image";
 import TrashBin from "@/app/icons/TrashBin";
+import Link from "next/link"
+import { useRouter } from "next/navigation";
 
 const CartMenuList = ({ cartProducts, onDelete, totalPrice, deliveryAmount }) => {
   const { calculateTotalPrice} = useContext(CartContext);
   const [deliveryMessage, setDeliveryMessage] = useState(false);
+    const { clearCart } = useContext(CartContext);
+    const router = useRouter()
+
+    const handleClearCard = () => {
+      clearCart();
+      router.push("/menu")
+    }
+
 
   return (
     <div>
@@ -55,44 +65,49 @@ const CartMenuList = ({ cartProducts, onDelete, totalPrice, deliveryAmount }) =>
             )}
           </div>
         ))}
-      <div className="lg:px-[2rem] py-4 flex justify-end items-end">
-        <div className="flex flex-col gap-1">
-          <span className="text-gray-400">SubTotal:</span>
-
-          <div className="relative">
-            <div
-              className="flex justify-center w-[20px] h-[20px] rounded-full border border-gray-400 text-sm text-gray-500 absolute left-[-2rem] cursor-pointer"
-              onMouseEnter={() => setDeliveryMessage(true)}
-              onMouseLeave={() => setDeliveryMessage(false)}
-            >
-              ?
-            </div>
-            {deliveryMessage ? (
-              <p className="absolute left-[-20rem] top-[-5rem] bg-gray-200 border rounded-md p-2 text-sm text-gray-400">
-                Free shipping within 5Km
-                <br />
-                $5 shipping fee for more than 5Km
-                <br />
-                $10 shipping fee for more than 10Km <br />
-              </p>
-            ) : (
-              ""
-            )}
-            <span className="text-gray-400">Delivery:</span>
-          </div>
-
-          <span className="text-gray-400">Total:</span>
+      <div className="flex justify-between">
+        {/* clear the cart button */}
+        <div className="underline text-sm text-gray-500" onClick={handleClearCard}>
+          <Link href="/menu">Clear Cart</Link>
         </div>
-        <div className="flex flex-col gap-1">
-          <span className="text-md font-semibold pl-2 text-gray-500">
-            ${totalPrice.toFixed(2)}{" "}
-          </span>
-          <span className="text-md font-semibold pl-2 text-gray-500">
-            ${deliveryAmount.toFixed(2)}
-          </span>
-          <span className="text-md font-semibold pl-2 text-gray-500">
-            ${(totalPrice + deliveryAmount)?.toFixed(2)}
-          </span>
+
+        <div className="lg:px-[2rem] py-4 flex justify-end items-end">
+          <div className="flex flex-col gap-1">
+            <span className="text-gray-400">SubTotal:</span>
+            <div className="relative">
+              <div
+                className="flex justify-center w-[20px] h-[20px] rounded-full border border-gray-400 text-sm text-gray-500 absolute left-[-2rem] cursor-pointer"
+                onMouseEnter={() => setDeliveryMessage(true)}
+                onMouseLeave={() => setDeliveryMessage(false)}
+              >
+                ?
+              </div>
+              {deliveryMessage ? (
+                <p className="absolute left-[-20rem] top-[-5rem] bg-gray-200 border rounded-md p-2 text-sm text-gray-400">
+                  Free shipping within 5Km
+                  <br />
+                  $5 shipping fee for more than 5Km
+                  <br />
+                  $10 shipping fee for more than 10Km <br />
+                </p>
+              ) : (
+                ""
+              )}
+              <span className="text-gray-400">Delivery:</span>
+            </div>
+            <span className="text-gray-400">Total:</span>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-md font-semibold pl-2 text-gray-500">
+              ${totalPrice.toFixed(2)}{" "}
+            </span>
+            <span className="text-md font-semibold pl-2 text-gray-500">
+              ${deliveryAmount.toFixed(2)}
+            </span>
+            <span className="text-md font-semibold pl-2 text-gray-500">
+              ${(totalPrice + deliveryAmount)?.toFixed(2)}
+            </span>
+          </div>
         </div>
       </div>
     </div>
