@@ -194,24 +194,6 @@ export default function ContactForm() {
       {/* Loading  */}
       <Loading isLoading={isLoading} />
 
-      {/* Background container */}
-      <div className="absolute inset-0 -z-10 ">
-        {/* Violet  */}
-        <div className="absolute inset-0 bg-violet-400 blur-3xl" />
-
-        {/* Blues  */}
-        <div className="absolute w-2/3 h-24 -rotate-12 top-5 right-80 bg-blue-400 blur-3xl" />
-        <div className="absolute w-2/3 h-24 -rotate-12 bottom-5 -right-24 bg-blue-400 blur-3xl" />
-
-        {/* Oranges  */}
-        <div className="absolute w-1/3 h-24 rotate-12 top-5 -right-20 bg-orange-400 blur-3xl" />
-        <div className="absolute w-1/3 h-24 rotate-12 top-1/2 right-[38rem] bg-orange-400 blur-3xl" />
-        <div className="absolute w-1/3 h-24 rotate-45 top-[38rem] right-[40rem] bg-orange-400 blur-3xl" />
-
-        {/* Red  */}
-        <div className="absolute size-64 bg-red-400 top-[20rem] -right-28 rounded-full blur-3xl" />
-      </div>
-
       {/* Confirmation message  */}
       {showConfirmation && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-filter backdrop-blur-sm z-10">
