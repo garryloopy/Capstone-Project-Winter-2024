@@ -209,7 +209,7 @@ export default function ContactForm() {
         <div className="absolute w-1/3 h-24 rotate-45 top-[38rem] right-[40rem] bg-orange-400 blur-3xl" />
 
         {/* Red  */}
-        <div className="absolute size-64 bg-red-400 top-[20rem] -right-44 rounded-full blur-3xl" />
+        <div className="absolute size-64 bg-red-400 top-[20rem] -right-28 rounded-full blur-3xl" />
       </div>
 
       {/* Confirmation message  */}
