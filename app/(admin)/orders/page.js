@@ -119,7 +119,7 @@ const OrdersPage = () => {
   return (
     <>
       <MenuScroll />
-      <section className="flex flex-col justify-center items-center px-20">
+      <section className="flex flex-col justify-center items-center md:p-[6rem] p-4">
         <AdminNavbar path={path} />
         <SubHeader header2="Orders" />
 

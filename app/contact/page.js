@@ -10,7 +10,7 @@ const BUSINESS_EMAIL = "francessicam@gmail.com";
  */
 const ContactPage = () => {
   return (
-    <section className="flex flex-col justify-center items-center">
+    <section className="flex flex-col justify-center items-center md:p-[6rem] p-4">
       <SubHeader header2="Contact Us" />
 
       <div className="min-h-screen w-full flex justify-center items-start py-12">

@@ -188,7 +188,7 @@ export default function ContactForm() {
 
   return (
     <form
-      className="border w-[52rem] min-h-[44rem] shadow-lg bg-gray-50 rounded-xl p-12 flex flex-col gap-10 relative"
+      className="border w-[52rem] min-h-[44rem] shadow-lg bg-yellow-50/95 rounded-xl p-12 flex flex-col gap-10 relative"
       onSubmit={handleOnSubmit}
     >
       {/* Loading  */}

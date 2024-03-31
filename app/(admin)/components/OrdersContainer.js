@@ -225,7 +225,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
       </div>
 
       {/* Top section */}
-      <div className="flex flex-row items-center justify-between h-24 w-full px-8 bg-gray-100/75 rounded-t-xl">
+      <div className="flex xl:flex-row flex-col items-center justify-between min-h-24 w-full px-8 py-8 xl:py-0 gap-2 bg-gray-100/75 rounded-t-xl overflow-auto">
         <div className="h-full flex flex-col">
           <div className="h-full flex flex-row items-center gap-6 ">
             <FilterButton
@@ -300,7 +300,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
         )}
 
         {/* Top section  */}
-        <div className="flex flex-row w-full text-center h-16 items-center divide-x-2 px-6 divide-gray-400 bg-gray-100/90 shadow-md text-gray-600 font-semibold text-lg">
+        <div className="xl:flex hidden flex-row w-full text-center h-16 items-center divide-x-2 px-6 divide-gray-400 bg-gray-100/90 shadow-md text-gray-600 font-semibold text-lg">
           <div className="w-2/6 flex flex-row justify-center items-center gap-4 text-center relative">
             Order ID
             {/* ICON  */}
