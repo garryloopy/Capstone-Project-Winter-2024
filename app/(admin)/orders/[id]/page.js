@@ -166,7 +166,7 @@ export default function OrderDetailsPage({ params }) {
   };
 
   return status !== "unauthenticated" ? (
-    <section className="flex flex-col items-center w-full min-h-screen px-12 py-8 overflow-auto relative">
+    <section className="flex flex-col items-center w-full min-h-screen px-12 py-8 rounded-xl overflow-hidden relative md:p-[6rem] p-4">
       <AdminNavbar path={path} />
       <SubHeader header2="Order Details" />
 
@@ -269,7 +269,7 @@ export default function OrderDetailsPage({ params }) {
           {/* Main section header  */}
           <div className="flex flex-col border-b">
             {/* Order Status  */}
-            <div className="w-full h-24 flex flex-row justify-between items-center px-8 border-b">
+            <div className="w-full xl:h-24 min-h-24 flex xl:flex-row flex-col justify-between py-8 xl:py-0 gap-4 items-center px-8 border-b">
               <div className="flex flex-row justify-center items-center gap-8 flex-1">
                 <p className="text-xl font-semibold text-gray-800">
                   Order Status:
@@ -342,21 +342,21 @@ export default function OrderDetailsPage({ params }) {
                 )}
               </div>
             </div>
-            <div className="flex flex-row justify-between h-20 bg-gray-100 items-center px-8 divide-x-2 shadow-md">
+            <div className="flex xl:flex-row flex-col justify-between xl:h-20 min-h-20 xl:py-0 py-8 bg-gray-100 items-center px-8 xl:divide-x-2 xl:divide-y-0 divide-y-2 shadow-md">
               {orderId && (
-                <p className="text-center w-full font-semibold flex flex-col">
+                <p className="text-center w-full font-semibold flex flex-col xl:py-0 py-2">
                   Order ID:{" "}
                   <span className="text-md font-medium ">{orderId}</span>
                 </p>
               )}
               {formattedDate && (
-                <p className="text-center  w-full font-semibold flex flex-col">
+                <p className="text-center  w-full font-semibold flex flex-col xl:py-0 py-2">
                   Date:{" "}
                   <span className="text-md font-medium ">{formattedDate}</span>
                 </p>
               )}
               {cardBrand && lastDigits && (
-                <p className="text-center  w-full font-semibold flex flex-col">
+                <p className="text-center  w-full font-semibold flex flex-col xl:py-0 py-2">
                   Payment:{" "}
                   <span className="text-md font-medium ">
                     {cardBrand} xxxxxxxxxxxx{lastDigits}
@@ -364,7 +364,7 @@ export default function OrderDetailsPage({ params }) {
                 </p>
               )}
               {paymentId && (
-                <p className="text-center  w-full font-semibold flex flex-col">
+                <p className="text-center  w-full font-semibold flex flex-col xl:py-0 py-2">
                   Payment ID:{" "}
                   <span className="text-md font-medium ">{paymentId}</span>
                 </p>
@@ -373,7 +373,7 @@ export default function OrderDetailsPage({ params }) {
           </div>
 
           {/* Container  */}
-          <div className="flex-1 flex flex-row">
+          <div className="flex-1 flex xl:flex-row flex-col xl:divide-x-2 divide-y-2 xl:divide-y-0 divide-gray-300">
             {/* Left side  */}
             <div className="flex-1 p-8 flex flex-col">
               {/* Top section of left side  */}
@@ -431,7 +431,7 @@ export default function OrderDetailsPage({ params }) {
             </div>
 
             {/* Right side  */}
-            <div className="flex-1 border-l">
+            <div className="flex-1 bg-gray-200/50">
               {/* Contact info section  */}
               <div className="w-full flex flex-col justify-center items-start gap-4 p-8">
                 <p className="text-2xl font-medium text-gray-700">

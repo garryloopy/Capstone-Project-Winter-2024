@@ -225,7 +225,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
       </div>
 
       {/* Top section */}
-      <div className="flex xl:flex-row flex-col items-center justify-between min-h-24 w-full px-8 py-8 xl:py-0 gap-2 bg-gray-100/75 rounded-t-xl overflow-auto">
+      <div className="flex xl:flex-row flex-col items-center xl:justify-between justify-center xl:h-24 h-52 w-full px-8 xl:py-0 gap-2 bg-gray-100/75 rounded-t-xl overflow-auto">
         <div className="h-full flex flex-col">
           <div className="h-full flex flex-row items-center gap-6 ">
             <FilterButton
@@ -262,11 +262,11 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
         </div>
 
         {/* Search  */}
-        <form className="h-full py-6" onSubmit={handleOnSearch}>
+        <form className="h-24 py-6" onSubmit={handleOnSearch}>
           <div className="h-full relative">
             <input
               type="text"
-              className="px-4 py-3 h-full rounded-md border-2 focus:border-0 border-gray-400 w-96 peer bg-gray-100/75 shadow-md outline-none focus:ring-2 focus:ring-orange-500 transition-shadow duration-75 text-md text-gray-700"
+              className="px-4 py-3 h-full rounded-md border-2 focus:border-0 border-gray-400 w-96 peer bg-gray-100/75 shadow-md outline-none focus:ring-2 focus:ring-orange-500 transition-shadow duration-300 text-md text-gray-700"
               onChange={handleOnSearchChange}
             />
             <div
@@ -274,7 +274,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                 currentSearchValue.length > 0
                   ? "-translate-y-6 opacity-100 text-orange-600"
                   : "opacity-50"
-              } transition-all duration-300 ease-in-out`}
+              } transition-all duration-300`}
             >
               <p className="bg-gray-100 px-2">Search by order id</p>
             </div>

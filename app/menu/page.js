@@ -70,7 +70,7 @@ function Menu() {
       {loading ? (
         <Loading />
       ) : (
-        <section className="md:p-[6rem] p-4 flex flex-col justify-center items-center gap-6">
+        <section className="md:p-[6rem] p-4 mt-32 flex flex-col justify-center items-center gap-6">
           <SubHeader header2="Menu" />
 
           {/* search bar */}
