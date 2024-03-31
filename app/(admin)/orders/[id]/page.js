@@ -173,7 +173,9 @@ export default function OrderDetailsPage({ params }) {
         </div>
       </div>
 
-      <div className="bg-gray-100 w-full h-full rounded-md flex flex-col">
+      <div className="bg-gray-100 w-full h-full rounded-md flex flex-col relative">
+        {/* Shadow effect  */}
+        <div className="absolute inset-10 bg-violet-500/50 -z-10 blur-3xl rounded-lg" />
         {/* Loader  */}
         <Loading isLoading={isLoading} />
 

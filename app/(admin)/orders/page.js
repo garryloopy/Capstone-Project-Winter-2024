@@ -74,7 +74,30 @@ const OrdersPage = () => {
    * @param {String} orderId The orderId to change
    * @param {String} newStatus The new order status
    */
-  const onOrderStatusChange = (orderId, newStatus) => {
+  const onOrderStatusChange = async (orderId, objectId, newStatus) => {
+    console.log(orderId, objectId, newStatus);
+    try {
+      // Change order status within the server
+      const response = await fetch("/api/updateOrderStatus", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          _id: objectId,
+          orderStatus: newStatus,
+        }),
+      });
+
+      // Do this if response if okay
+      // if (response.ok) {
+      //   setCurrentStatus(newStatus);
+      //   setIsMoreOptionsOpen(false);
+      //   handleOnOrderStatusChange(newStatus);
+      // }
+    } catch (error) {
+      console.error("An error occurred while updating order status:", error);
+    }
     // Get new orders, change only the ones matching the orderId given.
     const newOrders = ordersList.map((order) => {
       if (order.orderId === orderId) {

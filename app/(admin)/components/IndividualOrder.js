@@ -50,7 +50,7 @@ const IndividualOrder = ({
    */
   const handleOnOrderStatusChange = (newStatus) => {
     // Call parent function
-    onOrderStatusChange(orderId, newStatus);
+    if (onOrderStatusChange) onOrderStatusChange(orderId, objectId, newStatus);
   };
 
   /**
@@ -64,28 +64,8 @@ const IndividualOrder = ({
       return;
     }
 
-    try {
-      // Change order status within the server
-      const response = await fetch("/api/updateOrderStatus", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          _id: objectId,
-          orderStatus: newStatus,
-        }),
-      });
-
-      // Do this if response if okay
-      if (response.ok) {
-        setCurrentStatus(newStatus);
-        setIsMoreOptionsOpen(false);
-        handleOnOrderStatusChange(newStatus);
-      }
-    } catch (error) {
-      console.error("An error occurred while updating order status:", error);
-    }
+    handleOnOrderStatusChange(newStatus);
+    setIsMoreOptionsOpen(false);
   };
 
   /**
