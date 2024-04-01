@@ -26,7 +26,7 @@ const NewFlavor = () => {
     <div className="gallery flex justify-center items-center mb-[4rem] ">
       <div className="gallery-content">
         <h1 className="headtext__cormorant">Discover New Flavors</h1>
-        <p className="text-gray-400 my-[2rem]">
+        <p className="my-[2rem] leading-8">
           {" "}
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -66,7 +66,6 @@ const NewFlavor = () => {
           />
         </div>
       </div> */}
-      
     </div>
   );
 }

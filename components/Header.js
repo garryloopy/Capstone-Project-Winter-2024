@@ -48,7 +48,7 @@ export default function Header() {
     <header
       className={`md:px-[4rem] px-2 py-[1rem] flex justify-between items-center w-full bg-inherit h-28 ${
         scrolled &&
-        "border-b shadow-sm z-50 bg-slate-100 fixed transition-transform duration-300 ease-in-out "
+        "border-b shadow-md z-50 bg-slate-100 fixed transition-transform duration-300 ease-in-out "
       }`}
     >
       {/* logo and text */}
