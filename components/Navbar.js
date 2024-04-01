@@ -2,12 +2,18 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useScrollTop } from "@/app/hooks/use-scroll-top";
 
 const Navbar = () => {
   const path = usePathname();
+  const scrolled = useScrollTop()
 
   return (
-    <nav className=" lg:flex hidden justify-center items-center text-slate-800 font-semibold text-md">
+    <nav
+      className={`lg:flex hidden justify-center items-center font-semibold text-md ${
+        scrolled ? "text-white" : "text-slate-800 "
+      }`}
+    >
       <Link
         href="/"
         className={`hover:opacity-100 transition-opacity duration-500 min-w-40 py-2 grid place-items-center ${

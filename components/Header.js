@@ -48,7 +48,7 @@ export default function Header() {
     <header
       className={`md:px-[4rem] px-2 py-[1rem] flex justify-between items-center w-full bg-inherit h-28 ${
         scrolled &&
-        "border-b shadow-md z-50 bg-slate-100 fixed transition-transform duration-300 ease-in-out "
+        "border-b shadow-lg z-50 bg-slate-800 fixed transition-transform duration-300 ease-in-out "
       }`}
     >
       {/* logo and text */}
@@ -138,7 +138,7 @@ export default function Header() {
                 </p>
               </div>
             )}
-            <IoCartOutline className="text-slate-900" size={30} />
+            <IoCartOutline className= {scrolled ? "text-white" : "text-slate-900"} size={30} />
           </Link>
         )}
 
