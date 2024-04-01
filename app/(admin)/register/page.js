@@ -6,6 +6,7 @@ import { useLoadingState } from "@/components/useLoadingState";
 import Loading from "@/components/Loading";
 import OpenEye from "@/app/icons/OpenEye";
 import CloseEye from "@/app/icons/CloseEye";
+import InputAnimation from "@/components/InputAnimation";
 
 
 
@@ -22,6 +23,9 @@ const Register = () => {
   const router = useRouter();
   const loading = useLoadingState();
   const [buttonLoading, setButtonLoading] = useState(false);
+  const [fullName, setFullName] = useState("")
+  const [email, setEmail] = useState("")
+  const [employeeId, setEmployeeId] = useState("")
 
   useEffect(() => {
     validatePassword(password);
@@ -110,60 +114,69 @@ const Register = () => {
                 {viewMessage}
               </span>
             )}
-            <label className="w-full">
-              <span className=" text-gray-700 text-sm sm:text-md">
-                Full name
-              </span>
-              <input type="text" name="name" className="form_input" required />
+
+            {/* full name input */}
+            <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
+              <input
+                type="text"
+                name="name"
+                className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                required
+              />
+              <InputAnimation text="Full Name" stateValue={fullName} />
             </label>
-            <label className="w-full">
-              <span className=" text-gray-700 text-sm sm:text-md">
-                Email address
-              </span>
+
+            {/* email input */}
+            <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
               <input
                 type="email"
                 name="email"
-                className="form_input"
+                className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
+              <InputAnimation text="Email" stateValue={email} />
             </label>
-            <label className="w-full relative">
-              <span className=" text-gray-700 text-sm sm:text-md">
-                Password
-              </span>
+
+            {/* password input */}
+            <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
               <input
                 type={!showPassword ? "text" : "password"}
                 name="password"
                 value={password}
-                className="form_input"
+                className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
                 onChange={(e) => {
                   setPassword(e.target.value);
                   setViewMessage("");
                 }}
                 required
               />
-            
+              <InputAnimation text="Password" stateValue={password} />
               <div
-                className="w-4 h-4 absolute top-[40%] right-[15px] cursor-pointer"
+                className="w-4 h-4 absolute top-[20%] right-[15px] cursor-pointer"
                 onClick={togglePassword}
               >
                 {showPassword ? <OpenEye /> : <CloseEye />}
               </div>
             </label>
 
-            <label className="w-full">
-              <span className=" text-gray-700 text-sm sm:text-md">
-                EmployeeId
-              </span>
+            {/* Employee Id input */}
+            <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
               <input
                 type="text"
                 name="employeeId"
+                value={employeeId}
                 required
-                className="form_input"
-                onChange={() => {
+                className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                onChange={(e) => {
+                  setEmployeeId(e.target.value);
                   setViewMessage("");
                 }}
               />
+              <InputAnimation text="Employee ID" stateValue={employeeId}/>
             </label>
 
             <div className="text-sm flex flex-col gap-2 self-start ">

@@ -5,6 +5,7 @@ import SubHeader from "@/components/SubHeader";
 import MenuScroll from "@/components/MenuScroll";
 import React, { useEffect, useState } from "react";
 import Search from "../icons/Search";
+import InputAnimation from "@/components/InputAnimation";
 
 function Menu() {
   const [menuList, setMenuList] = useState([]);
@@ -75,22 +76,14 @@ function Menu() {
 
           {/* search bar */}
           <form className="md:max-w-[50%] w-full flex my-[2rem] justify-center">
-            <label className="h-14  text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
+            <label className="h-10  text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
               <input
-                className=" w-full h-full outline-none peer bg-inherit p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
                 type="text"
                 value={search}
                 onChange={handleSearchChange}
               />
-              <div
-                className={`absolute inset-0 flex items-center p-2 ${
-                  search.length > 0 && "-translate-y-7  "
-                }  pointer-events-none peer-valid:text-gray-400 opacity-50 peer-focus:opacity-100 transition-all duration-300 peer-focus:-translate-y-7 group-hover:opacity-100`}
-              >
-                <p className="font-semibold text-sm bg-white rounded-md px-1">
-                  Search
-                </p>
-              </div>
+              <InputAnimation text="Search" stateValue={search} />
 
               <div className="absolute right-[3%] top-[22%]">
                 <Search className="text-gray-400 w-6 h-6" />

@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { trusted } from "mongoose";
 import OpenEye from "@/app/icons/OpenEye";
 import CloseEye from "@/app/icons/CloseEye";
+import InputAnimation from "@/components/InputAnimation";
 
 export default function SignInPage() {
   const [clientInput, setClientInput] = useState({
@@ -84,16 +85,9 @@ export default function SignInPage() {
                 value={clientInput.email}
                 className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
                 onChange={handleChange}
+                required
               />
-              <div
-                className={`absolute inset-0 flex items-center p-2 ${
-                  clientInput.email.length > 0 && "-translate-y-5  "
-                }  pointer-events-none peer-valid:text-gray-400 opacity-50 peer-focus:opacity-100 transition-all duration-300 peer-focus:-translate-y-5 group-hover:opacity-100`}
-              >
-                <p className="font-semibold text-sm bg-gray-100 rounded-md px-1">
-                  Email
-                </p>
-              </div>
+             <InputAnimation text="Email" stateValue={clientInput.email}/>
             </label>
             <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
               <input
@@ -102,6 +96,7 @@ export default function SignInPage() {
                 value={clientInput.password}
                 className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
                 onChange={handleChange}
+                required
               />
 
               <div
@@ -110,15 +105,7 @@ export default function SignInPage() {
               >
                 {showPassword ? <OpenEye /> : <CloseEye />}
               </div>
-              <div
-                className={`absolute inset-0 flex items-center p-2 ${
-                  clientInput.password.length > 0 && "-translate-y-5  "
-                }  pointer-events-none peer-valid:text-gray-400 opacity-50 peer-focus:opacity-100 transition-all duration-300 peer-focus:-translate-y-5 group-hover:opacity-100`}
-              >
-                <p className="font-semibold text-sm bg-gray-100 rounded-md px-1">
-                  Password
-                </p>
-              </div>
+             <InputAnimation text="Password" stateValue={clientInput.password}/>
             </label>
 
             <button type="submit" className="sign_button mt-2">
