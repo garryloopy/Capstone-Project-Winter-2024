@@ -19,6 +19,7 @@ import { CartContext } from "./Providers";
 
 import Logo from "@/public/images/Logo-01.jpg";
 import { usePathname } from "next/navigation";
+import { useScrollTop } from "@/app/hooks/use-scroll-top";
 
 export default function Header() {
   const path = usePathname();
@@ -26,6 +27,7 @@ export default function Header() {
   const { cartProducts } = useContext(CartContext);
   const session = useSession();
   const { name } = session?.data?.user || {};
+  const scrolled = useScrollTop()
   let username = name;
   if (username && username.includes(" ")) {
     username = username.split(" ")[0];
@@ -43,7 +45,12 @@ export default function Header() {
   };
 
   return (
-    <header className="md:px-[4rem] px-2 py-[1rem] flex justify-between items-center w-full bg-inherit h-28">
+    <header
+      className={`md:px-[4rem] px-2 py-[1rem] flex justify-between items-center w-full bg-inherit h-28 ${
+        scrolled &&
+        "border-b shadow-sm z-50 bg-slate-100 fixed transition-transform duration-300 ease-in-out "
+      }`}
+    >
       {/* logo and text */}
       <Link
         className="flex justify-center items-center text-slate-700  overflow-hidden rounded-full shadow-md"
