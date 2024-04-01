@@ -87,7 +87,7 @@ function Menu() {
                   search.length > 0 && "-translate-y-7  "
                 }  pointer-events-none peer-valid:text-gray-400 opacity-50 peer-focus:opacity-100 transition-all duration-300 peer-focus:-translate-y-7 group-hover:opacity-100`}
               >
-                <p className="font-semibold text-sm">
+                <p className="font-semibold text-sm bg-white rounded-md px-1">
                   Search
                 </p>
               </div>
