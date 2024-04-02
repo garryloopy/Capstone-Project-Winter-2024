@@ -12,6 +12,7 @@ import { useContext, useEffect, useState } from "react";
 import CartMenuList from "@/components/CartMenuList";
 import CartClientInfo from "@/components/CartClientInfo";
 import {
+  ApplePay,
   GooglePay,
   CreditCard,
   PaymentForm,
@@ -225,10 +226,10 @@ export default function CartPage() {
                     }
                   }}
                   createPaymentRequest={() => ({
-                    countryCode: "US",
-                    currencyCode: "USD",
+                    countryCode: "CA",
+                    currencyCode: "CAD",
                     total: {
-                      amount: "1.00",
+                      amount: totalPricePlusDelivery.toFixed(2),
                       label: "Total",
                     },
                   })}
@@ -241,6 +242,7 @@ export default function CartPage() {
                   />
 
                   <GooglePay />
+                  <ApplePay />
 
                   <div>
                     <CreditCard
