@@ -244,7 +244,7 @@ export default function CartPage() {
                   // ------ this is for Google Pay ------
                   createPaymentRequest={() => ({
                     countryCode: "CA",
-                    currencyCode: "CAD",
+                    currencyCode: "CDN",
                     total: {
                       amount: "1.00",
                       label: "Total",
