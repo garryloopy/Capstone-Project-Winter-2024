@@ -3,7 +3,7 @@ import AdminModal from "./(admin)/components/AdminModal";
 import NewFlavor from "@/components/NewFlavor";
 import About from "@/components/About";
 import { useSession } from "next-auth/react";
-import Slideshow from "@/components/sliderTest";
+import Slideshow from "@/components/Slider";
 import Link from "next/link"
 import "./slides.css";
 import MenuScroll from "@/components/MenuScroll";
