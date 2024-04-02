@@ -30,8 +30,7 @@ const CartClientInfo = ({
   const zipRegExp = /^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$/;
   const apartmentRegExp = /^[a-zA-Z0-9\s-]{1,10}$/;
   // const cityRegExp = /^[a-zA-Z\s-]{2,}$/;
-  const phoneRegExp = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
-
+const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
   const [isEmailValid, setIsEmailValid] = useState();
   const [isZipValid, setIsZipValid] = useState();
   // const [isCityValid, setIsCityValid] = useState();
@@ -85,13 +84,6 @@ const CartClientInfo = ({
     setInputValid(false);
   }
 
-  //  const handlePickup = () => {
-  //    console.log("Pick up clicked");
-  //  };
-
-  //  const handleDelivery = () => {
-  //    console.log("Delivery clicked");
-  //  };
 
   //retrieve the location (longitude and latitude) of the client
   const getCoordinate = async (address) => {
@@ -239,7 +231,7 @@ const CartClientInfo = ({
           <div className="flex relative">
             <input
               type="text"
-              placeholder="Phone"
+              placeholder="111-222-3333"
               name="tel"
               value={clientInfo.tel}
               onChange={handleChange}
