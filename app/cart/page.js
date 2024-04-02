@@ -167,7 +167,7 @@ export default function CartPage() {
         <section className="p-[2rem] flex flex-col justify-center items-center z-50">
           <SubHeader header2="Cart" />
           {cartProducts?.length === 0 ? (
-            <div className="flex justify-center text-lg h-screen text-white">
+            <div className="flex justify-center text-lg h-screen text-black">
               {" "}
               No products in shopping cart
             </div>

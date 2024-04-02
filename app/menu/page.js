@@ -105,7 +105,7 @@ function Menu() {
               ))
             ) : (
               <div>
-                <p className=" text-white text-lg">
+                <p className=" text-black text-lg">
                   Sorry, There is no matching menu.
                 </p>
               </div>
