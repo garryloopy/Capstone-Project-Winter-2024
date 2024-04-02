@@ -9,13 +9,12 @@ import Loading from "@/components/Loading";
 import MenuForm from "../components/MenuForm";
 import toast, { Toaster } from "react-hot-toast";
 import SingleMenu from "../components/SingleMenu";
-import Link from "next/link"
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { withSwal } from "react-sweetalert2";
 import { deletePhoto } from "@/actions/uploadImage";
-
-
+import MenuScroll from "@/components/MenuScroll";
 
 const AdminPage = ({ swal }) => {
   const session = useSession();
@@ -123,8 +122,8 @@ const AdminPage = ({ swal }) => {
             if (res.ok) {
               const data = await res.json();
               swal.fire("Deleted", data.message, "success");
-              if (item.public_id){
-              await deletePhoto(item.public_id)
+              if (item.public_id) {
+                await deletePhoto(item.public_id);
               }
               await getMenuList();
             } else {
@@ -141,58 +140,60 @@ const AdminPage = ({ swal }) => {
               "error"
             );
           }
-        } 
+        }
       });
   };
 
   return (
-    <section className="flex flex-col justify-center items-center">
-      <AdminNavbar path={path} />
-      <SubHeader header2="Create new Menu" />
-      <MenuForm handleSubmit={handleSubmit} buttonText="Create Menu" />
-      <div className="w-[90%]">
-        <hr className="border-0 w-full bg-orange-300 block h-[1px] " />
-      </div>
-      <SubHeader header2="Menu List" />
+    <>
+    <MenuScroll/>
+      <section className="flex flex-col justify-center items-center mt-32">
+        <AdminNavbar path={path} />
+        <SubHeader header2="Create new Menu" />
+        <MenuForm handleSubmit={handleSubmit} buttonText="Create Menu" />
+        <div className="w-[90%]">
+          <hr className="border-0 w-full bg-yellow-400 block h-[1px] " />
+        </div>
+        <SubHeader header2="Menu List" />
 
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-cols-1 gap-8 my-[5rem]">
-        {menuList &&
-          menuList.map((item) => (
-            <div
-              key={item._id}
-              
-              /* this is for admin menu list */
-              className="bg-neutral-200 p-4 rounded-lg text-center hover:shadow-md hover:shadow-orange-500 flex flex-col justify-around"
-            >
-              <SingleMenu {...item} />
-              <div className="flex gap-4 justify-center items-center mt-6">
-                <Link
-                  className={`sign_button text-sm flex items-center justify-center gap-2 `}
-                  href={`/menu-list/edit/${item._id}`}
-                >
-                  <FontAwesomeIcon
-                    icon={faPenToSquare}
-                    size="sm"
-                    style={{ color: "#EAEAEA" }}
-                  />
-                  Edit
-                </Link>
-                <button
-                  className={`sign_button text-sm flex items-center justify-center gap-2`}
-                  onClick={() => handleDeleteMenu(item)}
-                >
-                  <FontAwesomeIcon
-                    icon={faTrash}
-                    size="sm"
-                    style={{ color: "#EAEAEA" }}
-                  />
-                  Delete
-                </button>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-8 my-[5rem] w-[80%]">
+          {menuList &&
+            menuList.map((item) => (
+              <div
+                key={item._id}
+                /* this is for admin menu list */
+                className="bg-neutral-200  p-4 rounded-lg text-center hover:shadow-md hover:shadow-yellow-400 flex flex-col justify-around"
+              >
+                <SingleMenu {...item} />
+                <div className="flex gap-4 justify-center items-center mt-6">
+                  <Link
+                    className={`sign_button text-sm flex items-center justify-center gap-2 `}
+                    href={`/menu-list/edit/${item._id}`}
+                  >
+                    <FontAwesomeIcon
+                      icon={faPenToSquare}
+                      size="sm"
+                      style={{ color: "#000" }}
+                    />
+                    Edit
+                  </Link>
+                  <button
+                    className={`sign_button text-sm flex items-center justify-center gap-2`}
+                    onClick={() => handleDeleteMenu(item)}
+                  >
+                    <FontAwesomeIcon
+                      icon={faTrash}
+                      size="sm"
+                      style={{ color: "#000" }}
+                    />
+                    Delete
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-      </div>
-    </section>
+            ))}
+        </div>
+      </section>
+    </>
   );
 };
 

@@ -64,7 +64,7 @@ export async function POST(req) {
             Thank you for reaching out to us at Miggy's Munchies!
           </h2>
           <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            We have received your message and will reply to you shortly.
+            We have received your message and we will reply to you shortly.
           </p>
         </div>
         <div style="padding-bottom: 1rem; border-bottom: 1px solid #ccc;">

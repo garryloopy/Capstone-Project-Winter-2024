@@ -77,7 +77,7 @@ function Menu() {
           <form className="md:max-w-[50%] w-full flex my-[2rem] justify-center">
             <label className="relative w-full flex">
               <input
-                className=" w-full min-h-[50px] text-[20px] bg-white border-2 border-orange-500 px-[1rem] rounded-md tracking-wider"
+                className=" w-full min-h-[50px] text-[20px] bg-white border-2 border-yellow-400 px-[1rem] rounded-md tracking-wider"
                 type="text"
                 placeholder="Search"
                 value={search}
@@ -95,11 +95,9 @@ function Menu() {
             </button> */}
           </form>
           <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-col-2 grid-cols-1 gap-4 mt-6 mb-8">
-            {!search &&
-              menuList.length > 0 &&
-              menuList.map((menu) => <ClientMenu key={menu._id} {...menu} />)}
-
-            {menuListSearch?.length > 0 ? (
+            {!search && menuList.length > 0 ? (
+              menuList.map((menu) => <ClientMenu key={menu._id} {...menu} />)
+            ) : menuListSearch?.length > 0 ? (
               menuListSearch.map((menu) => (
                 <ClientMenu key={menu._id} {...menu} />
               ))

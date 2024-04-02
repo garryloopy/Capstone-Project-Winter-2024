@@ -5,13 +5,13 @@ import React from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import { useSession } from "next-auth/react";
 import { redirect, usePathname } from "next/navigation";
-import { TailSpin } from "react-loader-spinner";
 
 import Loading from "@/components/Loading";
 
 import OrdersContainer from "../components/OrdersContainer";
 
 import { useEffect, useState } from "react";
+import MenuScroll from "@/components/MenuScroll";
 
 /**
  * An orders page that displays orders
@@ -74,7 +74,29 @@ const OrdersPage = () => {
    * @param {String} orderId The orderId to change
    * @param {String} newStatus The new order status
    */
-  const onOrderStatusChange = (orderId, newStatus) => {
+  const onOrderStatusChange = async (orderId, objectId, newStatus) => {
+    try {
+      // Change order status within the server
+      const response = await fetch("/api/updateOrderStatus", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          _id: objectId,
+          orderStatus: newStatus,
+        }),
+      });
+
+      // Do this if response if okay
+      // if (response.ok) {
+      //   setCurrentStatus(newStatus);
+      //   setIsMoreOptionsOpen(false);
+      //   handleOnOrderStatusChange(newStatus);
+      // }
+    } catch (error) {
+      console.error("An error occurred while updating order status:", error);
+    }
     // Get new orders, change only the ones matching the orderId given.
     const newOrders = ordersList.map((order) => {
       if (order.orderId === orderId) {
@@ -95,21 +117,24 @@ const OrdersPage = () => {
   };
 
   return (
-    <section className="flex flex-col justify-center items-center px-20">
-      <AdminNavbar path={path} />
-      <SubHeader header2="Orders" />
+    <>
+      <MenuScroll />
+      <section className="flex flex-col justify-center items-center px-20">
+        <AdminNavbar path={path} />
+        <SubHeader header2="Orders" />
 
-      {/* Loader  */}
-      <Loading isLoading={false} />
+        {/* Loader  */}
+        <Loading isLoading={false} />
 
-      {/* CONTAINER */}
-      {status !== "unauthenticated" && (
-        <OrdersContainer
-          ordersList={ordersList}
-          onOrderStatusChange={onOrderStatusChange}
-        />
-      )}
-    </section>
+        {/* CONTAINER */}
+        {status !== "unauthenticated" && (
+          <OrdersContainer
+            ordersList={ordersList}
+            onOrderStatusChange={onOrderStatusChange}
+          />
+        )}
+      </section>
+    </>
   );
 };
 

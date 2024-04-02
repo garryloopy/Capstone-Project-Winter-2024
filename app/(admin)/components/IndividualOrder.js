@@ -12,7 +12,7 @@ const IndividualOrder = ({
   paymentId,
   orderStatus,
   orderAmount,
-  orderName,
+  orderEmail,
   orderDate,
   onOrderStatusChange,
 }) => {
@@ -50,7 +50,7 @@ const IndividualOrder = ({
    */
   const handleOnOrderStatusChange = (newStatus) => {
     // Call parent function
-    onOrderStatusChange(orderId, newStatus);
+    if (onOrderStatusChange) onOrderStatusChange(orderId, objectId, newStatus);
   };
 
   /**
@@ -64,28 +64,8 @@ const IndividualOrder = ({
       return;
     }
 
-    try {
-      // Change order status within the server
-      const response = await fetch("/api/updateOrderStatus", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          _id: objectId,
-          orderStatus: newStatus,
-        }),
-      });
-
-      // Do this if response if okay
-      if (response.ok) {
-        setCurrentStatus(newStatus);
-        setIsMoreOptionsOpen(false);
-        handleOnOrderStatusChange(newStatus);
-      }
-    } catch (error) {
-      console.error("An error occurred while updating order status:", error);
-    }
+    handleOnOrderStatusChange(newStatus);
+    setIsMoreOptionsOpen(false);
   };
 
   /**
@@ -127,7 +107,7 @@ const IndividualOrder = ({
               target="_blank"
               href={`/orders/${paymentId}`}
             >
-              <p>Open in new tab</p>
+              Open in new tab
               <FaExternalLinkAlt size={16} />
             </a>
             <button
@@ -158,22 +138,22 @@ const IndividualOrder = ({
         )}
       </div>
 
-      <div className="w-2/6 h-full flex items-center justify-center">
-        <p className="text-wrap truncate text-md text-gray-800">{orderId}</p>
-      </div>
-      <div className="w-1/6 h-full flex items-center justify-center">
-        <p className="text-wrap truncate  text-md text-gray-800">{orderName}</p>
-      </div>
-      <div className="w-1/6 h-full flex items-center justify-center">
-        <p className="text-wrap truncate  text-md text-gray-800">{orderDate}</p>
-      </div>
-      <div className="w-1/6 h-full flex items-center justify-center">
-        <OrderStatus orderStatus={currentStatus} />
-      </div>
-      <div className="w-1/6 h-full flex items-center justify-center">
-        <p className="text-wrap truncate  text-md text-gray-800">
-          {orderAmount}
-        </p>
+      <div className="flex flex-row items-center h-full w-full divide-x-2 py-6 divide-gray-400 text-wrap truncate text-md font-semibold text-gray-600/90">
+        <div className="w-2/6 h-full flex items-center justify-center">
+          <p>{orderId}</p>
+        </div>
+        <div className="w-1/6 h-full flex items-center justify-center">
+          <p>{orderEmail}</p>
+        </div>
+        <div className="w-1/6 h-full flex items-center justify-center">
+          <p>{orderDate}</p>
+        </div>
+        <div className="w-1/6 h-full flex items-center justify-center">
+          <OrderStatus orderStatus={currentStatus} />
+        </div>
+        <div className="w-1/6 h-full flex items-center justify-center">
+          <p>{orderAmount}</p>
+        </div>
       </div>
     </div>
   );

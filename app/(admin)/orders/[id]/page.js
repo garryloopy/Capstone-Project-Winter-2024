@@ -10,10 +10,9 @@ import AdminNavbar from "@/app/(admin)/components/AdminNavbar";
 import { useSession } from "next-auth/react";
 import { redirect, usePathname } from "next/navigation";
 import { useParams } from "next/navigation";
-import { FaAngleLeft, FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import { FaAngleLeft, FaAngleUp } from "react-icons/fa6";
 import OrderStatus from "../../components/OrderStatus";
 import Image from "next/image";
-import { TailSpin } from "react-loader-spinner";
 import Loading from "@/components/Loading";
 
 export default function OrderDetailsPage({ params }) {
@@ -33,6 +32,10 @@ export default function OrderDetailsPage({ params }) {
   const [orderStatus, setOrderStatus] = useState("");
   const [objectId, setObjectId] = useState();
   const [paymentId, setPaymentId] = useState();
+
+  //Confirmation modal
+  const [confirmationModal, setConfirmationModal] = useState(false);
+  const [confirmationData, setConfirmationData] = useState({});
 
   const [isMoreOptionsOpened, setIsMoreOptionsOpened] = useState(false);
 
@@ -101,15 +104,25 @@ export default function OrderDetailsPage({ params }) {
    * @param {String} newStatus The new status
    */
   const handleOnStatusChange = async (newStatus) => {
-    // Set loader
-    setIsLoading(true);
-
     // Do nothing
     if (orderStatus === newStatus) {
       setIsMoreOptionsOpened(false);
       setIsLoading(false);
       return;
     }
+
+    setConfirmationData({ orderId, newStatus });
+    setConfirmationModal(true);
+  };
+
+  /**
+   * Handler for when the confirmation modal is agreed
+   */
+  const handleOnConfirmationAgree = async () => {
+    setConfirmationModal(false);
+
+    // Set loader
+    setIsLoading(true);
 
     try {
       const response = await fetch("/api/updateOrderStatus", {
@@ -119,20 +132,30 @@ export default function OrderDetailsPage({ params }) {
         },
         body: JSON.stringify({
           _id: objectId,
-          orderStatus: newStatus,
+          orderStatus: confirmationData.newStatus,
         }),
       });
 
       if (response.ok) {
-        setOrderStatus(newStatus);
+        setOrderStatus(confirmationData.newStatus);
         setIsMoreOptionsOpened(false);
       }
     } catch (error) {
       console.error("An error occurred while updating order status:", error);
     }
 
+    setConfirmationData({});
+
     // Set loader
     setIsLoading(false);
+  };
+
+  /**
+   * Handler for when the confirmation modal is disagreed
+   */
+  const handleOnConfirmationDisagree = () => {
+    setConfirmationModal(false);
+    setConfirmationData({});
   };
 
   /**
@@ -174,7 +197,56 @@ export default function OrderDetailsPage({ params }) {
         </div>
       </div>
 
-      <div className="bg-gray-100 w-full h-full rounded-md flex flex-col">
+      <div className="bg-gray-100 w-full h-full rounded-md flex flex-col relative">
+        {/* Confirmation  */}
+        <div
+          className={`absolute inset-0 z-10 grid place-items-center backdrop-brightness-90 ${
+            confirmationModal
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }`}
+        >
+          <div className="bg-gray-100 h-1/3 w-1/3 flex flex-col items-center justify-center gap-5 rounded-lg shadow-md p-4">
+            {confirmationData && (
+              <div className="flex flex-row items-center gap-3 text-xl font-semibold text-gray-800 text-center">
+                <p>
+                  Mark{" "}
+                  <span className="text-violet-800">
+                    {confirmationData.orderId}
+                  </span>{" "}
+                  as{" "}
+                </p>
+                <OrderStatus orderStatus={confirmationData.newStatus} />
+                <p>?</p>
+              </div>
+            )}
+            {confirmationData && (
+              <p className="text-center text-gray-600">
+                Marking {confirmationData.orderId} as{" "}
+                {confirmationData.newStatus} will send a confirmation of email
+                to the customer.
+              </p>
+            )}
+
+            <div className="flex flex-row gap-4 items-center">
+              <button
+                className="w-32 h-10 bg-yellow-400 font-semibold text-gray-800 text-lg rounded-lg shadow-md hover:bg-yellow-300 active:bg-yellow-400"
+                onClick={handleOnConfirmationAgree}
+              >
+                Yes
+              </button>
+              <button
+                className="w-32 h-10 bg-yellow-400 font-semibold text-gray-800 text-lg rounded-lg shadow-md hover:bg-yellow-300 active:bg-yellow-400"
+                onClick={handleOnConfirmationDisagree}
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Shadow effect  */}
+        <div className="absolute inset-10 bg-violet-500/50 -z-10 blur-3xl rounded-lg" />
         {/* Loader  */}
         <Loading isLoading={isLoading} />
 

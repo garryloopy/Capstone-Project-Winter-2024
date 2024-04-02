@@ -12,7 +12,6 @@ import { useContext, useEffect, useState } from "react";
 import CartMenuList from "@/components/CartMenuList";
 import CartClientInfo from "@/components/CartClientInfo";
 import {
-  ApplePay,
   GooglePay,
   CreditCard,
   PaymentForm,
@@ -51,6 +50,7 @@ export default function CartPage() {
   );
   const [distanceDuration, setDistanceDuration] = useState();
   const [deliveryAmount, setDeliveryAmount] = useState();
+
 
   let totalPrice = 0;
   for (const product of cartProducts) {
@@ -144,6 +144,21 @@ export default function CartPage() {
   //calculate the total price with delivery Amount
   const totalPricePlusDelivery = totalPrice + deliveryAmount;
 
+  const handleEmail = async (paymentId) => {
+    const res = await fetch("/api/email/sendOrderConfirmationCheckout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        paymentId: paymentId,
+      }),
+    });
+    if (res.ok) {
+      console.log("Email sent successfully");
+    } else {
+      console.log("Failed to send email");
+    }
+  };
+
   return (
     <>
       {loading ? (
@@ -203,6 +218,7 @@ export default function CartPage() {
                               const { payment } = await res?.json();
                               const status = payment.status;
                               const paymentId = payment.id;
+                              await handleEmail(paymentId);
                               if (status === "COMPLETED") {
                                 window.location.href = `/receipt/${paymentId}?clear=1`;
                               }
@@ -225,11 +241,12 @@ export default function CartPage() {
                       );
                     }
                   }}
+                  // ------ this is for Google Pay ------
                   createPaymentRequest={() => ({
                     countryCode: "CA",
-                    currencyCode: "CAD",
+                    currencyCode: "CDN",
                     total: {
-                      amount: totalPricePlusDelivery.toFixed(2),
+                      amount: "1.00",
                       label: "Total",
                     },
                   })}
@@ -242,7 +259,6 @@ export default function CartPage() {
                   />
 
                   <GooglePay />
-                  <ApplePay />
 
                   <div>
                     <CreditCard
@@ -257,7 +273,13 @@ export default function CartPage() {
                         },
                       }}
                       render={(Button) => (
-                        <Button>
+                        <Button
+                          style={{
+                            backgroundColor: "rgb(250, 204, 21)",
+                            color: "black",
+                            hover: { backgroundColor: "rgb(240, 180, 18)" },
+                          }}
+                        >
                           $
                           {`${(
                             totalPrice +

@@ -5,12 +5,15 @@ import IndividualOrder from "../components/IndividualOrder";
 import FilterButton from "../components/FilterButton";
 
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { FaQuestion } from "react-icons/fa";
 
 import { useEffect, useState } from "react";
 
 import { TailSpin } from "react-loader-spinner";
 
 import getFormattedDate from "../utils/getFormattedDate";
+import OrderStatus from "./OrderStatus";
+import { set } from "mongoose";
 
 /**
  * A component that displays, filters, updates, and opens orders based on the passed list array
@@ -32,6 +35,10 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
   const [displayedItems, setDisplayedItems] = useState([]);
 
   const [categorizedItems, setCategorizedItems] = useState({});
+
+  //Confirmation modal
+  const [confirmationModal, setConfirmationModal] = useState(false);
+  const [confirmationData, setConfirmationData] = useState({});
 
   // Each time orders list is changed then change displayed items to orders list
   useEffect(() => {
@@ -138,15 +145,87 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
    * @param {String} orderId The order Id to change
    * @param {String} newStatus The new status
    */
-  const handleOnOrderStatusChange = (orderId, newStatus) => {
-    if (onOrderStatusChange) onOrderStatusChange(orderId, newStatus);
+  const handleOnOrderStatusChange = (orderId, objectId, newStatus) => {
+    setConfirmationModal(true);
+    setConfirmationData({ orderId, objectId, newStatus });
+  };
+
+  /**
+   * Handler for when the confirmation modal is agreed
+   */
+  const handleOnConfirmationAgree = () => {
+    if (onOrderStatusChange)
+      onOrderStatusChange(
+        confirmationData.orderId,
+        confirmationData.objectId,
+        confirmationData.newStatus
+      );
     updateDisplayedItems();
+    setConfirmationData({});
+    setConfirmationModal(false);
+  };
+
+  /**
+   * Handler for when the confirmation modal is disagreed
+   */
+  const handleOnConfirmationDisagree = () => {
+    setConfirmationModal(false);
+    setConfirmationData({});
   };
 
   return (
-    <div className="min-h-screen w-full bg-gray-100/90 mb-8 overflow-hidden flex flex-col rounded-md">
+    <div className="min-h-screen w-full bg-neutral-50 mb-8 flex flex-col rounded-xl shadow-md relative">
+      {/* Shadow effect  */}
+      <div className="absolute inset-10 bg-violet-500/50 -z-10 blur-3xl rounded-lg" />
+
+      {/* Confirmation  */}
+      <div
+        className={`absolute inset-0 z-10 grid place-items-center backdrop-brightness-90 ${
+          confirmationModal
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="bg-gray-100 h-1/3 w-1/3 flex flex-col items-center justify-center gap-5 rounded-lg shadow-md p-4">
+          {confirmationData && (
+            <div className="flex flex-row items-center gap-3 text-xl font-semibold text-gray-800 text-center">
+              <p>
+                Mark{" "}
+                <span className="text-violet-800">
+                  {confirmationData.orderId}
+                </span>{" "}
+                as{" "}
+              </p>
+              <OrderStatus orderStatus={confirmationData.newStatus} />
+              <p>?</p>
+            </div>
+          )}
+          {confirmationData && (
+            <p className="text-center text-gray-600">
+              Marking {confirmationData.orderId} as {confirmationData.newStatus}{" "}
+              will send a confirmation of email to the customer.
+            </p>
+          )}
+
+          <div className="flex flex-row gap-4 items-center">
+            <button
+              className="w-32 h-10 bg-yellow-400 font-semibold text-gray-800 text-lg rounded-lg shadow-md hover:bg-yellow-300 active:bg-yellow-400"
+              onClick={handleOnConfirmationAgree}
+            >
+              Yes
+            </button>
+            <button
+              className="w-32 h-10 bg-yellow-400 font-semibold text-gray-800 text-lg rounded-lg shadow-md hover:bg-yellow-300 active:bg-yellow-400"
+              onClick={handleOnConfirmationDisagree}
+            >
+              No
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* Top section */}
-      <div className="flex flex-row items-center justify-between h-24 w-full px-8">
+      <div className="flex flex-row items-center justify-between h-24 w-full px-8 bg-gray-100/75 rounded-t-xl">
         <div className="h-full flex flex-col">
           <div className="h-full flex flex-row items-center gap-6 ">
             <FilterButton
@@ -182,18 +261,28 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
           </div>
         </div>
 
+        {/* Search  */}
         <form className="h-full py-6" onSubmit={handleOnSearch}>
           <div className="h-full relative">
             <input
               type="text"
-              placeholder="Search order ID"
-              className="px-4 py-2 h-full rounded-md border border-gray-500 w-96"
+              className="px-4 py-3 h-full rounded-md border-2 focus:border-0 border-gray-400 w-96 peer bg-gray-100/75 shadow-md outline-none focus:ring-2 focus:ring-orange-500 transition-shadow duration-75 text-md text-gray-700"
               onChange={handleOnSearchChange}
             />
-            <button type="submit">
+            <div
+              className={`absolute inset-0 flex flex-row justify-between px-2 items-center pointer-events-none peer-focus:-translate-y-6 peer-focus:text-orange-600 text-gray-800 peer-focus:opacity-100 ${
+                currentSearchValue.length > 0
+                  ? "-translate-y-6 opacity-100 text-orange-600"
+                  : "opacity-50"
+              } transition-all duration-300 ease-in-out`}
+            >
+              <p className="bg-gray-100 px-2">Search by order id</p>
+            </div>
+
+            <button type="submit" className="text-gray-500">
               <FaMagnifyingGlass
                 size={20}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 hover"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 hover "
               />
             </button>
           </div>
@@ -211,75 +300,235 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
         )}
 
         {/* Top section  */}
-        <div className="flex flex-row w-full text-center h-16 items-center divide-x-2 divide-gray-400 px-4 sticky top-0 bg-gray-100 z-10 shadow-sm">
-          <p className="w-2/6 text-gray-950 text-lg">ID</p>
-          <p className="w-1/6 text-gray-950 text-lg">Email</p>
-          <p className="w-1/6 text-gray-950 text-lg">Date</p>
-          <p className="w-1/6 text-gray-950 text-lg">Status</p>
-          <p className="w-1/6 text-gray-950 text-lg">Items</p>
+        <div className="flex flex-row w-full text-center h-16 items-center divide-x-2 px-6 divide-gray-400 bg-gray-100/90 shadow-md text-gray-600 font-semibold text-lg">
+          <div className="w-2/6 flex flex-row justify-center items-center gap-4 text-center relative">
+            Order ID
+            {/* ICON  */}
+            <FaQuestion
+              size={14}
+              className="cursor-pointer text-orange-500 peer transition-opacity opacity-50 hover:opacity-100 duration-500"
+            />
+            {/* HELP CONTAINER  */}
+            <div className="bg-gray-50 rounded-md shadow-md border-2 border-gray-300 absolute w-1/2 top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
+              <p>
+                Represents the{" "}
+                <span className="italic text-orange-500">unique order Id</span>{" "}
+                for the order.
+              </p>
+            </div>
+          </div>
+          <div className="w-1/6 flex flex-row justify-center items-center gap-4 text-center relative">
+            Email
+            {/* ICON  */}
+            <FaQuestion
+              size={14}
+              className="cursor-pointer text-orange-500 peer transition-opacity opacity-50 hover:opacity-100 duration-500"
+            />
+            {/* HELP CONTAINER  */}
+            <div className="bg-gray-50 rounded-md shadow-md border-2 border-gray-300 absolute w-full top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
+              <p>
+                Represents the{" "}
+                <span className="italic text-orange-500">email</span> of the
+                customer for the order.
+              </p>
+            </div>
+          </div>
+          <div className="w-1/6 flex flex-row justify-center items-center gap-4 text-center relative">
+            Date
+            {/* ICON  */}
+            <FaQuestion
+              size={14}
+              className="cursor-pointer text-orange-500 peer transition-opacity opacity-50 hover:opacity-100 duration-500"
+            />
+            {/* HELP CONTAINER  */}
+            <div className="bg-gray-50 rounded-md shadow-md border-2 border-gray-300 absolute w-full top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
+              <p>
+                Represents the{" "}
+                <span className="italic text-orange-500">order date</span> of
+                the order.
+              </p>
+            </div>
+          </div>
+          <div className="w-1/6 flex flex-row justify-center items-center gap-4 text-center relative">
+            Order Status
+            {/* ICON  */}
+            <FaQuestion
+              size={14}
+              className="cursor-pointer text-orange-500 peer transition-opacity opacity-50 hover:opacity-100 duration-500"
+            />
+            {/* HELP CONTAINER  */}
+            <div className="bg-gray-50 rounded-md shadow-md border-2 border-gray-300 absolute w-full top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
+              <div>
+                Order statuses can 4 have possible states:{" "}
+                <span className="bg-green-50 border-green-200 text-green-800 border p-[2px] rounded-md">
+                  COMPLETED
+                </span>
+                ,{" "}
+                <span className="bg-blue-50 border-blue-200 text-blue-800 border p-[2px] rounded-md">
+                  IN PROGRESS
+                </span>
+                ,{" "}
+                <span className="bg-orange-50 border-orange-200 text-orange-800 border p-[2px] rounded-md">
+                  PENDING
+                </span>
+                , and{" "}
+                <span className="bg-red-50 border-red-200 text-red-800 border p-[2px] rounded-md">
+                  CANCELLED
+                </span>
+              </div>
+              <p>
+                As an order is created, the order will start of with a{" "}
+                <span className="bg-orange-50 border-orange-200 text-orange-800 border p-[2px] rounded-md">
+                  PENDING
+                </span>{" "}
+                status.
+              </p>
+              <p>
+                Depending on the order type, an order status of{" "}
+                <span className="bg-blue-50 border-blue-200 text-blue-800 border p-[2px] rounded-md">
+                  IN PROGRESS
+                </span>{" "}
+                will email the customer that the order is in delivery (for
+                delivery) or that the order is being made (for pickup).
+              </p>
+              <p>
+                An order status of{" "}
+                <span className="bg-green-50 border-green-200 text-green-800 border p-[2px] rounded-md">
+                  COMPLETED
+                </span>{" "}
+                or{" "}
+                <span className="bg-red-50 border-red-200 text-red-800 border p-[2px] rounded-md">
+                  CANCELLED
+                </span>{" "}
+                will mark the end of an order and will send an email to the
+                customer for confirmation and acknowledgement.
+              </p>
+            </div>
+          </div>
+          <div className="w-1/6 flex flex-row justify-center items-center gap-4 text-center relative">
+            Items
+            {/* ICON  */}
+            <FaQuestion
+              size={14}
+              className="cursor-pointer text-orange-500 peer transition-opacity opacity-50 hover:opacity-100 duration-500"
+            />
+            {/* HELP CONTAINER  */}
+            <div className="bg-gray-50 rounded-md shadow-md border-2 border-gray-300 absolute w-full top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
+              <p>
+                Represents the{" "}
+                <span className="italic text-orange-500">total item count</span>{" "}
+                for the order.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Orders Container  */}
-        <div className="w-full h-full px-6 py-8 flex flex-col gap-4 relative">
+        <div className="w-full h-full px-6 py-8 flex flex-col gap-8 relative">
           {displayedItems && (
-            <p className="pb-8 text-lg text-gray-500 text-center">
+            <p className="pb-8 text-sm font-semibold text-gray-500 text-center">
               {displayedItems.length} item
-              {displayedItems.length > 1 ? "s" : ""} found in {currentFilter}
+              {displayedItems.length > 1 ? "s" : ""} found in{" "}
+              <span className="text-orange-400">{currentFilter}</span>
             </p>
           )}
 
           {/* CURRENT FILTER IS NOT "ALL" */}
-          {displayedItems &&
-            ordersList &&
-            currentFilter !== "ALL" &&
-            displayedItems.map((order) => {
-              //format the date of order
-              const formattedDate = getFormattedDate(order.createdAt);
+          {displayedItems && ordersList && currentFilter !== "ALL"
+            ? displayedItems.map((order) => {
+                //format the date of order
+                const formattedDate = getFormattedDate(order.createdAt);
 
-              return (
-                <IndividualOrder
-                  objectId={order._id}
-                  key={order.orderId}
-                  orderId={order.orderId}
-                  orderStatus={order.orderStatus}
-                  orderAmount={order.cartProducts.length}
-                  paymentId={order.paymentId}
-                  orderDate={formattedDate}
-                  orderName={order.clientInfo.email}
-                  onOrderStatusChange={handleOnOrderStatusChange}
-                />
-              );
-            })}
+                return (
+                  <IndividualOrder
+                    objectId={order._id}
+                    key={order._id}
+                    orderId={order.orderId}
+                    orderStatus={order.orderStatus}
+                    orderAmount={order.cartProducts.length}
+                    paymentId={order.paymentId}
+                    orderDate={formattedDate}
+                    orderName={order.clientInfo.email}
+                    onOrderStatusChange={handleOnOrderStatusChange}
+                  />
+                );
+              })
+            : ["PENDING", "IN PROGRESS", "COMPLETED", "CANCELLED"].map(
+                (category) =>
+                  categorizedItems[category] && (
+                    <div
+                      key={category}
+                      className="flex flex-col gap-4 mb-12 pb-8"
+                    >
+                      <p className="text-lg font-semibold text-center text-gray-600 border-b-2 border-gray-300 pb-2">
+                        {category}
+                      </p>
+                      <div className="flex flex-col gap-4">
+                        {categorizedItems[category].map((order) => {
+                          //format the date of order
+                          const formattedDate = getFormattedDate(
+                            order.createdAt
+                          );
+
+                          return (
+                            <IndividualOrder
+                              objectId={order._id}
+                              key={order.orderId}
+                              orderId={order.orderId}
+                              orderStatus={order.orderStatus}
+                              orderAmount={order.cartProducts.length}
+                              paymentId={order.paymentId}
+                              orderDate={formattedDate}
+                              orderEmail={order.clientInfo.email}
+                              onOrderStatusChange={handleOnOrderStatusChange}
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )
+              )}
 
           {/* CURRENT FILTER IS ALL  */}
-          {displayedItems &&
+          {/* {displayedItems &&
             categorizedItems &&
             ordersList &&
             currentFilter === "ALL" &&
-            Object.keys(categorizedItems).map((category) => (
-              <div key={category} className="flex flex-col gap-4 mb-12 pb-8">
-                <p className="text-lg text-center text-gray-800">{category}</p>
-                <div className="flex flex-col gap-4">
-                  {categorizedItems[category].map((order) => {
-                    //format the date of order
-                    const formattedDate = getFormattedDate(order.createdAt);
-                    return (
-                      <IndividualOrder
-                        objectId={order._id}
-                        key={order.orderId}
-                        orderId={order.orderId}
-                        orderStatus={order.orderStatus}
-                        orderAmount={order.cartProducts.length}
-                        paymentId={order.paymentId}
-                        orderDate={formattedDate}
-                        orderName={order.clientInfo.email}
-                        onOrderStatusChange={handleOnOrderStatusChange}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
+            ["PENDING", "IN PROGRESS", "COMPLETED", "CANCELLED"].map(
+              (category) =>
+                categorizedItems[category] ? (
+                  <div
+                    key={category}
+                    className="flex flex-col gap-4 mb-12 pb-8"
+                  >
+                    <p className="text-lg font-semibold text-center text-gray-600 border-b-2 border-gray-300 pb-2">
+                      {category}
+                    </p>
+                    <div className="flex flex-col gap-4">
+                      {categorizedItems[category].map((order) => {
+                        //format the date of order
+                        const formattedDate = getFormattedDate(order.createdAt);
+
+                        return (
+                          <IndividualOrder
+                            objectId={order._id}
+                            key={order.orderId}
+                            orderId={order.orderId}
+                            orderStatus={order.orderStatus}
+                            orderAmount={order.cartProducts.length}
+                            paymentId={order.paymentId}
+                            orderDate={formattedDate}
+                            orderEmail={order.clientInfo.email}
+                            onOrderStatusChange={handleOnOrderStatusChange}
+                          />
+                        );
+                      })}
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )
+            )} */}
         </div>
       </div>
     </div>
