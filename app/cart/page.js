@@ -51,7 +51,6 @@ export default function CartPage() {
   const [distanceDuration, setDistanceDuration] = useState();
   const [deliveryAmount, setDeliveryAmount] = useState();
 
-
   let totalPrice = 0;
   for (const product of cartProducts) {
     totalPrice += calculateTotalPrice(product);
@@ -244,9 +243,9 @@ export default function CartPage() {
                   // ------ this is for Google Pay ------
                   createPaymentRequest={() => ({
                     countryCode: "CA",
-                    currencyCode: "CDN",
+                    currencyCode: "CAD",
                     total: {
-                      amount: "1.00",
+                      amount: totalPricePlusDelivery.toFixed(2),
                       label: "Total",
                     },
                   })}
