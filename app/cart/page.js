@@ -51,7 +51,6 @@ export default function CartPage() {
   const [distanceDuration, setDistanceDuration] = useState();
   const [deliveryAmount, setDeliveryAmount] = useState();
 
-
   let totalPrice = 0;
   for (const product of cartProducts) {
     totalPrice += calculateTotalPrice(product);
@@ -246,7 +245,7 @@ export default function CartPage() {
                     countryCode: "CA",
                     currencyCode: "CDN",
                     total: {
-                      amount: "1.00",
+                      amount: totalPricePlusDelivery.toFixed(2),
                       label: "Total",
                     },
                   })}
