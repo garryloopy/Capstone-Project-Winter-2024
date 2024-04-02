@@ -83,12 +83,12 @@ just play with it */
     border-radius: 50%;
     cursor: pointer;
     margin: 0 5px;
-    background-color: #d48e8e;
+    background-color: rgb(139 92 246);
 }
 
 /* currently not working, ul - li worked better than this */
 .activeDot {
-    background-color: rgb(139 92 246);;
+    background-color: #d48e8e
 }
 
 /* ----- This is to adjust the position of the slideSHow -----*/

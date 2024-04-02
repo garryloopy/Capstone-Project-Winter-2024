@@ -69,7 +69,7 @@ function Slideshow() {
           <div
             key={index}
             className={
-              slider === index ? "slideshowDot" : "slideshowDot activeDot"
+              slider === index ? "slideshowDot activeDot" : "slideshowDot "
             }
             onClick={() => setSlider(index)}
           />
