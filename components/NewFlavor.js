@@ -25,12 +25,11 @@ const NewFlavor = () => {
   return (
     <div className="gallery flex justify-center items-center mb-[4rem] ">
       <div className="gallery-content">
-        <h1 className="headtext__cormorant">Discover New Flavors</h1>
+        <h1 className="headtext__cormorant">Discover Homemade Delights</h1>
         <p className="my-[2rem] leading-8">
           {" "}
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim
+          Discover the homemade delights of Miggy’s Munchies, where every bite is crafted with passion and creativity. 
+          From our kitchen to your table, enjoy the taste of homemade goodness.
         </p>
         <div className="my-[2rem] hidden xl:block">
           <Link className="btnStyle" href="/menu">
