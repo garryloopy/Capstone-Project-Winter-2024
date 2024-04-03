@@ -16,7 +16,7 @@ export default function Footer() {
     // added noopener and noreferrer to the window.open for security measures, just googled it lol
   };
   return (
-    <footer className="bg-slate-800 flex-col flex justify-start items-center text-gray-400 pb-4">
+    <footer className="bg-slate-700 flex-col flex justify-start items-center text-gray-400 pb-4">
       <div className="w-full flex  lg:flex-row flex-col justify-center items-center mt-[5rem] py-0 px-[2rem]">
         <div className="flex-1 m-[1rem] text-center">
           <h1 className="text-white font-bold tracking-[0.08em] text-lg mb-[1rem]">
@@ -52,10 +52,14 @@ export default function Footer() {
 
         <div className="flex-1 m-[1rem] text-center">
           <h1 className="text-white font-bold tracking-[0.08em] text-lg mb-[1rem]">
-            Working Hours
+            Business Hours
           </h1>
-          <p className="p__opensans">Sat - Sun:</p>
-          <p className="p__opensans">12:00pm - 08:00pm</p>
+          <p className="p__opensans">
+            <ul>
+              <li>Sat: 12:00pm - 8:00pm</li>
+              <li>Sun: 12:00pm - 8:00pm</li>
+            </ul>
+          </p>
         </div>
       </div>
       {/* <p className="my-[1rem]">
