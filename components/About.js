@@ -26,11 +26,11 @@ const About = () => {
         <div>
           <div>
             <Image
-              src="/images/macaroni_shutterstock.jpg"
+              src="/images/Logo-01.jpg"
               alt="logo"
               width={400}
               height={400}
-              className="rounded-full border-2 border-yellow-400"
+              className="rounded-full border-2 border-slate-500"
             />
           </div>
           <div className="flex flex-col items-center justify-center">
@@ -60,7 +60,7 @@ const About = () => {
             </div>
           </div>
         </div>
-        <div className="w-full mt-[5rem]">
+        <div className="w-full mb-12">
           <p className="">
             Our journey began with our newborn, leading me to discover solace
             and joy in the kitchen during maternity leave amidst the pandemic.
@@ -73,13 +73,6 @@ const About = () => {
             quality, authenticity, and innovation. Join us for a flavorful
             adventure, where every bite embodies love, passion, and creativity.
           </p>
-          <div className="flex flex-col items-left mt-10">
-            <p>Hours of Operation:</p>
-            <ul className="font-bold">
-              <li>Saturday - Sunday: 12:00pm - 8:00pm</li>
-              <li>Address: 79 Castleridge Close NE, Calgary, AB, Canada</li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
