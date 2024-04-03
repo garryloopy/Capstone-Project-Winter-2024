@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import SubHeader from "./SubHeader";
-//import SlideIn from "./SlideIn";
+//import SlideIn from "./SlideInTESTING";
 
 const About = () => {
   // we can use google maps' static API to show just the map image
@@ -22,6 +22,7 @@ const About = () => {
 
   return (
     <div className="flex flex-col items-center">
+      {/* <SlideIn> */}
         <SubHeader header2="About Us" />
         <div className="flex lg:flex-row flex-col justify-evenly items-center gap-10 lg:w-[80%] mx-auto w-full p-[2rem] ">
           <div>
@@ -76,6 +77,7 @@ const About = () => {
             </p>
           </div>
         </div>
+      {/* </SlideIn>   */}
     </div>
   );
 };

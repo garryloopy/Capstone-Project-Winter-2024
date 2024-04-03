@@ -11,8 +11,13 @@
 
 //   useEffect(() => {
 //     const handleScroll = () => {
+
+//       // window
 //       const scrollY = window.scrollY;
+
 //       const windowHeight = window.innerHeight;
+
+//        // DOM
 //       const element = document.getElementById("slideAnimElement");
 //       const elementTop = element.getBoundingClientRect().top;
   
@@ -26,7 +31,7 @@
 //      // this should handle the repeated event listener
 //      // revised: added return statement to remove event listener
         // added isVisible to the dependency array
-        
+
 //     return () => {
 //       window.removeEventListener("scroll", handleScroll);
 //     };
