@@ -25,6 +25,8 @@
 
 //      // this should handle the repeated event listener
 //      // revised: added return statement to remove event listener
+        // added isVisible to the dependency array
+        
 //     return () => {
 //       window.removeEventListener("scroll", handleScroll);
 //     };
