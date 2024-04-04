@@ -30,7 +30,7 @@ export default function Footer() {
 
         <div className="flex-1 m-[1rem] flex flex-col justify-start items-center">
           {/* text-[#DCCA87]  */}
-          <h2 className="text-[2rem] text-yellow-400 font-semibold mb-[2rem] text-center">
+          <h2 className="text-[2rem] text-yellow-400 tilt-neon-miggys mb-[2rem] text-center">
             Miggy's Munchies
           </h2>
           <img
@@ -50,7 +50,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex-1 m-[1rem] text-center">
+        <div className="flex-1 m-[1rem] mt-2 text-center">
           <h1 className="text-white font-bold tracking-[0.08em] text-lg mb-[1rem]">
             Business Hours
           </h1>
@@ -68,7 +68,7 @@ export default function Footer() {
       <div className="w-full p-4 my-[1rem] text-center">
         <p className=" ">
           ©️ {new Date().getFullYear()}{" "}
-          <span className="text-yellow-400 font-bold">Miggy's Munchies</span>{" "}
+          <span className="text-yellow-400 tilt-neon-miggys">Miggy's Munchies</span>{" "}
           All rights reserved.
         </p>
       </div>
