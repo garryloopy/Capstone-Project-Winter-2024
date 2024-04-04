@@ -4,7 +4,7 @@ import NewFlavor from "@/components/NewFlavor";
 import About from "@/components/About";
 import { useSession } from "next-auth/react";
 import Slideshow from "@/components/Slider";
-import Link from "next/link"
+import Link from "next/link";
 import "./slides.css";
 import MenuScroll from "@/components/MenuScroll";
 
@@ -13,8 +13,8 @@ export default function HomePage() {
   const { status } = session;
   return (
     <>
-    <MenuScroll/>
-      <section className="md:px-[4rem] px-[2rem] py-[2rem] text-slate-800 flex flex-col items-center justify-center my-[6rem]">
+      <MenuScroll />
+      <section className="md:px-[4rem] px-[2rem] py-[2rem] mt-32 text-slate-800 flex flex-col items-center justify-center my-[6rem]">
         <div className="flex flex-wrap justify-center items-start">
           <div className="flex xl:flex-row flex-col">
             <div className="w-full md:w-1/2">
