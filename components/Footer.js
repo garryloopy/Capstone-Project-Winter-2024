@@ -50,7 +50,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex-1 m-[1rem] text-center">
+        <div className="flex-1 m-[1rem] pb-4 text-center">
           <h1 className="text-white font-bold tracking-[0.08em] text-lg mb-[1rem]">
             Business Hours
           </h1>
