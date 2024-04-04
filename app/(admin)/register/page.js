@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -7,8 +7,6 @@ import Loading from "@/components/Loading";
 import OpenEye from "@/app/icons/OpenEye";
 import CloseEye from "@/app/icons/CloseEye";
 import InputAnimation from "@/components/InputAnimation";
-
-
 
 const Register = () => {
   const [viewMessage, setViewMessage] = useState();
@@ -23,9 +21,9 @@ const Register = () => {
   const router = useRouter();
   const loading = useLoadingState();
   const [buttonLoading, setButtonLoading] = useState(false);
-  const [fullName, setFullName] = useState("")
-  const [email, setEmail] = useState("")
-  const [employeeId, setEmployeeId] = useState("")
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [employeeId, setEmployeeId] = useState("");
 
   useEffect(() => {
     validatePassword(password);
@@ -97,146 +95,149 @@ const Register = () => {
       {loading ? (
         <Loading />
       ) : (
-        <section
-          className={`p-[2rem] my-10 flex flex-col gap-8 justify-center items-center w-full lg:w-[50%] mx-auto border-2 border-gray-200 rounded-md bg-gray-100/80 `}
-        >
-          <h1 className="lg:text-3xl md:text-xl text-md text-primary">
-            Create account
-          </h1>
-
-          <form
-            ref={formRef}
-            onSubmit={handleSubmitClick}
-            className="flex flex-col justify-center items-center gap-4 w-full "
+        <section className="w-full h-screen grid place-items-center">
+          <div
+            className={`p-[2rem] my-10 flex flex-col gap-8 justify-center items-center w-full lg:w-[50%] mx-auto border-2 border-gray-200 rounded-md bg-gray-100/80 `}
           >
-            {viewMessage && (
-              <span className="p-4 mb-2 text-lg font-semibold text-red-500">
-                {viewMessage}
-              </span>
-            )}
+            <h1 className="lg:text-3xl md:text-xl text-md text-primary">
+              Create account
+            </h1>
 
-            {/* full name input */}
-            <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
-              <input
-                type="text"
-                name="name"
-                className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                required
-              />
-              <InputAnimation text="Full Name" stateValue={fullName} />
-            </label>
+            <form
+              ref={formRef}
+              onSubmit={handleSubmitClick}
+              className="flex flex-col justify-center items-center gap-4 w-full "
+            >
+              {viewMessage && (
+                <span className="p-4 mb-2 text-lg font-semibold text-red-500">
+                  {viewMessage}
+                </span>
+              )}
 
-            {/* email input */}
-            <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
-              <input
-                type="email"
-                name="email"
-                className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <InputAnimation text="Email" stateValue={email} />
-            </label>
-
-            {/* password input */}
-            <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
-              <input
-                type={!showPassword ? "text" : "password"}
-                name="password"
-                value={password}
-                className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  setViewMessage("");
-                }}
-                required
-              />
-              <InputAnimation text="Password" stateValue={password} />
-              <div
-                className="w-4 h-4 absolute top-[20%] right-[15px] cursor-pointer"
-                onClick={togglePassword}
-              >
-                {showPassword ? <OpenEye /> : <CloseEye />}
-              </div>
-            </label>
-
-            {/* Employee Id input */}
-            <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
-              <input
-                type="text"
-                name="employeeId"
-                value={employeeId}
-                required
-                className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
-                onChange={(e) => {
-                  setEmployeeId(e.target.value);
-                  setViewMessage("");
-                }}
-              />
-              <InputAnimation text="Employee ID" stateValue={employeeId}/>
-            </label>
-
-            <div className="text-sm flex flex-col gap-2 self-start ">
-              <div className="flex gap-4 items-center ">
+              {/* full name input */}
+              <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
                 <input
-                  type="checkbox"
-                  checked={passwordLength}
-                  className="w-4 h-4"
+                  type="text"
+                  name="name"
+                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  required
                 />
-                <p>At least 8 characters in length</p>
-              </div>
+                <InputAnimation text="Full Name" stateValue={fullName} />
+              </label>
 
-              <div className="flex gap-4 items-center">
+              {/* email input */}
+              <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
                 <input
-                  type="checkbox"
-                  checked={lowercaseValidate}
-                  className="w-4 h-4"
+                  type="email"
+                  name="email"
+                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
-                <p>Contains at least one lowercase letter</p>
-              </div>
+                <InputAnimation text="Email" stateValue={email} />
+              </label>
 
-              <div className="flex gap-4 items-center">
+              {/* password input */}
+              <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
                 <input
-                  type="checkbox"
-                  checked={uppercaseValidate}
-                  className="w-4 h-4"
+                  type={!showPassword ? "text" : "password"}
+                  name="password"
+                  value={password}
+                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setViewMessage("");
+                  }}
+                  required
                 />
-                <p>Contains at least one uppercase letter</p>
-              </div>
+                <InputAnimation text="Password" stateValue={password} />
+                <div
+                  className="w-4 h-4 absolute top-[20%] right-[15px] cursor-pointer"
+                  onClick={togglePassword}
+                >
+                  {showPassword ? <OpenEye /> : <CloseEye />}
+                </div>
+              </label>
 
-              <div className="flex gap-4 items-center">
+              {/* Employee Id input */}
+              <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
                 <input
-                  type="checkbox"
-                  checked={digitValidate}
-                  className="w-4 h-4"
+                  type="text"
+                  name="employeeId"
+                  value={employeeId}
+                  required
+                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                  onChange={(e) => {
+                    setEmployeeId(e.target.value);
+                    setViewMessage("");
+                  }}
                 />
-                <p>Contains at least one digit</p>
+                <InputAnimation text="Employee ID" stateValue={employeeId} />
+              </label>
+
+              <div className="text-sm flex flex-col gap-2 self-start ">
+                <div className="flex gap-4 items-center ">
+                  <input
+                    type="checkbox"
+                    checked={passwordLength}
+                    className="w-4 h-4"
+                  />
+                  <p>At least 8 characters in length</p>
+                </div>
+
+                <div className="flex gap-4 items-center">
+                  <input
+                    type="checkbox"
+                    checked={lowercaseValidate}
+                    className="w-4 h-4"
+                  />
+                  <p>Contains at least one lowercase letter</p>
+                </div>
+
+                <div className="flex gap-4 items-center">
+                  <input
+                    type="checkbox"
+                    checked={uppercaseValidate}
+                    className="w-4 h-4"
+                  />
+                  <p>Contains at least one uppercase letter</p>
+                </div>
+
+                <div className="flex gap-4 items-center">
+                  <input
+                    type="checkbox"
+                    checked={digitValidate}
+                    className="w-4 h-4"
+                  />
+                  <p>Contains at least one digit</p>
+                </div>
+
+                <div className="flex gap-4 items-center">
+                  <input
+                    type="checkbox"
+                    checked={specialCharValid}
+                    className="w-4 h-4"
+                  />
+                  <p>
+                    Contains at least one special character from the set
+                    [@$!%*?&]
+                  </p>
+                </div>
               </div>
 
-              <div className="flex gap-4 items-center">
-                <input
-                  type="checkbox"
-                  checked={specialCharValid}
-                  className="w-4 h-4"
-                />
-                <p>
-                  Contains at least one special character from the set [@$!%*?&]
-                </p>
-              </div>
-            </div>
+              <button type="submit" className="sign_button mt-2">
+                {buttonLoading ? "Loading ..." : "Register"}
+              </button>
+            </form>
 
-            <button type="submit" className="sign_button mt-2">
-              {buttonLoading ? "Loading ..." : "Register"}
-            </button>
-          </form>
-
-          <Link className="mt-4 self-end text-sm" href="/sign-in">
-            Already have an account?{" "}
-            <span className="underline font-semibold">Login</span>
-          </Link>
+            <Link className="mt-4 self-end text-sm" href="/sign-in">
+              Already have an account?{" "}
+              <span className="underline font-semibold">Login</span>
+            </Link>
+          </div>
         </section>
       )}
     </>
