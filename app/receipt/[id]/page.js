@@ -104,13 +104,13 @@ export default function OrderConfirmationPage() {
       ) : (
         <section className=" bg-gray-300/60 my-[8rem]">
           <div className="w-full px-[2rem] ">
-            <div className="md:px-[4rem] px-[2rem] py-[1rem] flex justify-between">
+            <div className="md:px-[4rem] px-[2rem] py-[1rem] flex md:flex-row flex-col justify-between">
               <SubHeader header2="Receipt" />
-              <h1 className="md:text-xl text-md font-bold mt-[2.5rem] text-black">
+              <h1 className="md:text-xl text-md font-bold md:mt-[2.5rem] text-black text-center">
                 ${(totalPrice + deliveryAmount).toFixed(2)}
               </h1>
             </div>
-            <div className="mt-[1rem] flex lg:flex-row flex-col lg:justify-around lg:items-center text-black">
+            <div className="mt-[1rem] flex xl:flex-row flex-col gap-2 lg:justify-around lg:items-start text-black">
               {formattedDate && (
                 <h3>
                   <span className="text-lg font-semibold">Date:</span>{" "}
@@ -121,7 +121,7 @@ export default function OrderConfirmationPage() {
               {orderId && (
                 <h3>
                   <span className="text-lg font-semibold">Order ID:</span>{" "}
-                  {orderId}
+                  <span>{orderId}</span>
                 </h3>
               )}
               {cardBrand && lastDigits && (
@@ -149,7 +149,7 @@ export default function OrderConfirmationPage() {
           </div>
           <div className="flex lg:flex-row flex-col gap-4 px-[4rem] py-[2rem]">
             <div className="basis-[60%]">
-              <h2 className="text-center text-lg font-bold text-gray-500">
+              <h2 className="text-center text-lg font-bold text-gray-500 mb-[2rem]">
                 Your order
               </h2>
               <CartMenuList
@@ -158,8 +158,8 @@ export default function OrderConfirmationPage() {
                 deliveryAmount={deliveryAmount}
               />
             </div>
-            <div className="basis-[40%] border border-slate-700 h-fit p-[2rem] my-[2rem]">
-              <h2 className="text-lg font-bold text-gray-500">
+            <div className="basis-[40%] lg:border border-slate-700 h-fit p-[2rem] my-[2rem]">
+              <h2 className="text-lg font-bold text-gray-500 mb-[2rem]">
                 Contact Information
               </h2>
               <BillingAddress clientInfo={clientInfo} />
