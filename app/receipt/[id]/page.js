@@ -102,15 +102,15 @@ export default function OrderConfirmationPage() {
       {loading ? (
         <Loading />
       ) : (
-        <section className=" bg-gray-300">
-          <div className="bg-slate-700 w-full px-[4rem] py-[2rem]">
-            <div className="my-[2rem] flex justify-between">
+        <section className=" bg-gray-300/60 my-[8rem]">
+          <div className="w-full px-[2rem] ">
+            <div className="md:px-[4rem] px-[2rem] py-[1rem] flex justify-between">
               <SubHeader header2="Receipt" />
-              <h1 className="md:text-xl text-md font-bold mt-[2.5rem] text-white">
+              <h1 className="md:text-xl text-md font-bold mt-[2.5rem] text-black">
                 ${(totalPrice + deliveryAmount).toFixed(2)}
               </h1>
             </div>
-            <div className="mt-[1rem] flex lg:flex-row flex-col lg:justify-around lg:items-center text-white">
+            <div className="mt-[1rem] flex lg:flex-row flex-col lg:justify-around lg:items-center text-black">
               {formattedDate && (
                 <h3>
                   <span className="text-lg font-semibold">Date:</span>{" "}
