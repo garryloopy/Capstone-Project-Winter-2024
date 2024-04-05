@@ -209,7 +209,7 @@ const MenuPopUp = ({
         onClick={() => setShowPopUp(false)}
       >
         <div
-          className="bg-gray-50 size-[40rem] rounded-lg overflow-y-scroll p-16 flex flex-col"
+          className="bg-gray-50 size-[40rem] rounded-lg overflow-y-scroll sm:p-16 p-4 flex flex-col m-4 sm:m-0"
           onClick={(ev) => ev.stopPropagation()}
         >
           {/* Image, title, desc section  */}
