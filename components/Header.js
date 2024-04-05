@@ -47,7 +47,7 @@ export default function Header() {
   return (
     <header
       data-scrolled={scrolled}
-      className={`md:px-[4rem] z-50 fixed px-2 py-[1rem] flex justify-between items-center w-full bg-inherit h-28 transition-all duration-500 ease-in-out  ${
+      className={`md:px-[4rem] z-50 fixed sm:px-2 sm:py-[1rem] px-6 flex justify-between items-center w-full bg-inherit sm:h-28 h-20 transition-all duration-500 ease-in-out  ${
         scrolled && "shadow-lg bg-slate-900"
       }`}
     >
@@ -56,7 +56,7 @@ export default function Header() {
         className="flex justify-center items-center text-slate-700  overflow-hidden rounded-full shadow-md"
         href="/"
       >
-        <div className="size-20 rounded-full relative">
+        <div className="sm:size-20 size-12 rounded-full relative">
           <Image
             src={Logo}
             alt="Miggy's Munchies logo"
