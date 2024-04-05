@@ -7,18 +7,15 @@ import toast, { Toaster } from "react-hot-toast";
 export const CartContext = createContext({});
 //retrieve the longitude and latitude of current location (business location)
 export const UserLocationContext = createContext();
-//retrieve  the longitude and latitude of client location 
+//retrieve  the longitude and latitude of client location
 export const ClientLocationContext = createContext();
-
 
 const Providers = ({ children, session }) => {
   const [cartProducts, setCartProducts] = useState([]);
   // store the current location of business
   const [userLocation, setUserLocation] = useState();
-  //store the client's location 
-  const [clientLocation, setClientLocation] = useState()
- 
- 
+  //store the client's location
+  const [clientLocation, setClientLocation] = useState();
 
   // keep cart content even if refresh the page
   const localStorage =
@@ -77,6 +74,9 @@ const Providers = ({ children, session }) => {
         totalPrice += parseFloat(extra.price || 0);
       }
     }
+    if (product.discount > 0) {
+      totalPrice = totalPrice - (totalPrice * product.discount) / 100;
+    }
 
     return totalPrice;
   };
@@ -97,7 +97,7 @@ const Providers = ({ children, session }) => {
           <ClientLocationContext.Provider
             value={{ clientLocation, setClientLocation }}
           >
-              {children}
+            {children}
           </ClientLocationContext.Provider>
         </UserLocationContext.Provider>
       </CartContext.Provider>

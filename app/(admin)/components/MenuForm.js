@@ -14,6 +14,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
     price: "",
     image: "/images/no-photo.png",
     public_id: "",
+    discount: 0,
   });
   const [sizes, setSizes] = useState(menuList?.sizes || []);
   const [extra, setExtra] = useState(menuList?.extra || []);
@@ -131,6 +132,18 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
             value={menuInput.price}
             onChange={handleChange}
             required
+          />
+        </label>
+
+        <label className="w-full">
+          <span className="text-xs text-gray-800">Discount</span>
+          <input
+            type="text"
+            className="form_input"
+            name="discount"
+            placeholder="Discount"
+            value={menuInput.discount}
+            onChange={handleChange}
           />
         </label>
 

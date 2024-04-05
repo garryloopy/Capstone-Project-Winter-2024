@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from 'react'
-import Image from "next/image"
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 const MenuPopUp = ({
   showPopUp,
@@ -17,7 +17,6 @@ const MenuPopUp = ({
 }) => {
   const basePrice = menuList.price.replace(/[$,]/g, "");
   const priceAsNumber = parseFloat(basePrice);
-
 
   const [selectedPrice, setSelectedPrice] = useState(0);
   let price = menuList.price.replace(/[$,]/g, "");
@@ -39,6 +38,20 @@ const MenuPopUp = ({
     setSelectedPrice(price);
     setSelectedSize(menuList.sizes[0]);
   }, [showPopUp]);
+
+  useEffect(() => {
+    if (selectedSize) {
+      price += selectedSize.price;
+    }
+    for (const extra of selectedExtra) {
+      price += extra.price;
+    }
+    if (menuList.discount > 0) {
+      price = price - (price * menuList.discount) / 100;
+    }
+
+    setSelectedPrice(price);
+  }, [menuList, selectedSize, selectedExtra]);
 
   const handleSelectedExtra = (ev, extra) => {
     const checked = ev.target.checked;
@@ -67,7 +80,7 @@ const MenuPopUp = ({
 
   return (
     <>
-    {/* this is the popup! it will show when you click on the menu item */}
+      {/* this is the popup! it will show when you click on the menu item */}
       {showPopUp && (
         <div
           className="fixed inset-0 bg-black/70 flex justify-center items-center z-50 "
@@ -158,7 +171,7 @@ const MenuPopUp = ({
               >
               </textarea>
             </div> */}
-           
+
             <button
               type="button"
               className="sign_button sticky bottom-0"
@@ -180,4 +193,4 @@ const MenuPopUp = ({
   );
 };
 
-export default MenuPopUp
+export default MenuPopUp;

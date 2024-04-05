@@ -1,9 +1,9 @@
 import { mongoose, Schema, model, models } from "mongoose";
 
 const ExtraPartSchema = new Schema({
-  name : String,
-  price : Number,
-})
+  name: String,
+  price: Number,
+});
 
 const MenuSchema = new Schema(
   {
@@ -17,11 +17,15 @@ const MenuSchema = new Schema(
       type: String,
     },
 
+    discount: {
+      type: String,
+    },
+
     image: {
       type: String,
     },
     public_id: {
-      type: String
+      type: String,
     },
 
     sizes: {
