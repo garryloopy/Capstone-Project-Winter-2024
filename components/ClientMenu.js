@@ -74,7 +74,7 @@ const ClientMenu = (menuList) => {
         rounded-md backdrop-brightness-90 duration-300"
           >
             <button
-              className="bg-yellow-400 text-slate-900 text-md font-semibold px-6 py-2 rounded-xl hover:scale-110 hover:bg-yellow-300 active:bg-yellow-400 shadow-md transition-all duration-100 ease-in-out"
+              className="bg-yellow-400 text-slate-900 text-md font-semibold px-6 py-2 rounded-xl hover:scale-105 hover:bg-yellow-300 active:bg-yellow-400 shadow-md transition-all duration-100 ease-in-out"
               onClick={handleAddToCartClick}
             >
               Add to Order
