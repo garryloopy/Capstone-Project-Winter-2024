@@ -27,7 +27,7 @@ export default function Header() {
   const { cartProducts } = useContext(CartContext);
   const session = useSession();
   const { name } = session?.data?.user || {};
-  const scrolled = useScrollTop()
+  const scrolled = useScrollTop();
   let username = name;
   if (username && username.includes(" ")) {
     username = username.split(" ")[0];
@@ -46,9 +46,9 @@ export default function Header() {
 
   return (
     <header
-      className={`md:px-[4rem] px-2 py-[1rem] flex justify-between items-center w-full bg-inherit h-28 ${
-        scrolled &&
-        "border-b shadow-lg z-50 bg-slate-700 fixed transition-transform duration-300 ease-in-out "
+      data-scrolled={scrolled}
+      className={`md:px-[4rem] z-50 fixed px-2 py-[1rem] flex justify-between items-center w-full bg-inherit h-28 transition-all duration-500 ease-in-out  ${
+        scrolled && "shadow-lg bg-slate-700"
       }`}
     >
       {/* logo and text */}
@@ -138,7 +138,10 @@ export default function Header() {
                 </p>
               </div>
             )}
-            <IoCartOutline className= {scrolled ? "text-white" : "text-slate-900"} size={30} />
+            <IoCartOutline
+              className={scrolled ? "text-white" : "text-slate-900"}
+              size={30}
+            />
           </Link>
         )}
 

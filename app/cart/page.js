@@ -163,7 +163,7 @@ export default function CartPage() {
       {loading ? (
         <Loading />
       ) : (
-        <section className="p-[2rem] flex flex-col justify-center items-center z-50">
+        <section className="p-[2rem] mt-32 flex flex-col justify-center items-center z-50">
           <SubHeader header2="Cart" />
           {cartProducts?.length === 0 ? (
             <div className="flex justify-center text-lg h-screen text-black">

@@ -65,57 +65,62 @@ export default function SignInPage() {
       {loading ? (
         <Loading />
       ) : (
-        <section className="p-[2rem] my-10 flex flex-col gap-8 justify-center items-center w-full lg:max-w-[50%] mx-auto border-2 border-gray-200 rounded-md bg-gray-100/80 ">
-          <h1 className="lg:text-3xl md:text-xl text-md text-primary ">
-            Sign in your account
-          </h1>
-          <form
-            className="flex flex-col justify-center items-center gap-4 w-full"
-            onSubmit={handleSubmit}
-          >
-            {viewMessage && (
-              <span className="p-4 mb-2 text-lg font-semibold text-red-500">
-                {viewMessage}
-              </span>
-            )}
-            <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
-              <input
-                type="email"
-                name="email"
-                value={clientInput.email}
-                className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
-                onChange={handleChange}
-                required
-              />
-             <InputAnimation text="Email" stateValue={clientInput.email}/>
-            </label>
-            <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
-              <input
-                type={!showPassword ? "text" : "password"}
-                name="password"
-                value={clientInput.password}
-                className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
-                onChange={handleChange}
-                required
-              />
+        <section className="w-full h-screen grid place-items-center">
+          <section className="p-[2rem] my-10 flex flex-col gap-8 justify-center items-center w-full lg:max-w-[50%] mx-auto border-2 border-gray-200 rounded-md bg-gray-100/80 ">
+            <h1 className="lg:text-3xl md:text-xl text-md text-primary ">
+              Sign in your account
+            </h1>
+            <form
+              className="flex flex-col justify-center items-center gap-4 w-full"
+              onSubmit={handleSubmit}
+            >
+              {viewMessage && (
+                <span className="p-4 mb-2 text-lg font-semibold text-red-500">
+                  {viewMessage}
+                </span>
+              )}
+              <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
+                <input
+                  type="email"
+                  name="email"
+                  value={clientInput.email}
+                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                  onChange={handleChange}
+                  required
+                />
+                <InputAnimation text="Email" stateValue={clientInput.email} />
+              </label>
+              <label className="text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
+                <input
+                  type={!showPassword ? "text" : "password"}
+                  name="password"
+                  value={clientInput.password}
+                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                  onChange={handleChange}
+                  required
+                />
 
-              <div
-                className="w-4 h-4 absolute top-[25%] right-[15px] cursor-pointer"
-                onClick={togglePassword}
-              >
-                {showPassword ? <OpenEye /> : <CloseEye />}
-              </div>
-             <InputAnimation text="Password" stateValue={clientInput.password}/>
-            </label>
+                <div
+                  className="w-4 h-4 absolute top-[25%] right-[15px] cursor-pointer"
+                  onClick={togglePassword}
+                >
+                  {showPassword ? <OpenEye /> : <CloseEye />}
+                </div>
+                <InputAnimation
+                  text="Password"
+                  stateValue={clientInput.password}
+                />
+              </label>
 
-            <button type="submit" className="sign_button mt-2">
-              {buttonLoading ? "Loading ..." : "Sign in"}
-            </button>
-          </form>
-          <Link className="mt-4 self-end text-sm" href="/register">
-            Don't have an account?{" "}
-            <span className="underline font-semibold">Register</span>
-          </Link>
+              <button type="submit" className="sign_button mt-2">
+                {buttonLoading ? "Loading ..." : "Sign in"}
+              </button>
+            </form>
+            <Link className="mt-4 self-end text-sm" href="/register">
+              Don't have an account?{" "}
+              <span className="underline font-semibold">Register</span>
+            </Link>
+          </section>
         </section>
       )}
     </>
