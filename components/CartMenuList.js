@@ -3,20 +3,28 @@ import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "./Providers";
 import Image from "next/image";
 import TrashBin from "@/app/icons/TrashBin";
-import Link from "next/link"
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-const CartMenuList = ({ cartProducts, onDelete, totalPrice, deliveryAmount }) => {
-  const { calculateTotalPrice} = useContext(CartContext);
+const CartMenuList = ({
+  cartProducts,
+  onDelete,
+  totalPrice,
+  deliveryAmount,
+}) => {
+  const { calculateTotalPrice } = useContext(CartContext);
   const [deliveryMessage, setDeliveryMessage] = useState(false);
-    const { clearCart } = useContext(CartContext);
-    const router = useRouter()
+  const { clearCart } = useContext(CartContext);
+  const router = useRouter();
 
-    const handleClearCard = () => {
-      clearCart();
-      router.push("/menu")
-    }
+  const handleClearCard = () => {
+    clearCart();
+    router.push("/menu");
+  };
 
+  //disappear clear cart link in receipt page
+  let clearLink = false;
+  clearLink = window.location.href.includes("clear=1");
 
   return (
     <div>
@@ -65,25 +73,36 @@ const CartMenuList = ({ cartProducts, onDelete, totalPrice, deliveryAmount }) =>
             )}
           </div>
         ))}
-      <div className="flex justify-between">
+      <div
+        className={` flex ${!clearLink ? "justify-between" : "justify-end"}`}
+      >
         {/* clear the cart button */}
-        <div className="underline text-sm text-gray-500" onClick={handleClearCard}>
-          <Link href="/menu">Clear Cart</Link>
-        </div>
+        {!clearLink && (
+          <div
+            className="underline text-sm text-gray-500"
+            onClick={handleClearCard}
+          >
+            <Link href="/menu">Clear Cart</Link>
+          </div>
+        )}
 
         <div className="lg:px-[2rem] py-4 flex justify-end items-end">
           <div className="flex flex-col gap-1">
             <span className="text-gray-400">SubTotal:</span>
             <div className="relative">
               <div
-                className="flex justify-center w-[20px] h-[20px] rounded-full border border-gray-400 text-sm text-gray-500 absolute left-[-2rem] cursor-pointer"
+                className={`${
+                  !clearLink ? "flex" : "hidden"
+                } justify-center w-[20px] h-[20px] rounded-full border border-gray-400 text-sm text-gray-500 absolute left-[-2rem] cursor-pointer`}
                 onMouseEnter={() => setDeliveryMessage(true)}
                 onMouseLeave={() => setDeliveryMessage(false)}
               >
                 ?
               </div>
               {deliveryMessage ? (
-                <p className="absolute left-[-20rem] top-[-5rem] bg-gray-200 border rounded-md p-2 text-sm text-gray-400">
+                <p
+                  className={`absolute left-[-20rem] top-[-5rem] bg-gray-200 border rounded-md p-2 text-sm text-gray-400 `}
+                >
                   Free shipping within 5Km
                   <br />
                   $5 shipping fee for more than 5Km
