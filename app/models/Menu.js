@@ -18,7 +18,7 @@ const MenuSchema = new Schema(
     },
 
     discount: {
-      type: String,
+      type: Number,
     },
 
     image: {

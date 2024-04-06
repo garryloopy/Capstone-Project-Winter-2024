@@ -24,20 +24,27 @@ const MenuPopUp = ({
 
   
   useEffect(() => {
+     if (menuList.discount > 0) {
+       price = price - (price * menuList.discount) / 100;
+     }
     setSelectedPrice(price);
     setSelectedSize(menuList.sizes[0]);
+    setSelectedExtra([])
   }, [showPopUp]);
 
   useEffect(() => {
     if (selectedSize) {
       price += selectedSize.price;
     }
+
+      if (menuList.discount > 0) {
+        price = price - (price * menuList.discount) / 100;
+      }
+
     for (const extra of selectedExtra) {
       price += extra.price;
     }
-    if (menuList.discount > 0) {
-      price = price - (price * menuList.discount) / 100;
-    }
+  
 
     setSelectedPrice(price);
   }, [menuList, selectedSize, selectedExtra]);
