@@ -62,7 +62,7 @@ const ClientMenu = (menuList) => {
         </div>
         
         {/* Title and Description in the Menu */}
-        <h4 className="lg:text-xl text-md text-teal-200">{menuList.title}</h4>
+        <h4 className="lg:text-xl text-md lnFont text-yellow-400">{menuList.title}</h4>
         <p className="text-sm font-sans text-left text-gray-100">
           {menuList.description}
         </p>
