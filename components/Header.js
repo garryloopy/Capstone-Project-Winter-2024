@@ -75,7 +75,7 @@ export default function Header() {
         {session.status === "authenticated" ? (
           <div className="hidden relative lg:flex flex-row justify-center h-full gap-6 items-center">
             <button
-              className="font-semibold flex flex-row items-center justify-center gap-3 bg-lime-400 px-6 py-2 rounded-lg shadow-md"
+              className="font-semibold flex flex-row items-center justify-center gap-3 bg-lime-300 px-6 py-2 rounded-lg shadow-md"
               onClick={handleToggleAdminMenu}
             >
               <h2 className="text-md text-slate-800">Hello, {username}</h2>
@@ -112,13 +112,13 @@ export default function Header() {
               <Link
                 onClick={handleToggleAdminMenu}
                 href="/menu-list"
-                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start  bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
+                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start  bg-lime-300 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
               >
                 <IoGridOutline size={24} />
                 Dashboard
               </Link>
               <button
-                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
+                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-lime-300 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
                 onClick={() => signOut({ callbackUrl: "/" })}
               >
                 <IoLogOutOutline size={24} />

@@ -5,7 +5,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;1,600&family=Just+Me+Again+Down+Here&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @font-face {
   font-family: "lnFont";
-  src: url(./font/ITCAvantGardeStd-Md.otf);
+  src: url(./fonts/ITCAvantGardeStd-Md.otf);
 }
 
 
@@ -113,7 +113,7 @@ select {
 
 .sign_button {
   letter-spacing: 1px;
-  @apply w-full rounded-md mt-4 p-2 text-sm border border-gray-300 text-black font-semibold bg-yellow-400 hover:bg-yellow-300 ;
+  @apply w-full rounded-md mt-4 p-2 text-sm border border-gray-300 text-black font-semibold bg-white hover:bg-stone-100 shadow-md;
 }
 
 .circular-image {

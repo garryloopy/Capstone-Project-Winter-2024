@@ -101,7 +101,7 @@ const MenuPopUp = ({
             <h2 className="text-lg font-bold text-center mb-2">
               {menuList.title}
             </h2>
-            <p className="text-center text-gray-500 text-sm mb-2">
+            <p className="text-center text-gray-600 text-md mb-2">
               {menuList.description}
             </p>
             {menuList.sizes?.length > 0 && (
@@ -174,14 +174,14 @@ const MenuPopUp = ({
 
             <button
               type="button"
-              className="sign_button sticky bottom-0"
+              className="sign_button sticky bottom-0 hover:bg-yellow-200"
               onClick={handleAddToCartClick}
             >
               Add to Cart ${selectedPrice.toFixed(2)}
             </button>
             <button
               type="button"
-              className="px-2 p-1 border border-yellow-400 mt-2 w-full rounded-md text-sm hover:bg-yellow-400 text-black"
+              className="px-2 p-1 border border-slate-300 mt-2 w-full rounded-md text-sm hover:bg-orange-300 text-black"
               onClick={() => setShowPopUp(false)}
             >
               Cancel

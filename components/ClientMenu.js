@@ -43,8 +43,8 @@ const ClientMenu = (menuList) => {
 
       {/* used transform/hover:translate to give animation effect for each boxes */}
       <div
-        className="container relative group text-slate-100 p-6 border rounded-md border-slate-500 shadow-lg 
-      flex flex-col items-center justify-around gap-4 bg-black/60 transform hover:translate-y-[-10px] transition-transform duration-300"
+        className="container relative group p-6 border rounded-md flex flex-col items-center
+       justify-around gap-4 bg-black/60 transform hover:translate-y-[-10px] transition-transform duration-300"
       >
         <div>
           <Image
@@ -61,7 +61,7 @@ const ClientMenu = (menuList) => {
           )}
         </div>
         <h4 className="lg:text-xl text-md text-orange-300">{menuList.title}</h4>
-        <p className="text-sm font-sans text-center text-gray-300">
+        <p className="text-sm font-sans text-center text-gray-100">
           {menuList.description}
         </p>
 
