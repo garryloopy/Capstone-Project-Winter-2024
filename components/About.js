@@ -20,8 +20,8 @@ const About = () => {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <SubHeader header2="About Us" />
+    <div className="flex flex-col items-center border-t-2 border-b-2 border-slate-600 bg-teal-500 bg-opacity-60">
+      <SubHeader header2="About Us (Testing the colors for now)" />
       <div className="flex lg:flex-row flex-col justify-evenly items-center gap-10 lg:w-[80%] mx-auto w-full p-[2rem] ">
         <div>
           <div>
