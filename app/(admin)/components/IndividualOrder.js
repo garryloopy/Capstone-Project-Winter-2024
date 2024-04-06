@@ -112,9 +112,9 @@ const IndividualOrder = ({
             </a>
             <button
               className="px-6 py-4 w-full hover:bg-gray-100 "
-              onClick={() => handleOnStatusChange("COMPLETED")}
+              onClick={() => handleOnStatusChange("PENDING")}
             >
-              Mark as completed
+              Mark as pending
             </button>
             <button
               className="px-6 py-4 w-full hover:bg-gray-100 "
@@ -124,9 +124,9 @@ const IndividualOrder = ({
             </button>
             <button
               className="px-6 py-4 w-full hover:bg-gray-100 "
-              onClick={() => handleOnStatusChange("PENDING")}
+              onClick={() => handleOnStatusChange("COMPLETED")}
             >
-              Mark as pending
+              Mark as completed
             </button>
           </div>
         )}
