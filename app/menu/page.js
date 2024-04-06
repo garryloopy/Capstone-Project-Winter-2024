@@ -76,17 +76,17 @@ function Menu() {
 
           {/* search bar */}
           <form className="md:max-w-[50%] w-full flex my-[2rem] justify-center">
-            <label className="h-10  text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
+            <label className="h-10 text-sm w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-sm focus-within:shadow-md transition-shadow duration-300 group bg-white">
               <input
-                className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                className="w-full px-4 h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md text-sm focus:bg-gray-50 focus:ring-2 focus:ring-yellow-400"
                 type="text"
                 value={search}
                 onChange={handleSearchChange}
               />
               <InputAnimation text="Search" stateValue={search} />
 
-              <div className="absolute right-[3%] top-[22%]">
-                <Search className="text-gray-400 w-6 h-6" />
+              <div className="absolute inset-0 flex items-center justify-end px-2">
+                <Search className="text-gray-400 w-5 h-5" />
               </div>
             </label>
             {/* <button

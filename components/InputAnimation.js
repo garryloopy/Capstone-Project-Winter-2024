@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-const InputAnimation = ({text, stateValue}) => {
+const InputAnimation = ({ text, stateValue }) => {
   return (
     <div
       className={`absolute inset-0 flex items-center p-2 ${
@@ -12,6 +12,6 @@ const InputAnimation = ({text, stateValue}) => {
       </p>
     </div>
   );
-}
+};
 
-export default InputAnimation
+export default InputAnimation;

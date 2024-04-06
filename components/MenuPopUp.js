@@ -89,7 +89,7 @@ const MenuPopUp = ({
         onClick={() => setShowPopUp(false)}
       >
         <div
-          className="bg-white sm:size-[40rem] h-full w-full rounded-lg overflow-y-scroll m-4 sm:m-2"
+          className="bg-white sm:w-[48rem] sm:h-3/5 h-2/3 w-full rounded-lg overflow-y-scroll m-4 sm:m-2"
           onClick={(ev) => ev.stopPropagation()}
         >
           <div className="bg-yellow-50/30 sm:p-16 p-4 flex flex-col">
@@ -191,7 +191,7 @@ const MenuPopUp = ({
             </button>
             <button
               type="button"
-              className="px-2 p-1 border border-yellow-400 mt-4 w-full rounded-md text-sm hover:bg-yellow-400 text-black"
+              className="cancel_button"
               onClick={() => setShowPopUp(false)}
             >
               Cancel
