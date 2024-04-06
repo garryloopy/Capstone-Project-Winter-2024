@@ -59,7 +59,7 @@ const CartMenuList = ({
                   ))}
                 </div>
               )}
-              <p className="text-sm text-gray-500">{product.specialRequest}</p>
+              <p className="text-sm text-gray-500">{product.specialInstructions}</p>
             </div>
             <div className="text-sm mr-4">
               ${calculateTotalPrice(product).toFixed(2)}

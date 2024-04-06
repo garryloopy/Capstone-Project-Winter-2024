@@ -19,11 +19,11 @@ export default function Footer() {
   return (
     <footer className="bg-slate-700 flex-col flex justify-start items-center text-gray-400 pb-4">
       <div className="w-full flex  lg:flex-row flex-col justify-center items-center mt-[2rem] py-0 px-[2rem]">
-        <div className="flex-1 m-[1rem] text-center">
-          <h1 className="text-white font-bold tracking-[0.08em] text-lg mb-[1rem]">
+        <div className="flex-1 m-[1rem] lnFont text-center">
+          <h1 className="text-white tracking-[0.08em] text-lg mb-[1rem]">
             Find Us
           </h1>
-          <p className="lnFont text-white opacity-85">
+          <p className="text-white lnFont opacity-85">
             79 Castleridge Close NE, 
             <br /> Calgary, AB, 
             <br />
@@ -53,11 +53,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex-1 m-[1rem] pb-4 text-center">
-          <h1 className="text-white lnFont tracking-[0.08em] text-lg mb-[1rem]">
+        <div className="flex-1 m-[1rem] lnFont pb-4 text-center">
+          <h1 className="text-white tracking-[0.08em] text-lg mb-[1rem]">
             Business Hours
           </h1>
-          <ul className="lnFont text-white opacity-85">
+          <ul className="text-white opacity-85">
             <li>Sat: 12:00pm - 8:00pm</li>
             <li>Sun: 12:00pm - 8:00pm</li>
           </ul>
