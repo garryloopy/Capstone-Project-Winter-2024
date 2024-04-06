@@ -3,10 +3,9 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import { useLoadingState } from "@/components/useLoadingState";
-import Loading from "@/components/Loading";
+// import { useLoadingState } from "@/components/useLoadingState";
+// import Loading from "@/components/Loading";
 import { useRouter } from "next/navigation";
-import { trusted } from "mongoose";
 import OpenEye from "@/app/icons/OpenEye";
 import CloseEye from "@/app/icons/CloseEye";
 import InputAnimation from "@/components/InputAnimation";
@@ -19,7 +18,8 @@ export default function SignInPage() {
   const [showPassword, setShowPassword] = useState(true);
   const [viewMessage, setViewMessage] = useState();
   const [buttonLoading, setButtonLoading] = useState(false);
-  const loading = useLoadingState();
+  // const loading = useLoadingState();
+  const [loading, setLoading] = useState(true)
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -61,10 +61,10 @@ export default function SignInPage() {
   };
 
   return (
-    <>
-      {loading ? (
-        <Loading />
-      ) : (
+    // <>
+    //   {loading ? (
+    //     <Loading />
+    //   ) : (
         <section className="w-full h-screen grid place-items-center">
           <section className="p-[2rem] my-10 flex flex-col gap-8 justify-center items-center w-full lg:max-w-[50%] mx-auto border-2 border-slate-300 rounded-md bg-gray-50 backdrop-blur-sm shadow-lg">
             <h1 className="lnFont text-2xl text-slate-700">
@@ -101,7 +101,7 @@ export default function SignInPage() {
                 />
 
                 <div
-                  className="w-4 h-4 absolute top-[25%] right-[15px] cursor-pointer"
+                  className="w-4 h-4 absolute top-[20%] right-[15px] cursor-pointer"
                   onClick={togglePassword}
                 >
                   {showPassword ? <OpenEye /> : <CloseEye />}
@@ -122,7 +122,7 @@ export default function SignInPage() {
             </Link>
           </section>
         </section>
-      )}
-    </>
+    //   )}
+    // </>
   );
 }
