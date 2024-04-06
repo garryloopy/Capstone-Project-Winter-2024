@@ -67,111 +67,145 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
     }
   };
   return (
-    <div className=" w-full lg:w-[50%] p-4 my-[3rem] rounded-md flex flex-col md:flex-row gap-8 justify-center border-2 border-yellow-400 shadow-lg bg-gray-100/80">
-      <div className=" bg-slate-200 rounded-md flex flex-col gap-4 justify-center items-center mx-auto my-6 p-6 max-h-[15rem]">
-        {menuInput.image && (
-          <div className=" flex justify-center items-center ">
-            <Image
-              src={menuInput.image}
-              alt="profile-image"
-              width={100}
-              height={100}
-              className="circular-image"
-            />
+    <div className="w-full lg:w-[50%] my-[3rem] rounded-xl overflow-hidden ring-1 ring-yellow-300 shadow-lg shadow-orange-100 bg-white">
+      <div className="bg-yellow-50/10 p-12 flex flex-col gap-8 justify-center">
+        <div className="grid place-content-center w-full h-max">
+          <div className="size-96 bg-white ring-1 ring-gray-300 rounded-lg flex flex-col justify-evenly items-center">
+            {/* Image container  */}
+            <div className="size-1/2 ring-1 ring-gray-400 shadow-md rounded-full relative overflow-hidden">
+              {menuInput.image && (
+                <Image
+                  src={menuInput.image}
+                  alt="Menu item image"
+                  fill={true}
+                  sizes="25vw"
+                  className="object-cover"
+                />
+              )}
+            </div>
+
+            <label className="flex flex-col gap-4 justify-center items-center">
+              <input
+                type="file"
+                className="hidden"
+                onChange={handleFileChange}
+              />
+              <span className="px-8 py-2 bg-white shadow-md text-[0.8rem] ring-1 ring-yellow-400 rounded-lg hover:bg-yellow-400 cursor-pointer">
+                {menuList ? "Edit image" : "Upload image"}
+              </span>
+            </label>
           </div>
-        )}
-        <label className="flex flex-col gap-4 justify-center items-center">
-          <input type="file" className="hidden" onChange={handleFileChange} />
-          <span className="px-2 py-2 bg-gray-200 text-[0.8rem] border-2 border-yellow-400 rounded-md hover:bg-yellow-400 ">
-            {menuList ? "Edit" : "Upload"}
-          </span>
-        </label>
+        </div>
+        {/* <div className=" bg-white rounded-md flex ring-1 ring-gray-300 flex-col gap-6 justify-center items-center mx-auto my-6 p-12 shadow-lg">
+          {menuInput.image && (
+            <div className="grid place-items-center size-24">
+              <Image
+                src={menuInput.image}
+                alt="Menu item image"
+                width={100}
+                height={100}
+              />
+            </div>
+          )}
+          <label className="flex flex-col gap-4 justify-center items-center">
+            <input type="file" className="hidden" onChange={handleFileChange} />
+            <span className="px-8 py-2 bg-white shadow-md text-[0.8rem] ring-1 ring-yellow-400 rounded-lg hover:bg-yellow-400 cursor-pointer">
+              {menuList ? "Edit image" : "Upload image"}
+            </span>
+          </label>
+        </div> */}
+        <form
+          className="flex flex-col justify-center items-center grow"
+          onSubmit={(ev) =>
+            handleSubmit(ev, setMenuInput, setSizes, setExtra, {
+              ...menuInput,
+              sizes,
+              extra,
+            })
+          }
+        >
+          <label className="w-full">
+            <span className="text-lg text-gray-600 font-semibold">Title</span>
+            <input
+              type="text"
+              className="form_input"
+              name="title"
+              placeholder="Title"
+              value={menuInput.title}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label className="w-full">
+            <span className="text-lg text-gray-600 font-semibold">
+              Description
+            </span>
+            <input
+              type="text"
+              className="form_input"
+              name="description"
+              placeholder="Description"
+              value={menuInput.description}
+              onChange={handleChange}
+              required
+            />
+          </label>
+
+          <label className="w-full">
+            <span className="text-lg text-gray-600 font-semibold">
+              Base price
+            </span>
+            <input
+              type="text"
+              className="form_input"
+              name="price"
+              placeholder="Price"
+              value={menuInput.price}
+              onChange={handleChange}
+              required
+            />
+          </label>
+
+          <label className="w-full">
+            <span className="text-lg text-gray-600 font-semibold">
+              Discount
+            </span>
+            <input
+              type="text"
+              className="form_input"
+              name="discount"
+              placeholder="Discount"
+              value={menuInput.discount}
+              onChange={handleChange}
+            />
+          </label>
+
+          <MenuExtraForm
+            props={sizes}
+            setProps={setSizes}
+            title="Sizes"
+            buttonTitle="Add size"
+          />
+          <MenuExtraForm
+            props={extra}
+            setProps={setExtra}
+            title="Extra"
+            buttonTitle="Add Extra"
+          />
+
+          <button type="submit" className="sign_button">
+            {buttonText}
+          </button>
+          {menuList && (
+            <Link
+              className="w-full rounded-md mt-4 text-center p-2 text-sm border border-gray-300 text-black font-semibold hover:bg-yellow-300 shadow-md"
+              href="/menu-list"
+            >
+              Cancel
+            </Link>
+          )}
+        </form>
       </div>
-      <form
-        className="flex flex-col justify-center items-center grow"
-        onSubmit={(ev) =>
-          handleSubmit(ev, setMenuInput, setSizes, setExtra, {
-            ...menuInput,
-            sizes,
-            extra,
-          })
-        }
-      >
-        <label className="w-full">
-          <span className="text-xs text-gray-800">Title</span>
-          <input
-            type="text"
-            className="form_input "
-            name="title"
-            placeholder="Title"
-            value={menuInput.title}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label className="w-full">
-          <span className="text-xs text-gray-800">Description</span>
-          <input
-            type="text"
-            className="form_input"
-            name="description"
-            placeholder="Description"
-            value={menuInput.description}
-            onChange={handleChange}
-            required
-          />
-        </label>
-
-        <label className="w-full">
-          <span className="text-xs text-gray-800">Price</span>
-          <input
-            type="text"
-            className="form_input"
-            name="price"
-            placeholder="Price"
-            value={menuInput.price}
-            onChange={handleChange}
-            required
-          />
-        </label>
-
-        <label className="w-full">
-          <span className="text-xs text-gray-800">Discount</span>
-          <input
-            type="text"
-            className="form_input"
-            name="discount"
-            placeholder="Discount"
-            value={menuInput.discount}
-            onChange={handleChange}
-          />
-        </label>
-
-        <MenuExtraForm
-          props={sizes}
-          setProps={setSizes}
-          title="Sizes"
-          buttonTitle="Add size"
-        />
-        <MenuExtraForm
-          props={extra}
-          setProps={setExtra}
-          title="Extra"
-          buttonTitle="Add Extra"
-        />
-
-        <button type="submit" className="sign_button">
-          {buttonText}
-        </button>
-        {menuList && (
-          <Link
-            className="p-1 border-2 border-yellow-400 w-full text-center my-2 rounded-md hover:bg-yellow-400 "
-            href="/menu-list"
-          >
-            Cancel
-          </Link>
-        )}
-      </form>
     </div>
   );
 };
