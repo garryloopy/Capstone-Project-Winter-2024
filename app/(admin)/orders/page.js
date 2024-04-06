@@ -32,6 +32,28 @@ const OrdersPage = () => {
     return redirect("/sign-in");
   }
 
+  const handleCompletedOrderEmail = async (paymentId) => {
+    const res = await fetch("/api/email/sendOrderCompletion", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        paymentId: paymentId,
+      }),
+    });
+    if (!res.ok) console.log("Failed to send email");
+  };
+
+  const handleInProgressOrderEmail = async (paymentId) => {
+    const res = await fetch("/api/email/sendOrderInProgress", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        paymentId: paymentId,
+      }),
+    });
+    if (!res.ok) console.log("Failed to send in progress email");
+  };
+
   useEffect(() => {
     // Set loading
     setIsLoading(true);
@@ -72,6 +94,7 @@ const OrdersPage = () => {
   /**
    * Handler for status changes in order components
    * @param {String} orderId The orderId to change
+   * @param {String} objectId The object id to change
    * @param {String} newStatus The new order status
    */
   const onOrderStatusChange = async (orderId, objectId, newStatus) => {
@@ -88,12 +111,21 @@ const OrdersPage = () => {
         }),
       });
 
-      // Do this if response if okay
-      // if (response.ok) {
-      //   setCurrentStatus(newStatus);
-      //   setIsMoreOptionsOpen(false);
-      //   handleOnOrderStatusChange(newStatus);
-      // }
+      if (response.ok && newStatus === "COMPLETED") {
+        // Get payment id of the order
+        const paymentId = ordersList.filter(
+          (currentOrder) => currentOrder.orderId === orderId
+        )[0].paymentId;
+
+        await handleCompletedOrderEmail(paymentId);
+      } else if (response.ok && newStatus === "IN PROGRESS") {
+        // Get payment id of the order
+        const paymentId = ordersList.filter(
+          (currentOrder) => currentOrder.orderId === orderId
+        )[0].paymentId;
+
+        await handleInProgressOrderEmail(paymentId);
+      }
     } catch (error) {
       console.error("An error occurred while updating order status:", error);
     }
@@ -124,7 +156,7 @@ const OrdersPage = () => {
         <SubHeader header2="Orders" />
 
         {/* Loader  */}
-        <Loading isLoading={false} />
+        <Loading isLoading={isLoading} />
 
         {/* CONTAINER */}
         {status !== "unauthenticated" && (

@@ -48,12 +48,12 @@ export async function POST(req) {
     const customerMailOptions = {
       from: process.env.EMAIL_USER,
       to: clientInfo.email,
-      subject: `Miggy's Munchies Order Completed`,
+      subject: `Miggy's Munchies Order In Progress`,
       html: `
       <section style="max-width: 32rem; margin: 0 auto; padding: 1rem; font-family: Arial, sans-serif; border: 1px solid #ccc; border-radius: 8px;">
         <div style="text-align: center; padding-bottom: 1rem;">
           <h2 style="color: #374151; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">
-            Thank you for choosing Miggy's Munchies!. We hope you enjoy our homemade goodness.
+            Your Miggy's Munchies order is currently being made.
           </h2>
           <p style="color: #6B7280; font-size: 1rem; margin: 0;">
             Below regards your order.
