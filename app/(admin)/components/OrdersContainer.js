@@ -222,7 +222,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
       {/* Top section */}
       <div className="flex xl:flex-row flex-col items-center xl:justify-between justify-center xl:h-24 h-52 w-full px-8 xl:py-0 gap-2 bg-gray-100/75 rounded-t-xl overflow-auto">
         <div className="h-full flex flex-col">
-          <div className="h-full flex flex-row items-center gap-6 ">
+          <div className="h-full flex flex-row items-center">
             <FilterButton
               contents="All"
               filterType="ALL"
@@ -255,7 +255,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
           <div className="h-full relative">
             <input
               type="text"
-              className="px-4 py-3 h-full rounded-md border-2 focus:border-0 border-gray-400 w-96 peer bg-gray-100/75 shadow-md outline-none focus:ring-2 focus:ring-orange-500 transition-shadow duration-300 text-md text-gray-700"
+              className="px-4 py-3 h-full rounded-md ring-1 ring-gray-400 w-96 peer bg-gray-100/75 shadow-md outline-none focus:ring-2 focus:ring-orange-500 transition-shadow duration-300 text-md text-gray-700"
               onChange={handleOnSearchChange}
             />
             <div
@@ -289,7 +289,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
         )}
 
         {/* Top section  */}
-        <div className="xl:flex hidden flex-row w-full text-center h-16 items-center divide-x-2 px-6 divide-gray-400 bg-gray-100/90 shadow-md text-gray-600 font-semibold text-lg">
+        <div className="xl:flex hidden flex-row w-full text-center h-16 items-center divide-x px-6 divide-gray-300 bg-gray-100/90 border-b text-gray-600 font-semibold text-lg">
           <div className="w-2/6 flex flex-row justify-center items-center gap-4 text-center relative">
             Order ID
             {/* ICON  */}
@@ -370,6 +370,14 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
               </p>
               <p>
                 An order status of{" "}
+                <span className="bg-green-50 border-blue-200 text-blue-800 border p-[2px] rounded-md">
+                  IN PROGRESS
+                </span>{" "}
+                will send an email to the customer for confirmation and
+                acknowledgement.
+              </p>
+              <p>
+                An order status of{" "}
                 <span className="bg-green-50 border-green-200 text-green-800 border p-[2px] rounded-md">
                   COMPLETED
                 </span>{" "}
@@ -421,7 +429,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                     orderAmount={order.cartProducts.length}
                     paymentId={order.paymentId}
                     orderDate={formattedDate}
-                    orderName={order.clientInfo.email}
+                    orderEmail={order.clientInfo.email}
                     onOrderStatusChange={handleOnOrderStatusChange}
                   />
                 );

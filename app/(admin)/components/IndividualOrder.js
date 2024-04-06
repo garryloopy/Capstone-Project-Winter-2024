@@ -76,7 +76,7 @@ const IndividualOrder = ({
   };
 
   return (
-    <div className="w-full min-h-16 flex flex-row  text-center h-max border rounded-md bg-gray-50 shadow-md relative hover:bg-gray-100 hover:shadow-lg active:bg-gray-100/80 transition-all duration-100">
+    <div className="w-full min-h-16 flex flex-row text-center h-max ring-1 ring-gray-300 rounded-md bg-white shadow-md relative">
       {/* More Options */}
       <div
         className="absolute inset-0 flex items-center justify-end px-4"
@@ -132,28 +132,50 @@ const IndividualOrder = ({
         )}
       </div>
 
-      <div className="flex xl:flex-row items-center h-max w-full xl:divide-x-2 divide-y-2 xl:divide-y-0 divide-x-0 py-2 divide-gray-300 text-wrap truncate text-md font-semibold text-gray-600/90 flex-col sm:h-max">
-        <div className="xl:w-2/6 w-2/3 h-full flex flex-col items-center justify-center  py-4">
-          <span className="block xl:hidden font-bold">Order ID:</span>
+      {/* Larger devices  */}
+      <div className="w-full h-20 flex flex-row items-center divide-x text-lg text-gray-600 py-5">
+        <div className="w-2/6 h-full grid place-items-center">
           <p>{orderId}</p>
         </div>
-        <div className="xl:w-1/6 w-2/3 h-full flex flex-col  items-center justify-center py-4">
-          <span className="block xl:hidden font-bold">Email:</span>
+        <div className="w-1/6 h-full grid place-items-center">
           <p>{orderEmail}</p>
         </div>
-        <div className="xl:w-1/6 w-2/3 h-full flex flex-col items-center justify-center py-4">
-          <span className="block xl:hidden font-bold">Date:</span>
+        <div className="w-1/6 h-full grid place-items-center">
           <p>{orderDate}</p>
         </div>
-        <div className="xl:w-1/6 w-2/3 h-full flex flex-col  items-center justify-center py-4">
-          <span className="block xl:hidden font-bold">Order status:</span>
+        <div className="w-1/6 h-full grid place-items-center">
           <OrderStatus orderStatus={currentStatus} />
         </div>
-        <div className="xl:w-1/6 w-2/3 h-full flex flex-col  items-center justify-center py-4">
-          <span className="block xl:hidden font-bold">Items:</span>
+        <div className="w-1/6 h-full grid place-items-center">
           <p>{orderAmount}</p>
         </div>
       </div>
+
+      {/* <div
+        className="flex xl:flex-row items-center h-max w-full xl:divide-x divide-y-2 xl:divide-y-0 divide-x-0
+        divide-gray-300 text-wrap truncate text-md font-semibold text-gray-600/90 flex-col sm:h-max"
+      >
+        <div className="xl:w-2/6 w-2/3 h-full flex flex-col items-center justify-center">
+          <span className="block xl:hidden font-bold">Order ID:</span>
+          <p>{orderId}</p>
+        </div>
+        <div className="xl:w-1/6 w-2/3 h-full flex flex-col  items-center justify-center">
+          <span className="block xl:hidden font-bold">Email:</span>
+          <p>{orderEmail}</p>
+        </div>
+        <div className="xl:w-1/6 w-2/3 h-full flex flex-col items-center justify-center">
+          <span className="block xl:hidden font-bold">Date:</span>
+          <p>{orderDate}</p>
+        </div>
+        <div className="xl:w-1/6 w-2/3 h-full flex flex-col items-center justify-center">
+          <span className="block xl:hidden font-bold">Order status:</span>
+          <OrderStatus orderStatus={currentStatus} />
+        </div>
+        <div className="xl:w-1/6 w-2/3 h-full flex flex-col items-center justify-center">
+          <span className="block xl:hidden font-bold">Items:</span>
+          <p>{orderAmount}</p>
+        </div>
+      </div> */}
     </div>
   );
 };
