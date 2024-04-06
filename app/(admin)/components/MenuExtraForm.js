@@ -53,7 +53,7 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
             key={index}
             className={` ${
               isOpen ? "flex " : "hidden"
-            } items-center mb-4 sm:mx-4 mx-2 sm:gap-4 gap-1`}
+            } items-center sm:mx-4 mx-2 sm:gap-4 gap-1`}
           >
             <label className="w-full">
               <span className="text-gray-400 text-md font-semibold w-full">
@@ -79,7 +79,7 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
                 onChange={(ev) => handleEditProps(ev, index, "price")}
               />
             </label>
-            <div className="bg-white p-2 mt-5 rounded-lg">
+            <div className="bg-white rounded-lg mt-5">
               <button
                 type="button"
                 className="size-10 border rounded-md bg-white hover:bg-red-400 overflow-hidden"
@@ -94,7 +94,7 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
       <button
         type="button"
         onClick={handleAddProps}
-        className="py-2 bg-yellow-400 font-semibold rounded-md flex items-center justify-center gap-2 hover:bg-yellow-300 active:bg-yellow-400 shadow-md"
+        className="py-2 bg-yellow-400 font-semibold rounded-md flex items-center justify-center gap-2 hover:bg-yellow-300 active:bg-yellow-400 shadow-md mt-6"
       >
         <FontAwesomeIcon icon={faPlus} />
         {buttonTitle}

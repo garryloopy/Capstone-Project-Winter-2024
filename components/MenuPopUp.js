@@ -128,8 +128,9 @@ const MenuPopUp = ({
                         checked={selectedSize.name === size.name}
                         className="flex flex-row items-center"
                       />
+                      {/* Fixed to 2 decimal points, only as output  */}
                       <p className="text-sm font-semibold text-gray-600/90 capitalize">
-                        {size.name} ${priceAsNumber + size.price}
+                        {size.name} ${(priceAsNumber + size.price).toFixed(2)}
                       </p>
                     </label>
                   ))}
