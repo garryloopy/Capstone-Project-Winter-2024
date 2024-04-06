@@ -3,7 +3,10 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;1,600&family=Just+Me+Again+Down+Here&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
+@font-face {
+  font-family: "lnFont";
+  src: url(./font/ITCAvantGardeStd-Md.otf);
+}
 
 
 *, :root{
@@ -21,7 +24,7 @@ body, html{
 
 body {
 
-  background-image: url("/images/BGv3.png");
+  background-image: url("/images/BGv4.png");
   /* background-color: lightgray; */
   /* @apply bg-yellow-50/20; */
   background-repeat: no-repeat;
@@ -224,7 +227,6 @@ select {
   color: #fff;
 }
 
-
 .headtext__cormorant {
   font-family: "Cormorant Upright", serif;
   color: rgb(139 92 246);
@@ -233,6 +235,18 @@ select {
   letter-spacing: 0.04em;
   text-transform: capitalize;
 }
+
+.lnFont {
+  font-family: "lnFont";
+}
+
+.lnFont_2 {
+  font-family: "lnFont";
+  font-size: 1.5rem;
+  color: #2618ec;
+  
+}
+
 .p__opensans {
   color: #fff;
   font-weight: 400;

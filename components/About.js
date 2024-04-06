@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import SubHeader from "./SubHeader";
+import "@/app/globals.css";
 
 const About = () => {
   // we can use google maps' static API to show just the map image
@@ -21,7 +22,7 @@ const About = () => {
 
   return (
     <div className="flex flex-col items-center border-t-2 border-b-2 border-slate-600 bg-teal-500 bg-opacity-60">
-      <SubHeader header2="About Us (Testing the colors for now)" />
+      <SubHeader header2="About Us"/>
       <div className="flex lg:flex-row flex-col justify-evenly items-center gap-10 lg:w-[80%] mx-auto w-full p-[2rem] ">
         <div>
           <div>

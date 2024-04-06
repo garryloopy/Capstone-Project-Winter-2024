@@ -2,6 +2,7 @@
 
 import { FiFacebook, FiTwitter, FiInstagram } from "react-icons/fi";
 import Link from "next/link";
+import "@/app/globals.css";
 
 export default function Footer() {
   const openGoogleMaps = () => {
@@ -30,7 +31,7 @@ export default function Footer() {
 
         <div className="flex-1 m-[1rem] flex flex-col justify-start items-center">
           {/* text-[#DCCA87]  */}
-          <h2 className="text-[2rem] text-yellow-400 font-semibold mb-[2rem] text-center">
+          <h2 className="text-[2rem] text-yellow-400 mb-[2rem] text-center lnFont">
             Miggy's Munchies
           </h2>
           <img
@@ -64,7 +65,7 @@ export default function Footer() {
         Copyright ©️ Miggy's Munchies {new Date().getFullYear()}
       </p> */}
       <div className="w-full p-4 my-[1rem] text-center">
-        <p className=" ">
+        <p className="">
           ©️ {new Date().getFullYear()}{" "}
           <span className="text-yellow-400 font-bold">Miggy's Munchies</span>{" "}
           All rights reserved.

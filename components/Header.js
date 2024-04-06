@@ -94,7 +94,7 @@ export default function Header() {
                   : "pointer-events-none"
               } transition-opacity duration-300 opacity-0 top-16 right-0 bg-gray-50 min-w-64 flex flex-col gap-2 p-5 shadow-lg text-sm text-slate-800 font-semibold border-slate-200 border-2 rounded-lg z-50`}
             >
-              <Link
+              {/* <Link
                 onClick={handleToggleAdminMenu}
                 href="/cart"
                 className="relative px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
@@ -108,7 +108,7 @@ export default function Header() {
                 </div>
                 <IoCartOutline size={24} />
                 Cart
-              </Link>
+              </Link> */}
               <Link
                 onClick={handleToggleAdminMenu}
                 href="/menu-list"
