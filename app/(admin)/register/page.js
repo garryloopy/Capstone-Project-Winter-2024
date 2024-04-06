@@ -97,9 +97,9 @@ const Register = () => {
       ) : (
         <section className="w-full h-screen grid place-items-center">
           <div
-            className={`p-[2rem] my-10 flex flex-col gap-8 justify-center items-center w-full lg:w-[50%] mx-auto border-2 border-gray-200 rounded-md bg-gray-100/80 `}
+            className={`p-[2rem] my-10 flex flex-col gap-8 justify-center items-center w-full lg:w-[50%] mx-auto border-2 border-slate-300 rounded-md bg-gray-50 backdrop-blur-sm shadow-lg `}
           >
-            <h1 className="lg:text-3xl md:text-xl text-md text-primary">
+            <h1 className="text-3xl text-slate-700 lnFont">
               Create account
             </h1>
 
@@ -119,7 +119,7 @@ const Register = () => {
                 <input
                   type="text"
                   name="name"
-                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-emerald-500"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   required
@@ -132,7 +132,7 @@ const Register = () => {
                 <input
                   type="email"
                   name="email"
-                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-emerald-500"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -146,7 +146,7 @@ const Register = () => {
                   type={!showPassword ? "text" : "password"}
                   name="password"
                   value={password}
-                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-emerald-500"
                   onChange={(e) => {
                     setPassword(e.target.value);
                     setViewMessage("");
@@ -169,7 +169,7 @@ const Register = () => {
                   name="employeeId"
                   value={employeeId}
                   required
-                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-emerald-500"
                   onChange={(e) => {
                     setEmployeeId(e.target.value);
                     setViewMessage("");
@@ -235,7 +235,7 @@ const Register = () => {
 
             <Link className="mt-4 self-end text-sm" href="/sign-in">
               Already have an account?{" "}
-              <span className="underline font-semibold">Login</span>
+              <span className="underline font-semibold hover:text-sky-800">Login</span>
             </Link>
           </div>
         </section>

@@ -25,8 +25,9 @@ const NewFlavor = () => {
   return (
     <div className="gallery flex justify-center items-center mb-[4rem] ">
       <div className="gallery-content">
-        <h1 className="lnFont_2">Discover Homemade Delights</h1>
-        <p className="my-[2rem] leading-8 lnFont">
+        <h1 className="lnFont_2 bg-gradient-to-r from-orange-400 to-indigo-700
+         bg-clip-text text-transparent">Discover Homemade Delights</h1>
+        <p className="my-[2rem] leading-8 lnFont font-bold text-slate-700">
           {" "}
           Discover the homemade delights of Miggy’s Munchies, where every bite is crafted with passion and creativity. 
           From our kitchen to your table, enjoy the taste of homemade goodness.

@@ -242,8 +242,9 @@ select {
 
 .lnFont_2 {
   font-family: "lnFont";
-  font-size: 1.5rem;
-  color: #2618ec;
+  font-size: 3rem;
+  /* color: #2618ec; */
+  font-weight: 700;
   
 }
 

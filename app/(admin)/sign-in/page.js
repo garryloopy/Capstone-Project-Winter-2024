@@ -66,9 +66,9 @@ export default function SignInPage() {
         <Loading />
       ) : (
         <section className="w-full h-screen grid place-items-center">
-          <section className="p-[2rem] my-10 flex flex-col gap-8 justify-center items-center w-full lg:max-w-[50%] mx-auto border-2 border-gray-200 rounded-md bg-gray-100/80 ">
-            <h1 className="lg:text-3xl md:text-xl text-md text-primary ">
-              Sign in your account
+          <section className="p-[2rem] my-10 flex flex-col gap-8 justify-center items-center w-full lg:max-w-[50%] mx-auto border-2 border-slate-300 rounded-md bg-gray-50 backdrop-blur-sm shadow-lg">
+            <h1 className="lnFont text-2xl text-slate-700">
+              Log in to your account
             </h1>
             <form
               className="flex flex-col justify-center items-center gap-4 w-full"
@@ -84,7 +84,7 @@ export default function SignInPage() {
                   type="email"
                   name="email"
                   value={clientInput.email}
-                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-emerald-500"
                   onChange={handleChange}
                   required
                 />
@@ -95,7 +95,7 @@ export default function SignInPage() {
                   type={!showPassword ? "text" : "password"}
                   name="password"
                   value={clientInput.password}
-                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-yellow-400"
+                  className="w-full h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md focus:ring-2 focus:ring-emerald-500"
                   onChange={handleChange}
                   required
                 />
@@ -118,7 +118,7 @@ export default function SignInPage() {
             </form>
             <Link className="mt-4 self-end text-sm" href="/register">
               Don't have an account?{" "}
-              <span className="underline font-semibold">Register</span>
+              <span className="underline font-semibold hover:text-sky-800">Register</span>
             </Link>
           </section>
         </section>

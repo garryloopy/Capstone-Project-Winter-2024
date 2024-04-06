@@ -21,7 +21,7 @@ const About = () => {
   };
 
   return (
-    <div className="flex flex-col items-center border-t-2 border-b-2 border-slate-600 bg-teal-500 bg-opacity-60">
+    <div className="flex flex-col items-center shadow-2xl backdrop-blur-sm ">
       <SubHeader header2="About Us"/>
       <div className="flex lg:flex-row flex-col justify-evenly items-center gap-10 lg:w-[80%] mx-auto w-full p-[2rem] ">
         <div>
@@ -62,7 +62,7 @@ const About = () => {
           </div>
         </div>
         <div className="w-full mb-12">
-          <p className="">
+          <p className="lnFont font-bold text-slate-700">
             Our journey began with our newborn, leading me to discover solace
             and joy in the kitchen during maternity leave amidst the pandemic.
             What started as a quest to beat boredom evolved into a passion for

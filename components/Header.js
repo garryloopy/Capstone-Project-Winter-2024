@@ -75,7 +75,7 @@ export default function Header() {
         {session.status === "authenticated" ? (
           <div className="hidden relative lg:flex flex-row justify-center h-full gap-6 items-center">
             <button
-              className="font-semibold flex flex-row items-center justify-center gap-3 bg-yellow-400 px-6 py-2 rounded-lg shadow-md"
+              className="font-semibold flex flex-row items-center justify-center gap-3 bg-lime-400 px-6 py-2 rounded-lg shadow-md"
               onClick={handleToggleAdminMenu}
             >
               <h2 className="text-md text-slate-800">Hello, {username}</h2>
