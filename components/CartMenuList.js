@@ -34,7 +34,7 @@ const CartMenuList = ({
             key={index}
             className="flex justify-evenly gap-4 mb-2 border-b p-4 border-orange-400 items-center"
           >
-            <div>
+            <div className="w-full">
               <Image
                 src={product.image}
                 alt={product.title}
@@ -43,7 +43,7 @@ const CartMenuList = ({
                 className="circular-image"
               />
             </div>
-            <div>
+            <div className="w-full">
               <h3 className="text-violet-500 font-semibold">{product.title}</h3>
               {product.sizes && (
                 <div className="text-sm ">
