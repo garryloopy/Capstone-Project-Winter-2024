@@ -63,7 +63,7 @@ const About = () => {
           </div>
         </div>
         <div className="w-full mb-12">
-          <p className="lnFont font-bold text-slate-700">
+          <p className="leading-8 lnFont font-bold text-slate-700">
             Our journey began with our newborn, leading me to discover solace
             and joy in the kitchen during maternity leave amidst the pandemic.
             What started as a quest to beat boredom evolved into a passion for

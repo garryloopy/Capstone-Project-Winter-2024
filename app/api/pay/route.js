@@ -33,7 +33,7 @@ export async function POST(req, res) {
       sourceId: sourceId,
       amountMoney: {
         currency: "CAD",
-        amount: totalPricePlusDelivery * 100,
+        amount: totalPricePlusDelivery.toFixed(2) * 100,
       },
     });
     orderId = result.payment.orderId;
