@@ -4,7 +4,7 @@ import Menu from "@/app/models/Menu";
 
 export async function PUT(req) {
   try {
-    const { _id, title, description, price, image, sizes, extra} = await req.json();
+    const { _id, title, description, price, image, discount,  sizes, extra} = await req.json();
 
     await connectToDB();
 
@@ -15,6 +15,7 @@ export async function PUT(req) {
         description: description,
         price: price,
         image: image,
+        discount: discount,
         sizes: sizes,
         extra: extra,
       }
