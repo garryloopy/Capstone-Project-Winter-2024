@@ -293,12 +293,6 @@ export default function OrderDetailsPage({ params }) {
                         isMoreOptionsOpened ? "rotate-0" : "rotate-180"
                       } transition-all duration-200`}
                     />
-                    {/* {isMoreOptionsOpened ? (
-                      <FaAngleDown size={16} />
-                    ) : (
-                      <FaAngleUp size={16} />
-                    )} */}
-
                     <div
                       className={`min-w-56 min-h-12 h-max bg-gray-50 border shadow-lg absolute inset-y-11 right-0 divide-y rounded-md overflow-hidden  ${
                         isMoreOptionsOpened
@@ -323,12 +317,6 @@ export default function OrderDetailsPage({ params }) {
                         onClick={() => handleOnStatusChange("PENDING")}
                       >
                         Mark as pending
-                      </button>
-                      <button
-                        className="px-6 py-4 w-full hover:bg-gray-100 "
-                        onClick={() => handleOnStatusChange("CANCELLED")}
-                      >
-                        Mark as cancelled
                       </button>
                     </div>
                   </div>

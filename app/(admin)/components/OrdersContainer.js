@@ -75,11 +75,6 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
     if (currentFilter === "PENDING") {
       newOrders = newOrders.filter((order) => order.orderStatus === "PENDING");
       setDisplayedItems(newOrders);
-    } else if (currentFilter === "CANCELLED") {
-      newOrders = newOrders.filter(
-        (order) => order.orderStatus === "CANCELLED"
-      );
-      setDisplayedItems(newOrders);
     } else if (currentFilter === "COMPLETED") {
       newOrders = newOrders.filter(
         (order) => order.orderStatus === "COMPLETED"
@@ -252,12 +247,6 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
               currentFilter={currentFilter}
               onFilterButtonClick={handleOnFilterButtonClick}
             />
-            <FilterButton
-              contents="Cancelled"
-              filterType="CANCELLED"
-              currentFilter={currentFilter}
-              onFilterButtonClick={handleOnFilterButtonClick}
-            />
           </div>
         </div>
 
@@ -371,10 +360,6 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                 <span className="bg-orange-50 border-orange-200 text-orange-800 border p-[2px] rounded-md">
                   PENDING
                 </span>
-                , and{" "}
-                <span className="bg-red-50 border-red-200 text-red-800 border p-[2px] rounded-md">
-                  CANCELLED
-                </span>
               </div>
               <p>
                 As an order is created, the order will start of with a{" "}
@@ -384,21 +369,9 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                 status.
               </p>
               <p>
-                Depending on the order type, an order status of{" "}
-                <span className="bg-blue-50 border-blue-200 text-blue-800 border p-[2px] rounded-md">
-                  IN PROGRESS
-                </span>{" "}
-                will email the customer that the order is in delivery (for
-                delivery) or that the order is being made (for pickup).
-              </p>
-              <p>
                 An order status of{" "}
                 <span className="bg-green-50 border-green-200 text-green-800 border p-[2px] rounded-md">
                   COMPLETED
-                </span>{" "}
-                or{" "}
-                <span className="bg-red-50 border-red-200 text-red-800 border p-[2px] rounded-md">
-                  CANCELLED
                 </span>{" "}
                 will mark the end of an order and will send an email to the
                 customer for confirmation and acknowledgement.
@@ -453,7 +426,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                   />
                 );
               })
-            : ["PENDING", "IN PROGRESS", "COMPLETED", "CANCELLED"].map(
+            : ["PENDING", "IN PROGRESS", "COMPLETED"].map(
                 (category) =>
                   categorizedItems[category] && (
                     <div

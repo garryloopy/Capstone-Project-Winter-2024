@@ -5,7 +5,6 @@ const ORDER_STATUS_VAL = {
   COMPLETED: "bg-green-50 border-green-200 text-green-800",
   "IN PROGRESS": "bg-blue-50 border-blue-200 text-blue-800",
   PENDING: "bg-orange-50 border-orange-200 text-orange-800",
-  CANCELLED: "bg-red-50 border-red-200 text-red-800",
 };
 
 /**
@@ -21,9 +20,7 @@ export default function OrderStatus({ orderStatus }) {
           ? ORDER_STATUS_VAL.COMPLETED
           : orderStatus === "IN PROGRESS"
           ? ORDER_STATUS_VAL["IN PROGRESS"]
-          : orderStatus === "PENDING"
-          ? ORDER_STATUS_VAL.PENDING
-          : ORDER_STATUS_VAL.CANCELLED
+          : ORDER_STATUS_VAL.PENDING
       } font-medium rounded-lg`}
     >
       <p className="text-base font-medium">{orderStatus}</p>
