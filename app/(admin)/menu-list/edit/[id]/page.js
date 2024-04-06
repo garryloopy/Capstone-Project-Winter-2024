@@ -79,7 +79,7 @@ const EditMenuItems = () => {
       {loading ? (
         <Loading />
       ) : (
-        <section className="section__padding my-10 w-full flex flex-col justify-center items-center ">
+        <section className="section__padding my-10 w-full flex flex-col justify-center items-center mt-56">
           <SubHeader header2="Edit menu" />
 
           {menuList && (

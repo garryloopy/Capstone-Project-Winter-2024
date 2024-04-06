@@ -162,32 +162,34 @@ const AdminPage = ({ swal }) => {
               <div
                 key={item._id}
                 /* this is for admin menu list */
-                className="bg-neutral-200  p-4 rounded-lg text-center hover:shadow-md hover:shadow-yellow-400 flex flex-col justify-around"
+                className="rounded-lg text-center hover:-translate-y-3 transition-transform duration-300 overflow-hidden ring-1 ring-yellow-300 shadow-lg shadow-orange-100 bg-white"
               >
-                <SingleMenu {...item} />
-                <div className="flex gap-4 justify-center items-center mt-6">
-                  <Link
-                    className={`sign_button text-sm flex items-center justify-center gap-2 `}
-                    href={`/menu-list/edit/${item._id}`}
-                  >
-                    <FontAwesomeIcon
-                      icon={faPenToSquare}
-                      size="sm"
-                      style={{ color: "#000" }}
-                    />
-                    Edit
-                  </Link>
-                  <button
-                    className={`sign_button text-sm flex items-center justify-center gap-2`}
-                    onClick={() => handleDeleteMenu(item)}
-                  >
-                    <FontAwesomeIcon
-                      icon={faTrash}
-                      size="sm"
-                      style={{ color: "#000" }}
-                    />
-                    Delete
-                  </button>
+                <div className="w-full h-full flex flex-col justify-around p-8 bg-yellow-50/5">
+                  <SingleMenu {...item} />
+                  <div className="flex gap-4 justify-center items-center mt-6">
+                    <Link
+                      className={`sign_button text-sm flex items-center justify-center gap-2 `}
+                      href={`/menu-list/edit/${item._id}`}
+                    >
+                      <FontAwesomeIcon
+                        icon={faPenToSquare}
+                        size="sm"
+                        style={{ color: "#000" }}
+                      />
+                      Edit item
+                    </Link>
+                    <button
+                      className={`sign_button text-sm flex items-center justify-center gap-2`}
+                      onClick={() => handleDeleteMenu(item)}
+                    >
+                      <FontAwesomeIcon
+                        icon={faTrash}
+                        size="sm"
+                        style={{ color: "#000" }}
+                      />
+                      Delete item
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

@@ -25,9 +25,9 @@ const MobileMenu = ({ setToggleMenu }) => {
     username = username.split(" ")[0];
   }
   return (
-    <div className="absolute top-28 right-0 left-0 lg:hidden h-max bg-yellow-50 z-50 flex flex-col gap-8 border-y-2 border-slate-200 shadow-md p-2 pb-4">
+    <div className="absolute sm:top-28 top-20 right-0 left-0 lg:hidden sm:h-max h-[50vh] bg-yellow-50 z-50 flex flex-col gap-8 border-y-2 border-slate-200 shadow-md p-2 pb-4 overflow-y-scroll">
       {/* Container  */}
-      <div className="w-full h-max rounded-md overflow-hidden flex flex-col gap-2 p-4">
+      <div className="w-full h-max rounded-md flex flex-col gap-2 p-4">
         <Link
           href="/"
           onClick={() => setToggleMenu(false)}
@@ -77,7 +77,7 @@ const MobileMenu = ({ setToggleMenu }) => {
         </Link>
       </div>
       {session.status === "authenticated" && (
-        <div className="w-full h-max rounded-md overflow-hidden flex flex-col gap-2 p-4">
+        <div className="w-full h-max rounded-md flex flex-col gap-2 p-4">
           <div className=" w-full h-full flex flex-col items-center gap-2">
             <h2 className="text-gray-800 font-semibold text-xl border-b w-full text-center border-slate-400 pb-1 mb-4">
               Hello, {username}

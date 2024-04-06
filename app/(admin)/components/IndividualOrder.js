@@ -128,12 +128,6 @@ const IndividualOrder = ({
             >
               Mark as pending
             </button>
-            <button
-              className="px-6 py-4 w-full hover:bg-gray-100 "
-              onClick={() => handleOnStatusChange("CANCELLED")}
-            >
-              Mark as cancelled
-            </button>
           </div>
         )}
       </div>
