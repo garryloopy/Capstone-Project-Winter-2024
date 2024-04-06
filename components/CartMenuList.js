@@ -60,6 +60,9 @@ const CartMenuList = ({
                 </div>
               )}
               <p className="text-sm text-gray-500">{product.specialInstructions}</p>
+            {product.discount > 0 && (
+              <p className="text-green-500 text-sm mt-[1rem]">Discount: {product.discount}%</p>
+            )}
             </div>
             <div className="text-sm mr-4">
               ${calculateTotalPrice(product).toFixed(2)}
