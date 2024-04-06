@@ -23,18 +23,6 @@ const MenuPopUp = ({
   price = parseFloat(price);
 
   useEffect(() => {
-    if (selectedSize) {
-      price += selectedSize.price;
-    }
-    for (const extra of selectedExtra) {
-      price += extra.price;
-    }
-
-    setSelectedPrice(price);
-  }, [menuList, selectedSize, selectedExtra]);
-
-  //useEffect to reset selectedPrice
-  useEffect(() => {
     setSelectedPrice(price);
     setSelectedSize(menuList.sizes[0]);
   }, [showPopUp]);
@@ -118,7 +106,7 @@ const MenuPopUp = ({
                       onClick={() => setSelectedSize(size)}
                       checked={selectedSize.name === size.name}
                     />
-                    {size.name} ${priceAsNumber + size.price}
+                    {size.name} ${(priceAsNumber + size.price).toFixed(2)}
                   </label>
                 ))}
               </div>
