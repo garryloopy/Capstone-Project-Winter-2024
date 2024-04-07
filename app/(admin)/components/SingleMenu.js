@@ -8,7 +8,7 @@ const SingleMenu = (menu) => {
     <div className="w-full">
       <div className="w-full flex justify-center items-center">
         <Image
-          className="circular-image-menu ring-1 ring-yellow-300 shadow-md shadow-orange-100 bg-white"
+          className="circular-image-menu ring-1 ring-lime-400 shadow-md shadow-lime-100 bg-white"
           src={menu.image}
           alt={menu.image}
           width={200}

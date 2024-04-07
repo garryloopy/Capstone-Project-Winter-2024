@@ -112,13 +112,13 @@ export default function Header() {
               <Link
                 onClick={handleToggleAdminMenu}
                 href="/menu-list"
-                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start  bg-lime-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
+                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start  bg-lime-400 hover:bg-lime-300 active:bg-lime-400 rounded-md shadow-md"
               >
                 <IoGridOutline size={24} />
                 Dashboard
               </Link>
               <button
-                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-lime-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
+                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-lime-400 hover:bg-lime-300 active:bg-lime-400 rounded-md shadow-md"
                 onClick={() => signOut({ callbackUrl: "/" })}
               >
                 <IoLogOutOutline size={24} />
@@ -132,7 +132,7 @@ export default function Header() {
             className="relative hidden lg:flex justify-center items-center p-3"
           >
             {cartProducts?.length > 0 && (
-              <div className="absolute top-0 right-0 size-5 bg-yellow-400 rounded-full grid place-items-center">
+              <div className="absolute top-0 right-0 size-5 bg-lime-400 rounded-full grid place-items-center">
                 <p className="text-center text-slate-700 text-xs font-semibold">
                   {cartProducts.length}
                 </p>
@@ -149,7 +149,7 @@ export default function Header() {
         <button
           type="button"
           onClick={handleToggleMenu}
-          className="bg-yellow-400 size-10 rounded-md shadow-md grid place-items-center lg:hidden"
+          className="bg-lime-400 size-10 rounded-md shadow-md grid place-items-center lg:hidden"
         >
           {toggleMenu ? (
             <IoClose size={28} className="text-slate-800" />
