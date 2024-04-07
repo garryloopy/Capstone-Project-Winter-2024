@@ -44,9 +44,9 @@ const ClientMenu = (menuList) => {
       {/* used transform/hover:translate to give animation effect for each boxes */}
       <div
         className="container relative group text-slate-100 rounded-md overflow-hidden shadow-xl
-       bg-white transform hover:translate-y-[-10px] transition-transform duration-300 ring-1 ring-gray-300/60"
+       backdrop-blur-sm transform hover:translate-y-[-10px] transition-transform duration-300 ring-1 ring-gray-300/60"
       >
-        <div className="w-full h-full flex flex-col items-center justify-around gap-4 bg-yellow-50/10 xl:p-12 p-8">
+        <div className="w-full h-full flex flex-col items-center justify-around gap-4 bg-gray-600 hover:bg-gray-500/80 xl:p-12 p-8 ">
           <div>
             <Image
               className="object-cover"
@@ -56,7 +56,7 @@ const ClientMenu = (menuList) => {
               height={250}
             />
             {menuList.discount > 0 && (
-              <div className="w-[30%] p-2 absolute top-6 left-2 bg-yellow-400 -skew-x-[10deg] -skew-y-[20deg] text-center text-black">
+              <div className="w-[30%] p-2 absolute top-6 left-2 bg-lime-400 -skew-x-[10deg] -skew-y-[20deg] text-center text-black">
                 {menuList.discount}%
               </div>
             )}
@@ -64,7 +64,7 @@ const ClientMenu = (menuList) => {
           <h4 className="lg:text-xl font-semibold text-md text-orange-300">
             {menuList.title}
           </h4>
-          <p className="text-sm font-sans font-semibold text-center text-gray-400">
+          <p className="text-md font-sans font-semibold text-center text-slate-100">
             {menuList.description}
           </p>
 
@@ -74,7 +74,7 @@ const ClientMenu = (menuList) => {
         rounded-md backdrop-brightness-90 duration-300"
           >
             <button
-              className="bg-yellow-400 text-slate-900 text-md font-semibold px-6 py-2 rounded-xl hover:scale-105 hover:bg-yellow-300 active:bg-yellow-400 shadow-md transition-all duration-100 ease-in-out"
+              className="bg-lime-400 text-slate-800 text-md font-semibold px-6 py-2 rounded-xl hover:scale-105 hover:bg-lime-300 shadow-md transition-all duration-100 ease-in-out"
               onClick={handleAddToCartClick}
             >
               Add to Order

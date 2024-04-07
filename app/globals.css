@@ -259,6 +259,7 @@ select {
   font-size: 16px;
 }
 
+
 @media screen and (min-width: 2000px) {
   .gallery-content {
     min-width: 1000px;
@@ -310,6 +311,6 @@ select {
   background-color: rgb(30 41 59);
 }
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(250 204 21);
+  background-color: #91c43e;
   border-radius: 5rem;
 }
