@@ -162,7 +162,7 @@ const AdminPage = ({ swal }) => {
               <div
                 key={item._id}
                 /* this is for admin menu list */
-                className="rounded-lg text-center hover:-translate-y-3 transition-transform duration-300 overflow-hidden ring-1 ring-yellow-300 shadow-lg shadow-orange-100 bg-white"
+                className="rounded-lg text-center hover:-translate-y-3 transition-transform duration-300 overflow-hidden ring-1 ring-lime-400 shadow-lg shadow-lime-100 bg-lime-50"
               >
                 <div className="w-full h-full flex flex-col justify-around p-8 bg-yellow-50/5">
                   <SingleMenu {...item} />
