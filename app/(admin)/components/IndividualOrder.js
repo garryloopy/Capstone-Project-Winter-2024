@@ -73,11 +73,11 @@ const IndividualOrder = ({
     <div className="w-full min-h-16 flex flex-row text-center h-max ring-1 ring-gray-300 rounded-md bg-white shadow-md relative">
       {/* More Options */}
       <div
-        className="absolute inset-0 flex items-center justify-end px-4"
+        className="absolute inset-0 flex items-center justify-end px-4 pointer-events-none"
         ref={moreOptionsRef}
       >
         <button
-          className="pointer-events-auto cursor-pointer border p-2 rounded-lg hover:bg-gray-50"
+          className="border p-2 rounded-lg hover:bg-gray-50 pointer-events-auto"
           onClick={handleOnMoreOptionButtonClicked}
         >
           {isMoreOptionsOpen ? (
@@ -88,53 +88,60 @@ const IndividualOrder = ({
         </button>
 
         {/* More Options  */}
-        {isMoreOptionsOpen && (
-          <div className="absolute min-w-44 min-h-12 bg-gray-50 border shadow-lg top-16 flex flex-col group divide-y items-center justify-center rounded-md z-10 text-md text-gray-800">
-            <Link
-              className="px-6 py-4 w-full hover:bg-gray-100 "
-              href={`/orders/${paymentId}`}
-            >
-              Open
-            </Link>
-            <a
-              className="px-6 py-4 w-full hover:bg-gray-100 flex flex-row items-center gap-4 "
-              target="_blank"
-              href={`/orders/${paymentId}`}
-            >
-              Open in new tab
-              <FaExternalLinkAlt size={16} />
-            </a>
-            <button
-              className="px-6 py-4 w-full hover:bg-gray-100 "
-              onClick={() => handleOnStatusChange("IN PROGRESS")}
-            >
-              Mark as in progress
-            </button>
-            <button
-              className="px-6 py-4 w-full hover:bg-gray-100 "
-              onClick={() => handleOnStatusChange("COMPLETED")}
-            >
-              Mark as completed
-            </button>
-          </div>
-        )}
+        <div
+          data-show={isMoreOptionsOpen}
+          className="absolute min-w-44 min-h-12 bg-gray-50 border shadow-lg top-16 flex flex-col group divide-y items-center justify-center rounded-md z-10 text-md 
+              text-gray-800 opacity-0 pointer-events-none data-[show=true]:opacity-100 data-[show=true]:pointer-events-auto transition-opacity duration-300"
+        >
+          <Link
+            className="px-6 py-4 w-full hover:bg-gray-100 "
+            href={`/orders/${paymentId}`}
+          >
+            Open
+          </Link>
+          <a
+            className="px-6 py-4 w-full hover:bg-gray-100 flex flex-row items-center gap-4 "
+            target="_blank"
+            href={`/orders/${paymentId}`}
+          >
+            Open in new tab
+            <FaExternalLinkAlt size={16} />
+          </a>
+          <button
+            className="px-6 py-4 w-full hover:bg-gray-100 "
+            onClick={() => handleOnStatusChange("IN PROGRESS")}
+          >
+            Mark as in progress
+          </button>
+          <button
+            className="px-6 py-4 w-full hover:bg-gray-100 "
+            onClick={() => handleOnStatusChange("COMPLETED")}
+          >
+            Mark as completed
+          </button>
+        </div>
       </div>
 
       {/* Larger devices  */}
-      <div className="w-full h-20 flex flex-row items-center divide-x text-lg text-gray-600 py-5">
-        <div className="w-2/6 h-full grid place-items-center">
+      <div className="w-full min-h-20 flex xl:flex-row flex-col items-center xl:divide-x xl:divide-y-0 divide-y font-semibold xl:text-lg text-md xl:px-0 px-24 text-gray-500/80 py-5">
+        <div className="xl:w-2/6 w-full h-full flex flex-col items-center justify-center py-4 xl:py-0 gap-1 xl:gap-0">
+          <p className="xl:hidden text-lg text-gray-800">Order ID:</p>
           <p>{orderId}</p>
         </div>
-        <div className="w-1/6 h-full grid place-items-center">
+        <div className="xl:w-1/6 w-full h-full flex flex-col items-center justify-center py-4 xl:py-0 gap-1 xl:gap-0">
+          <p className="xl:hidden text-lg text-gray-800">Email:</p>
           <p>{orderEmail}</p>
         </div>
-        <div className="w-1/6 h-full grid place-items-center">
+        <div className="xl:w-1/6 w-full h-full flex flex-col items-center justify-center py-4 xl:py-0 gap-1 xl:gap-0">
+          <p className="xl:hidden text-lg text-gray-800">Date:</p>
           <p>{orderDate}</p>
         </div>
-        <div className="w-1/6 h-full grid place-items-center">
+        <div className="xl:w-1/6 w-full h-full flex flex-col items-center justify-center py-4 xl:py-0 gap-1 xl:gap-0">
+          <p className="xl:hidden text-lg text-gray-800">Order Status:</p>
           <OrderStatus orderStatus={currentStatus} />
         </div>
-        <div className="w-1/6 h-full grid place-items-center">
+        <div className="xl:w-1/6 w-full h-full flex flex-col items-center justify-center py-4 xl:py-0 gap-1 xl:gap-0">
+          <p className="xl:hidden text-lg text-gray-800">Items:</p>
           <p>{orderAmount}</p>
         </div>
       </div>
