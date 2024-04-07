@@ -19,7 +19,7 @@ export default function Footer() {
     // added noopener and noreferrer to the window.open for security measures, just googled it lol
   };
   return (
-    <footer className="bg-slate-600 flex-col flex justify-start items-center text-gray-400 pb-4">
+    <footer className="bg-slate-700 flex-col flex justify-start items-center text-gray-400 pb-4">
       <div className="w-full flex  lg:flex-row flex-col justify-center items-center mt-[2rem] py-0 px-[2rem]">
         <div className="flex-1 m-[1rem] lnFont text-center">
           <h1 className="text-white tracking-[0.08em] text-lg mb-[1rem]">

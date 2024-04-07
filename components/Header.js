@@ -48,7 +48,7 @@ export default function Header() {
     <header
       data-scrolled={scrolled}
       className={`md:px-[4rem] z-50 fixed sm:px-2 sm:py-[1rem] px-6 flex justify-between items-center w-full bg-inherit sm:h-28 h-20 transition-all duration-500 ease-in-out  ${
-        scrolled && "shadow-lg bg-slate-600"
+        scrolled && "shadow-lg bg-slate-700"
       }`}
     >
       {/* logo and text */}

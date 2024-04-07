@@ -44,9 +44,9 @@ const ClientMenu = (menuList) => {
       {/* used transform/hover:translate to give animation effect for each boxes */}
       <div
         className="container relative group text-slate-100 rounded-md overflow-hidden shadow-xl
-       backdrop-blur-sm transform hover:translate-y-[-10px] transition-transform duration-300 ring-1 ring-gray-300/60"
+       backdrop-blur-sm transform hover:translate-y-[-15px] transition-transform duration-300 ring-1 ring-gray-300/60"
       >
-        <div className="w-full h-full flex flex-col items-center justify-around gap-4 bg-gray-600 hover:bg-gray-500/80 xl:p-12 p-8 ">
+        <div className="w-full h-full flex flex-col items-center justify-around gap-4 bg-gray-700/95 hover:bg-gray-800/80 xl:p-12 p-8 ">
           <div>
             <Image
               className="object-cover"
