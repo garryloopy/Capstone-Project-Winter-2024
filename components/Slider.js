@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import Image from 'next/image'
 // use whatever images you want but include the path
 const imagePaths = [
-  "images/gallery01.png",
-  "images/gallery02.png",
-  "images/gallery03.png",
-  "images/background.jpg",
-  "images/Lord_farquaad.jpg",
+  "/images/gallery01.png",
+  "/images/gallery02.png",
+  "/images/gallery03.png",
+  "/images/background.jpg",
+  "/images/Lord_farquaad.jpg",
 ];
 
 function Slideshow() {
@@ -31,15 +31,16 @@ function Slideshow() {
   //   return () => clearInterval(slideshowInterval);
   // }, []);
 
-  // other way: use setTimeout
-  const nextSlide = () => {
-    setSlider(slider === imagePaths.length - 1 ? 0 : slider + 1);
-  };
-  useEffect(() => {
-      setTimeout(() => {
-        nextSlide();
-      }, 3000);
-  }, [nextSlide]);
+ const nextSlide = useCallback(() => {
+   setSlider(slider === imagePaths.length - 1 ? 0 : slider + 1);
+ }, [slider, setSlider]);
+
+ useEffect(() => {
+   const interval = setInterval(() => {
+     nextSlide();
+   }, 3000);
+   return () => clearInterval(interval);
+ }, [nextSlide]);
 
  
 
@@ -60,7 +61,7 @@ function Slideshow() {
             className={slider === index ? "slide" : "slide slide-hidden"}
             key={index}
           >
-            <img src={imagePath} alt={`Slide ${index + 1}`} />
+            <Image src={imagePath} alt={`Slide ${index + 1}`} fill style={{ objectFit: "cover"}} />
           </div>
         ))}
       </div>
