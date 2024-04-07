@@ -9,7 +9,7 @@ import { FaQuestion } from "react-icons/fa";
 
 import { IoChevronUp } from "react-icons/io5";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { TailSpin } from "react-loader-spinner";
 
@@ -51,12 +51,6 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
   // Filter states
   const [toggleFilter, setToggleFilter] = useState(false);
 
-  // Each time orders list is changed then change displayed items to orders list
-  useEffect(() => {
-    setDisplayedItems(ordersList);
-    updateDisplayedItems();
-  }, [ordersList]);
-
   /**
    * Updates the displayed items.
    * Steps are:
@@ -66,7 +60,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
    * 4. Set to displayed items to new filtered items
    * 5. Set loader false
    */
-  const updateDisplayedItems = () => {
+  const updateDisplayedItems = useCallback(() => {
     // Loader state
     setIsLoading(true);
 
@@ -112,12 +106,18 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
 
     // Loader state
     setIsLoading(false);
-  };
+  }, [currentFilter, currentSearchValue, ordersList]);
+
+  // Each time orders list is changed then change displayed items to orders list
+  useEffect(() => {
+    setDisplayedItems(ordersList);
+    updateDisplayedItems();
+  }, [ordersList, updateDisplayedItems]);
 
   // Change displayed items when selected filter and displayed items changes
   useEffect(() => {
     updateDisplayedItems();
-  }, [currentFilter]);
+  }, [currentFilter, updateDisplayedItems]);
 
   /**
    * Handler for clicking a filter button
