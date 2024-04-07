@@ -13,7 +13,8 @@ import { TailSpin } from "react-loader-spinner";
 
 import getFormattedDate from "../utils/getFormattedDate";
 import OrderStatus from "./OrderStatus";
-import { set } from "mongoose";
+
+import ModalMessage from "./ModalMessage";
 
 /**
  * A component that displays, filters, updates, and opens orders based on the passed list array
@@ -39,6 +40,11 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
   //Confirmation modal
   const [confirmationModal, setConfirmationModal] = useState(false);
   const [confirmationData, setConfirmationData] = useState({});
+
+  // Modal message
+  const [toggleModal, setToggleModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [subMessage, setSubMessage] = useState("");
 
   // Each time orders list is changed then change displayed items to orders list
   useEffect(() => {
@@ -141,6 +147,37 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
    * @param {String} newStatus The new status
    */
   const handleOnOrderStatusChange = (orderId, objectId, newStatus) => {
+    // Get the order status
+    const orderStatus = ordersList.filter(
+      (order) => order.orderId === orderId
+    )[0].orderStatus;
+
+    // Do nothing if status is the same
+    if (orderStatus === newStatus && orderStatus !== "COMPLETED") {
+      setToggleModal(true);
+      setModalMessage("Order is already marked as " + newStatus);
+      setSubMessage("Please select a different status. ");
+
+      setIsLoading(false);
+      return;
+    }
+
+    if (orderStatus === "IN PROGRESS") {
+      if (newStatus !== "COMPLETED") {
+        setModalMessage("Order must be marked as completed first.");
+        setSubMessage("Please select completed status.");
+        setToggleModal(true);
+        setIsLoading(false);
+        return;
+      }
+    } else if (orderStatus === "COMPLETED") {
+      setModalMessage("Order is already completed.");
+      setSubMessage("The order status can no longer be changed. ");
+      setToggleModal(true);
+      setIsLoading(false);
+      return;
+    }
+
     setConfirmationModal(true);
     setConfirmationData({ orderId, objectId, newStatus });
   };
@@ -172,6 +209,14 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
     <div className="min-h-screen w-full bg-neutral-50 mb-8 flex flex-col rounded-xl shadow-md relative">
       {/* Shadow effect  */}
       <div className="absolute inset-10 bg-violet-500/50 -z-10 blur-3xl rounded-lg" />
+
+      {/* Modal message  */}
+      <ModalMessage
+        message={modalMessage}
+        visible={toggleModal}
+        subMessage={subMessage}
+        onClose={() => setToggleModal(false)}
+      />
 
       {/* Confirmation  */}
       <div

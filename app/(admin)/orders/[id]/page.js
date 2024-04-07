@@ -15,6 +15,8 @@ import OrderStatus from "../../components/OrderStatus";
 import Image from "next/image";
 import Loading from "@/components/Loading";
 
+import ModalMessage from "../../components/ModalMessage";
+
 export default function OrderDetailsPage({ params }) {
   // Loader state
   const [isLoading, setIsLoading] = useState(false);
@@ -36,6 +38,11 @@ export default function OrderDetailsPage({ params }) {
   //Confirmation modal
   const [confirmationModal, setConfirmationModal] = useState(false);
   const [confirmationData, setConfirmationData] = useState({});
+
+  // Modal message
+  const [toggleModal, setToggleModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [subMessage, setSubMessage] = useState("");
 
   const [isMoreOptionsOpened, setIsMoreOptionsOpened] = useState(false);
 
@@ -104,9 +111,29 @@ export default function OrderDetailsPage({ params }) {
    * @param {String} newStatus The new status
    */
   const handleOnStatusChange = async (newStatus) => {
-    // Do nothing
+    // Do nothing if status is the same
     if (orderStatus === newStatus) {
+      setToggleModal(true);
+      setModalMessage("Order is already marked as " + newStatus);
+      setSubMessage("Please select a different status. ");
+
       setIsMoreOptionsOpened(false);
+      setIsLoading(false);
+      return;
+    }
+
+    if (orderStatus === "IN PROGRESS") {
+      if (newStatus !== "COMPLETED") {
+        setModalMessage("Order must be marked as completed first.");
+        setSubMessage("Please select completed status.");
+        setToggleModal(true);
+        setIsLoading(false);
+        return;
+      }
+    } else if (orderStatus === "COMPLETED") {
+      setModalMessage("Order is already completed.");
+      setSubMessage("Please select a different status. ");
+      setToggleModal(true);
       setIsLoading(false);
       return;
     }
@@ -169,6 +196,13 @@ export default function OrderDetailsPage({ params }) {
     <section className="flex flex-col items-center w-full min-h-screen px-12 py-8 rounded-xl overflow-hidden relative md:p-[6rem] p-4">
       <AdminNavbar path={path} />
       <SubHeader header2="Order Details" />
+
+      <ModalMessage
+        message={modalMessage}
+        visible={toggleModal}
+        subMessage={subMessage}
+        onClose={() => setToggleModal(false)}
+      />
 
       {/* This is for displaying error message such as invalid id or failed id fetch */}
       <div
@@ -302,21 +336,15 @@ export default function OrderDetailsPage({ params }) {
                     >
                       <button
                         className="px-6 py-4 w-full hover:bg-gray-100 "
-                        onClick={() => handleOnStatusChange("COMPLETED")}
-                      >
-                        Mark as completed
-                      </button>
-                      <button
-                        className="px-6 py-4 w-full hover:bg-gray-100 "
                         onClick={() => handleOnStatusChange("IN PROGRESS")}
                       >
                         Mark as in progress
                       </button>
                       <button
                         className="px-6 py-4 w-full hover:bg-gray-100 "
-                        onClick={() => handleOnStatusChange("PENDING")}
+                        onClick={() => handleOnStatusChange("COMPLETED")}
                       >
-                        Mark as pending
+                        Mark as completed
                       </button>
                     </div>
                   </div>

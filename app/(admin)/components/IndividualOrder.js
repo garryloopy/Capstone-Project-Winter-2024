@@ -58,12 +58,6 @@ const IndividualOrder = ({
    * @param {String} newStatus The new status
    */
   const handleOnStatusChange = async (newStatus) => {
-    // Do nothing, close more options
-    if (orderStatus === newStatus) {
-      setIsMoreOptionsOpen(false);
-      return;
-    }
-
     handleOnOrderStatusChange(newStatus);
     setIsMoreOptionsOpen(false);
   };
@@ -110,12 +104,6 @@ const IndividualOrder = ({
               Open in new tab
               <FaExternalLinkAlt size={16} />
             </a>
-            <button
-              className="px-6 py-4 w-full hover:bg-gray-100 "
-              onClick={() => handleOnStatusChange("PENDING")}
-            >
-              Mark as pending
-            </button>
             <button
               className="px-6 py-4 w-full hover:bg-gray-100 "
               onClick={() => handleOnStatusChange("IN PROGRESS")}
