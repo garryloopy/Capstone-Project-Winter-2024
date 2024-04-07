@@ -95,7 +95,7 @@ const Register = () => {
       {loading ? (
         <Loading />
       ) : (
-        <section className="w-full h-screen grid place-items-center">
+        <section className="w-full h-screen grid place-items-center my-[8rem]">
           <div
             className={`p-[2rem] my-10 flex flex-col gap-8 justify-center items-center w-full lg:w-[50%] mx-auto border-2 border-slate-300 rounded-md bg-gray-50 backdrop-blur-sm shadow-lg `}
           >
