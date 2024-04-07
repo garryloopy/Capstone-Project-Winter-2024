@@ -7,7 +7,7 @@ export default function ModalMessage({
   return (
     <section
       data-visible={visible}
-      className="absolute inset-0 grid place-items-center data-[visible=true]:opacity-100 data-[visible=true]:pointer-events-auto opacity-0 pointer-events-none z-50 backdrop-brightness-90"
+      className="absolute inset-0 grid place-items-center data-[visible=true]:opacity-100 data-[visible=true]:pointer-events-auto opacity-0 pointer-events-none z-40 backdrop-brightness-90 transition-opacity duration-300"
     >
       <div className="size-96 bg-white p-8 flex flex-col justify-center items-center rounded-lg ring-1 ring-gray-300 shadow-md">
         <p className="text-xl text-gray-700 font-semibold text-center">

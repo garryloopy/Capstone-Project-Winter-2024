@@ -7,6 +7,8 @@ import FilterButton from "../components/FilterButton";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaQuestion } from "react-icons/fa";
 
+import { IoChevronUp } from "react-icons/io5";
+
 import { useEffect, useState } from "react";
 
 import { TailSpin } from "react-loader-spinner";
@@ -45,6 +47,9 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
   const [toggleModal, setToggleModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [subMessage, setSubMessage] = useState("");
+
+  // Filter states
+  const [toggleFilter, setToggleFilter] = useState(false);
 
   // Each time orders list is changed then change displayed items to orders list
   useEffect(() => {
@@ -120,6 +125,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
    */
   const handleOnFilterButtonClick = (filter) => {
     setCurrentFilter(filter);
+    setToggleFilter(false);
   };
 
   /**
@@ -220,15 +226,16 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
 
       {/* Confirmation  */}
       <div
-        className={`absolute inset-0 z-10 grid place-items-center backdrop-brightness-90 ${
-          confirmationModal
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
+        data-show={confirmationModal}
+        onClick={handleOnConfirmationDisagree}
+        className="absolute inset-0 z-10 grid place-items-center backdrop-brightness-90 data-[show=true]:opacity-100 data-[show=true]:pointer-events-auto opacity-0 pointer-events-none transition-opacity duration-300"
       >
-        <div className="bg-gray-100 h-1/3 w-1/3 flex flex-col items-center justify-center gap-5 rounded-lg shadow-md p-4">
+        <div
+          className="bg-gray-100 lg:size-[56rem] flex flex-col items-center justify-center gap-5 rounded-lg shadow-md sm:p-12 px-4 py-12 flex-wrap"
+          onClick={(ev) => ev.stopPropagation()}
+        >
           {confirmationData && (
-            <div className="flex flex-row items-center gap-3 text-xl font-semibold text-gray-800 text-center">
+            <div className="flex flex-row items-center justify-center gap-3 text-xl font-semibold text-gray-800 text-center flex-wrap">
               <p>
                 Mark{" "}
                 <span className="text-violet-800">
@@ -265,9 +272,10 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
       </div>
 
       {/* Top section */}
-      <div className="flex xl:flex-row flex-col items-center xl:justify-between justify-center xl:h-24 h-52 w-full px-8 xl:py-0 gap-2 bg-gray-100/75 rounded-t-xl overflow-auto">
-        <div className="h-full flex flex-col">
-          <div className="h-full flex flex-row items-center">
+      <div className="flex xl:flex-row flex-col-reverse items-center xl:justify-between justify-center xl:h-24 h-52 w-full px-8 xl:py-0 gap-2 bg-gray-100/75 rounded-t-xl">
+        <div className="h-max w-full flex flex-col">
+          {/* Larger Devices  */}
+          <div className="h-full sm:flex hidden flex-row items-center xl:justify-start justify-center">
             <FilterButton
               contents="All"
               filterType="ALL"
@@ -292,6 +300,55 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
               currentFilter={currentFilter}
               onFilterButtonClick={handleOnFilterButtonClick}
             />
+          </div>
+
+          {/* Smaller devices */}
+          <div className="sm:hidden flex items-center justify-center w-full h-24 relative">
+            <button
+              className="w-48 h-10 bg-yellow-400 font-semibold rounded-3xl relative"
+              onClick={() => setToggleFilter(!toggleFilter)}
+            >
+              {currentFilter}
+              <div className="absolute inset-0 flex items-center justify-end px-4">
+                <IoChevronUp
+                  size={24}
+                  className={`${
+                    toggleFilter ? "rotate-180" : "rotate-0"
+                  } transition-transform duration-100`}
+                />
+              </div>
+            </button>
+
+            <div
+              data-show={toggleFilter}
+              className="absolute py-4 px-12 w-max gap-2 h-max data-[show=true]:opacity-100 data-[show=true]:pointer-events-auto 
+                pointer-events-none opacity-0 bg-gray-50 shadow-lg rounded-lg z-10 top-3 flex flex-col items-center justify-center"
+            >
+              <FilterButton
+                contents="All"
+                filterType="ALL"
+                currentFilter={currentFilter}
+                onFilterButtonClick={handleOnFilterButtonClick}
+              />
+              <FilterButton
+                contents="Pending"
+                filterType="PENDING"
+                currentFilter={currentFilter}
+                onFilterButtonClick={handleOnFilterButtonClick}
+              />
+              <FilterButton
+                contents="In Progress"
+                filterType="IN PROGRESS"
+                currentFilter={currentFilter}
+                onFilterButtonClick={handleOnFilterButtonClick}
+              />
+              <FilterButton
+                contents="Completed"
+                filterType="COMPLETED"
+                currentFilter={currentFilter}
+                onFilterButtonClick={handleOnFilterButtonClick}
+              />
+            </div>
           </div>
         </div>
 
@@ -486,7 +543,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                       key={category}
                       className="flex flex-col gap-4 mb-12 pb-8"
                     >
-                      <p className="text-lg font-semibold text-center text-gray-600 border-b-2 border-gray-300 pb-2">
+                      <p className="text-lg font-semibold text-center text-gray-500 border-b border-gray-300 pb-2">
                         {category}
                       </p>
                       <div className="flex flex-col gap-4">
