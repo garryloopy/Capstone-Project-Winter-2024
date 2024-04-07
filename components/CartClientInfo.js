@@ -47,7 +47,7 @@ const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
         apartment: "",
       }));
     }
-  }, [clientInfo?.address]);
+  }, [clientInfo?.address, setClientInfo]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
