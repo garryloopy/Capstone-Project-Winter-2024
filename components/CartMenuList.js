@@ -59,7 +59,7 @@ const CartMenuList = ({
                   ))}
                 </div>
               )}
-              <p className="text-sm text-gray-500">{product.specialInstructions}</p>
+              <p className="text-sm text-gray-500">{product.specialRequests}</p>
             {product.discount > 0 && (
               <p className="text-green-500 text-sm mt-[1rem]">Discount: {product.discount}%</p>
             )}

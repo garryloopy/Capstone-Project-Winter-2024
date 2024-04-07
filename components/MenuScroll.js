@@ -31,8 +31,8 @@ const MenuScroll = () => {
     <>
       <button
         data-visible={isVisible}
-        className="fixed bottom-4 left-10 transform -translate-x-1/2 z-50 bg-orange-300 text-black rounded-full w-12 h-12 flex items-center justify-center 
-                    cursor-pointer transition-opacity duration-300 hover:bg-yellow-500 opacity-0 data-[visible=true]:opacity-100 pointer-events-none data-[visible=true]:pointer-events-auto"
+        className="fixed bottom-4 right-10 transform -translate-x-1/2 z-50 bg-sky-400 text-white rounded-full w-12 h-12 flex items-center justify-center 
+                    cursor-pointer transition-opacity duration-300 hover:bg-sky-600 opacity-0 data-[visible=true]:opacity-100 pointer-events-none data-[visible=true]:pointer-events-auto"
         onClick={scrollToTop}
       >
         <svg
