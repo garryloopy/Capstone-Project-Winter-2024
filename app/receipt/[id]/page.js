@@ -24,45 +24,64 @@ export default function OrderConfirmationPage() {
 
   const { id } = useParams();
   let totalPrice = 0;
+  useEffect(() => {
+    const getOrderInfo = async () => {
+      if (id) {
+        setLoading(true);
+        try {
+          const res = await fetch(`/api/getOrder?id=${id}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+          });
+          if (res.ok) {
+            const result = await res.json();
 
-  const getOrderInfo = async () => {
-    if (id) {
-      setLoading(true);
-      const res = await fetch(`/api/getOrder?id=${id}`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
-      if (res.ok) {
-        const result = await res.json();
+            //format the date of order
+            const createdAtDate = new Date(result[0]?.createdAt);
 
-        //format the date of order
-        const createdAtDate = new Date(result[0]?.createdAt);
+            const options = {
+              year: "numeric",
+              month: "short",
+              day: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: true,
+            };
 
-        const options = {
-          year: "numeric",
-          month: "short",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: true,
-        };
+            const dateTimeFormat = new Intl.DateTimeFormat("en-US", options);
+            const formattedDate = dateTimeFormat.format(createdAtDate);
+            setFormattedDate(formattedDate);
 
-        const dateTimeFormat = new Intl.DateTimeFormat("en-US", options);
-        const formattedDate = dateTimeFormat.format(createdAtDate);
-        setFormattedDate(formattedDate);
-
-        setClientInfo(result[0]?.clientInfo);
-        setCartProducts(result[0]?.cartProducts);
-        setOrderId(result[0]?.orderId);
-        setCardBrand(result[0]?.cardBrand);
-        setLastDigits(result[0]?.lastFourDigits);
-      } else {
-        console.log("Error to fetch order info");
+            setClientInfo(result[0]?.clientInfo);
+            setCartProducts(result[0]?.cartProducts);
+            setOrderId(result[0]?.orderId);
+            setCardBrand(result[0]?.cardBrand);
+            setLastDigits(result[0]?.lastFourDigits);
+          } else {
+            console.log("Error fetching order info");
+          }
+          setLoading(false);
+        } catch (error) {
+          console.log("Error fetching order info:", error);
+          setLoading(false);
+        }
       }
-      setLoading(false);
-    }
-  };
+    };
 
+    getOrderInfo(); 
+  }, [
+    id,
+    setFormattedDate,
+    setClientInfo,
+    setCartProducts,
+    setOrderId,
+    setCardBrand,
+    setLastDigits,
+  ]);
+
+
+
+  
   // calculate total price
   if (cartProducts) {
     for (const product of cartProducts) {
@@ -70,9 +89,7 @@ export default function OrderConfirmationPage() {
     }
   }
 
-  useEffect(() => {
-    getOrderInfo();
-  }, []);
+ 
 
   //calculate delivery amount
   useEffect(() => {
@@ -88,7 +105,7 @@ export default function OrderConfirmationPage() {
   // clear cart shipping
   const handleCart = useCallback(() => {
     clearCart();
-  }, []);
+  }, [clearCart]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
