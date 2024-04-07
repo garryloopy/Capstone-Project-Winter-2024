@@ -70,7 +70,7 @@ const CartMenuList = ({
             {onDelete && (
               <div>
                 <button type="button" onClick={() => onDelete(index)}>
-                  <TrashBin className="w-[2rem] h-[2rem] border bg-gray-300 p-[.3rem] rounded-md border-gray-400 hover:bg-gray-200" />
+                  <TrashBin className="w-[2rem] h-[2rem] border bg-gray-300 p-[.3rem] rounded-md border-gray-400 hover:bg-red-300" />
                 </button>
               </div>
             )}
@@ -85,7 +85,7 @@ const CartMenuList = ({
             className="underline text-sm text-gray-500"
             onClick={handleClearCard}
           >
-            <Link href="/menu">Clear Cart</Link>
+            <Link href="/menu" className="text-lg font-semibold hover:text-red-600">Clear Cart</Link>
           </div>
         )}
 
@@ -96,11 +96,13 @@ const CartMenuList = ({
               <div
                 className={`${
                   !clearLink ? "flex" : "hidden"
-                } justify-center w-[20px] h-[20px] rounded-full border border-gray-400 text-sm text-gray-500 absolute left-[-2rem] cursor-pointer`}
+                } justify-center items-center w-[20px] h-[20px] rounded-full border border-gray-400 text-sm text-gray-500 absolute left-[-2rem] cursor-pointer`}
                 onMouseEnter={() => setDeliveryMessage(true)}
                 onMouseLeave={() => setDeliveryMessage(false)}
               >
-                ?
+                <div className="pl-[0.1rem] w-full h-full flex justify-center items-center">
+                  ?
+                </div>
               </div>
               {deliveryMessage ? (
                 <p
