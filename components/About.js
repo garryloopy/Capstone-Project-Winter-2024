@@ -35,32 +35,7 @@ const About = () => {
               className="rounded-full border-2 border-slate-500"
             />
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <p className="mt-[2rem] mb-3 text-lg">Follow us on:</p>
-
-            <div className="flex gap-4 items-center">
-              {/* adding more comments so I don't forget what I did here
-              add OnClick Handler to the logo */}
-              <Image
-                src="/images/facebook-logo2.png"
-                alt="other-logo"
-                width={34}
-                height={34}
-                onClick={openGoogleMaps}
-                style={{ cursor: "pointer" }}
-                className="logo-animation"
-              />
-              <Link href="https://www.instagram.com/miggysmunchies/">
-                <Image
-                  src="/images/instagram-logo.png"
-                  alt="instagram-logo"
-                  width={40}
-                  height={40}
-                  className="logo-animation"
-                />
-              </Link>
-            </div>
-          </div>
+          
         </div>
         <div className="w-full mb-12">
           <p className="leading-8 lnFont font-bold text-slate-700">

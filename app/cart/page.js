@@ -228,8 +228,8 @@ export default function CartPage() {
                         );
                         await toast.promise(uploadSetting, {
                           loading: "Payment is processing",
-                          success: "Payment is processed successfully",
-                          error: "Payment is Failed",
+                          success: "Payment processed successfully",
+                          error: "Payment failed",
                         });
                       } else {
                         setMessage("One or more input values are invalid");
@@ -256,9 +256,9 @@ export default function CartPage() {
                     setInputValid={setInputValid}
                     setMessage={setMessage}
                   />
-
-                  <GooglePay style={{ marginBottom: "20px" }} />
-
+                <div className="mb-3">
+                  <GooglePay />
+                </div>
                   <div>
                     <CreditCard
                       includeInputLabels
