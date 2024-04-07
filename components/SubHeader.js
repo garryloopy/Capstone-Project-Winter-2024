@@ -14,7 +14,7 @@ const SubHeader = ({ header2 }) => {
       {/* use spoon react icon, we can change the color or size of the icon */}
       <FaSpoon
         size={45}
-        style={{ transform: "rotate(225deg)", color: "#58A399" }}
+        style={{ transform: "rotate(225deg)", color: "rgb(132 204 22)" }}
       />
       <p className="md:text-4xl text-2xl font-extrabold text-violet-500/95 tracking-wider	mb-[.5rem]">
         {header2}
@@ -23,7 +23,7 @@ const SubHeader = ({ header2 }) => {
 
       <FaSpoon
         size={45}
-        style={{ transform: "rotate(45deg)", color: "#58A399" }}
+        style={{ transform: "rotate(45deg)", color: "rgb(132 204 22)" }}
       />
     </div>
   );
