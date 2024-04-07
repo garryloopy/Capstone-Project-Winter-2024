@@ -109,7 +109,7 @@ const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
     <div className="w-full text-white">
       <form>
         <label className="w-full">
-          <span className="text-xs text-gray-400">Email</span>
+          <span className="text-sm text-gray-400">Email</span>
           <div className="flex relative">
             <input
               type="email"
@@ -132,7 +132,7 @@ const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
         >
           <div className="flex gap-4">
             <label className="w-full">
-              <span className="text-xs text-gray-400">Address</span>
+              <span className="text-sm text-gray-400">Address</span>
               <input
                 ref={selectedAddressRef}
                 type="text"
@@ -146,11 +146,11 @@ const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
               />
             </label>
             <label>
-              <span className="text-xs text-gray-400">Appt no.</span>
+              <span className="text-sm text-gray-400">Appt no.</span>
               <div className="flex relative">
                 <input
                   name="apartment"
-                  placeholder="apartment number"
+                  placeholder="Apartment #"
                   type="text"
                   autoComplete="address-line2"
                   value={clientInfo?.apartment}
@@ -168,7 +168,7 @@ const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
 
         <div className="flex lg:flex-row flex-col gap-4 w-full">
           <label className="w-full">
-            <span className="text-xs text-gray-400">City</span>
+            <span className="text-sm text-gray-400">City</span>
             <input
               type="text"
               placeholder="City"
@@ -179,7 +179,7 @@ const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
             />
           </label>
           <label className="w-full">
-            <span className="text-xs text-gray-400">Province</span>
+            <span className="text-sm text-gray-400">Province</span>
             <input
               type="text"
               placeholder="Province"
@@ -197,7 +197,7 @@ const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
             />
           </label> */}
           <label className="w-full">
-            <span className="text-xs text-gray-400">Postal code</span>
+            <span className="text-sm text-gray-400">Postal code</span>
             <div className="flex relative">
               <input
                 type="text"
@@ -216,7 +216,7 @@ const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
           </label>
         </div>
         <label className="w-full">
-          <span className="text-xs text-gray-400">Country</span>
+          <span className="text-sm text-gray-400">Country</span>
           <input
             type="text"
             placeholder="Country"
@@ -227,7 +227,7 @@ const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
           />
         </label>
         <label className="w-full">
-          <span className="text-xs text-gray-400">Phone</span>
+          <span className="text-sm text-gray-400">Phone</span>
           <div className="flex relative">
             <input
               type="text"
