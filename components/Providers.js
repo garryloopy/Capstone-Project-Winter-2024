@@ -25,7 +25,7 @@ const Providers = ({ children, session }) => {
     if (localStorage && localStorage.getItem("cart")) {
       setCartProducts(JSON.parse(localStorage.getItem("cart")));
     }
-  }, []);
+  }, [localStorage]);
 
   function saveProductsToLocalStorage(cartProducts) {
     if (localStorage) {
