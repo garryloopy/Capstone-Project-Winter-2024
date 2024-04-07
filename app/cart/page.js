@@ -257,7 +257,7 @@ export default function CartPage() {
                     setMessage={setMessage}
                   />
 
-                  <GooglePay />
+                  <GooglePay style={{ marginBottom: "20px" }} />
 
                   <div>
                     <CreditCard
