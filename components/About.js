@@ -22,7 +22,9 @@ const About = () => {
 
   return (
     <div className="flex flex-col items-center shadow-2xl backdrop-blur-sm rounded-2xl">
-      <h2 className="lnFont text-4xl font-bold text-slate-700 mt-10">About Us</h2>
+      <h2 className="lnFont text-4xl font-bold text-slate-700 mt-10">
+        About Us
+      </h2>
       {/* <SubHeader header2="About Us" /> */}
       <div className="flex lg:flex-row flex-col justify-evenly items-center gap-10 lg:w-[80%] mx-auto w-full p-[2rem] ">
         <div>
@@ -35,7 +37,6 @@ const About = () => {
               className="rounded-full border-2 border-slate-500"
             />
           </div>
-          
         </div>
         <div className="w-full mb-12">
           <p className="leading-8 lnFont font-bold text-slate-700">
@@ -46,9 +47,10 @@ const About = () => {
             creative outlet, inspired by the little one who brought newfound
             purpose into our lives. Encouraged by positive feedback, Miggy’s
             Munchies was born—a commitment to crafting delicious, heartwarming
-            treats reflecting our family's journey. Each recipe tells a story of
-            quality, authenticity, and innovation. Join us for a flavorful
-            adventure, where every bite embodies love, passion, and creativity.
+            treats reflecting our family&apos;s journey. Each recipe tells a
+            story of quality, authenticity, and innovation. Join us for a
+            flavorful adventure, where every bite embodies love, passion, and
+            creativity.
           </p>
         </div>
       </div>
