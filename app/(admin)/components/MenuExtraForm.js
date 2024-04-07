@@ -31,12 +31,12 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
   };
   return (
     <div className=" flex flex-col ring-1 ring-gray-200 px-2 py-4 rounded-md my-2 w-full text-sm gap-2 bg-white">
-      <div className="text-gray-600 text-lg font-semibold flex items-center gap-2 ">
+      <div className="text-gray-400 text-md font-semibold flex items-center gap-2 ">
         <div>
           <button type="button" onClick={() => setIsOpen(!isOpen)}>
             <FontAwesomeIcon
               icon={faChevronDown}
-              size="lg"
+              size="md"
               className={`p-1 ${
                 isOpen && "rotate-180"
               } rotate-0 transition-transform duration-100`}
@@ -60,7 +60,7 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
                 {title} Type
               </span>
               <input
-                className="p-2 px-4 text-sm text-gray-600 rounded-md w-full outline-none ring-1 ring-gray-300 bg-gray-50 focus:ring-2 focus:ring-yellow-400 focus:shadow-md"
+                className="p-2 px-4 text-sm text-gray-600 rounded-md w-full outline-none ring-1 ring-gray-300 bg-gray-50 focus:ring-2 focus:ring-lime-400 focus:shadow-md"
                 type="text"
                 placeholder={title}
                 value={size?.name}
@@ -72,7 +72,7 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
                 Price
               </span>
               <input
-                className="p-2 px-4 text-sm text-gray-600 rounded-md w-full outline-none ring-1 ring-gray-300 bg-gray-50 focus:ring-2 focus:ring-yellow-400 focus:shadow-md"
+                className="p-2 px-4 text-sm text-gray-600 rounded-md w-full outline-none ring-1 ring-gray-300 bg-gray-50 focus:ring-2 focus:ring-lime-400 focus:shadow-md"
                 type="text"
                 placeholder="Extra Price"
                 value={size?.price}

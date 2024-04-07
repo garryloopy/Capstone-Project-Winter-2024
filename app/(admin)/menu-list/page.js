@@ -149,10 +149,10 @@ const AdminPage = ({ swal }) => {
       <MenuScroll />
       <section className="flex flex-col justify-center items-center md:p-[6rem] p-4">
         <AdminNavbar path={path} />
-        <SubHeader header2="Create new Menu" />
+        <SubHeader header2="Create Menu" />
         <MenuForm handleSubmit={handleSubmit} buttonText="Create Menu" />
         <div className="w-[90%]">
-          <hr className="border-0 w-full bg-yellow-400 block h-[1px] " />
+          <hr className="border-0 w-full bg-lime-400 block h-[1px] " />
         </div>
         <SubHeader header2="Menu List" />
 
