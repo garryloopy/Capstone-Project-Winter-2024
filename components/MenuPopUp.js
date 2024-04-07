@@ -19,20 +19,33 @@ const MenuPopUp = ({
   const priceAsNumber = parseFloat(basePrice);
 
   const [selectedPrice, setSelectedPrice] = useState(0);
-  let price = menuList.price.replace(/[$,]/g, "");
-  price = parseFloat(price);
-
   
+
   useEffect(() => {
-     if (menuList.discount > 0) {
-       price = price - (price * menuList.discount) / 100;
-     }
+    let price = menuList.price.replace(/[$,]/g, "");
+    price = parseFloat(price);
+  
+    
+    if (menuList.discount > 0) {
+      price = price - (price * menuList.discount) / 100;
+    }
     setSelectedPrice(price);
     setSelectedSize(menuList.sizes[0]);
-    setSelectedExtra([])
-  }, [showPopUp]);
+    setSelectedExtra([]);
+  }, [
+    showPopUp,
+    menuList.discount,
+    menuList.price,
+    setSelectedPrice,
+    menuList.sizes,
+    setSelectedExtra,
+    setSelectedSize
+  ]);
 
   useEffect(() => {
+    let price = menuList.price.replace(/[$,]/g, "");
+    price = parseFloat(price);
+  
     if (selectedSize) {
       price += selectedSize.price;
     }
