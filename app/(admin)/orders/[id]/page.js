@@ -15,7 +15,10 @@ import OrderStatus from "../../components/OrderStatus";
 import Image from "next/image";
 import Loading from "@/components/Loading";
 
+import { useContext } from "react";
 import ModalMessage from "../../components/ModalMessage";
+
+import { CartContext } from "@/components/Providers";
 
 export default function OrderDetailsPage({ params }) {
   // Loader state
@@ -34,6 +37,12 @@ export default function OrderDetailsPage({ params }) {
   const [orderStatus, setOrderStatus] = useState("");
   const [objectId, setObjectId] = useState();
   const [paymentId, setPaymentId] = useState();
+
+  // Cart
+  const { calculateTotalPrice } = useContext(CartContext);
+  const [subTotal, setSubTotal] = useState(0);
+  const [deliveryAmount, setDeliveryAmount] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   //Confirmation modal
   const [confirmationModal, setConfirmationModal] = useState(false);
@@ -74,15 +83,38 @@ export default function OrderDetailsPage({ params }) {
           const formattedDate = getFormattedDate(result[0]?.createdAt);
           setFormattedDate(formattedDate);
 
+          const cartProducts = result[0]?.cartProducts;
+          const clientInfo = result[0]?.clientInfo;
+
           // Set client statuses
-          setClientInfo(result[0]?.clientInfo);
-          setCartProducts(result[0]?.cartProducts);
+          setClientInfo(clientInfo);
+          setCartProducts(cartProducts);
           setOrderId(result[0]?.orderId);
           setCardBrand(result[0]?.cardBrand);
           setLastDigits(result[0]?.lastFourDigits);
           setOrderStatus(result[0]?.orderStatus);
           setObjectId(result[0]?._id);
           setPaymentId(result[0]?.paymentId);
+
+          // calculate total price
+          let subTotal = 0;
+          if (cartProducts) {
+            for (const product of cartProducts) {
+              subTotal += calculateTotalPrice(product);
+            }
+          }
+          setSubTotal(subTotal);
+
+          //calculate delivery amount
+          if (clientInfo?.distance >= 10) {
+            setDeliveryAmount(10);
+          } else if (clientInfo?.distance >= 5) {
+            setDeliveryAmount(5);
+          } else {
+            setDeliveryAmount(0);
+          }
+
+          setTotalPrice(deliveryAmount + subTotal);
         } else {
           console.log("Error to fetch order info");
         }
@@ -231,7 +263,7 @@ export default function OrderDetailsPage({ params }) {
         </div>
       </div>
 
-      <div className="bg-gray-100 w-full h-full rounded-md flex flex-col relative">
+      <div className="bg-gray-50 w-full h-full rounded-md flex flex-col relative">
         {/* Confirmation  */}
         <div
           className={`absolute inset-0 z-10 grid place-items-center backdrop-brightness-90 ${
@@ -285,7 +317,7 @@ export default function OrderDetailsPage({ params }) {
         <Loading isLoading={isLoading} />
 
         {/* Top section  */}
-        <div className="relative flex-none h-24 w-full px-6">
+        <div className="relative flex-none h-24 w-full px-6 ">
           <Link
             href="/orders"
             className="flex flex-row items-center gap-1 w-max h-full text-xl font-medium text-gray-600 hover:text-gray-950 transition-colors duration-200 group"
@@ -301,11 +333,11 @@ export default function OrderDetailsPage({ params }) {
         {/* Main section  */}
         <div className="flex-1 min-h-screen bg-gray-50 flex flex-col">
           {/* Main section header  */}
-          <div className="flex flex-col border-b">
+          <div className="flex flex-col">
             {/* Order Status  */}
-            <div className="w-full xl:h-24 min-h-24 flex xl:flex-row flex-col justify-between py-8 xl:py-0 gap-4 items-center px-8 border-b">
+            <div className="w-full xl:h-24 min-h-24 flex xl:flex-row flex-col justify-between py-8 xl:py-0 gap-4 items-center px-8">
               <div className="flex flex-row justify-center items-center gap-8 flex-1">
-                <p className="text-xl font-semibold text-gray-800">
+                <p className="text-xl font-semibold text-gray-500">
                   Order Status:
                 </p>
 
@@ -352,13 +384,16 @@ export default function OrderDetailsPage({ params }) {
               </div>
               <div className="flex-1 flex justify-center items-center">
                 {clientInfo && (
-                  <p className="text-xl font-semibold text-gray-800">
-                    Delivery Type: {clientInfo.deliveryType}
+                  <p className="text-xl font-semibold text-gray-500">
+                    Delivery Type:{" "}
+                    <span className="text-black">
+                      {clientInfo.deliveryType}
+                    </span>
                   </p>
                 )}
               </div>
             </div>
-            <div className="flex xl:flex-row flex-col justify-between xl:h-20 min-h-20 xl:py-0 py-8 bg-gray-100 items-center px-8 xl:divide-x-2 xl:divide-y-0 divide-y-2 shadow-md">
+            <div className="flex xl:flex-row flex-col justify-between xl:h-20 min-h-20 xl:py-0 py-8 bg-gray-100/50 items-center px-8 xl:divide-x divide-gray-300 xl:divide-y-0 divide-y shadow-sm">
               {orderId && (
                 <p className="text-center w-full font-semibold flex flex-col xl:py-0 py-2">
                   Order ID:{" "}
@@ -375,7 +410,7 @@ export default function OrderDetailsPage({ params }) {
                 <p className="text-center  w-full font-semibold flex flex-col xl:py-0 py-2">
                   Payment:{" "}
                   <span className="text-md font-medium ">
-                    {cardBrand} xxxxxxxxxxxx{lastDigits}
+                    {cardBrand} ending with {lastDigits}
                   </span>
                 </p>
               )}
@@ -389,57 +424,86 @@ export default function OrderDetailsPage({ params }) {
           </div>
 
           {/* Container  */}
-          <div className="flex-1 flex xl:flex-row flex-col xl:divide-x-2 divide-y-2 xl:divide-y-0 divide-gray-300">
+          <div className="flex-1 flex xl:flex-row flex-col xl:divide-x divide-y xl:divide-y-0 divide-gray-300">
             {/* Left side  */}
             <div className="flex-1 p-8 flex flex-col">
               {/* Top section of left side  */}
-              <div className="flex h-16 flex-row justify-between">
-                <p className="text-lg font-800">Order Summary:</p>
-                {cartProducts && (
-                  <p className="text-lg font-800">
-                    {cartProducts.length} item
-                    {cartProducts.length > 1 ? "s" : ""}
+              <div className="flex min-h-16 flex-col">
+                {/* Order Summary  */}
+                <div className="flex flex-row justify-between w-full">
+                  <p className="text-lg text-gray-500 font-semibold">
+                    Order Summary:
                   </p>
-                )}
+                  {cartProducts && (
+                    <p className="text-lg text-gray-600">
+                      {cartProducts.length} item
+                      {cartProducts.length > 1 ? "s" : ""}
+                    </p>
+                  )}
+                </div>
+                {/* Total Prices  */}
+                <div className="py-8 flex flex-col text-lg font-semibold text-gray-500">
+                  <p>
+                    Subtotal:{" "}
+                    <span className="text-md text-black">
+                      ${subTotal.toFixed(2)}
+                    </span>
+                  </p>
+                  <p>
+                    Delivery:{" "}
+                    <span className="text-md text-black">
+                      ${deliveryAmount.toFixed(2)}
+                    </span>
+                  </p>
+                  <p>
+                    Total:{" "}
+                    <span className="text-md text-black">
+                      ${totalPrice.toFixed(2)}
+                    </span>
+                  </p>
+                </div>
               </div>
               {/* Orders section  */}
-              <div className="flex-1 overflow-y-auto flex flex-col gap-6">
+              <div className="flex-1 flex flex-col gap-6">
                 {cartProducts?.length > 0 &&
                   cartProducts.map((product) => {
                     return (
                       <div
-                        className="flex flex-row border py-3 px-4 bg-gray-100 rounded-md shadow-md"
+                        className="flex flex-col sm:flex-row justify-between gap-12 sm:gap-0 items-center ring-1 ring-gray-300 shadow-sm rounded-xl py-12 sm:py-4 px-6 bg-gray-100 flex-wrap"
                         key={product._id}
                       >
-                        <Image
-                          src={product.image}
-                          alt={product.title}
-                          width={200}
-                          height={200}
-                          className="circular-image"
-                        />
-                        <div>
-                          <h3 className="text-orange-500 font-semibold">
-                            {product.title}
-                          </h3>
-                          {product.sizes && (
-                            <div className="text-sm ">
-                              <span>{product.sizes.name}</span>
-                            </div>
-                          )}
-                          {product.extra?.length > 0 && (
-                            <div className="text-sm text-gray-950">
-                              {product.extra.map((extra, index) => (
-                                <div key={index}>
-                                  {extra.name} ${extra.price}
-                                </div>
-                              ))}
-                            </div>
-                          )}
-                          <p className="text-sm text-gray-950">
-                            {product.specialRequest}
-                          </p>
+                        <div className="flex flex-col justify-center sm:justify-start sm:flex-row gap-12 items-center w-7/12">
+                          <Image
+                            src={product.image}
+                            alt={product.title}
+                            width={200}
+                            height={200}
+                            className="circular-image"
+                          />
+                          <div className="sm:text-start text-center">
+                            <h3 className="text-orange-500 font-semibold">
+                              {product.title}
+                            </h3>
+                            {product.sizes && (
+                              <div className="text-sm ">
+                                <span>{product.sizes.name}</span>
+                              </div>
+                            )}
+                            {product.extra?.length > 0 && (
+                              <div className="text-sm text-gray-950">
+                                {product.extra.map((extra, index) => (
+                                  <div key={index}>
+                                    {extra.name} ${extra.price}
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                            <p className="text-sm text-gray-950">
+                              {product.specialRequest}
+                            </p>
+                          </div>
                         </div>
+                        <div>${calculateTotalPrice(product).toFixed(2)}</div>
                       </div>
                     );
                   })}
@@ -447,21 +511,21 @@ export default function OrderDetailsPage({ params }) {
             </div>
 
             {/* Right side  */}
-            <div className="flex-1 bg-gray-200/50">
+            <div className="flex-1 bg-gray-100">
               {/* Contact info section  */}
-              <div className="w-full flex flex-col justify-center items-start gap-4 p-8">
-                <p className="text-2xl font-medium text-gray-700">
+              <div className="w-full flex flex-col justify-center items-center xl:items-start gap-8 p-8">
+                <p className="text-2xl font-semibold text-gray-500">
                   Contact Information
                 </p>
-                <div className="flex flex-col gap-8">
-                  <div className="flex flex-row gap-4 text-xl items-center">
-                    <p className="min-w-28">Email:</p>
+                <div className="flex flex-col xl:gap-8 gap-12">
+                  <div className="flex flex-col xl:flex-row gap-4 text-xl xl:justify-start justify-center items-center">
+                    <p className="w-max xl:w-28">Email:</p>
                     <div>
                       <p className="text-gray-600">{clientInfo?.email}</p>
                     </div>
                   </div>
-                  <div className="flex flex-row gap-4 text-xl items-center">
-                    <p className="min-w-28">Address:</p>
+                  <div className="flex flex-col xl:flex-row gap-4 text-xl xl:justify-start justify-center items-center">
+                    <p className="w-max xl:w-28">Address:</p>
                     <div>
                       <p className="text-gray-600">{clientInfo?.address}</p>
                       <p className="text-gray-600">Canada, Alberta, Calgary</p>

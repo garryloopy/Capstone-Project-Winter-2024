@@ -68,7 +68,7 @@ export default function OrderConfirmationPage() {
       }
     };
 
-    getOrderInfo(); 
+    getOrderInfo();
   }, [
     id,
     setFormattedDate,
@@ -79,17 +79,12 @@ export default function OrderConfirmationPage() {
     setLastDigits,
   ]);
 
-
-
-  
   // calculate total price
   if (cartProducts) {
     for (const product of cartProducts) {
       totalPrice += calculateTotalPrice(product);
     }
   }
-
- 
 
   //calculate delivery amount
   useEffect(() => {
