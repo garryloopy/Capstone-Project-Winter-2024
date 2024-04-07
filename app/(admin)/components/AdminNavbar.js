@@ -6,7 +6,7 @@ import Link from "next/link";
 const AdminNavbar = ({ path }) => {
   // const path = usePathname()
   return (
-    <div className="flex justify-center items-center gap-4 mb-4 mt-[8rem] text-white text-lg  w-full p-4 font-semibold">
+    <div className="flex justify-center items-center gap-4 mt-[8rem] mb-[4rem] text-white text-lg  w-full p-4 font-semibold">
       <Link
         className={path.includes("menu") ? "activeButton" : "inactiveButton"}
         href="/menu-list"
