@@ -3,6 +3,7 @@
 import { FiFacebook, FiTwitter, FiInstagram } from "react-icons/fi";
 import { TbBrandGoogleMaps } from "react-icons/tb";
 import Link from "next/link";
+import Image from 'next/image'
 import "@/app/globals.css";
 
 export default function Footer() {
@@ -25,8 +26,8 @@ export default function Footer() {
             Find Us
           </h1>
           <p className="text-white lnFont opacity-85">
-            79 Castleridge Close NE, 
-            <br /> Calgary, AB, 
+            79 Castleridge Close NE,
+            <br /> Calgary, AB,
             <br />
             Canada
           </p>
@@ -35,12 +36,13 @@ export default function Footer() {
         <div className="flex-1 m-[1rem] flex flex-col justify-start items-center">
           {/* text-[#DCCA87]  */}
           <h2 className="text-[2rem] text-yellow-400 mb-[2rem] text-center lnFont">
-            Miggy's Munchies
+            Miggy&apos;s Munchies
           </h2>
-          <img
+          <Image
             src="/images/spoon.png"
             alt="spoon"
-            className="w-[45px]"
+            width={45}
+            height={45}
             style={{ marginTop: 15 }}
           />
           <div className="mt-[1rem] flex">
@@ -70,7 +72,9 @@ export default function Footer() {
       <div className="w-full p-4 my-[1rem] text-center">
         <p className="">
           ©️ {new Date().getFullYear()}{" "}
-          <span className="text-yellow-400 font-bold">Miggy's Munchies</span>{" "}
+          <span className="text-yellow-400 font-bold">
+            Miggy`&apos;s Munchies
+          </span>{" "}
           All rights reserved.
         </p>
       </div>
