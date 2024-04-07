@@ -60,49 +60,49 @@ export default function CartPage() {
     removeCartProduct(index);
   };
 
-  //get the current location of user
-  const getUserLocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setUserLocation({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
+  
+  useEffect(() => {
+    //get the current location of user
+    const getUserLocation = () => {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setUserLocation({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
       });
-    });
-  };
-  useEffect(() => {
+    };
     getUserLocation();
-  }, []);
+  }, [setUserLocation]);
 
-  //get the distance and duration
-  const getDirectionRoute = async () => {
-    if (userLocation && clientLocation) {
-      const res = await fetch(
-        `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${userLocation.longitude},${userLocation.latitude};${clientLocation.longitude},${clientLocation.latitude}?overview=full&geometries=geojson&access_token=${process.env.MAP_ACCESS_TOKEN}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const result = await res.json();
-      if (result && result.routes.length > 0) {
-        let distanceInKm = Math.floor(result.routes[0].distance * 0.001);
-        let durationInMin = Math.round(result.routes[0].duration / 60);
-
-        setClientInfo((prev) => ({
-          ...prev,
-          distance: distanceInKm,
-          duration: durationInMin,
-        }));
-      }
-      setDistanceDuration(result);
-    }
-  };
+  
 
   useEffect(() => {
-    if (userLocation && clientLocation) {
-      getDirectionRoute();
-    }
+    //get the distance and duration
+    const getDirectionRoute = async () => {
+      if (userLocation && clientLocation) {
+        const res = await fetch(
+          `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${userLocation.longitude},${userLocation.latitude};${clientLocation.longitude},${clientLocation.latitude}?overview=full&geometries=geojson&access_token=${process.env.MAP_ACCESS_TOKEN}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const result = await res.json();
+        if (result && result.routes.length > 0) {
+          let distanceInKm = Math.floor(result.routes[0].distance * 0.001);
+          let durationInMin = Math.round(result.routes[0].duration / 60);
+
+          setClientInfo((prev) => ({
+            ...prev,
+            distance: distanceInKm,
+            duration: durationInMin,
+          }));
+        }
+        setDistanceDuration(result);
+      }
+    };
+    getDirectionRoute();
   }, [userLocation, clientLocation]);
 
   useEffect(() => {
