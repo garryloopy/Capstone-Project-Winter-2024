@@ -183,7 +183,7 @@ const MenuPopUp = ({
 
             <button
               type="button"
-              className="sign_button sticky bottom-0 hover:bg-yellow-200"
+              className="sign_button sticky bottom-0 hover:bg-lime-200"
               onClick={handleAddToCartClick}
             >
               Add to Cart ${selectedPrice.toFixed(2)}
