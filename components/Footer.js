@@ -73,7 +73,7 @@ export default function Footer() {
         <p className="">
           ©️ {new Date().getFullYear()}{" "}
           <span className="text-yellow-400 font-bold">
-            Miggy`&apos;s Munchies
+            Miggy&apos;s Munchies
           </span>{" "}
           All rights reserved.
         </p>

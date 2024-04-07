@@ -159,12 +159,12 @@ export default function CartPage() {
   };
 
   return (
-    <>
+    <div className="backdrop-contrast-75 pt-10 pb-40">
       {loading ? (
         <Loading />
       ) : (
         <section className="p-[2rem] mt-32 flex flex-col justify-center items-center z-50">
-          <SubHeader header2="Cart" />
+          <SubHeader header2="My Cart" />
           {cartProducts?.length === 0 ? (
             <div className="flex justify-center text-lg h-screen text-black">
               {" "}
@@ -172,9 +172,9 @@ export default function CartPage() {
             </div>
           ) : (
             <div className="grid xl:grid-cols-2 grid-col-1 gap-8 w-full mt-[4rem]">
-              <div className="bg-gray-100/80 p-4 rounded-md h-fit">
-                <h2 className="text-lg m-4 font-semibold text-center ">
-                  Your products
+              <div className="bg-gray-50 p-8 rounded-lg h-fit border-4 border-slate-500/80 hover:border-6">
+                <h2 className="text-lg text-slate-700 m-4 font-semibold text-center ">
+                  Your Order
                 </h2>
                 <CartMenuList
                   cartProducts={cartProducts}
@@ -184,8 +184,8 @@ export default function CartPage() {
                 />
               </div>
 
-              <div className="bg-gray-200/80 p-8 rounded-lg h-fit text-black">
-                <h2 className="text-lg m-4 font-semibold text-center">
+              <div className="bg-gray-50 p-8 rounded-lg h-fit border-4 border-slate-500/80">
+                <h2 className="text-lg text-slate-700 m-4 font-semibold text-center">
                   Checkout
                 </h2>
                 {message && (
@@ -227,8 +227,8 @@ export default function CartPage() {
                           }
                         );
                         await toast.promise(uploadSetting, {
-                          loading: "Payment is processing",
-                          success: "Payment processed successfully",
+                          loading: "Processing payment...",
+                          success: "Payment successful!",
                           error: "Payment failed",
                         });
                       } else {
@@ -272,13 +272,7 @@ export default function CartPage() {
                         },
                       }}
                       render={(Button) => (
-                        <Button
-                          style={{
-                            backgroundColor: "rgb(250, 204, 21)",
-                            color: "black",
-                            hover: { backgroundColor: "rgb(240, 180, 18)" },
-                          }}
-                        >
+                        <Button className="bg-yellow-400 text-black hover:bg-blue-400">
                           $
                           {`${(
                             totalPrice +
@@ -294,6 +288,6 @@ export default function CartPage() {
           )}
         </section>
       )}
-    </>
+    </div>
   );
 }
