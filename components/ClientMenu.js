@@ -43,10 +43,10 @@ const ClientMenu = (menuList) => {
 
       {/* used transform/hover:translate to give animation effect for each boxes */}
       <div
-        className="container relative group text-slate-100 rounded-md overflow-hidden shadow-xl
+        className="container relative group text-slate-100 rounded-md overflow-hidden shadow-xl bg-white
        backdrop-blur-sm transform hover:translate-y-[-15px] transition-transform duration-300 ring-1 ring-gray-300/60"
       >
-        <div className="w-full h-full flex flex-col items-center justify-around gap-4 bg-gray-700/95 hover:bg-gray-800/80 xl:p-12 p-8 ">
+        <div className="w-full h-full flex flex-col items-center justify-around gap-4 bg-slate-100/50 hover:bg-slate-200/50 xl:p-12 p-8 ">
           <div>
             <Image
               className="object-cover"
@@ -61,10 +61,10 @@ const ClientMenu = (menuList) => {
               </div>
             )}
           </div>
-          <h4 className="lg:text-xl font-semibold text-md text-orange-300">
+          <h4 className="lg:text-xl font-semibold text-md text-orange-400">
             {menuList.title}
           </h4>
-          <p className="text-md font-sans font-semibold text-center text-slate-100">
+          <p className="text-md font-sans font-semibold text-center text-slate-600">
             {menuList.description}
           </p>
 

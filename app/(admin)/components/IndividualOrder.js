@@ -123,7 +123,7 @@ const IndividualOrder = ({
       </div>
 
       {/* Larger devices  */}
-      <div className="w-full min-h-20 flex xl:flex-row flex-col items-center xl:divide-x xl:divide-y-0 divide-y font-semibold xl:text-lg text-md xl:px-0 px-24 text-gray-500/80 py-5">
+      <div className="w-full min-h-20 flex xl:flex-row flex-col items-center xl:divide-x xl:divide-y-0 divide-y font-semibold text-sm xl:px-0 px-24 text-gray-500/80 py-5">
         <div className="xl:w-2/6 w-full h-full flex flex-col items-center justify-center py-4 xl:py-0 gap-1 xl:gap-0">
           <p className="xl:hidden text-lg text-gray-800">Order ID:</p>
           <p>{orderId}</p>
