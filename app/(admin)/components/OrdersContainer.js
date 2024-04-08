@@ -400,7 +400,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
               className="cursor-pointer text-orange-500 peer transition-opacity opacity-50 hover:opacity-100 duration-500"
             />
             {/* HELP CONTAINER  */}
-            <div className="bg-gray-50 rounded-md shadow-md border-2 border-gray-300 absolute w-1/2 top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
+            <div className="bg-gray-50 rounded-md shadow-md ring-1 ring-gray-300 absolute w-1/2 top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
               <p>
                 Represents the{" "}
                 <span className="italic text-orange-500">unique order Id</span>{" "}
@@ -416,7 +416,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
               className="cursor-pointer text-orange-500 peer transition-opacity opacity-50 hover:opacity-100 duration-500"
             />
             {/* HELP CONTAINER  */}
-            <div className="bg-gray-50 rounded-md shadow-md border-2 border-gray-300 absolute w-full top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
+            <div className="bg-gray-50 rounded-md shadow-md ring-1 ring-gray-300 absolute w-full top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
               <p>
                 Represents the{" "}
                 <span className="italic text-orange-500">email</span> of the
@@ -432,7 +432,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
               className="cursor-pointer text-orange-500 peer transition-opacity opacity-50 hover:opacity-100 duration-500"
             />
             {/* HELP CONTAINER  */}
-            <div className="bg-gray-50 rounded-md shadow-md border-2 border-gray-300 absolute w-full top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
+            <div className="bg-gray-50 rounded-md shadow-md ring-1 ring-gray-300 absolute w-full top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
               <p>
                 Represents the{" "}
                 <span className="italic text-orange-500">order date</span> of
@@ -448,7 +448,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
               className="cursor-pointer text-orange-500 peer transition-opacity opacity-50 hover:opacity-100 duration-500"
             />
             {/* HELP CONTAINER  */}
-            <div className="bg-gray-50 rounded-md shadow-md border-2 border-gray-300 absolute w-full top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
+            <div className="bg-gray-50 rounded-md shadow-md ring-1 ring-gray-300 absolute w-96 top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
               <div>
                 Order statuses can 4 have possible states:{" "}
                 <span className="bg-green-50 border-green-200 text-green-800 border p-[2px] rounded-md">
@@ -496,7 +496,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
               className="cursor-pointer text-orange-500 peer transition-opacity opacity-50 hover:opacity-100 duration-500"
             />
             {/* HELP CONTAINER  */}
-            <div className="bg-gray-50 rounded-md shadow-md border-2 border-gray-300 absolute w-full top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
+            <div className="bg-gray-50 rounded-md shadow-md ring-1 ring-gray-300 absolute w-full top-10 z-10 p-6 text-md font-medium text-gray-700 flex flex-col gap-6 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-300 delay-300 peer-hover:delay-100">
               <p>
                 Represents the{" "}
                 <span className="italic text-orange-500">total item count</span>{" "}
