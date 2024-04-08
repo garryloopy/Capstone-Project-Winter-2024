@@ -27,33 +27,7 @@ const OrdersPage = () => {
 
   // Orders list
   const [ordersList, setOrdersList] = useState([]);
-
-  if (status === "unauthenticated") {
-    return redirect("/sign-in");
-  }
-
-  const handleCompletedOrderEmail = async (paymentId) => {
-    const res = await fetch("/api/email/sendOrderCompletion", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        paymentId: paymentId,
-      }),
-    });
-    if (!res.ok) console.log("Failed to send email");
-  };
-
-  const handleInProgressOrderEmail = async (paymentId) => {
-    const res = await fetch("/api/email/sendOrderInProgress", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        paymentId: paymentId,
-      }),
-    });
-    if (!res.ok) console.log("Failed to send in progress email");
-  };
-
+ 
   useEffect(() => {
     // Set loading
     setIsLoading(true);
@@ -90,6 +64,38 @@ const OrdersPage = () => {
     // Set loading
     setIsLoading(false);
   }, []);
+
+  if (status === "loading") {
+    return <Loading />;
+  }
+
+   if (status === "unauthenticated") {
+     return redirect("/sign-in");
+   }
+
+  const handleCompletedOrderEmail = async (paymentId) => {
+    const res = await fetch("/api/email/sendOrderCompletion", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        paymentId: paymentId,
+      }),
+    });
+    if (!res.ok) console.log("Failed to send email");
+  };
+
+  const handleInProgressOrderEmail = async (paymentId) => {
+    const res = await fetch("/api/email/sendOrderInProgress", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        paymentId: paymentId,
+      }),
+    });
+    if (!res.ok) console.log("Failed to send in progress email");
+  };
+
+  
 
   /**
    * Handler for status changes in order components
