@@ -98,17 +98,31 @@ export default function OrderConfirmationPage() {
   }, [deliveryAmount, clientInfo?.distance]);
 
   // clear cart shipping
-  const handleCart = useCallback(() => {
-    clearCart();
-  }, [clearCart]);
+  // const handleCart = useCallback(() => {
+  //   clearCart();
+  // }, [clearCart]);
+
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     if (window.location.href.includes("clear=1")) {
+  //       handleCart();
+  //     }
+  //   }
+  // }, [handleCart]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (window.location.href.includes("clear=1")) {
-        handleCart();
+    const handleClearCart = () => {
+      if (
+        typeof window !== "undefined" &&
+        window.location.href.includes("clear=1")
+      ) {
+        clearCart();
       }
-    }
-  }, [handleCart]);
+    };
+
+    handleClearCart();
+    
+  }, [window.location.href]);
   return (
     <>
       {loading ? (
