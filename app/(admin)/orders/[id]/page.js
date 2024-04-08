@@ -66,7 +66,7 @@ export default function OrderDetailsPage({ params }) {
    */
   const getOrderInfo = async () => {
     try {
-      if (id) {
+      if (id && params && params.id) {
         const res = await fetch(`/api/getOrder?id=${id}`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },

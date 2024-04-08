@@ -101,7 +101,7 @@ export default function OrderConfirmationPage() {
         handleCart();
       }
     }
-  }, []);
+  },[]);
 
   // calculate total price
   if (cartProducts) {
