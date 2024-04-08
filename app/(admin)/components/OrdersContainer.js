@@ -231,7 +231,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
         className="fixed inset-0 z-10 grid place-items-center backdrop-brightness-90 data-[show=true]:opacity-100 data-[show=true]:pointer-events-auto opacity-0 pointer-events-none transition-opacity duration-300"
       >
         <div
-          className="bg-gray-100 lg:size-[56rem] flex flex-col items-center justify-center gap-5 rounded-lg shadow-md sm:p-12 px-4 py-12 flex-wrap m-4"
+          className="bg-gray-100 w-max min-h-96 flex flex-col items-center justify-center gap-5 rounded-lg shadow-md sm:p-12 px-4 py-12 flex-wrap m-4"
           onClick={(ev) => ev.stopPropagation()}
         >
           {confirmationData && (
