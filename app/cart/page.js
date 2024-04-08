@@ -60,7 +60,6 @@ export default function CartPage() {
     removeCartProduct(index);
   };
 
-  
   useEffect(() => {
     //get the current location of user
     const getUserLocation = () => {
@@ -73,8 +72,6 @@ export default function CartPage() {
     };
     getUserLocation();
   }, [setUserLocation]);
-
-  
 
   useEffect(() => {
     //get the distance and duration
@@ -256,9 +253,9 @@ export default function CartPage() {
                     setInputValid={setInputValid}
                     setMessage={setMessage}
                   />
-                <div className="mb-3">
-                  <GooglePay />
-                </div>
+
+                  <GooglePay style={{ marginBottom: "20px" }} />
+
                   <div>
                     <CreditCard
                       includeInputLabels
