@@ -61,11 +61,6 @@ export default function OrderDetailsPage({ params }) {
   const { status } = session;
   const path = usePathname();
 
-  // Redirect user if unauthenticated
-  if (status === "unauthenticated") {
-    return redirect("/sign-in");
-  }
-
   /**
    * Gets the order info
    */
@@ -137,6 +132,14 @@ export default function OrderDetailsPage({ params }) {
 
     setIsLoading(false);
   }, []);
+
+  if (status === "loading") {
+    return <Loading />;
+  }
+  // Redirect user if unauthenticated
+  if (status === "unauthenticated") {
+    return redirect("/sign-in");
+  }
 
   /**
    * Handler for when a status changes within the children components

@@ -79,13 +79,6 @@ export default function OrderConfirmationPage() {
     setLastDigits,
   ]);
 
-  // calculate total price
-  if (cartProducts) {
-    for (const product of cartProducts) {
-      totalPrice += calculateTotalPrice(product);
-    }
-  }
-
   //calculate delivery amount
   useEffect(() => {
     if (clientInfo?.distance >= 10) {
@@ -98,31 +91,24 @@ export default function OrderConfirmationPage() {
   }, [deliveryAmount, clientInfo?.distance]);
 
   // clear cart shipping
-  // const handleCart = useCallback(() => {
-  //   clearCart();
-  // }, [clearCart]);
-
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     if (window.location.href.includes("clear=1")) {
-  //       handleCart();
-  //     }
-  //   }
-  // }, [handleCart]);
+  const handleCart = useCallback(() => {
+    clearCart();
+  }, [clearCart]);
 
   useEffect(() => {
-    const handleClearCart = () => {
-      if (
-        typeof window !== "undefined" &&
-        window.location.href.includes("clear=1")
-      ) {
-        clearCart();
+    if (typeof window !== "undefined") {
+      if (window.location.href.includes("clear=1")) {
+        handleCart();
       }
-    };
+    }
+  }, []);
 
-    handleClearCart();
-    
-  }, [window.location.href]);
+  // calculate total price
+  if (cartProducts) {
+    for (const product of cartProducts) {
+      totalPrice += calculateTotalPrice(product);
+    }
+  }
   return (
     <>
       {loading ? (
