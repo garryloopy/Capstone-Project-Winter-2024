@@ -75,7 +75,7 @@ function Menu() {
           <SubHeader header2="Menu" />
 
           {/* search bar */}
-          <form className="md:max-w-[50%] w-full flex my-[2rem] justify-center">
+          <form className="lg:max-w-[50%] w-full flex my-[2rem] justify-center">
             <label className="h-10 text-md w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-md focus-within:shadow-md transition-shadow duration-300 group bg-white">
               <input
                 className="w-full px-4 h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md text-md focus:bg-slate-50 focus:ring-2 focus:ring-lime-400"
@@ -96,7 +96,7 @@ function Menu() {
               Search
             </button> */}
           </form>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-col-2 grid-cols-1 lg:gap-8 md:gap-6 gap-2 mt-6 mb-8">
+          <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-8 md:gap-6 gap-2 mt-6 mb-8">
             {!search && menuList.length > 0 ? (
               menuList.map((menu) => <ClientMenu key={menu._id} {...menu} />)
             ) : menuListSearch?.length > 0 ? (
