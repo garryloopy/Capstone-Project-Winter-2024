@@ -46,27 +46,31 @@ const ClientMenu = (menuList) => {
         className="container relative group text-slate-100 rounded-md overflow-hidden shadow-xl bg-white
        backdrop-blur-sm transform hover:translate-y-[-15px] transition-transform duration-300 ring-1 ring-gray-300/60"
       >
-        <div className="w-full h-full flex flex-col items-center justify-around gap-4 bg-slate-100/50 hover:bg-slate-200/50 xl:p-12 p-8 ">
-          <div>
+        <div className="w-full h-full flex flex-col items-center justify-evenly gap-6 bg-slate-100/50 hover:bg-slate-200/50 p-8 xl:p-10 ">
+          <div className="max-w-[250px] max-h-[200px]">
             <Image
-              className="object-cover"
+              className="w-full h-full object-cover"
               src={menuList.image}
               alt={menuList.title}
               width={250}
-              height={250}
+              height={200}
             />
-            {menuList.discount > 0 && (
-              <div className="w-[30%] p-2 absolute top-6 left-2 bg-lime-400 -skew-x-[10deg] -skew-y-[20deg] text-center text-black">
-                {menuList.discount}%
-              </div>
-            )}
           </div>
-          <h4 className="lg:text-xl font-semibold text-md text-orange-400">
-            {menuList.title}
-          </h4>
-          <p className="text-md font-sans font-semibold text-center text-slate-600">
-            {menuList.description}
-          </p>
+          <div className="flex flex-col justify-center items-center gap-2 self-end">
+            <h4 className="text-center lg:text-xl font-semibold text-md text-orange-400">
+              {menuList.title}
+            </h4>
+
+            <p className="text-md font-sans font-semibold text-center text-slate-600 flex-1">
+              {menuList.description}
+            </p>
+          </div>
+
+          {menuList.discount > 0 && (
+            <div className="w-[30%] p-2 absolute top-6 left-2 bg-lime-400 -skew-x-[10deg] -skew-y-[20deg] text-center text-black">
+              {menuList.discount}%
+            </div>
+          )}
 
           {/* below is for hover transition/animation/opacity */}
           <div

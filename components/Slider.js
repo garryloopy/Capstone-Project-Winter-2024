@@ -6,7 +6,6 @@ const imagePaths = [
   "/images/gallery02.png",
   "/images/gallery03.png",
   "/images/background.jpg",
-  "/images/Lord_farquaad.jpg",
 ];
 
 function Slideshow() {
@@ -38,7 +37,7 @@ function Slideshow() {
  useEffect(() => {
    const interval = setInterval(() => {
      nextSlide();
-   }, 3000);
+   }, 4000);
    return () => clearInterval(interval);
  }, [nextSlide]);
 
