@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Order Complete - Customer</title>
   </head>
   <body>
     <section
@@ -43,7 +43,6 @@
           </p>
         </div>
       </div>
-      <!-- Your remaining content here -->
       <div style="text-align: center; padding-bottom: 1rem">
         <h2
           style="
@@ -53,10 +52,11 @@
             margin-bottom: 0.5rem;
           "
         >
-          Thank you for reaching out to us at Miggy's Munchies!
+          Thank you for choosing Miggy's Munchies!. We hope you enjoy our
+          homemade goodness.
         </h2>
         <p style="color: #6b7280; font-size: 1rem; margin: 0">
-          We have received your message and we will reply to you shortly.
+          Below regards your order.
         </p>
       </div>
       <div style="padding-bottom: 1rem; border-bottom: 1px solid #ccc">
@@ -71,19 +71,29 @@
           Contact Information:
         </h3>
         <p style="color: #6b7280; font-size: 1rem; margin: 0">
-          <strong>Name:</strong>
-          <span style="color: #4b5563">${data.name}</span>
+          <strong>Phone number:</strong>
+          <span style="color: #4b5563">${clientInfo.tel}</span>
         </p>
         <p style="color: #6b7280; font-size: 1rem; margin: 0">
-          <strong>Phone Number:</strong>
-          <span style="color: #4b5563">${data.phoneNumber}</span>
+          <strong>Address:</strong>
+          <span style="color: #4b5563">${clientInfo.address}</span>
         </p>
         <p style="color: #6b7280; font-size: 1rem; margin: 0">
-          <strong>Email Address:</strong>
-          <span style="color: #4b5563">${data.email}</span>
+          <strong>Apartment:</strong>
+          <span style="color: #4b5563">${clientInfo.apartment}</span>
+        </p>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>ZIP:</strong>
+          <span style="color: #4b5563">${clientInfo.zip}</span>
+        </p>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Payment type:</strong>
+          <span style="color: #4b5563"
+            >${cardBrand} ending with ${lastDigits}</span
+          >
         </p>
       </div>
-      <div style="padding-top: 1rem">
+      <div style="padding-bottom: 1rem; border-bottom: 1px solid #ccc">
         <h3
           style="
             color: #374151;
@@ -92,10 +102,23 @@
             margin-bottom: 0.5rem;
           "
         >
-          Message:
+          Order details:
         </h3>
         <p style="color: #6b7280; font-size: 1rem; margin: 0">
-          ${data.message}
+          <strong>Order ID:</strong>
+          <span style="color: #4b5563">${orderId}</span>
+        </p>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Items:</strong>
+          <span style="color: #4b5563">${cartProducts.length} item(s)</span>
+        </p>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Order type:</strong>
+          <span style="color: #4b5563">${clientInfo.deliveryType}</span>
+        </p>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Receipt:</strong>
+          <a href="http://localhost:3000/receipt/${paymentId}">Click here</a>
         </p>
       </div>
     </section>
