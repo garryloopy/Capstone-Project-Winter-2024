@@ -94,9 +94,14 @@ const MenuPopUp = ({
       >
         <div
           onClick={(ev) => ev.stopPropagation()}
-          className="bg-white my-8 p-4 rounded-lg max-w-md max-h-screen overflow-y-scroll z-50 flex flex-col gap-2"
+          className="bg-white my-8 p-4 rounded-lg max-w-md max-h-screen overflow-y-scroll z-50 flex flex-col gap-2 relative"
           style={{ maxHeight: `calc(100vh - 100px)` }}
         >
+          {menuList.discount > 0 && (
+            <div className="w-[30%] p-2 absolute top-6 left-2 bg-lime-400 -skew-x-[10deg] -skew-y-[20deg] text-center text-black">
+              {menuList.discount}%
+            </div>
+          )}
           <Image
             src={menuList.image}
             alt={menuList.title}
