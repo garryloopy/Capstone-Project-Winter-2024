@@ -22,34 +22,99 @@ export async function POST(req) {
       to: process.env.EMAIL_USER,
       subject: `Miggy's Munchies Contact Entry from ${data.name}`,
       html: `
-      <section style="max-width: 32rem; margin: 0 auto; padding: 1rem; font-family: Arial, sans-serif; border: 1px solid #ccc; border-radius: 8px;">
-        <div style="text-align: center; padding-bottom: 1rem;">
-          <h2 style="color: #374151; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">
-            A contact entry was received
-          </h2>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            Below regards the information for this entry.
-          </p>
+      <section
+      style="
+        max-width: 32rem;
+        margin: 0 auto;
+        padding: 1rem;
+        font-family: Arial, sans-serif;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-image: url('../public/images/BGv4.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative; /* Make section a positioning context */
+      "
+    >
+      <div style="text-align: center; padding-bottom: 1rem">
+        <div style="position: relative; display: flex; align-items: center">
+          <!-- Container for icon and text content -->
+          <div style="flex: 0 0 auto">
+            <!-- Icon container -->
+            <img
+              src="../public/images/Logo-02.jpg"
+              style="
+                width: 50px; /* Adjust the width to make the icon smaller */
+                height: auto; /* Maintain aspect ratio */
+              "
+            />
+          </div>
+          <div style="flex: 1; padding-left: 20px; text-align: right">
+            <!-- Text content container with right alignment -->
+            <p style="color: #6b7280; font-size: 0.8rem; margin: 0">
+              79 Castleridge Close NE, Calgary, AB
+            </p>
+            <p style="color: #6b7280; font-size: 0.8rem; margin: 0">
+              Sat - Sun: 12pm - 8pm
+            </p>
+          </div>
         </div>
-        <div style="padding-bottom: 1rem; border-bottom: 1px solid #ccc;">
-          <h3 style="color: #374151; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Contact Information:</h3>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>Name:</strong> <span style="color: #4B5563;">${data.name}</span>
-          </p>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>Phone Number:</strong> <span style="color: #4B5563;">${data.phoneNumber}</span>
-          </p>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>Email Address:</strong> <span style="color: #4B5563;">${data.email}</span>
-          </p>
-        </div>
-        <div style="padding-top: 1rem;">
-          <h3 style="color: #374151; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Message:</h3>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            ${data.message}
-          </p>
-        </div>
-      </section>
+
+        <h2
+          style="
+            color: #374151;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+          "
+        >
+          A contact entry was received
+        </h2>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          Below regards the information for this entry.
+        </p>
+      </div>
+      <div style="padding-bottom: 1rem; border-bottom: 1px solid #ccc">
+        <h3
+          style="
+            color: #374151;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+          "
+        >
+          Contact Information:
+        </h3>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Name:</strong>
+          <span style="color: #4b5563">${data.name}</span>
+        </p>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Phone Number:</strong>
+          <span style="color: #4b5563">${data.phoneNumber}</span>
+        </p>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Email Address:</strong>
+          <span style="color: #4b5563">${data.email}</span>
+        </p>
+      </div>
+      <div style="padding-top: 1rem">
+        <h3
+          style="
+            color: #374151;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+          "
+        >
+          Message:
+        </h3>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          ${data.message}
+        </p>
+      </div>
+    </section>
     `,
     };
 
@@ -58,34 +123,98 @@ export async function POST(req) {
       to: data.email,
       subject: `Miggy's Munchies Contact Entry Received`,
       html: `
-      <section style="max-width: 32rem; margin: 0 auto; padding: 1rem; font-family: Arial, sans-serif; border: 1px solid #ccc; border-radius: 8px;">
-        <div style="text-align: center; padding-bottom: 1rem;">
-          <h2 style="color: #374151; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">
-            Thank you for reaching out to us at Miggy's Munchies!
-          </h2>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            We have received your message and we will reply to you shortly.
+      <section
+      style="
+        max-width: 32rem;
+        margin: 0 auto;
+        padding: 1rem;
+        font-family: Arial, sans-serif;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-image: url('../public/images/BGv4.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative; /* Make section a positioning context */
+      "
+    >
+      <div style="position: relative; display: flex; align-items: center">
+        <!-- Container for icon and text content -->
+        <div style="flex: 0 0 auto">
+          <!-- Icon container -->
+          <img
+            src="../public/images/Logo-02.jpg"
+            style="
+              width: 50px; /* Adjust the width to make the icon smaller */
+              height: auto; /* Maintain aspect ratio */
+            "
+          />
+        </div>
+        <div style="flex: 1; padding-left: 20px; text-align: right">
+          <!-- Text content container with right alignment -->
+          <p style="color: #6b7280; font-size: 0.8rem; margin: 0">
+            79 Castleridge Close NE, Calgary, AB
+          </p>
+          <p style="color: #6b7280; font-size: 0.8rem; margin: 0">
+            Sat - Sun: 12pm - 8pm
           </p>
         </div>
-        <div style="padding-bottom: 1rem; border-bottom: 1px solid #ccc;">
-          <h3 style="color: #374151; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Contact Information:</h3>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>Name:</strong> <span style="color: #4B5563;">${data.name}</span>
-          </p>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>Phone Number:</strong> <span style="color: #4B5563;">${data.phoneNumber}</span>
-          </p>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>Email Address:</strong> <span style="color: #4B5563;">${data.email}</span>
-          </p>
-        </div>
-        <div style="padding-top: 1rem;">
-          <h3 style="color: #374151; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Message:</h3>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            ${data.message}
-          </p>
-        </div>
-      </section>
+      </div>
+      <div style="text-align: center; padding-bottom: 1rem">
+        <h2
+          style="
+            color: #374151;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+          "
+        >
+          Thank you for reaching out to us at Miggy's Munchies!
+        </h2>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          We have received your message and we will reply to you shortly.
+        </p>
+      </div>
+      <div style="padding-bottom: 1rem; border-bottom: 1px solid #ccc">
+        <h3
+          style="
+            color: #374151;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+          "
+        >
+          Contact Information:
+        </h3>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Name:</strong>
+          <span style="color: #4b5563">${data.name}</span>
+        </p>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Phone Number:</strong>
+          <span style="color: #4b5563">${data.phoneNumber}</span>
+        </p>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Email Address:</strong>
+          <span style="color: #4b5563">${data.email}</span>
+        </p>
+      </div>
+      <div style="padding-top: 1rem">
+        <h3
+          style="
+            color: #374151;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+          "
+        >
+          Message:
+        </h3>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          ${data.message}
+        </p>
+      </div>
+    </section>
     `,
     };
 
