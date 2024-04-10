@@ -30,7 +30,7 @@ const MenuScroll = () => {
   return (
     <>
       <button
-        data-visible={isVisible}
+        data-visible={!isVisible}
         className="fixed bottom-4 md:right-10 right-0 transform -translate-x-1/2 z-50 bg-orange-400 text-white rounded-full w-12 h-12 flex items-center justify-center 
                     cursor-pointer transition-opacity duration-300 hover:bg-orange-600 opacity-0 data-[visible=true]:opacity-100 pointer-events-none data-[visible=true]:pointer-events-auto"
         onClick={scrollToTop}
