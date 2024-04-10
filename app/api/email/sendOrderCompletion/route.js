@@ -50,50 +50,122 @@ export async function POST(req) {
       to: clientInfo.email,
       subject: `Miggy's Munchies Order Completed`,
       html: `
-      <section style="max-width: 32rem; margin: 0 auto; padding: 1rem; font-family: Arial, sans-serif; border: 1px solid #ccc; border-radius: 8px;">
-        <div style="text-align: center; padding-bottom: 1rem;">
-          <h2 style="color: #374151; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">
-            Thank you for choosing Miggy's Munchies!. We hope you enjoy our homemade goodness.
-          </h2>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            Below regards your order.
+      <section
+      style="
+        max-width: 32rem;
+        margin: 0 auto;
+        padding: 1rem;
+        font-family: Arial, sans-serif;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-image: url('../public/images/BGv4.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative; /* Make section a positioning context */
+      "
+    >
+      <div style="position: relative; display: flex; align-items: center">
+        <!-- Container for icon and text content -->
+        <div style="flex: 0 0 auto">
+          <!-- Icon container -->
+          <img
+            src="../public/images/Logo-02.jpg"
+            style="
+              width: 50px; /* Adjust the width to make the icon smaller */
+              height: auto; /* Maintain aspect ratio */
+            "
+          />
+        </div>
+        <div style="flex: 1; padding-left: 20px; text-align: right">
+          <!-- Text content container with right alignment -->
+          <p style="color: #6b7280; font-size: 0.8rem; margin: 0">
+            79 Castleridge Close NE, Calgary, AB
+          </p>
+          <p style="color: #6b7280; font-size: 0.8rem; margin: 0">
+            Sat - Sun: 12pm - 8pm
           </p>
         </div>
-        <div style="padding-bottom: 1rem; border-bottom: 1px solid #ccc;">
-          <h3 style="color: #374151; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Contact Information:</h3>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>Phone number:</strong> <span style="color: #4B5563;">${clientInfo.tel}</span>
-          </p>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>Address:</strong> <span style="color: #4B5563;">${clientInfo.address}</span>
-          </p>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>Apartment:</strong> <span style="color: #4B5563;">${clientInfo.apartment}</span>
-          </p>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>ZIP:</strong> <span style="color: #4B5563;">${clientInfo.zip}</span>
-          </p>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>Payment type:</strong> <span style="color: #4B5563;">${cardBrand} ending with ${lastDigits}</span>
-          </p>
-        </div>
-        <div style="padding-bottom: 1rem; border-bottom: 1px solid #ccc;">
-          <h3 style="color: #374151; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Order details:</h3>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-          <strong>Order ID:</strong> <span style="color: #4B5563;">${orderId}</span>
-          </p>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>Items:</strong> <span style="color: #4B5563;">${cartProducts.length} item(s)</span>
-          </p>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>Order type:</strong> <span style="color: #4B5563;">${clientInfo.deliveryType}</span>
-          </p>
-          <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-            <strong>Receipt:</strong> <a href="http://localhost:3000/receipt/${paymentId}">http://localhost:3000/receipt/${paymentId}</span>
-          </p>
-          
-        </div>
-      </section>
+      </div>
+      <div style="text-align: center; padding-bottom: 1rem">
+        <h2
+          style="
+            color: #374151;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+          "
+        >
+          Thank you for choosing Miggy's Munchies!. We hope you enjoy our
+          homemade goodness.
+        </h2>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          Below regards your order.
+        </p>
+      </div>
+      <div style="padding-bottom: 1rem; border-bottom: 1px solid #ccc">
+        <h3
+          style="
+            color: #374151;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+          "
+        >
+          Contact Information:
+        </h3>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Phone number:</strong>
+          <span style="color: #4b5563">${clientInfo.tel}</span>
+        </p>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Address:</strong>
+          <span style="color: #4b5563">${clientInfo.address}</span>
+        </p>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Apartment:</strong>
+          <span style="color: #4b5563">${clientInfo.apartment}</span>
+        </p>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>ZIP:</strong>
+          <span style="color: #4b5563">${clientInfo.zip}</span>
+        </p>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Payment type:</strong>
+          <span style="color: #4b5563"
+            >${cardBrand} ending with ${lastDigits}</span
+          >
+        </p>
+      </div>
+      <div style="padding-bottom: 1rem; border-bottom: 1px solid #ccc">
+        <h3
+          style="
+            color: #374151;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+          "
+        >
+          Order details:
+        </h3>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Order ID:</strong>
+          <span style="color: #4b5563">${orderId}</span>
+        </p>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Items:</strong>
+          <span style="color: #4b5563">${cartProducts.length} item(s)</span>
+        </p>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Order type:</strong>
+          <span style="color: #4b5563">${clientInfo.deliveryType}</span>
+        </p>
+        <p style="color: #6b7280; font-size: 1rem; margin: 0">
+          <strong>Receipt:</strong>
+          <a href="http://localhost:3000/receipt/${paymentId}">Click here</a>
+        </p>
+      </div>
+    </section>
     `,
     };
     //   <div style="padding-top: 1rem;">
