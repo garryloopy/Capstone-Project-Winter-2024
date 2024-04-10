@@ -238,14 +238,14 @@ export default function CartPage() {
                     }
                   }}
                   // ------ this is for Google Pay ------
-                  createPaymentRequest={() => ({
-                    countryCode: "CA",
-                    currencyCode: "CAD",
-                    total: {
-                      amount: totalPricePlusDelivery.toFixed(2),
-                      label: "Total",
-                    },
-                  })}
+                  // createPaymentRequest={() => ({
+                  //   countryCode: "CA",
+                  //   currencyCode: "CAD",
+                  //   total: {
+                  //     amount: totalPricePlusDelivery.toFixed(2),
+                  //     label: "Total",
+                  //   },
+                  // })}
                 >
                   <CartClientInfo
                     clientInfo={clientInfo}
@@ -254,7 +254,7 @@ export default function CartPage() {
                     setMessage={setMessage}
                   />
 
-                  <GooglePay style={{ marginBottom: "20px" }} />
+                  {/* <GooglePay style={{ marginBottom: "20px" }} /> */}
 
                   <div>
                     <CreditCard
