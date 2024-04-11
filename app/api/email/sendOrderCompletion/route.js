@@ -58,7 +58,7 @@ export async function POST(req) {
         font-family: Arial, sans-serif;
         border: 1px solid #ccc;
         border-radius: 8px;
-        background-image: url('../public/images/BGv4.png');
+        background-image: url('https://res.cloudinary.com/dbrxp9wqa/image/upload/v1712812764/BGv4_tz6gmr.png');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -70,7 +70,7 @@ export async function POST(req) {
         <div style="flex: 0 0 auto">
           <!-- Icon container -->
           <img
-            src="../public/images/Logo-02.jpg"
+            src="https://res.cloudinary.com/dbrxp9wqa/image/upload/v1712812744/Logo-01_osk7rc.jpg"
             style="
               width: 50px; /* Adjust the width to make the icon smaller */
               height: auto; /* Maintain aspect ratio */
@@ -168,12 +168,6 @@ export async function POST(req) {
     </section>
     `,
     };
-    //   <div style="padding-top: 1rem;">
-    //   <h3 style="color: #374151; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Message:</h3>
-    //   <p style="color: #6B7280; font-size: 1rem; margin: 0;">
-    //     ${data.message}
-    //   </p>
-    // </div>
 
     transporter.sendMail(customerMailOptions);
     return NextResponse.json(
