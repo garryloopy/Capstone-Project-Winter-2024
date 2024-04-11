@@ -169,7 +169,7 @@ export default function CartPage() {
             </div>
           ) : (
             <div className="grid xl:grid-cols-2 grid-col-1 gap-8 w-full mt-[4rem]">
-              <div className="bg-gray-50 p-8 rounded-lg h-fit border-4 border-slate-500/80 hover:border-6">
+              <div className="bg-gray-50 p-8 rounded-lg h-fit ring-2 ring-slate-500/80 hover:border-6">
                 <h2 className="text-lg text-slate-700 m-4 font-semibold text-center ">
                   Your Order
                 </h2>
@@ -181,7 +181,7 @@ export default function CartPage() {
                 />
               </div>
 
-              <div className="bg-gray-50 p-8 rounded-lg h-fit border-4 border-slate-500/80">
+              <div className="bg-gray-50 p-8 rounded-lg h-fit ring-2 ring-slate-500/80">
                 <h2 className="text-lg text-slate-700 m-4 font-semibold text-center">
                   Checkout
                 </h2>
