@@ -22,7 +22,7 @@ const About = () => {
 
   return (
     <div className="flex flex-col items-center shadow-2xl backdrop-blur-sm rounded-2xl">
-      <h2 className="lnFont text-4xl font-bold text-yellow-500 mt-10">
+      <h2 className="lnFont text-4xl font-bold text-yellow-500 mt-11">
         About Us
       </h2>
       {/* <SubHeader header2="About Us" /> */}
