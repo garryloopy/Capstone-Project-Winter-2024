@@ -111,7 +111,7 @@ select {
 
 .sign_button {
   letter-spacing: 1px;
-  @apply w-full rounded-md mt-12 p-2 text-sm border border-lime-400 text-black font-semibold bg-lime-400 hover:bg-lime-300 shadow-md;
+  @apply w-full rounded-md mt-12 p-2 text-sm border border-emerald-500 text-black font-semibold bg-lime-300 hover:bg-lime-200 shadow-md;
 }
 
 .cancel_button {

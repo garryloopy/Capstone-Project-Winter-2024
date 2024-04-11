@@ -61,7 +61,7 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
                 {title} Type
               </span>
               <input
-                className="mt-[.3rem] p-2 text-sm text-gray-600 rounded-md w-full outline-none ring-1 ring-gray-300 bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:shadow-md"
+                className="mt-[.3rem] p-2 text-sm text-gray-600 rounded-md w-full outline-none ring-1 ring-gray-300 bg-white focus:ring-2 focus:ring-emerald-500 focus:shadow-md"
                 type="text"
                 placeholder={title}
                 value={size?.name}
@@ -73,7 +73,7 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
                 Price
               </span>
               <input
-                className="mt-[.3rem] p-2 text-sm text-gray-600 rounded-md w-full outline-none ring-1 ring-gray-300 bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:shadow-md"
+                className="mt-[.3rem] p-2 text-sm text-gray-600 rounded-md w-full outline-none ring-1 ring-gray-300 bg-white focus:ring-2 focus:ring-emerald-500 focus:shadow-md"
                 type="text"
                 placeholder="Extra Price"
                 value={size?.price}
@@ -83,7 +83,7 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
             <div className="bg-white rounded-lg mt-[1.5rem]">
               <button
                 type="button"
-                className="size-10 border rounded-md bg-white hover:bg-lime-400 overflow-hidden"
+                className="size-10 border rounded-md bg-white hover:bg-red-400/85 overflow-hidden"
                 onClick={() => handleDeleteProp(index)}
               >
                 <FontAwesomeIcon icon={faTrash} />
@@ -92,10 +92,12 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
           </div>
         ))}
 
+
+      {/* this buttons is for "+ Add Extra" */}
       <button
         type="button"
         onClick={handleAddProps}
-        className="py-2 bg-lime-100 font-semibold rounded-md flex items-center justify-center gap-2 hover:bg-lime-200 active:bg-lime-100 shadow-md mt-6"
+        className="py-2 bg-lime-300  hover:bg-lime-200 ring-1 ring-emerald-500 font-semibold rounded-md flex items-center justify-center gap-2 active:bg-lime-100 shadow-md mt-6"
       >
         <FontAwesomeIcon icon={faPlus} />
         {buttonTitle}

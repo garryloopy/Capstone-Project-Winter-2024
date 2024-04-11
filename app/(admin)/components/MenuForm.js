@@ -90,7 +90,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
                 className="hidden"
                 onChange={handleFileChange}
               />
-              <span className="px-8 py-2 bg-neutral-200 hover:bg-neutral-50 shadow-md text-[0.8rem] ring-1 ring-emerald-500 rounded-lg cursor-pointer">
+              <span className="px-8 py-2 bg-neutral-100 hover:bg-lime-300/85 shadow-md text-[0.8rem] ring-1 ring-emerald-500 rounded-lg cursor-pointer">
                 {menuList ? "Edit image" : "Upload image"}
               </span>
             </label>
