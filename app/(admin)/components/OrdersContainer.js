@@ -536,7 +536,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                   />
                 );
               })
-            : ["PENDING", "IN-PROGRESS", "COMPLETED"].map(
+            : ["PENDING", "IN PROGRESS", "COMPLETED"].map(
                 (category) =>
                   categorizedItems[category] && (
                     <div
