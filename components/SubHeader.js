@@ -4,7 +4,7 @@ import { FaSpoon } from "react-icons/fa6";
 
 const SubHeader = ({ header2 }) => {
   return (
-    <div className="my-[1rem] flex flex-row items-center gap-6">
+    <div className="my-[1rem] flex flex-row items-center gap-6 transition-opacity">
       {/* <img
         src="/images/spoon.png"
         alt="spoon"
