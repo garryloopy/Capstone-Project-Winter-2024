@@ -67,7 +67,7 @@ const ClientMenu = (menuList) => {
           </div>
 
           {menuList.discount > 0 && (
-            <div className="w-[30%] p-2 absolute top-6 left-2 bg-lime-400 -skew-x-[10deg] -skew-y-[20deg] text-center text-black">
+            <div className="w-[30%] p-2 absolute top-6 left-2 bg-lime-400 border-2 border-orange-300 -skew-x-[10deg] -skew-y-[20deg] text-center text-black">
               {menuList.discount}%
             </div>
           )}
