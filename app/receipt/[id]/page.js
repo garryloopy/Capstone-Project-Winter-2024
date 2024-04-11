@@ -114,7 +114,7 @@ export default function OrderConfirmationPage() {
       {loading ? (
         <Loading />
       ) : (
-        <section className=" bg-gray-300/60 my-[8rem]">
+        <section className=" bg-gray-50 ring-2 ring-slate-500/80 my-[8rem]">
           <div className="w-full px-[2rem] ">
             <div className="md:px-[4rem] px-[2rem] py-[1rem] flex md:flex-row flex-col justify-between">
               <SubHeader header2="Receipt" />
@@ -143,25 +143,24 @@ export default function OrderConfirmationPage() {
                 </h3>
               )}
             </div>
-            <div className="flex justify-center items-center lg:w-[60%] w-full mx-auto text-center my-[2rem]">
+            <div className="border-b-2 border-gray-400 flex justify-center items-center lg:w-[60%] w-full mx-auto text-center my-[2rem]">
               {clientInfo?.deliveryType === "pickup" ? (
-                <h2 className="font-extrabold text-md text-orange-500">
-                  Your order will be prepared and ready for pickup at our
-                  location. Kindly visit us within the next 20 minutes to
-                  collect your items. Your timely pickup will ensure that your
-                  order is fresh and ready for your enjoyment.
+                <h2 className="m-8 p-3 font-bold lnFont text-lg text-gray-600">
+                  Your order will be prepared and will be ready for pickup at our location. 
+                  Please visit us within the next 20 minutes to collect your items. 
+                  Timely pickup will ensure that your order is fresh and ready for your enjoyment.
                 </h2>
               ) : (
-                <h2 className="font-extrabold text-md text-orange-500">
-                  Your order will be prepared and will let you know when is out
-                  for delivery by sending email at {clientInfo?.email}.
+                <h2 className="m-8 p-3 font-bold lnFont text-lg text-gray-600">
+                  Your order will be prepared, and we will notify you when it is out for delivery 
+                  by sending an email to {clientInfo?.email}.
                 </h2>
               )}
             </div>
           </div>
           <div className="flex lg:flex-row flex-col gap-4 px-[4rem] py-[2rem]">
             <div className="basis-[60%]">
-              <h2 className="text-center text-lg font-bold text-gray-500 mb-[2rem]">
+              <h2 className="text-center text-lg font-bold text-gray-600 mb-[2rem]">
                 Your order
               </h2>
               <CartMenuList
@@ -170,8 +169,8 @@ export default function OrderConfirmationPage() {
                 deliveryAmount={deliveryAmount}
               />
             </div>
-            <div className="basis-[40%] lg:border border-slate-700 h-fit p-[2rem] my-[2rem]">
-              <h2 className="text-lg font-bold text-gray-500 mb-[2rem]">
+            <div className="basis-[30%] border-2 border-slate-400 rounded-xl lg:border h-fit p-[2rem] my-[6rem] ml-[8rem]">
+              <h2 className="text-lg font-bold text-gray-600 mb-[2rem]">
                 Contact Information
               </h2>
               <BillingAddress clientInfo={clientInfo} />
