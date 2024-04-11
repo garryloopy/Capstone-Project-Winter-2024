@@ -22,6 +22,9 @@ module.exports = {
           '0%, 100%': { opacity: 1 },
           '50%': { opacity: 0.3 },
         },
+        ping: {
+          '75%, 100%': { transform: 'scale(2)', opacity: 0 },
+        }
       },
       /* added bounce property so we can change the animation timing */
       /* added wiggle, pulse animations as a test */
@@ -29,6 +32,7 @@ module.exports = {
         bounce: 'bounce 1s infinite',
         wiggle: 'wiggle 0.5s ease-in-out infinite',
         pulse: 'pulse 2s infinite',
+        ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
