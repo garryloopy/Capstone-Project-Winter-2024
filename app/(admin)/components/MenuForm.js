@@ -72,7 +72,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
         <div className="grid place-content-center w-full h-max">
           <div className="size-96 bg-white ring-1 ring-gray-400 rounded-lg flex flex-col justify-evenly items-center">
             {/* Image container  */}
-            <div className="size-1/2 ring-1 ring-emerald-500 shadow-md rounded-full relative overflow-hidden animate-pulse">
+            <div className="size-1/2 ring-1 ring-emerald-500 shadow-md rounded-full relative overflow-hidden">
               {menuInput.image && (
                 <Image
                   src={menuInput.image}

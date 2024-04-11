@@ -18,12 +18,17 @@ module.exports = {
           '0%, 100%': { transform: 'rotate(-3deg)' },
           '50%': { transform: 'rotate(3deg)' },
         },
+        pulse: {
+          '0%, 100%': { opacity: 1 },
+          '50%': { opacity: 0.3 },
+        },
       },
       /* added bounce property so we can change the animation timing */
-      /* added wiggle animation as a test */
+      /* added wiggle, pulse animations as a test */
       animation: {
         bounce: 'bounce 1s infinite',
         wiggle: 'wiggle 0.5s ease-in-out infinite',
+        pulse: 'pulse 2s infinite',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
