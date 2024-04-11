@@ -214,7 +214,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
   return (
     <div className="min-h-screen w-full bg-neutral-50 mb-8 flex flex-col rounded-xl shadow-md relative">
       {/* Shadow effect  */}
-      <div className="absolute inset-10 bg-violet-500/50 -z-10 blur-3xl rounded-lg" />
+      <div className="absolute inset-10 bg-blue-400/50 -z-10 blur-3xl rounded-lg" />
 
       {/* Modal message  */}
       <ModalMessage
