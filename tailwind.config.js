@@ -15,8 +15,8 @@ module.exports = {
           animationTimingFunction: 'cubic-bezier(0.8,0,1,1)',
         },
         wiggle: {
-          '0%, 100%': { transform: 'rotate(-4deg)' },
-          '50%': { transform: 'rotate(4deg)' },
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
         },
       },
       /* added bounce property so we can change the animation timing */

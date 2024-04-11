@@ -32,7 +32,7 @@ const NewFlavor = () => {
           Discover the homemade delights of Miggy’s Munchies, where every bite is crafted with passion and creativity. 
           From our kitchen to your table, enjoy the taste of homemade goodness.
         </p>
-        <div className="my-[2rem] hidden xl:block">
+        <div className="my-[2rem] animate-wiggle hidden xl:block">
           <Link className="btnStyle" href="/menu">
             Order Now
           </Link>
