@@ -266,7 +266,7 @@ export default function OrderDetailsPage({ params }) {
         </div>
       </div>
 
-      <div className="bg-gray-50 w-full h-full rounded-md flex flex-col relative">
+      <div className="bg-gray-50 w-full h-full rounded-md flex flex-col relative ring-1 ring-gray-300/75 overflow">
         {/* Confirmation  */}
         <div
           className={`absolute inset-0 z-10 grid place-items-center backdrop-brightness-90 ${
@@ -334,7 +334,7 @@ export default function OrderDetailsPage({ params }) {
         </div>
 
         {/* Main section  */}
-        <div className="flex-1 min-h-screen bg-gray-50 flex flex-col">
+        <div className="flex-1 min-h-screen bg-gray-50 flex flex-col rounded-md">
           {/* Main section header  */}
           <div className="flex flex-col">
             {/* Order Status  */}
@@ -514,7 +514,7 @@ export default function OrderDetailsPage({ params }) {
             </div>
 
             {/* Right side  */}
-            <div className="flex-1 bg-gray-100">
+            <div className="flex-1 bg-gray-100/25">
               {/* Contact info section  */}
               <div className="w-full flex flex-col justify-center items-center xl:items-start gap-8 p-8">
                 <p className="text-2xl font-semibold text-gray-500">

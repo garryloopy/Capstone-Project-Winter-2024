@@ -212,7 +212,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
   };
 
   return (
-    <div className="min-h-screen w-full bg-neutral-50 mb-8 flex flex-col rounded-xl shadow-md relative ring-1 ring-gray-400/90">
+    <div className="min-h-screen w-full bg-neutral-50 mb-8 flex flex-col rounded-xl shadow-md relative ring-1 ring-gray-300/75">
       {/* Shadow effect  */}
       <div className="absolute inset-10 bg-blue-400/50 -z-10 blur-3xl rounded-lg" />
 
