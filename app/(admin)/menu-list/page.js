@@ -146,7 +146,6 @@ const AdminPage = ({ swal }) => {
 
   return (
     <>
-      <MenuScroll />
       <section className="flex flex-col justify-center items-center md:p-[6rem] p-4">
         <AdminNavbar path={path} />
         <SubHeader header2="Create Menu" />

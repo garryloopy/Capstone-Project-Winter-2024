@@ -67,12 +67,12 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
     }
   };
   return (
-    <div className="w-full lg:w-[50%] my-[3rem] rounded-xl overflow-hidden ring-1 ring-lime-400 shadow-lg shadow-lime-100 bg-white">
-      <div className="bg-yellow-50/10 p-12 flex flex-col gap-8 justify-center">
+    <div className="w-full lg:w-[50%] my-[3rem] rounded-xl overflow-hidden ring-1 ring-neutral-400">
+      <div className="bg-gray-50 p-12 flex flex-col gap-8 justify-center">
         <div className="grid place-content-center w-full h-max">
-          <div className="size-96 bg-white ring-1 ring-lime-400 rounded-lg flex flex-col justify-evenly items-center">
+          <div className="size-96 bg-white ring-1 ring-gray-400 rounded-lg flex flex-col justify-evenly items-center">
             {/* Image container  */}
-            <div className="size-1/2 ring-1 ring-gray-400 shadow-md rounded-full relative overflow-hidden">
+            <div className="size-1/2 ring-1 ring-emerald-500 shadow-md rounded-full relative overflow-hidden animate-pulse">
               {menuInput.image && (
                 <Image
                   src={menuInput.image}
@@ -90,7 +90,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
                 className="hidden"
                 onChange={handleFileChange}
               />
-              <span className="px-8 py-2 bg-white shadow-md text-[0.8rem] ring-1 ring-lime-400 rounded-lg hover:bg-lime-400 cursor-pointer">
+              <span className="px-8 py-2 bg-neutral-200 hover:bg-neutral-50 shadow-md text-[0.8rem] ring-1 ring-emerald-500 rounded-lg cursor-pointer">
                 {menuList ? "Edit image" : "Upload image"}
               </span>
             </label>
@@ -125,7 +125,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
           }
         >
           <label className="w-full">
-            <span className="text-sm text-gray-400 font-semibold">Title</span>
+            <span className="text-sm text-gray-500 font-semibold">Title</span>
             <input
               type="text"
               className="form_input"
@@ -137,7 +137,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
             />
           </label>
           <label className="w-full">
-            <span className="text-sm text-gray-400 font-semibold">
+            <span className="text-sm text-gray-500 font-semibold">
               Description
             </span>
             <input
@@ -152,7 +152,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
           </label>
 
           <label className="w-full">
-            <span className="text-sm text-gray-400 font-semibold">
+            <span className="text-sm text-gray-500 font-semibold">
               Base price
             </span>
             <input
@@ -167,7 +167,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
           </label>
 
           <label className="w-full">
-            <span className="text-sm text-gray-400 font-semibold">
+            <span className="text-sm text-gray-500 font-semibold">
               Discount
             </span>
             <input

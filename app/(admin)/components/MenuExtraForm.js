@@ -30,7 +30,8 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
     setProps((prev) => prev.filter((value, index) => index !== propRemoved));
   };
   return (
-    <div className=" flex flex-col ring-1 ring-gray-200 px-2 py-4 rounded-md my-2 w-full text-sm gap-2 hover:ring-2 hover:ring-lime-400 outline-none">
+    <div className=" flex flex-col ring-1 ring-gray-400 px-2 py-4 rounded-md my-2 w-full text-sm gap-2 
+    hover:ring-2 hover:ring-emerald-500 outline-none">
       <div className="text-gray-400  text-md font-semibold flex items-center gap-2 ">
         <div>
           <button type="button" onClick={() => setIsOpen(!isOpen)}>
@@ -56,11 +57,11 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
             } items-center sm:mx-4 mx-2 sm:gap-4 gap-1`}
           >
             <label className="w-full">
-              <span className="text-gray-400 font-semibold w-full">
+              <span className="text-gray-500 font-semibold w-full">
                 {title} Type
               </span>
               <input
-                className="mt-[.3rem] p-2 text-sm text-gray-600 rounded-md w-full outline-none ring-1 ring-gray-300 bg-gray-50 focus:ring-2 focus:ring-lime-400 focus:shadow-md"
+                className="mt-[.3rem] p-2 text-sm text-gray-600 rounded-md w-full outline-none ring-1 ring-gray-300 bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:shadow-md"
                 type="text"
                 placeholder={title}
                 value={size?.name}
@@ -68,11 +69,11 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
               />
             </label>
             <label className="w-full">
-              <span className="text-gray-400 text-md font-semibold w-full">
+              <span className="text-gray-500 text-md font-semibold w-full">
                 Price
               </span>
               <input
-                className="mt-[.3rem] p-2 text-sm text-gray-600 rounded-md w-full outline-none ring-1 ring-gray-300 bg-gray-50 focus:ring-2 focus:ring-lime-400 focus:shadow-md"
+                className="mt-[.3rem] p-2 text-sm text-gray-600 rounded-md w-full outline-none ring-1 ring-gray-300 bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:shadow-md"
                 type="text"
                 placeholder="Extra Price"
                 value={size?.price}
@@ -94,7 +95,7 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
       <button
         type="button"
         onClick={handleAddProps}
-        className="py-2 bg-lime-100 font-semibold rounded-md flex items-center justify-center gap-2 hover:bg-lime-50 active:bg-lime-100 shadow-md mt-6"
+        className="py-2 bg-lime-100 font-semibold rounded-md flex items-center justify-center gap-2 hover:bg-lime-200 active:bg-lime-100 shadow-md mt-6"
       >
         <FontAwesomeIcon icon={faPlus} />
         {buttonTitle}

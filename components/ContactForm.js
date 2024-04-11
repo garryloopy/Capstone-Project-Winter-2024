@@ -224,7 +224,7 @@ export default function ContactForm() {
       <div className=" flex flex-col gap-10 relative bg-yellow-50/5  p-12">
         {/* Header for form  */}
         <div className="w-full h-16 flex items-end justify-center mb-4">
-          <p className="lg:text-3xl font-semibold text-purple-500/95 text-lg">
+          <p className="lg:text-3xl font-semibold text-yellow-500 text-lg">
             Get in touch with us
           </p>
         </div>
@@ -393,7 +393,7 @@ export default function ContactForm() {
             focus:shadow-yellow-200/50 hover:shadow-lg transition-all duration-300 focus-visible:ring-2 focus-visible:ring-yellow-200 focus:outline-none"
             type="submit"
           >
-            <p className="text-md text-gray-800 font-semibold">Submit now</p>
+            <p className="text-md hover:text-gray-700 text-gray-100 font-semibold">Submit now</p>
           </button>
         </div>
       </div>
