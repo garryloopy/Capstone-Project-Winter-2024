@@ -19,6 +19,24 @@ const AdminNavbar = ({ path }) => {
       >
         Orders
       </Link>
+
+      <Link
+        className={
+          path.includes("statistic") ? "activeButton" : "inactiveButton"
+        }
+        href="/statistic"
+      >
+        Statistic
+      </Link>
+
+      <Link
+        className={
+          path.includes("reminder") ? "activeButton" : "inactiveButton"
+        }
+        href="/reminder"
+      >
+        Reminder
+      </Link>
     </div>
   );
 };
