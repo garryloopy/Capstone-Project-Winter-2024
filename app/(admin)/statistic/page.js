@@ -18,8 +18,6 @@ import MenuScroll from "@/components/MenuScroll";
 import OrderChart from "./OrderChart";
 import ProfitChart from "./ProfitChart";
 
-import DateRange from "./DateRange";
-
 export default function statistic() {
   const path = usePathname();
 
