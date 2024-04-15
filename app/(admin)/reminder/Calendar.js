@@ -32,7 +32,7 @@ export default function Calendar() {
       return day + "nd";
     }
     if (i === 3 && e !== 13) {
-      return day + "th";
+      return day + "rd";
     } else {
       return day + "th";
     }
