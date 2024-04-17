@@ -112,7 +112,7 @@ export default function Calendar() {
         <ButtonGroup>
           {/* Left arrow button */}
           <Button
-            variant="ghost"
+            variant="solid"
             color="success"
             size="sm"
             onClick={() => {
@@ -175,7 +175,7 @@ export default function Calendar() {
 
           {/* Right arrow button */}
           <Button
-            variant="ghost"
+            variant="solid"
             color="success"
             size="sm"
             onClick={() => {
@@ -205,7 +205,7 @@ export default function Calendar() {
                 key={day}
               >
                 <CardBody>
-                  {getDayWithOrdinal(day + 1)}
+                  <p>{getDayWithOrdinal(day + 1)}</p>
 
                   <Dropdown>
                     <DropdownTrigger>
