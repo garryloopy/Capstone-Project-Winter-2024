@@ -112,7 +112,6 @@ export default function Calendar() {
         <ButtonGroup>
           {/* Left arrow button */}
           <Button
-            variant="solid"
             color="success"
             size="sm"
             onClick={() => {
@@ -131,7 +130,7 @@ export default function Calendar() {
           {/* Month button component  */}
           <Dropdown>
             <DropdownTrigger>
-              <Button variant="solid" color="success" size="sm">
+              <Button color="success" size="sm">
                 {months[selectedMonth]}
               </Button>
             </DropdownTrigger>
@@ -155,7 +154,7 @@ export default function Calendar() {
           {/* Year button component */}
           <Dropdown>
             <DropdownTrigger>
-              <Button variant="solid" color="success" size="sm">
+              <Button color="success" size="sm">
                 {selectedYear}
               </Button>
             </DropdownTrigger>
@@ -175,7 +174,6 @@ export default function Calendar() {
 
           {/* Right arrow button */}
           <Button
-            variant="solid"
             color="success"
             size="sm"
             onClick={() => {
