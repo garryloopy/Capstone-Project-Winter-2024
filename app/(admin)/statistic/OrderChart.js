@@ -48,8 +48,26 @@ export default function OrderChart() {
   const fetchOrderData = async () => {
     // Get 30 days of data
     const currentDate = new Date();
-    const thirtyDaysAgo = new Date(currentDate);
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    const previousMonth = new Date(currentDate);
+    previousMonth.setDate(previousMonth.getDate() - 1);
+
+    const daysInPreviousMonth = new Date(
+      previousMonth.getFullYear(),
+      previousMonth.getMonth() + 1,
+      0
+    ).getDate();
+
+    const startDate = new Date(
+      previousMonth.getFullYear(),
+      previousMonth.getMonth(),
+      1
+    );
+
+    const endDate = new Date(
+      previousMonth.getFullYear(),
+      previousMonth.getMonth(),
+      daysInPreviousMonth
+    );
 
     try {
       const res = await fetch("/api/getOrderList");
@@ -58,12 +76,15 @@ export default function OrderChart() {
         const orderCounts = {};
 
         orders.forEach((order) => {
-          const formattedDate = new Intl.DateTimeFormat("en-US", {
-            month: "short",
-            day: "2-digit",
-          }).format(new Date(order.createdAt));
+          const orderDate = new Date(order.createdAt);
+          if (orderDate >= startDate && orderDate <= endDate) {
+            const formattedDate = new Intl.DateTimeFormat("en-US", {
+              month: "short",
+              day: "2-digit",
+            }).format(new Date(order.createdAt));
 
-          orderCounts[formattedDate] = (orderCounts[formattedDate] || 0) + 1;
+            orderCounts[formattedDate] = (orderCounts[formattedDate] || 0) + 1;
+          }
         });
 
         const labels = Object.keys(orderCounts);
