@@ -6,10 +6,18 @@ import {
   LinearScale,
   LineElement,
   PointElement,
+  Title,
   Tooltip,
 } from "chart.js";
 
-Chart.register(CategoryScale, LinearScale, LineElement, PointElement, Tooltip);
+Chart.register(
+  CategoryScale,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip
+);
 
 export default function ProfitChart() {
   const options = {
@@ -36,7 +44,7 @@ export default function ProfitChart() {
         borderColor: "Orange",
         borderWidth: 2,
         fill: true,
-        tension: 0.1,
+        tension: 0.01,
       },
     ],
   });

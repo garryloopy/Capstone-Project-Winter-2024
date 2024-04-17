@@ -23,15 +23,17 @@ export default function Calendar() {
   };
 
   const getDayWithOrdinal = (day) => {
-    const i = day % 10,
-      e = day % 100;
-    if (i === 1 && e !== 11) {
+    // Assume day has most 2 digits in integer
+    // i = 1 digit day(6,8), ii = 2 digit day(10,27), % remainder
+    const i = day % 10, // % => if i = 3/10 = (3*3)+1, % = 1
+      ii = day % 100; // % => if ii = 13/100 = (10*10)+13, % = 13
+    if (i === 1 && ii !== 11) {
       return day + "st";
     }
-    if (i === 2 && e !== 12) {
+    if (i === 2 && ii !== 12) {
       return day + "nd";
     }
-    if (i === 3 && e !== 13) {
+    if (i === 3 && ii !== 13) {
       return day + "rd";
     } else {
       return day + "th";

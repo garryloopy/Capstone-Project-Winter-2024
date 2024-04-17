@@ -5,10 +5,11 @@ import {
   CategoryScale,
   LinearScale,
   BarElement,
+  Title,
   Tooltip,
 } from "chart.js";
 
-Chart.register(CategoryScale, LinearScale, BarElement, Tooltip);
+Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
 export default function OrderChart() {
   const options = {
