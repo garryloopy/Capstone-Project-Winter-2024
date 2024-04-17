@@ -44,7 +44,6 @@ export default function ProfitChart() {
         borderColor: "Orange",
         borderWidth: 2,
         fill: true,
-        tension: 0.01,
       },
     ],
   });
