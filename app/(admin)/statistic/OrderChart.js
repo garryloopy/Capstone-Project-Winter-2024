@@ -19,7 +19,7 @@ export default function OrderChart() {
     plugins: {
       title: {
         display: true,
-        text: "Daily Order Chart",
+        text: "Monthly Order Chart",
         font: {
           size: 20,
         },
@@ -46,6 +46,11 @@ export default function OrderChart() {
   }, []);
 
   const fetchOrderData = async () => {
+    // Get 30 days of data
+    const currentDate = new Date();
+    const thirtyDaysAgo = new Date(currentDate);
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
     try {
       const res = await fetch("/api/getOrderList");
       if (res.ok) {

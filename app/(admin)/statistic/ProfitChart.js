@@ -27,7 +27,7 @@ export default function ProfitChart() {
     plugins: {
       title: {
         display: true,
-        text: "Daily Profit Chart",
+        text: "Monthly Profit Chart",
         font: {
           size: 20,
         },
@@ -55,6 +55,11 @@ export default function ProfitChart() {
 
   const fetchProfitData = async () => {
     try {
+      // Get 30 days of data
+      const currentDate = new Date();
+      const thirtyDaysAgo = new Date(currentDate);
+      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
       const res = await fetch("/api/getOrderList");
       if (res.ok) {
         const orders = await res.json();
