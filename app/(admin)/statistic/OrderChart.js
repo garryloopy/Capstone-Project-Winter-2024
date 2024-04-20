@@ -112,7 +112,7 @@ export default function OrderChart() {
 
   return (
     <section>
-      <div>
+      <div id="order-chart">
         <Bar data={graphData} options={options} />
       </div>
     </section>

@@ -129,7 +129,7 @@ export default function ProfitChart() {
 
   return (
     <section>
-      <div>
+      <div id="profit-chart">
         <Line data={graphData} options={options} />
       </div>
     </section>
