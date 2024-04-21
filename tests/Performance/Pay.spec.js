@@ -1,9 +1,9 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 import { POST } from "../../app/api/pay/route.js";
-import { globalAgent } from "http";
 
 test.describe("POST Function Tests", () => {
   test("Creates payment and order successfully", async () => {
+    // Mocking the request object
     const req = {
       json: async () => ({
         sourceId: "source_id",
@@ -16,24 +16,17 @@ test.describe("POST Function Tests", () => {
       }),
     };
 
+    // Mocking the response object
     const res = {
+      // Defining a send method to capture the sent data
       send: async (data) => {
         res.sentData = data;
       },
+      // Initializing sentData property as undefined
       sentData: undefined,
     };
 
-    const createPaymentMock = async () => ({
-      result: {
-        payment: {
-          orderId: "order_id",
-          id: "payment_id",
-          status: "COMPLETED",
-          cardDetails: { card: { cardBrand: "VISA", last4: "1111" } },
-        },
-      },
-    });
-
+    // Invoking the POST function with the mocked request and response objects
     await POST(req, res);
   });
 });

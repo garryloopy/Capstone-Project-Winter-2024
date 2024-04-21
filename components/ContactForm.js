@@ -238,6 +238,7 @@ export default function ContactForm() {
           >
             {/* Input for first name  */}
             <input
+              id="firstName"
               type="text"
               className="w-full h-1/2 outline-none peer bg-inherit p-2 text-gray-600 rounded-b-md"
               value={currentFirstName}
@@ -269,6 +270,7 @@ export default function ContactForm() {
           >
             {/* Input for last name  */}
             <input
+              id="lastName"
               type="text"
               className="w-full h-1/2 outline-none peer in-range:bg-gray-800 p-2 bg-inherit text-gray-600 rounded-b-md"
               value={currentLastName}
@@ -301,6 +303,7 @@ export default function ContactForm() {
         >
           {/* Input  */}
           <input
+            id="email"
             type="email"
             className="w-full h-1/2 outline-none peer p-2 bg-inherit text-sm text-gray-600 rounded-b-md"
             onChange={handleOnEmailChange}
@@ -332,6 +335,7 @@ export default function ContactForm() {
         >
           {/* Input  */}
           <input
+            id="phoneNumber"
             type="text"
             className="w-full h-1/2 outline-none peer p-2 bg-inherit text-sm text-gray-600 rounded-b-md"
             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
@@ -367,6 +371,7 @@ export default function ContactForm() {
         >
           {/* Main section container  */}
           <textarea
+            id="messageBox"
             className="w-full h-full mt-16 p-4 outline-none peer text-sm bg-inherit text-gray-600 rounded-b-md"
             rows={4}
             required
@@ -393,7 +398,9 @@ export default function ContactForm() {
             focus:shadow-yellow-200/50 hover:shadow-lg transition-all duration-300 focus-visible:ring-2 focus-visible:ring-yellow-200 focus:outline-none"
             type="submit"
           >
-            <p className="text-md hover:text-gray-700 text-gray-100 font-semibold">Submit now</p>
+            <p className="text-md hover:text-gray-700 text-gray-100 font-semibold">
+              Submit now
+            </p>
           </button>
         </div>
       </div>
