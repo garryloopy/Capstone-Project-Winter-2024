@@ -56,7 +56,7 @@ const ClientMenu = (menuList) => {
               height={200}
             />
           </div>
-          <div className="flex flex-col justify-center items-center gap-2 self-end">
+          <div className="flex flex-col justify-center items-center gap-2">
             <h4 className="text-center lg:text-xl font-semibold text-md text-orange-400">
               {menuList.title}
             </h4>
