@@ -12,6 +12,8 @@ const MenuPopUp = ({
   setSelectedSize,
   selectedExtra,
   setSelectedExtra,
+  specialRequest,
+  setSpecialRequest
 }) => {
   const basePrice = menuList.price.replace(/[$,]/g, "");
   const priceAsNumber = parseFloat(basePrice);
@@ -157,8 +159,8 @@ const MenuPopUp = ({
               name="specialInstructions"
               placeholder="e.g. more sauce"
               className="w-full h-12 pt-1 pl-2 border border-gray-300 rounded-md"
-              value={specialInstructions}
-              onChange={(e) => setSpecialInstructions(e.target.value)}
+              value={specialRequest}
+              onChange={(e) => setSpecialRequest(e.target.value)}
 
             />
           </div>

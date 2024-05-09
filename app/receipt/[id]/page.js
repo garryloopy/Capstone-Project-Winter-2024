@@ -21,7 +21,6 @@ export default function OrderConfirmationPage() {
   const [loading, setLoading] = useState(true);
   const { calculateTotalPrice, clearCart } = useContext(CartContext);
   const [deliveryAmount, setDeliveryAmount] = useState(0);
-  const [specialInstructions, setSpecialInstructions] = useState("");
 
   
   
@@ -113,7 +112,6 @@ export default function OrderConfirmationPage() {
     }
   }
 
-  console.log("Special Instructions:", specialInstructions);
 
   return (
     <>
@@ -176,12 +174,7 @@ export default function OrderConfirmationPage() {
                   deliveryAmount={deliveryAmount}
                 />
               </div>
-              {specialInstructions && ( 
-                <div className="mt-4">
-                  <h3 className="font-semibold text-gray-600">Special Instructions: </h3>
-                  <p className="text-lg text-gray-600">{specialInstructions}</p>
-                </div>
-              )}            
+             
               </div>
             <div className="md:w-1/3">
               <div className="border-2 border-slate-400 rounded-xl lg:border h-fit p-[2rem] my-[6rem]">
