@@ -12,13 +12,12 @@ const MenuPopUp = ({
   setSelectedSize,
   selectedExtra,
   setSelectedExtra,
-  specialRequest,
-  setSpecialInstructions,
 }) => {
   const basePrice = menuList.price.replace(/[$,]/g, "");
   const priceAsNumber = parseFloat(basePrice);
 
   const [selectedPrice, setSelectedPrice] = useState(0);
+  const [specialInstructions, setSpecialInstructions] = useState("");
 
   useEffect(() => {
     let price = menuList.price.replace(/[$,]/g, "");
@@ -70,11 +69,9 @@ const MenuPopUp = ({
     }
   };
 
-  // handle special instructions
-  const handleSpecialInstructionsChange = (event) => {
-    setSpecialInstructions(event.target.value);
-  };
 
+  console.log("Special Instructions:", specialInstructions);
+  
   // let selectedPrice;
   // selectedPrice = priceAsNumber ;
   //  if (selectedSize) {
@@ -154,35 +151,17 @@ const MenuPopUp = ({
           )}
           <div className="py-2">
             <label className="block m-2 text-center">Other</label>
-            <textarea
+            <input
+              type="text"
               id="specialInstructions"
               name="specialInstructions"
-              placeholder="Special Instructions (e.g. add more sauce)"
-              rows="3"
-              cols="40"
-              className="w-full pt-1 pl-2 border border-gray-300 rounded-md" //focus:border-[color]-400 won't work
-              value={specialRequest}
-              onChange={handleSpecialInstructionsChange}
-            ></textarea>
-          </div>
-          {/* style 2 
-            <div className="py-2">
-              <label
-                className="absolute text-blue-500 top-2 left-2">
-                Special Instructions
-              </label>
-              <textarea
-                id="specialInstructions"
-                name="specialInstructions"
-                rows="3"
-                cols="40"
-                className="w-full p-2 pl-2 border border-gray-300 rounded-md" //focus:border-[color]-400 won't work
-                value={specialRequest}
-                onChange={handleSpecialInstructionsChange}
-              >
-              </textarea>
-            </div> */}
+              placeholder="e.g. more sauce"
+              className="w-full h-12 pt-1 pl-2 border border-gray-300 rounded-md"
+              value={specialInstructions}
+              onChange={(e) => setSpecialInstructions(e.target.value)}
 
+            />
+          </div>
           <button
             type="button"
             className="sticky bottom-0 sign_button hover:bg-lime-200"

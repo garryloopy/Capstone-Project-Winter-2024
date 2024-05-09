@@ -21,7 +21,10 @@ export default function OrderConfirmationPage() {
   const [loading, setLoading] = useState(true);
   const { calculateTotalPrice, clearCart } = useContext(CartContext);
   const [deliveryAmount, setDeliveryAmount] = useState(0);
+  const [specialInstructions, setSpecialInstructions] = useState("");
 
+  
+  
   const { id } = useParams();
   let totalPrice = 0;
   useEffect(() => {
@@ -109,6 +112,9 @@ export default function OrderConfirmationPage() {
       totalPrice += calculateTotalPrice(product);
     }
   }
+
+  console.log("Special Instructions:", specialInstructions);
+
   return (
     <>
       {loading ? (
@@ -158,22 +164,32 @@ export default function OrderConfirmationPage() {
               )}
             </div>
           </div>
-          <div className="flex lg:flex-row flex-col gap-4 px-[4rem] py-[2rem]">
-            <div className="basis-[60%]">
-              <h2 className="text-center text-lg font-bold text-gray-600 mb-[2rem]">
-                Your order
-              </h2>
-              <CartMenuList
-                cartProducts={cartProducts}
-                totalPrice={totalPrice}
-                deliveryAmount={deliveryAmount}
-              />
-            </div>
-            <div className="basis-[30%] border-2 border-slate-400 rounded-xl lg:border h-fit p-[2rem] my-[6rem] ml-[8rem]">
-              <h2 className="text-lg font-bold text-gray-600 mb-[2rem]">
-                Contact Information
-              </h2>
-              <BillingAddress clientInfo={clientInfo} />
+          <div className="w-full px-[2rem] flex flex-col md:flex-row gap-4">
+            <div className="md:w-2/3">
+              <div className="mb-6">
+                <h2 className="text-lg font-bold text-gray-600 text-center mb-[2rem]">
+                  Your Order
+                </h2>
+                <CartMenuList
+                  cartProducts={cartProducts}
+                  totalPrice={totalPrice}
+                  deliveryAmount={deliveryAmount}
+                />
+              </div>
+              {specialInstructions && ( 
+                <div className="mt-4">
+                  <h3 className="font-semibold text-gray-600">Special Instructions: </h3>
+                  <p className="text-lg text-gray-600">{specialInstructions}</p>
+                </div>
+              )}            
+              </div>
+            <div className="md:w-1/3">
+              <div className="border-2 border-slate-400 rounded-xl lg:border h-fit p-[2rem] my-[6rem]">
+                <h2 className="text-lg font-bold text-gray-600 mb-[2rem]">
+                  Contact Information
+                </h2>
+                <BillingAddress clientInfo={clientInfo} />
+              </div>
             </div>
           </div>
         </section>

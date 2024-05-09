@@ -32,7 +32,7 @@ const CartMenuList = ({
         cartProducts.map((product, index) => (
           <div
             key={index}
-            className="flex justify-evenly gap-4 mb-2 border-b p-4 border-orange-400 items-center"
+            className="flex items-center gap-4 p-4 mb-2 border-b border-orange-400 justify-evenly"
           >
             <div className="w-full">
               <Image
@@ -44,7 +44,7 @@ const CartMenuList = ({
               />
             </div>
             <div className="w-full">
-              <h3 className="text-yellow-500 font-semibold">{product.title}</h3>
+              <h3 className="font-semibold text-yellow-500">{product.title}</h3>
               {product.sizes && (
                 <div className="text-sm ">
                   <span>{product.sizes.name}</span>
@@ -59,12 +59,11 @@ const CartMenuList = ({
                   ))}
                 </div>
               )}
-              <p className="text-sm text-gray-500">{product.specialRequests}</p>
             {product.discount > 0 && (
-              <p className="text-green-500 text-sm mt-[1rem]">Discount: {product.discount}%</p>
+              <p className="text-green-500 text-sm mt-[1rem]">Discount: {product.discount}% off</p>
             )}
             </div>
-            <div className="text-sm mr-4">
+            <div className="mr-4 text-sm">
               ${calculateTotalPrice(product).toFixed(2)}
             </div>
             {onDelete && (
@@ -82,7 +81,7 @@ const CartMenuList = ({
         {/* clear the cart button */}
         {!clearLink && (
           <div
-            className="underline text-sm text-gray-500"
+            className="text-sm text-gray-500 underline"
             onClick={handleClearCard}
           >
             <Link href="/menu" className="text-lg font-semibold hover:text-red-600">Clear Cart</Link>
@@ -122,13 +121,13 @@ const CartMenuList = ({
             <span className="text-gray-400">Total:</span>
           </div>
           <div className="flex flex-col gap-1">
-            <span className="text-md font-semibold pl-2 text-gray-500">
+            <span className="pl-2 font-semibold text-gray-500 text-md">
               ${totalPrice.toFixed(2)}{" "}
             </span>
-            <span className="text-md font-semibold pl-2 text-gray-500">
+            <span className="pl-2 font-semibold text-gray-500 text-md">
               ${deliveryAmount.toFixed(2)}
             </span>
-            <span className="text-md font-semibold pl-2 text-gray-500">
+            <span className="pl-2 font-semibold text-gray-500 text-md">
               ${(totalPrice + deliveryAmount)?.toFixed(2)}
             </span>
           </div>

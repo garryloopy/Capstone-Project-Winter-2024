@@ -8,13 +8,12 @@ const ClientMenu = (menuList) => {
   const [showPopUp, setShowPopUp] = useState(false);
   const { addToCart } = useContext(CartContext);
   const [selectedSize, setSelectedSize] = useState(menuList.sizes?.[0] || null);
-  const [specialRequest, setSpecialInstructions] = useState(""); //added this in for special instructions
 
   const [selectedExtra, setSelectedExtra] = useState([]);
 
   const handleAddToCartClick = () => {
     if (showPopUp) {
-      addToCart(menuList, selectedSize, selectedExtra, specialRequest);
+      addToCart(menuList, selectedSize, selectedExtra);
       toast.success("Added to cart");
       setShowPopUp(false);
       return;
@@ -37,8 +36,6 @@ const ClientMenu = (menuList) => {
         setSelectedSize={setSelectedSize}
         selectedExtra={selectedExtra}
         setSelectedExtra={setSelectedExtra}
-        specialRequest={specialRequest}
-        setSpecialInstructions={setSpecialInstructions}
       />
 
       {/* used transform/hover:translate to give animation effect for each boxes */}
