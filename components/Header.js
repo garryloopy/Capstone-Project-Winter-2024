@@ -48,15 +48,15 @@ export default function Header() {
     <header
       data-scrolled={scrolled}
       className={`md:px-[4rem] z-50 fixed sm:px-2 sm:py-[1rem] px-6 flex justify-between items-center w-full bg-inherit sm:h-28 h-20 transition-all duration-500 ease-in-out  ${
-        scrolled && "shadow-lg bg-slate-700"
+        scrolled && "shadow-lg bg-miggy"
       }`}
     >
       {/* logo and text */}
       <Link
-        className="flex justify-center items-center text-slate-700  overflow-hidden rounded-full shadow-md"
+        className="flex items-center justify-center overflow-hidden rounded-full shadow-md text-slate-700"
         href="/"
       >
-        <div className="sm:size-20 size-12 rounded-full relative">
+        <div className="relative rounded-full sm:size-20 size-12">
           <Image
             src={Logo}
             alt="Miggy's Munchies logo"
@@ -71,11 +71,11 @@ export default function Header() {
       <Navbar />
 
       {/* cart Icon */}
-      <div className="flex gap-6 items-center justify-center h-full">
+      <div className="flex items-center justify-center h-full gap-6">
         {session.status === "authenticated" ? (
-          <div className="hidden relative lg:flex flex-row justify-center h-full gap-6 items-center">
+          <div className="relative flex-row items-center justify-center hidden h-full gap-6 lg:flex">
             <button
-              className="font-semibold flex flex-row items-center justify-center gap-3 bg-lime-400 px-6 py-2 rounded-lg shadow-md"
+              className="flex flex-row items-center justify-center gap-3 px-6 py-2 font-semibold bg-yellow-400 rounded-lg shadow-md"
               onClick={handleToggleAdminMenu}
             >
               <h2 className="text-md text-slate-800">Hello, {username}</h2>
@@ -97,11 +97,11 @@ export default function Header() {
               {/* <Link
                 onClick={handleToggleAdminMenu}
                 href="/cart"
-                className="relative px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-400 rounded-md shadow-md"
+                className="relative flex flex-row items-center justify-start w-full h-10 gap-4 px-4 py-2 bg-yellow-400 rounded-md shadow-md hover:bg-yellow-300 active:bg-yellow-400"
               >
                 <div className="absolute inset-0 flex items-center justify-end px-4 pointer-events-none">
                   {cartProducts?.length > 0 && (
-                    <p className="bg-violet-600 size-6 grid place-items-center text-xs rounded-full text-gray-50">
+                    <p className="grid text-xs rounded-full bg-violet-600 size-6 place-items-center text-gray-50">
                       {cartProducts?.length}
                     </p>
                   )}
@@ -112,13 +112,13 @@ export default function Header() {
               <Link
                 onClick={handleToggleAdminMenu}
                 href="/menu-list"
-                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start  bg-lime-400 hover:bg-lime-300 active:bg-lime-400 rounded-md shadow-md"
+                className="flex flex-row items-center justify-start w-full h-10 gap-4 px-4 py-2 bg-yellow-400 rounded-md shadow-md hover:bg-lime-300 active:bg-lime-400"
               >
                 <IoGridOutline size={24} />
                 Dashboard
               </Link>
               <button
-                className="px-4 py-2 gap-4 h-10 w-full flex flex-row items-center justify-start bg-lime-400 hover:bg-lime-300 active:bg-lime-400 rounded-md shadow-md"
+                className="flex flex-row items-center justify-start w-full h-10 gap-4 px-4 py-2 bg-yellow-400 rounded-md shadow-md hover:bg-lime-300 active:bg-lime-400"
                 onClick={() => signOut({ callbackUrl: "/" })}
               >
                 <IoLogOutOutline size={24} />
@@ -129,11 +129,11 @@ export default function Header() {
         ) : (
           <Link
             href="/cart"
-            className="relative hidden lg:flex justify-center items-center p-3"
+            className="relative items-center justify-center hidden p-3 lg:flex"
           >
             {cartProducts?.length > 0 && (
-              <div className="absolute top-0 right-0 size-5 bg-lime-400 rounded-full grid place-items-center">
-                <p className="text-center text-slate-700 text-xs font-semibold">
+              <div className="absolute top-0 right-0 grid bg-yellow-400 rounded-full size-5 place-items-center">
+                <p className="text-xs font-semibold text-center text-slate-700">
                   {cartProducts.length}
                 </p>
               </div>
@@ -149,7 +149,7 @@ export default function Header() {
         <button
           type="button"
           onClick={handleToggleMenu}
-          className="bg-lime-400 size-10 rounded-md shadow-md grid place-items-center lg:hidden"
+          className="grid bg-yellow-400 rounded-md shadow-md size-10 place-items-center lg:hidden"
         >
           {toggleMenu ? (
             <IoClose size={28} className="text-slate-800" />

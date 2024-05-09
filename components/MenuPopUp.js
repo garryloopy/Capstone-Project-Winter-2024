@@ -94,7 +94,7 @@ const MenuPopUp = ({
       >
         <div
           onClick={(ev) => ev.stopPropagation()}
-          className="bg-white my-8 p-4 rounded-lg max-w-md max-h-screen overflow-y-scroll z-50 flex flex-col gap-2 relative"
+          className="relative z-50 flex flex-col max-w-md max-h-screen gap-2 p-4 my-8 overflow-y-scroll bg-white rounded-lg"
           style={{ maxHeight: `calc(100vh - 100px)` }}
         >
           {menuList.discount > 0 && (
@@ -109,19 +109,19 @@ const MenuPopUp = ({
             height={200}
             className="mx-auto circular-image-menu"
           />
-          <h2 className="text-lg font-bold text-center mb-2">
+          <h2 className="mb-2 text-lg font-bold text-center">
             {menuList.title}
           </h2>
-          <p className="text-center text-gray-600 text-md mb-2">
+          <p className="mb-2 text-center text-gray-600 text-md">
             {menuList.description}
           </p>
           {menuList.sizes?.length > 0 && (
             <div className="py-2">
-              <h3 className="text-center mt-2">Pick your size</h3>
+              <h3 className="mt-2 text-center">Pick your size</h3>
               {menuList.sizes.map((size, index) => (
                 <label
                   key={index}
-                  className="flex items-center gap-3 p-4 border rounded-md m-2"
+                  className="flex items-center gap-3 p-4 m-2 border rounded-md"
                 >
                   <input
                     type="radio"
@@ -136,11 +136,11 @@ const MenuPopUp = ({
           )}
           {menuList.extra?.length > 0 && (
             <div className="py-2">
-              <h3 className="text-center mt-2">Extras</h3>
+              <h3 className="mt-2 text-center">Extras</h3>
               {menuList.extra.map((extra, index) => (
                 <label
                   key={index}
-                  className="flex items-center gap-2 p-4 border rounded-md m-1"
+                  className="flex items-center gap-2 p-4 m-1 border rounded-md"
                 >
                   <input
                     type="checkbox"
@@ -153,14 +153,14 @@ const MenuPopUp = ({
             </div>
           )}
           <div className="py-2">
-            <label className="text-center m-2 block">Other</label>
+            <label className="block m-2 text-center">Other</label>
             <textarea
               id="specialInstructions"
               name="specialInstructions"
               placeholder="Special Instructions (e.g. add more sauce)"
               rows="3"
               cols="40"
-              className="border border-gray-300 rounded-md w-full pl-2 pt-1" //focus:border-[color]-400 won't work
+              className="w-full pt-1 pl-2 border border-gray-300 rounded-md" //focus:border-[color]-400 won't work
               value={specialRequest}
               onChange={handleSpecialInstructionsChange}
             ></textarea>
@@ -168,7 +168,7 @@ const MenuPopUp = ({
           {/* style 2 
             <div className="py-2">
               <label
-                className="absolute top-2 left-2 text-blue-500">
+                className="absolute text-blue-500 top-2 left-2">
                 Special Instructions
               </label>
               <textarea
@@ -176,7 +176,7 @@ const MenuPopUp = ({
                 name="specialInstructions"
                 rows="3"
                 cols="40"
-                className="border border-gray-300 rounded-md w-full p-2 pl-2" //focus:border-[color]-400 won't work
+                className="w-full p-2 pl-2 border border-gray-300 rounded-md" //focus:border-[color]-400 won't work
                 value={specialRequest}
                 onChange={handleSpecialInstructionsChange}
               >
@@ -185,14 +185,14 @@ const MenuPopUp = ({
 
           <button
             type="button"
-            className="sign_button sticky bottom-0 hover:bg-lime-200"
+            className="sticky bottom-0 sign_button hover:bg-lime-200"
             onClick={handleAddToCartClick}
           >
             Add to Cart ${selectedPrice.toFixed(2)}
           </button>
           <button
             type="button"
-            className="px-2 p-1 border border-slate-300 mt-2 w-full rounded-md text-sm hover:bg-orange-300 text-black"
+            className="w-full p-1 px-2 mt-2 text-sm text-black border rounded-md border-slate-300 hover:bg-orange-300"
             onClick={() => setShowPopUp(false)}
           >
             Cancel

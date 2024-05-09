@@ -245,20 +245,20 @@ export default function OrderDetailsPage({ params }) {
           isInvalidId ? "opacity-100" : "opacity-0 invisible"
         } transition-opacity duration-300 backdrop-brightness-90`}
       >
-        <div className="bg-gray-50 min-size-64 p-8 flex flex-col items-center justify-between border-2 rounded-md shadow-md">
-          <div className="text-center text-md text-orange-600">
+        <div className="flex flex-col items-center justify-between p-8 border-2 rounded-md shadow-md bg-gray-50 min-size-64">
+          <div className="text-center text-orange-600 text-md">
             <p>Something went wrong with fetching the information.</p>
             <p>Please ensure that the payment ID is valid.</p>
           </div>
           {/* Top section  */}
-          <div className="relative flex-none h-24 w-full px-6 flex items-center justify-center">
+          <div className="relative flex items-center justify-center flex-none w-full h-24 px-6">
             <Link
               href="/orders"
-              className="flex flex-row items-center gap-1 w-max h-full text-sm font-medium text-gray-600 hover:text-gray-950 transition-colors duration-200 group"
+              className="flex flex-row items-center h-full gap-1 text-sm font-medium text-gray-600 transition-colors duration-200 w-max hover:text-gray-950 group"
             >
               <FaAngleLeft
                 size={20}
-                className="text-orange-600 group-hover:-translate-x-2 transition-transform duration-300"
+                className="text-orange-600 transition-transform duration-300 group-hover:-translate-x-2"
               />
               Back to orders
             </Link>
@@ -266,7 +266,7 @@ export default function OrderDetailsPage({ params }) {
         </div>
       </div>
 
-      <div className="bg-gray-50 w-full h-full rounded-md flex flex-col relative ring-1 ring-gray-300/75 overflow">
+      <div className="relative flex flex-col w-full h-full rounded-md bg-gray-50 ring-1 ring-gray-300/75 overflow">
         {/* Confirmation  */}
         <div
           className={`absolute inset-0 z-10 grid place-items-center backdrop-brightness-90 ${
@@ -275,9 +275,9 @@ export default function OrderDetailsPage({ params }) {
               : "opacity-0 pointer-events-none"
           }`}
         >
-          <div className="bg-gray-100 h-1/3 w-1/3 flex flex-col items-center justify-center gap-5 rounded-lg shadow-md p-4">
+          <div className="flex flex-col items-center justify-center w-1/3 gap-5 p-4 bg-gray-100 rounded-lg shadow-md h-1/3">
             {confirmationData && (
-              <div className="flex flex-row items-center gap-3 text-xl font-semibold text-gray-800 text-center">
+              <div className="flex flex-row items-center gap-3 text-xl font-semibold text-center text-gray-800">
                 <p>
                   Mark{" "}
                   <span className="text-violet-800">
@@ -297,15 +297,15 @@ export default function OrderDetailsPage({ params }) {
               </p>
             )}
 
-            <div className="flex flex-row gap-4 items-center">
+            <div className="flex flex-row items-center gap-4">
               <button
-                className="w-32 h-10 bg-yellow-400 font-semibold text-gray-800 text-lg rounded-lg shadow-md hover:bg-yellow-300 active:bg-yellow-400"
+                className="w-32 h-10 text-lg font-semibold text-gray-800 bg-yellow-400 rounded-lg shadow-md hover:bg-yellow-300 active:bg-yellow-400"
                 onClick={handleOnConfirmationAgree}
               >
                 Yes
               </button>
               <button
-                className="w-32 h-10 bg-yellow-400 font-semibold text-gray-800 text-lg rounded-lg shadow-md hover:bg-yellow-300 active:bg-yellow-400"
+                className="w-32 h-10 text-lg font-semibold text-gray-800 bg-yellow-400 rounded-lg shadow-md hover:bg-yellow-300 active:bg-yellow-400"
                 onClick={handleOnConfirmationDisagree}
               >
                 No
@@ -315,31 +315,31 @@ export default function OrderDetailsPage({ params }) {
         </div>
 
         {/* Shadow effect  */}
-        <div className="absolute inset-10 bg-violet-500/50 -z-10 blur-3xl rounded-lg" />
+        <div className="absolute rounded-lg inset-10 bg-violet-500/50 -z-10 blur-3xl" />
         {/* Loader  */}
         <Loading isLoading={isLoading} />
 
         {/* Top section  */}
-        <div className="relative flex-none h-24 w-full px-6 ">
+        <div className="relative flex-none w-full h-24 px-6 ">
           <Link
             href="/orders"
-            className="flex flex-row items-center gap-1 w-max h-full text-xl font-medium text-gray-600 hover:text-gray-950 transition-colors duration-200 group"
+            className="flex flex-row items-center h-full gap-1 text-xl font-medium text-gray-600 transition-colors duration-200 w-max hover:text-gray-950 group"
           >
             <FaAngleLeft
               size={28}
-              className="text-orange-600 group-hover:-translate-x-3 transition-transform duration-300"
+              className="text-orange-600 transition-transform duration-300 group-hover:-translate-x-3"
             />
             Back to orders
           </Link>
         </div>
 
         {/* Main section  */}
-        <div className="flex-1 min-h-screen bg-gray-50 flex flex-col rounded-md">
+        <div className="flex flex-col flex-1 min-h-screen rounded-md bg-gray-50">
           {/* Main section header  */}
           <div className="flex flex-col">
             {/* Order Status  */}
-            <div className="w-full xl:h-24 min-h-24 flex xl:flex-row flex-col justify-between py-8 xl:py-0 gap-4 items-center px-8">
-              <div className="flex flex-row justify-center items-center gap-8 flex-1">
+            <div className="flex flex-col items-center justify-between w-full gap-4 px-8 py-8 xl:h-24 min-h-24 xl:flex-row xl:py-0">
+              <div className="flex flex-row items-center justify-center flex-1 gap-8">
                 <p className="text-xl font-semibold text-gray-500">
                   Order Status:
                 </p>
@@ -370,13 +370,13 @@ export default function OrderDetailsPage({ params }) {
                       } transition-opacity duration-100`}
                     >
                       <button
-                        className="px-6 py-4 w-full hover:bg-gray-100 "
+                        className="w-full px-6 py-4 hover:bg-gray-100 "
                         onClick={() => handleOnStatusChange("IN PROGRESS")}
                       >
                         Mark as in progress
                       </button>
                       <button
-                        className="px-6 py-4 w-full hover:bg-gray-100 "
+                        className="w-full px-6 py-4 hover:bg-gray-100 "
                         onClick={() => handleOnStatusChange("COMPLETED")}
                       >
                         Mark as completed
@@ -385,7 +385,7 @@ export default function OrderDetailsPage({ params }) {
                   </div>
                 </div>
               </div>
-              <div className="flex-1 flex justify-center items-center">
+              <div className="flex items-center justify-center flex-1">
                 {clientInfo && (
                   <p className="text-xl font-semibold text-gray-500">
                     Delivery Type:{" "}
@@ -396,45 +396,45 @@ export default function OrderDetailsPage({ params }) {
                 )}
               </div>
             </div>
-            <div className="flex xl:flex-row flex-col justify-between xl:h-20 min-h-20 xl:py-0 py-8 bg-gray-100/50 items-center px-8 xl:divide-x divide-gray-300 xl:divide-y-0 divide-y shadow-sm">
+            <div className="flex flex-col items-center justify-between px-8 py-8 divide-y divide-gray-300 shadow-sm xl:flex-row xl:h-20 min-h-20 xl:py-0 bg-gray-100/50 xl:divide-x xl:divide-y-0">
               {orderId && (
-                <p className="text-center w-full font-semibold flex flex-col xl:py-0 py-2">
+                <p className="flex flex-col w-full py-2 font-semibold text-center xl:py-0">
                   Order ID:{" "}
-                  <span className="text-md font-medium ">{orderId}</span>
+                  <span className="font-medium text-md ">{orderId}</span>
                 </p>
               )}
               {formattedDate && (
-                <p className="text-center  w-full font-semibold flex flex-col xl:py-0 py-2">
+                <p className="flex flex-col w-full py-2 font-semibold text-center xl:py-0">
                   Date:{" "}
-                  <span className="text-md font-medium ">{formattedDate}</span>
+                  <span className="font-medium text-md ">{formattedDate}</span>
                 </p>
               )}
               {cardBrand && lastDigits && (
-                <p className="text-center  w-full font-semibold flex flex-col xl:py-0 py-2">
+                <p className="flex flex-col w-full py-2 font-semibold text-center xl:py-0">
                   Payment:{" "}
-                  <span className="text-md font-medium ">
+                  <span className="font-medium text-md ">
                     {cardBrand} ending with {lastDigits}
                   </span>
                 </p>
               )}
               {paymentId && (
-                <p className="text-center  w-full font-semibold flex flex-col xl:py-0 py-2">
+                <p className="flex flex-col w-full py-2 font-semibold text-center xl:py-0">
                   Payment ID:{" "}
-                  <span className="text-md font-medium ">{paymentId}</span>
+                  <span className="font-medium text-md ">{paymentId}</span>
                 </p>
               )}
             </div>
           </div>
 
           {/* Container  */}
-          <div className="flex-1 flex xl:flex-row flex-col xl:divide-x divide-y xl:divide-y-0 divide-gray-300">
+          <div className="flex flex-col flex-1 divide-y divide-gray-300 xl:flex-row xl:divide-x xl:divide-y-0">
             {/* Left side  */}
-            <div className="flex-1 p-8 flex flex-col">
+            <div className="flex flex-col flex-1 p-8">
               {/* Top section of left side  */}
-              <div className="flex min-h-16 flex-col">
+              <div className="flex flex-col min-h-16">
                 {/* Order Summary  */}
                 <div className="flex flex-row justify-between w-full">
-                  <p className="text-lg text-gray-500 font-semibold">
+                  <p className="text-lg font-semibold text-gray-500">
                     Order Summary:
                   </p>
                   {cartProducts && (
@@ -445,37 +445,37 @@ export default function OrderDetailsPage({ params }) {
                   )}
                 </div>
                 {/* Total Prices  */}
-                <div className="py-8 flex flex-col text-lg font-semibold text-gray-500">
+                <div className="flex flex-col py-8 text-lg font-semibold text-gray-500">
                   <p>
                     Subtotal:{" "}
-                    <span className="text-md text-black">
+                    <span className="text-black text-md">
                       ${subTotal.toFixed(2)}
                     </span>
                   </p>
                   <p>
                     Delivery:{" "}
-                    <span className="text-md text-black">
+                    <span className="text-black text-md">
                       ${deliveryAmount.toFixed(2)}
                     </span>
                   </p>
                   <p>
                     Total:{" "}
-                    <span className="text-md text-black">
+                    <span className="text-black text-md">
                       ${totalPrice.toFixed(2)}
                     </span>
                   </p>
                 </div>
               </div>
               {/* Orders section  */}
-              <div className="flex-1 flex flex-col gap-6">
+              <div className="flex flex-col flex-1 gap-6">
                 {cartProducts?.length > 0 &&
                   cartProducts.map((product) => {
                     return (
                       <div
-                        className="flex flex-col sm:flex-row justify-between gap-12 sm:gap-0 items-center ring-1 ring-gray-300 shadow-sm rounded-xl py-12 sm:py-4 px-6 bg-gray-100 flex-wrap"
+                        className="flex flex-col flex-wrap items-center justify-between gap-12 px-6 py-12 bg-gray-100 shadow-sm sm:flex-row sm:gap-0 ring-1 ring-gray-300 rounded-xl sm:py-4"
                         key={product._id}
                       >
-                        <div className="flex flex-col justify-center sm:justify-start sm:flex-row gap-12 items-center w-7/12">
+                        <div className="flex flex-col items-center justify-center w-7/12 gap-12 sm:justify-start sm:flex-row">
                           <Image
                             src={product.image}
                             alt={product.title}
@@ -483,8 +483,8 @@ export default function OrderDetailsPage({ params }) {
                             height={200}
                             className="circular-image"
                           />
-                          <div className="sm:text-start text-center">
-                            <h3 className="text-orange-500 font-semibold">
+                          <div className="text-center sm:text-start">
+                            <h3 className="font-semibold text-orange-500">
                               {product.title}
                             </h3>
                             {product.sizes && (
@@ -516,18 +516,18 @@ export default function OrderDetailsPage({ params }) {
             {/* Right side  */}
             <div className="flex-1 bg-gray-100/25">
               {/* Contact info section  */}
-              <div className="w-full flex flex-col justify-center items-center xl:items-start gap-8 p-8">
+              <div className="flex flex-col items-center justify-center w-full gap-8 p-8 xl:items-start">
                 <p className="text-2xl font-semibold text-gray-500">
                   Contact Information
                 </p>
-                <div className="flex flex-col xl:gap-8 gap-12">
-                  <div className="flex flex-col xl:flex-row gap-4 text-xl xl:justify-start justify-center items-center">
+                <div className="flex flex-col gap-12 xl:gap-8">
+                  <div className="flex flex-col items-center justify-center gap-4 text-xl xl:flex-row xl:justify-start">
                     <p className="w-max xl:w-28">Email:</p>
                     <div>
                       <p className="text-gray-600">{clientInfo?.email}</p>
                     </div>
                   </div>
-                  <div className="flex flex-col xl:flex-row gap-4 text-xl xl:justify-start justify-center items-center">
+                  <div className="flex flex-col items-center justify-center gap-4 text-xl xl:flex-row xl:justify-start">
                     <p className="w-max xl:w-28">Address:</p>
                     <div>
                       <p className="text-gray-600">{clientInfo?.address}</p>

@@ -17,8 +17,8 @@ const Navbar = () => {
         data-scrolled={scrolled}
         className={`hover:opacity-100 transition-opacity duration-500 min-w-40 py-2 grid place-items-center ${
           path === "/"
-            ? "opacity-100 bg-lime-400 rounded-3xl shadow-md"
-            : "opacity-70 data-[scrolled=true]:text-white"
+            ? "opacity-100 bg-yellow-400 rounded-3xl shadow-md"
+            : "opacity-85 data-[scrolled=true]:text-white"
         }`}
       >
         Home
@@ -28,8 +28,8 @@ const Navbar = () => {
         data-scrolled={scrolled}
         className={`hover:opacity-100 transition-opacity duration-500 min-w-40 py-2 grid place-items-center ${
           path === "/menu"
-            ? "opacity-100 bg-lime-400 rounded-3xl shadow-md"
-            : "opacity-70 data-[scrolled=true]:text-white"
+            ? "opacity-100 bg-yellow-400 rounded-3xl shadow-md"
+            : "opacity-85 data-[scrolled=true]:text-white"
         }`}
       >
         Menu
@@ -39,8 +39,8 @@ const Navbar = () => {
         data-scrolled={scrolled}
         className={`hover:opacity-100 transition-opacity duration-500 min-w-40 py-2 grid place-items-center ${
           path === "/contact"
-            ? "opacity-100 bg-lime-400 rounded-3xl shadow-md"
-            : "opacity-70 data-[scrolled=true]:text-white"
+            ? "opacity-100 bg-yellow-400 rounded-3xl shadow-md"
+            : "opacity-85 data-[scrolled=true]:text-white"
         }`}
       >
         Contact Us

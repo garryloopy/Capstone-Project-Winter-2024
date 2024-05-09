@@ -88,35 +88,35 @@ p {
 
 /* header li element style */
 .liStyle {
-  @apply border border-orange-300 p-2;
+  @apply p-2 border border-orange-300;
 }
 
 /* button order style */
 .btnStyle {
-  @apply px-12 py-3 ring-1 ring-lime-400 rounded-3xl hover:bg-lime-400 bg-yellow-300 text-gray-800 hover:text-white font-semibold shadow-md;
+  @apply px-12 py-3 font-semibold text-gray-800 bg-yellow-400 shadow-md ring-1 ring-lime-400 rounded-3xl hover:bg-lime-400 hover:text-white;
 }
 
 /* Styles for Modal */
 .form_input,
 select {
-  @apply w-full rounded-md mb-4 py-3 px-4 text-sm ring-1 ring-gray-200 bg-white text-gray-500 outline-none focus:ring-emerald-500 focus:ring-2 focus:shadow-md transition-all duration-300;
+  @apply w-full px-4 py-3 mb-4 text-sm text-gray-500 transition-all duration-300 bg-white rounded-md outline-none ring-1 ring-gray-200 focus:ring-emerald-500 focus:ring-2 focus:shadow-md;
 }
 
 .activeButton {
-  @apply bg-lime-400 p-2 rounded-3xl text-black lg:text-lg text-xs w-44 text-center shadow-md;
+  @apply p-2 text-xs text-center text-black bg-yellow-400 shadow-md rounded-3xl lg:text-lg w-44;
 }
 .inactiveButton {
-  @apply border-2 border-lime-400 p-2 rounded-3xl text-black lg:text-lg text-xs w-44 text-center;
+  @apply p-2 text-xs text-center text-black border-2 border-yellow-400 rounded-3xl lg:text-lg w-44;
 }
 
 .sign_button {
   letter-spacing: 1px;
-  @apply w-full rounded-md mt-12 p-2 text-sm border border-emerald-500 text-black font-semibold bg-lime-300 hover:bg-lime-200 shadow-md;
+  @apply w-full p-2 mt-12 text-sm font-semibold text-black bg-yellow-300 border rounded-md shadow-md border-emerald-500 hover:bg-yellow-200;
 }
 
 .cancel_button {
   letter-spacing: 1px;
-  @apply w-full rounded-md mt-4 p-2 text-sm border border-lime-400 text-black font-semibold hover:bg-lime-400 shadow-md;
+  @apply w-full p-2 mt-4 text-sm font-semibold text-black border border-yellow-400 rounded-md shadow-md hover:bg-lime-400;
 }
 
 .circular-image {

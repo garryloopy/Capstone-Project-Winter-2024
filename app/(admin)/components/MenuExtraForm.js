@@ -30,9 +30,8 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
     setProps((prev) => prev.filter((value, index) => index !== propRemoved));
   };
   return (
-    <div className=" flex flex-col ring-1 ring-gray-400 px-2 py-4 rounded-md my-2 w-full text-sm gap-2 
-    hover:ring-2 hover:ring-emerald-500 outline-none">
-      <div className="text-gray-400  text-md font-semibold flex items-center gap-2 ">
+    <div className="flex flex-col w-full gap-2 px-2 py-4 my-2 text-sm rounded-md outline-none  ring-1 ring-gray-400 hover:ring-2 hover:ring-emerald-500">
+      <div className="flex items-center gap-2 font-semibold text-gray-400 text-md ">
         <div>
           <button type="button" onClick={() => setIsOpen(!isOpen)}>
             <FontAwesomeIcon
@@ -57,7 +56,7 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
             } items-center sm:mx-4 mx-2 sm:gap-4 gap-1`}
           >
             <label className="w-full">
-              <span className="text-gray-500 font-semibold w-full">
+              <span className="w-full font-semibold text-gray-500">
                 {title} Type
               </span>
               <input
@@ -69,7 +68,7 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
               />
             </label>
             <label className="w-full">
-              <span className="text-gray-500 text-md font-semibold w-full">
+              <span className="w-full font-semibold text-gray-500 text-md">
                 Price
               </span>
               <input
@@ -83,7 +82,7 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
             <div className="bg-white rounded-lg mt-[1.5rem]">
               <button
                 type="button"
-                className="size-10 border rounded-md bg-white hover:bg-red-400/85 overflow-hidden"
+                className="overflow-hidden bg-white border rounded-md size-10 hover:bg-red-400/85"
                 onClick={() => handleDeleteProp(index)}
               >
                 <FontAwesomeIcon icon={faTrash} />
@@ -97,7 +96,7 @@ const MenuExtraForm = ({ props, setProps, title, buttonTitle }) => {
       <button
         type="button"
         onClick={handleAddProps}
-        className="py-2 bg-lime-300  hover:bg-lime-200 ring-1 ring-emerald-500 font-semibold rounded-md flex items-center justify-center gap-2 active:bg-lime-100 shadow-md mt-6"
+        className="flex items-center justify-center gap-2 py-2 mt-6 font-semibold bg-yellow-300 rounded-md shadow-md hover:bg-lime-200 ring-1 ring-emerald-500 active:bg-lime-100"
       >
         <FontAwesomeIcon icon={faPlus} />
         {buttonTitle}

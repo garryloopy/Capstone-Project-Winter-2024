@@ -19,10 +19,10 @@ export default function Footer() {
     // added noopener and noreferrer to the window.open for security measures, just googled it lol
   };
   return (
-    <footer className="bg-slate-700 flex-col flex justify-start items-center text-gray-400 pb-4">
+    <footer className="flex flex-col items-center justify-start pb-4 text-gray-400 bg-miggy">
       <div className="w-full flex  lg:flex-row flex-col justify-center items-center mt-[2rem] py-0 px-[2rem]">
         <div className="flex-1 m-[1rem] lnFont text-center">
-          <h1 className="text-white tracking-[0.08em] text-lg mb-[1rem]">
+          {/* <h1 className="text-white tracking-[0.08em] text-lg mb-[1rem]">
             Find Us
           </h1>
           <p className="text-white lnFont opacity-85">
@@ -30,7 +30,14 @@ export default function Footer() {
             <br /> Calgary, AB,
             <br />
             Canada
-          </p>
+          </p> */}
+          <h1 className="text-white tracking-[0.08em] text-lg mb-[1rem]">
+          Business Hours
+          </h1>
+            <ul className="text-white opacity-95">
+              <li>Sat: 12:00pm - 8:00pm</li>
+              <li>Sun: 12:00pm - 8:00pm</li>
+            </ul>
         </div>
 
         <div className="flex-1 m-[1rem] flex flex-col justify-start items-center">
@@ -56,23 +63,15 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex-1 mb-[1rem] lnFont pb-4 text-center">
-          <h1 className="text-white tracking-[0.08em] text-lg mb-[1rem]">
-            Business Hours
-          </h1>
-          <ul className="text-white opacity-85">
-            <li>Sat: 12:00pm - 8:00pm</li>
-            <li>Sun: 12:00pm - 8:00pm</li>
-          </ul>
-        </div>
+        <div className="flex-1"></div>
       </div>
       {/* <p className="my-[1rem]">
         Copyright ©️ Miggy's Munchies {new Date().getFullYear()}
       </p> */}
       <div className="w-full p-4 my-[1rem] text-center">
-        <p className="">
+        <p className="text-white">
           ©️ {new Date().getFullYear()}{" "}
-          <span className="text-yellow-400 font-bold">
+          <span className="font-bold text-yellow-400">
             Miggy&apos;s Munchies
           </span>{" "}
           All rights reserved.

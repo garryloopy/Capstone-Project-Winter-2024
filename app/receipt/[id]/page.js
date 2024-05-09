@@ -91,17 +91,17 @@ export default function OrderConfirmationPage() {
   }, [deliveryAmount, clientInfo?.distance]);
 
   // clear cart shipping
-  const handleCart = useCallback(() => {
-    clearCart();
-  }, [clearCart]);
+  // const handleCart = useCallback(() => {
+  //   clearCart();
+  // }, [clearCart]);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (window.location.href.includes("clear=1")) {
-        handleCart();
-      }
-    }
-  },[]);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     if (window.location.href.includes("clear=1")) {
+  //       handleCart();
+  //     }
+  //   }
+  // },[]);
 
   // calculate total price
   if (cartProducts) {
@@ -145,13 +145,13 @@ export default function OrderConfirmationPage() {
             </div>
             <div className="border-b-2 border-gray-400 flex justify-center items-center lg:w-[60%] w-full mx-auto text-center my-[2rem]">
               {clientInfo?.deliveryType === "pickup" ? (
-                <h2 className="m-8 p-3 font-bold lnFont text-lg text-gray-600">
+                <h2 className="p-3 m-8 text-lg font-bold text-gray-600 lnFont">
                   Your order will be prepared and will be ready for pickup at our location. 
-                  Please visit us within the next 20 minutes to collect your items. 
+                  We will notify you once your order is ready. 
                   Timely pickup will ensure that your order is fresh and ready for your enjoyment.
                 </h2>
               ) : (
-                <h2 className="m-8 p-3 font-bold lnFont text-lg text-gray-600">
+                <h2 className="p-3 m-8 text-lg font-bold text-gray-600 lnFont">
                   Your order will be prepared, and we will notify you when it is out for delivery 
                   by sending an email to {clientInfo?.email}.
                 </h2>

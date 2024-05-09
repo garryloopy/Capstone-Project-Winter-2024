@@ -68,11 +68,11 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
   };
   return (
     <div className="w-full lg:w-[50%] my-[3rem] rounded-xl overflow-hidden ring-1 ring-neutral-400">
-      <div className="bg-gray-50 p-12 flex flex-col gap-8 justify-center">
-        <div className="grid place-content-center w-full h-max">
-          <div className="size-96 bg-white ring-1 ring-gray-400 rounded-lg flex flex-col justify-evenly items-center">
+      <div className="flex flex-col justify-center gap-8 p-12 bg-gray-50">
+        <div className="grid w-full place-content-center h-max">
+          <div className="flex flex-col items-center bg-white rounded-lg size-96 ring-1 ring-gray-400 justify-evenly">
             {/* Image container  */}
-            <div className="size-1/2 ring-1 ring-emerald-500 shadow-md rounded-full relative overflow-hidden">
+            <div className="relative overflow-hidden rounded-full shadow-md size-1/2 ring-1 ring-emerald-500">
               {menuInput.image && (
                 <Image
                   src={menuInput.image}
@@ -84,7 +84,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
               )}
             </div>
 
-            <label className="flex flex-col gap-4 justify-center items-center">
+            <label className="flex flex-col items-center justify-center gap-4">
               <input
                 type="file"
                 className="hidden"
@@ -96,7 +96,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
             </label>
           </div>
         </div>
-        {/* <div className=" bg-white rounded-md flex ring-1 ring-gray-300 flex-col gap-6 justify-center items-center mx-auto my-6 p-12 shadow-lg">
+        {/* <div className="flex flex-col items-center justify-center gap-6 p-12 mx-auto my-6 bg-white rounded-md shadow-lg ring-1 ring-gray-300">
           {menuInput.image && (
             <div className="grid place-items-center size-24">
               <Image
@@ -107,7 +107,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
               />
             </div>
           )}
-          <label className="flex flex-col gap-4 justify-center items-center">
+          <label className="flex flex-col items-center justify-center gap-4">
             <input type="file" className="hidden" onChange={handleFileChange} />
             <span className="px-8 py-2 bg-white shadow-md text-[0.8rem] ring-1 ring-yellow-400 rounded-lg hover:bg-yellow-400 cursor-pointer">
               {menuList ? "Edit image" : "Upload image"}
@@ -115,7 +115,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
           </label>
         </div> */}
         <form
-          className="flex flex-col justify-center items-center grow"
+          className="flex flex-col items-center justify-center grow"
           onSubmit={(ev) =>
             handleSubmit(ev, setMenuInput, setSizes, setExtra, {
               ...menuInput,
@@ -125,7 +125,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
           }
         >
           <label className="w-full">
-            <span className="text-sm text-gray-500 font-semibold">Title</span>
+            <span className="text-sm font-semibold text-gray-500">Title</span>
             <input
               type="text"
               className="form_input"
@@ -137,7 +137,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
             />
           </label>
           <label className="w-full">
-            <span className="text-sm text-gray-500 font-semibold">
+            <span className="text-sm font-semibold text-gray-500">
               Description
             </span>
             <input
@@ -152,7 +152,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
           </label>
 
           <label className="w-full">
-            <span className="text-sm text-gray-500 font-semibold">
+            <span className="text-sm font-semibold text-gray-500">
               Base price
             </span>
             <input
@@ -167,7 +167,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
           </label>
 
           <label className="w-full">
-            <span className="text-sm text-gray-500 font-semibold">
+            <span className="text-sm font-semibold text-gray-500">
               Discount
             </span>
             <input
@@ -198,7 +198,7 @@ const MenuForm = ({ handleSubmit, buttonText, menuList }) => {
           </button>
           {menuList && (
             <Link
-              className="w-full rounded-md mt-4 text-center p-2 text-sm border border-gray-300 text-black font-semibold hover:bg-lime-400 shadow-md"
+              className="w-full p-2 mt-4 text-sm font-semibold text-center text-black border border-gray-300 rounded-md shadow-md hover:bg-amber-400"
               href="/menu-list"
             >
               Cancel

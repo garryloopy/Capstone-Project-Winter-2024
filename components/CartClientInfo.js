@@ -30,7 +30,7 @@ const CartClientInfo = ({
   const zipRegExp = /^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$/;
   const apartmentRegExp = /^[a-zA-Z0-9\s-]{1,10}$/;
   // const cityRegExp = /^[a-zA-Z\s-]{2,}$/;
-const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
+const phoneRegExp = /^\d{3}-?\d{3}-?\d{4}$/;
   const [isEmailValid, setIsEmailValid] = useState();
   const [isZipValid, setIsZipValid] = useState();
   // const [isCityValid, setIsCityValid] = useState();
@@ -110,7 +110,7 @@ const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
       <form>
         <label className="w-full">
           <span className="text-sm text-gray-400">Email</span>
-          <div className="flex relative">
+          <div className="relative flex">
             <input
               type="email"
               className="form_input"
@@ -147,7 +147,7 @@ const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
             </label>
             <label>
               <span className="text-sm text-gray-400">Appt no.</span>
-              <div className="flex relative">
+              <div className="relative flex">
                 <input
                   name="apartment"
                   placeholder="Apartment #"
@@ -166,7 +166,7 @@ const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
           </div>
         </AddressAutofill>
 
-        <div className="flex lg:flex-row flex-col gap-4 w-full">
+        <div className="flex flex-col w-full gap-4 lg:flex-row">
           <label className="w-full">
             <span className="text-sm text-gray-400">City</span>
             <input
@@ -174,7 +174,7 @@ const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
               placeholder="City"
               name="city"
               value="Calgary"
-              className="form_input text-gray-500"
+              className="text-gray-500 form_input"
               disabled
             />
           </label>
@@ -185,7 +185,7 @@ const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
               placeholder="Province"
               name="province"
               value="Alberta"
-              className="form_input text-gray-500"
+              className="text-gray-500 form_input"
               disabled
             />
           </label>
@@ -198,7 +198,7 @@ const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
           </label> */}
           <label className="w-full">
             <span className="text-sm text-gray-400">Postal code</span>
-            <div className="flex relative">
+            <div className="relative flex">
               <input
                 type="text"
                 placeholder="Postal code"
@@ -222,13 +222,13 @@ const phoneRegExp = /^\d{3}-\d{3}-\d{4}$/;
             placeholder="Country"
             name="country"
             value="Canada"
-            className="form_input text-gray-500"
+            className="text-gray-500 form_input"
             disabled
           />
         </label>
         <label className="w-full">
           <span className="text-sm text-gray-400">Phone</span>
-          <div className="flex relative">
+          <div className="relative flex">
             <input
               type="text"
               placeholder="111-222-3333"

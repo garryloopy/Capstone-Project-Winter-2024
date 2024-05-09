@@ -16,18 +16,18 @@ const AdminModal = () => {
         <div className="fixed bottom-0 right-[.1rem] w-[30rem] h-48 bg-gray-800/95 lg:mr-4 lg:mb-4 text-gray-50 border border-gray-600 rounded-md">
           {/* Close button for top right  */}
           <button
-            className="absolute top-6 right-6 size-7 grid place-content-center rounded-md hover:bg-slate-100 text-slate-50 hover:text-slate-800"
+            className="absolute grid rounded-md top-6 right-6 size-7 place-content-center hover:bg-slate-100 text-slate-50 hover:text-slate-800"
             onClick={handleClose}
           >
             <IoClose size={32} />
           </button>
 
           {/* Container  */}
-          <div className="w-full h-full flex flex-col gap-4 items-center justify-center">
+          <div className="flex flex-col items-center justify-center w-full h-full gap-4">
             <p>Sign in as admin to access the dashboard.</p>
             <Link
               href="/sign-in"
-              className="gap-4 h-10 w-40 flex flex-row items-center justify-center text-slate-800 font-semibold bg-zinc-100 rounded-md shadow-md hover:bg-lime-300"
+              className="flex flex-row items-center justify-center w-40 h-10 gap-4 font-semibold bg-yellow-300 rounded-md shadow-md text-slate-800 hover:bg-zinc-100"
             >
               <IoLogInOutline size={24} />
               Sign in

@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        miggy: '#E18C58',
+        
+      },
       /* added keyframes to further play with the animations :D */
       keyframes: {
         bounce: {
