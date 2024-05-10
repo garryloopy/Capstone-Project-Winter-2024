@@ -96,7 +96,19 @@ function Menu() {
               Search
             </button> */}
           </form>
+          {/* grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-8 md:gap-6 gap-2 mt-6 mb-8 */}
+          {/* flex flex-col gap-8 */}
+
           <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-8 md:gap-6 gap-2 mt-6 mb-8">
+            {/* <div className="flex flex-row items-center gap-8">
+              <p>Display as:</p>
+              <button className="bg-green-500 w-32 h-12 rounded-lg">
+                List
+              </button>
+              <button className="bg-green-300 w-32 h-12 rounded-lg">
+                Grid
+              </button>
+            </div> */}
             {!search && menuList.length > 0 ? (
               menuList.map((menu) => <ClientMenu key={menu._id} {...menu} />)
             ) : menuListSearch?.length > 0 ? (
