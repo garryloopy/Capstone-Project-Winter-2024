@@ -71,8 +71,6 @@ const MenuPopUp = ({
     }
   };
 
-
-  console.log("Special Instructions:", specialInstructions);
   
   // let selectedPrice;
   // selectedPrice = priceAsNumber ;

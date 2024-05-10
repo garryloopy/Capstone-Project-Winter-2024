@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { connectToDB } from "@/app/utils/DB-connect";
 import User from "@/app/models/User";
 import Joi from "joi";
-import adminIds from "../../../dataConstant/adminIds";
+// import adminIds from "../../../dataConstant/adminIds";
 
 const schema = Joi.object({
   name: Joi.string()
