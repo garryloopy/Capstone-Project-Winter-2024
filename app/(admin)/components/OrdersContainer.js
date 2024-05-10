@@ -85,9 +85,9 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
         (order) => order.orderStatus === "COMPLETED"
       );
       setDisplayedItems(newOrders);
-    } else if (currentFilter === "IN-PROGRESS") {
+    } else if (currentFilter === "IN PROGRESS") {
       newOrders = newOrders.filter(
-        (order) => order.orderStatus === "IN-PROGRESS"
+        (order) => order.orderStatus === "IN PROGRESS"
       );
       setDisplayedItems(newOrders);
     } else {
@@ -168,7 +168,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
       return;
     }
 
-    if (orderStatus === "IN-PROGRESS") {
+    if (orderStatus === "IN PROGRESS") {
       if (newStatus !== "COMPLETED") {
         setModalMessage("Order must be marked as completed first.");
         setSubMessage("Please select completed status.");
@@ -289,8 +289,8 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
               onFilterButtonClick={handleOnFilterButtonClick}
             />
             <FilterButton
-              contents="In-Progress"
-              filterType="IN-PROGRESS"
+              contents="In Progress"
+              filterType="IN PROGRESS"
               currentFilter={currentFilter}
               onFilterButtonClick={handleOnFilterButtonClick}
             />
@@ -337,8 +337,8 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                 onFilterButtonClick={handleOnFilterButtonClick}
               />
               <FilterButton
-                contents="In-Progress"
-                filterType="IN-PROGRESS"
+                contents="In Progress"
+                filterType="IN PROGRESS"
                 currentFilter={currentFilter}
                 onFilterButtonClick={handleOnFilterButtonClick}
               />
@@ -456,7 +456,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
                 </span>
                 ,{" "}
                 <span className="bg-blue-50 border-blue-200 text-blue-800 border p-[2px] rounded-md">
-                  IN-PROGRESS
+                  IN PROGRESS
                 </span>
                 ,{" "}
                 <span className="bg-orange-50 border-orange-200 text-orange-800 border p-[2px] rounded-md">
@@ -473,7 +473,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
               <p>
                 An order status of{" "}
                 <span className="bg-green-50 border-blue-200 text-blue-800 border p-[2px] rounded-md">
-                  IN-PROGRESS
+                  IN PROGRESS
                 </span>{" "}
                 will send an email to the customer for confirmation and
                 acknowledgement.
@@ -577,7 +577,7 @@ export default function OrdersContainer({ ordersList, onOrderStatusChange }) {
             categorizedItems &&
             ordersList &&
             currentFilter === "ALL" &&
-            ["PENDING", "IN-PROGRESS", "COMPLETED", "CANCELLED"].map(
+            ["PENDING", "IN PROGRESS", "COMPLETED", "CANCELLED"].map(
               (category) =>
                 categorizedItems[category] ? (
                   <div
