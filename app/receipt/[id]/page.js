@@ -93,17 +93,17 @@ export default function OrderConfirmationPage() {
   }, [deliveryAmount, clientInfo?.distance]);
 
   // clear cart shipping
-  // const handleCart = useCallback(() => {
-  //   clearCart();
-  // }, [clearCart]);
+  const handleCart = useCallback(() => {
+    clearCart();
+  }, [clearCart]);
 
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     if (window.location.href.includes("clear=1")) {
-  //       handleCart();
-  //     }
-  //   }
-  // },[]);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.location.href.includes("clear=1")) {
+        handleCart();
+      }
+    }
+  },[]);
 
   // calculate total price
   if (cartProducts) {
