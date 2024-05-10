@@ -55,6 +55,6 @@ export async function POST(req, res) {
     });
     return new NextResponse(JSON.stringify(result), { status: 200 });
   } catch (error) {
-    return new NextResponse("Payment is failed." + error, { status: 500 });
+    return new NextResponse("Payment is unsuccessful." + error, { status: 500 });
   }
 }

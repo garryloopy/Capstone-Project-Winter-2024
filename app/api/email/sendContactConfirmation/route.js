@@ -72,7 +72,7 @@ export async function POST(req) {
           A contact entry was received
         </h2>
         <p style="color: #6b7280; font-size: 1rem; margin: 0">
-          Below regards the information for this entry.
+          Below is the information for this entry.
         </p>
       </div>
       <div style="padding-bottom: 1rem; border-bottom: 1px solid #ccc">

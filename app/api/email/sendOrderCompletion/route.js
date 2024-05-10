@@ -100,7 +100,7 @@ export async function POST(req) {
           homemade goodness.
         </h2>
         <p style="color: #6b7280; font-size: 1rem; margin: 0">
-          Below regards your order.
+          Below is your order information.
         </p>
       </div>
       <div style="padding-bottom: 1rem; border-bottom: 1px solid #ccc">
