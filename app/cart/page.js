@@ -138,7 +138,7 @@ export default function CartPage() {
   ]);
 
   //calculate the total price with delivery Amount
-  const totalPricePlusDelivery = totalPrice + deliveryAmount;
+  const totalPricePlusDelivery = (totalPrice * 1.05) + deliveryAmount;
 
   const handleEmail = async (paymentId) => {
     const res = await fetch("/api/email/sendOrderConfirmationCheckout", {
