@@ -123,7 +123,7 @@ export default function OrderConfirmationPage() {
             <div className="md:px-[4rem] px-[2rem] py-[1rem] flex md:flex-row flex-col justify-between">
               <SubHeader header2="Receipt" />
               <h1 className="md:text-xl text-md font-bold md:mt-[2.5rem] text-black text-center">
-                ${(totalPrice + deliveryAmount).toFixed(2)}
+                ${((totalPrice * 1.05) + deliveryAmount).toFixed(2)}
               </h1>
             </div>
             <div className="mt-[1rem] flex xl:flex-row flex-col gap-2 lg:justify-around lg:items-start text-black">

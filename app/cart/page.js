@@ -272,7 +272,7 @@ export default function CartPage() {
                         <Button className="bg-yellow-400 text-black hover:bg-blue-400">
                           $
                           {`${(
-                            totalPrice +
+                            (totalPrice * 1.05) +
                             (deliveryAmount >= 5 ? deliveryAmount : 0)
                           ).toFixed(2)}`}
                         </Button>

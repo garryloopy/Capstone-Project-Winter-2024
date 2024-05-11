@@ -26,6 +26,9 @@ const CartMenuList = ({
   let clearLink = false;
   clearLink = window.location.href.includes("clear=1");
 
+  // calculate GST
+  const gst = totalPrice * 0.05
+
   return (
     <div>
       {cartProducts?.length > 0 &&
@@ -123,6 +126,7 @@ const CartMenuList = ({
               )}
               <span className="text-gray-400">Delivery:</span>
             </div>
+            <span className="text-gray-400">GST:</span>
             <span className="text-gray-400">Total:</span>
           </div>
           <div className="flex flex-col gap-1">
@@ -133,7 +137,10 @@ const CartMenuList = ({
               ${deliveryAmount.toFixed(2)}
             </span>
             <span className="pl-2 font-semibold text-gray-500 text-md">
-              ${(totalPrice + deliveryAmount)?.toFixed(2)}
+              ${gst.toFixed(2)}
+            </span>
+            <span className="pl-2 font-semibold text-gray-500 text-md">
+              ${((totalPrice * 1.05) + deliveryAmount )?.toFixed(2)}
             </span>
           </div>
         </div>
