@@ -73,10 +73,10 @@ const ClientMenu = (menuList) => {
             //   {menuList.discount}%
             // </div>
 
-            <div className="absolute top-0 right-0">
-              <SlTag size={80} className="text-orange-400" />
-              <div className="absolute top-0 left-0 w-full h-full grid place-items-center text-gray-800 font-bold">
-                <p>{menuList.discount}%</p>
+            <div className="absolute top-0 left-0">
+              <SlTag size={90} className="scale-x-[-1] text-orange-400" />
+              <div className="absolute top-0 left-0 grid w-full h-full text-xs font-extrabold tracking-tighter text-gray-800 place-items-center">
+                <p>{menuList.discount}% OFF</p>
               </div>
             </div>
           )}
