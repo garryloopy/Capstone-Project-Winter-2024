@@ -6,6 +6,8 @@ import getFormattedDate from "@/app/(admin)/utils/getFormattedDate";
 
 const nodemailer = require("nodemailer");
 
+const DOMAIN = "https://miggysmunchies.vercel.app/";
+
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -162,7 +164,7 @@ export async function POST(req) {
         </p>
         <p style="color: #6b7280; font-size: 1rem; margin: 0">
           <strong>Receipt:</strong>
-          <a href="http://localhost:3000/receipt/${paymentId}">Click here</a>
+          <a href="${DOMAIN}/receipt/${paymentId}">Click here</a>
         </p>
       </div>
     </section>
