@@ -5,6 +5,8 @@ import Footer from "@/components/Footer";
 import Providers from "../components/Providers";
 import toast, { Toaster } from "react-hot-toast";
 
+import { Analytics } from "@vercel/analytics/react";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -17,6 +19,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Providers>
+          <Analytics />
           <Toaster />
           <Header />
           {children}
