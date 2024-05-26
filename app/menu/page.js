@@ -76,9 +76,9 @@ function Menu() {
 
           {/* search bar */}
           <form className="lg:max-w-[50%] w-full flex my-[2rem] justify-center">
-            <label className="h-10 text-md w-full flex-1 relative flex flex-col justify-end cursor-text border-2 rounded-md shadow-md focus-within:shadow-md transition-shadow duration-300 group bg-white">
+            <label className="relative flex flex-col justify-end flex-1 w-full h-10 transition-shadow duration-300 bg-white border-2 rounded-md shadow-md text-md cursor-text focus-within:shadow-md group">
               <input
-                className="w-full px-4 h-10 outline-none peer bg-gray-100 p-2 text-gray-600 rounded-md text-md focus:bg-slate-50 focus:ring-2 focus:ring-lime-400"
+                className="w-full h-10 p-2 px-4 text-gray-600 bg-gray-100 rounded-md outline-none peer text-md focus:bg-slate-50 focus:ring-2 focus:ring-lime-400"
                 type="text"
                 value={search}
                 onChange={handleSearchChange}
@@ -86,7 +86,7 @@ function Menu() {
               <InputAnimation text="Search" stateValue={search} />
 
               <div className="absolute inset-0 flex items-center justify-end px-2">
-                <Search className="text-gray-400 w-5 h-5" />
+                <Search className="w-5 h-5 text-gray-400" />
               </div>
             </label>
             {/* <button
@@ -99,13 +99,13 @@ function Menu() {
           {/* grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-8 md:gap-6 gap-2 mt-6 mb-8 */}
           {/* flex flex-col gap-8 */}
 
-          <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-8 md:gap-6 gap-2 mt-6 mb-8">
+          <div className="grid grid-cols-1 gap-2 mt-6 mb-8 xl:grid-cols-3 md:grid-cols-2 lg:gap-8 md:gap-6">
             {/* <div className="flex flex-row items-center gap-8">
               <p>Display as:</p>
-              <button className="bg-green-500 w-32 h-12 rounded-lg">
+              <button className="w-32 h-12 bg-green-500 rounded-lg">
                 List
               </button>
-              <button className="bg-green-300 w-32 h-12 rounded-lg">
+              <button className="w-32 h-12 bg-green-300 rounded-lg">
                 Grid
               </button>
             </div> */}
@@ -117,7 +117,7 @@ function Menu() {
               ))
             ) : (
               <div>
-                <p className=" text-black text-lg">
+                <p className="text-lg text-black ">
                   Sorry, There is no matching menu.
                 </p>
               </div>
