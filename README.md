@@ -14,7 +14,7 @@ With partnership with Miggy's Munchies, Miggy's Munchies is web application acti
 
 2. Open Visual Studio Code
 3. Drag the project folder into Visual Studio Code
-4. Click Toogle Panel on top right corner (2nd icon from the left)
+4. Click Toggle Panel on top right corner (2nd icon from the left)
 5. In Terminal tab, run following command:
 ```javascript
 npm run dev
